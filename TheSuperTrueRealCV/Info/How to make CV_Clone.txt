@@ -1,0 +1,38 @@
+Pengar = magic essence;
+Menyer:
+    Sub-Menys: Stats, Equipment, Inventory, CollecterBook,Map, Sub weapons.
+Stats: Visar HP/MP lvl, totalXp, XPnext, pengar, Porträtt. Stats, Equipped overview.
+Map: Visar kartan. Bläddra mellan olika rum.
+Equipment: Visar alla slots. En tab som visar items för selectad slot. Tab som visar stats/bild.
+Inventory: Lista på alla items som man har, sorterat i kategorier. Använda consumables. layout typ equipment
+CollecterBook: Välj item eller monster info -> bläddra mellan monster se stats/killcount, drops, portrait.
+Attacks: Bläddra mellan alla moves. Combo moves, Beskrivning, input, stats, use info, (lvl).
+PowerUps: Visar powerups. Lista med powerups stor tab med beskrivning.
+
+Equipments:
+Vanliga slots ger pure stats. Kanske rare drophar super saker.
+Gem: Ger stats/special effekter -> 3slots + 1 Major gem slot. 
+    Major Gem Effekter: MpDrain on hit, life leach on hit, stats, stat boost+stat loss, chance inflict status(burn...) on hit, Active bonus,
+    extra dmg proc, Boostar ett anfall/spell.
+    Minor Gem Effekter: On hit effect, stat boosts, status on hit, life leach, mp drain, major gem boost.
+
+SHop:
+Uppbyggd som meny. 1 tab -> kategorier,1 tab -> bild + description, 1 tab -> lista på items i kategori+ pris 1 liten tab ->shop lvl + xpbar
+	%del av priset läggs till som XP. Donera ger större %del till XP. Donation tab med stats om donations
+
+SHop lvl låst beronde på major checkpoints. Item quality skalar med shop lvl.
+
+Player Stats: icke-linjärt skaling
+	specifika stats bestäms efter testning.
+	Varje gång man lvlar får man välja en focus som ger några extra points i en vald stat(beroende på skalingen).
+
+Statusar:
+ Curse-> DoT
+ MpDrain -> convertar targets HP -> din MP
+ insta Kill -> !!
+ slow -> !!
+ stats loss/stats boost ->!!
+ timestop -> FUll timestop(spells, monster, allt).ägarens vanliga attacker/movement funkar fortfarande.
+ freeze -> freezar target.
+ fear -> fear target random running.
+ life leech -> drains target HP -> din HP

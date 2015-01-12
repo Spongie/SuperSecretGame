@@ -1,0 +1,53 @@
+BOSS!!!!!!!!!!!!!
+
+
+
+
+MOVES
+
+
+deep grave: bossen säger något och börjar charga magic i 6a sec när han är färdig så använder 
+han en super deep grave framför sig och sedan vänder han sig och drar en bakom sig.
+händer så fort bossen går under 40% hp och den händer bara 1 gång.
+efter det så är det alltid exhausted.
+
+
+magic 2: fireball: laddar i typ 1,5 sec sen gör han fireball där han skjuter ut fireballs 
+i ett sett pattern som är 1 rakt upp, 1 upp/höger,1 upp/vänster,1 höger,1 vänster.
+efter är alltid idle.
+
+
+attack1: kastar random instrument i en kastbana, kan bli flöjt,trumma,gitarr med mera.
+efter är det alltid idle.
+
+
+attack2: slår fram med sin direktor pinne sak,när slaget är färdigt så kommer där en blixt
+som slår ner precis framför pinnen. 
+efter är det alltid idle.
+
+
+idle:han står still utan att göra något. 
+efter det kan det bli vad som helst förutom idle och exhaust.
+
+
+move left: han går lite till vänster. 
+efter det blir det antingen jumpback,jumpattack,
+idle, attack1,attack2,magic2.
+
+
+move right: samma som move left fast andra hållet. 
+efter det blir det antingen jumpback,
+jumpattack, idle, attack1,attack2,magic2.
+
+
+jump back: hoppar ifrån spelaren. 
+följer alltid upp med attack1.
+
+
+Jump attack: hoppar mot spelaren. 
+följer alltid upp med attack2.
+
+
+exhausted: står still utan att göra något. 
+efter de är de attack1,attack2,magic2.
+

@@ -1,0 +1,25 @@
+när man går in i menyn så hamnar man först i "MENU"
+
+"Menu" har lite stats och olika submenus man kan gå in i.
+
+"stats" tar dig in i "statsMenu" och den innehåller dina olika stats och vad för gear man har equiped.
+
+"Equipment" tar dig in i "EquipmentMenu" som har olika tabs för varje equipment typ samt en lista och beskrivning på equipmenten.
+i den här så equipar man den gearen man vill ha.
+
+"Items" tar dig in i "itemsMenu" där man har en lista på alla sina ikke gear items. i itemsmenu så kan 
+man använda potions och liknande för att heala sig.
+
+
+"monster List" tar dig till "monsterlistmenu" där man kan scrolla igenom information om alla fiender man har dödat i spelet.
+där finns en bild på fienden samt vilka stats den har och vad den droppar när man dödar den.
+
+"item list" tar dig till en collector book där man har en lista på alla items och gear delar man har haft under spelet.
+
+"Magix/subweapon" tar dig till "Magic-subweaponMenu" där man kan välja mellan att equipa ett nytt move eller see statsen för de olika movesen man har.
+man kommer kunna equipa 4 olika moves/magics.
+
+
+"attackmoves" tar dig till en lista där man kan se alla olika attack och combo moves man har. visar stats och liknande för moven man kollar in.
+
+"map" tar dig till kartan.
