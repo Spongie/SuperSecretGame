@@ -20,10 +20,9 @@ namespace CVCommon
         public static int SpeedValue;
         public static int JumpPower;
 
-        public static void SetDefaults(Vector2 gamesize)
+        public static void SetDefaults()
         {
-            gamesize = new Vector2(800, 640);
-            gameSize = gamesize;
+            gameSize = new Vector2(800, 640);
             gravityPower = 30;
             Fallingspeedcap = 800;
             SpeedValue = 4;

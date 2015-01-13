@@ -27,6 +27,7 @@ namespace CVLevelEditor
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            Settings.SetDefaults();
 
             lvlOptions = new LevelOptions();
             lvlOptions.onMapLoaded += lvlOptions_onMapLoaded;
@@ -53,7 +54,7 @@ namespace CVLevelEditor
             KeyMouseReader.Update();
             SetEditorGridValues();
 
-            editorGrid.Update();
+            editorGrid.Update(lvlOptions.Placing_Mode, lvlOptions.LightIntensity);
             base.Update(gameTime);
             lvlOptions.GameMap = editorGrid.GetMap();
         }
@@ -71,7 +72,7 @@ namespace CVLevelEditor
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
 
-            editorGrid.Draw(spriteBatch);
+            editorGrid.Draw(spriteBatch, lvlOptions.Placing_Mode);
 
             spriteBatch.End();
             base.Draw(gameTime);

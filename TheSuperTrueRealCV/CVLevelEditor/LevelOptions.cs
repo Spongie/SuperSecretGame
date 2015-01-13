@@ -12,6 +12,18 @@ using CVStorage;
 
 namespace CVLevelEditor
 {
+    public enum PlacingMode
+    {
+        Platforms,
+        Props,
+        Edit
+    }
+
+    public enum PlacingProp
+    {
+        Light
+    }
+
     public partial class LevelOptions : Form
     {
         public event EventHandler onMapLoaded;
@@ -21,6 +33,8 @@ namespace CVLevelEditor
             InitializeComponent();
             comboBox_Types.DataSource = Enum.GetNames(typeof(PlatformType));
             comboBox_Status.DataSource = Enum.GetNames(typeof(PlatformStatus));
+            comboBox_PropTypes.DataSource = Enum.GetNames(typeof(PlacingProp));
+            Placing_Mode = PlacingMode.Platforms;
         }
 
         private void comboBox_Types_SelectedIndexChanged(object sender, EventArgs e)
@@ -45,7 +59,7 @@ namespace CVLevelEditor
 
         public bool ClickMode
         {
-            get { return checkBox_mouseMode.Checked; }
+            get { return !checkBox_mouseMode.Checked; }
         }
 
         public PlatformStatus SelectedPlatformStatus
@@ -61,6 +75,10 @@ namespace CVLevelEditor
 
         public Map GameMap { get; set; }
 
+        public PlacingMode Placing_Mode { get; set; }
+
+        public float LightIntensity { get { return trackBar_Intensity.Value; } }
+
         private void button_save_Click(object sender, EventArgs e)
         {
             var saveFileDialog = new SaveFileDialog();
@@ -71,9 +89,9 @@ namespace CVLevelEditor
             if(saveFileDialog.FileName != string.Empty)
             {
                 GameMap.Name = GetMapName(saveFileDialog.FileName);
-                GameMap.NormalizePlatforms();
+                GameMap.NormalizePositions();
                 ObjectSerializer.Serialize<Map>(GameMap, saveFileDialog.FileName);
-                GameMap.DeNormalizePlatforms();
+                GameMap.DeNormalizePositions();
             }
         }
 
@@ -97,6 +115,25 @@ namespace CVLevelEditor
                 GameMap = ObjectSerializer.DeSerialize<Map>(loadFileDialog.FileName);
                 if (onMapLoaded != null)
                     onMapLoaded(this, null);
+            }
+        }
+
+        private void tabControl_Selected(object sender, TabControlEventArgs e)
+        {
+            Placing_Mode = (PlacingMode)Enum.Parse(typeof(PlacingMode), tabControl.SelectedTab.Text);
+        }
+
+        private void comboBox_PropTypes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(comboBox_PropTypes.SelectedIndex == 0)
+            {
+                label_intensity.Visible = true;
+                trackBar_Intensity.Visible = true;
+            }
+            else
+            {
+                label_intensity.Visible = false;
+                trackBar_Intensity.Visible = false;
             }
         }
     }

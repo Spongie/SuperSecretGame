@@ -14,13 +14,17 @@ namespace CVLevelEditor
         List<Rectangle> screenBlocks;
         SpriteFont font;
         Map map;
+        Camera camera;
         int indexToDraw;
+        Texture2D light;
+        Point lastPosition;
 
         public EditorGrid(Vector2 piSize)
         {
             Init();
             screenSize = piSize;
             font = ContentHolder.LoadExtraContent<SpriteFont>("Font");
+            light = ContentHolder.LoadExtraContent<Texture2D>("PropLight");
             blockSize = Point.Zero;
 
             blockSize.X = (int)screenSize.X / 20;
@@ -49,39 +53,56 @@ namespace CVLevelEditor
             PlatformTextures[PlatformType.CastleWall] = ContentHolder.LoadExtraContent<Texture2D>("CastleWall.png");
         }
 
-        public void Update()
+        public void Update(PlacingMode placingMode, float intensity)
         {
-            Camera camera = CameraController.GetCamera();
+            camera = CameraController.GetCamera();
             camera.UpdateEditorCamera(blockSize.ToVector2());
             Point mousePosition = KeyMouseReader.mouseState.Position;
 
-            for (int i = 0; i < screenBlocks.Count; i++)
+            if (placingMode == PlacingMode.Platforms)
             {
-                if (screenBlocks[i].Contains(mousePosition))
+                for (int i = 0; i < screenBlocks.Count; i++)
                 {
-                    indexToDraw = i;
-                    break;
+                    if (screenBlocks[i].Contains(mousePosition))
+                    {
+                        indexToDraw = i;
+                        break;
+                    }
                 }
             }
 
             if (Clicked())
             {
-                Rectangle targetRect = screenBlocks.Where(block => block.Contains(mousePosition)).First();
-
-                try
-                {
-                    Platform existingPlatform = map.Platforms.Where(platform => camera.GetObjectScreenPosition(platform.PlatformSettings.Position.ToVector2()).ToPoint() == targetRect.Location).First();
-
-                    if (existingPlatform != null)
-                        map.Platforms.Remove(existingPlatform);
-                }
-                catch { }
-
-                if (targetRect != null)
-                    map.Platforms.Add(new Platform(camera.GetObjectWorldPosition(targetRect.Location.ToVector2()).ToPoint(), Platform_Type, Platform_Status, Collidable));
+                if (placingMode == PlacingMode.Platforms)
+                    PlacePlatform(mousePosition);
+                else if (placingMode == PlacingMode.Props)
+                    PlaceProp(mousePosition, intensity);
             }
+
+            lastPosition = mousePosition;
         }
 
+        private void PlaceProp(Point mousePosition, float intensity)
+        {
+            map.Lights.Add(new Light(light, mousePosition.ToVector2(), blockSize.ToVector2(), intensity));
+        }
+
+        private void PlacePlatform(Point mousePosition)
+        {
+            Rectangle targetRect = screenBlocks.Where(block => block.Contains(mousePosition)).First();
+
+            try
+            {
+                Platform existingPlatform = map.Platforms.Where(platform => camera.GetObjectScreenPosition(platform.PlatformSettings.Position.ToVector2()).ToPoint() == targetRect.Location).First();
+
+                if (existingPlatform != null)
+                    map.Platforms.Remove(existingPlatform);
+            }
+            catch { }
+
+            if (targetRect != null)
+                map.Platforms.Add(new Platform(camera.GetObjectWorldPosition(targetRect.Location.ToVector2()).ToPoint(), Platform_Type, Platform_Status, Collidable));
+        }
 
         private bool Clicked()
         {
@@ -91,7 +112,7 @@ namespace CVLevelEditor
             return KeyMouseReader.mouseState.LeftButton == ButtonState.Pressed;
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, PlacingMode placingMode)
         {
             Camera camera = CameraController.GetCamera();
 
@@ -101,13 +122,29 @@ namespace CVLevelEditor
                 platform.DrawEditor(spriteBatch, new Rectangle(screenPosition.X, screenPosition.Y, blockSize.X, blockSize.Y), PlatformTextures[platform.PlatformSettings.Platform_Type]);
             }
 
-            DrawMouseOver(spriteBatch);
+            foreach (var light in map.Lights)
+            {
+                Point screenPosition = camera.GetObjectScreenPosition(light.WorldPosition).ToPoint();
+                light.ScreenPosition = screenPosition.ToVector2();
+                light.Draw(spriteBatch);
+            }
+
+            if (placingMode == PlacingMode.Platforms)
+                DrawMouseOverPlatforms(spriteBatch);
+            else if (placingMode == PlacingMode.Props)
+                DrawMouseOverProps(spriteBatch);
         }
 
-        private void DrawMouseOver(SpriteBatch spriteBatch)
+        private void DrawMouseOverPlatforms(SpriteBatch spriteBatch)
         {
             if (indexToDraw >= 0)
                 spriteBatch.Draw(PlatformTextures[Platform_Type], screenBlocks[indexToDraw], Color.White);
+        }
+
+        private void DrawMouseOverProps(SpriteBatch spriteBatch)
+        {
+            if (indexToDraw >= 0)
+                spriteBatch.Draw(light, new Rectangle(lastPosition.X, lastPosition.Y, (int)Settings.objectSize.X / 2, (int)Settings.objectSize.Y / 2), Color.White);
         }
 
         public Map GetMap()
