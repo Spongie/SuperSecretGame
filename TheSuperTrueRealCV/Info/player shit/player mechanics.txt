@@ -1,0 +1,28 @@
+PLAYER
+
+om man kör med en xbox360 kontroll så kommer
+
+A= Jump knappen, menu knapp med mera, standard A knapp.
+
+X = attack button, tryck x för att göra anfall, 
+beroende på vilket håll man håller så blir det andra anfall.
+Combo moves kommer förmodligen aktiveras med X knappen me.
+
+Y = magic eller subweapon, funkar som X så berende på 
+vilket håll man håller så gör olika anfall, man bestämmer själv
+vilket håll som gör vilken magi/subweapon.
+
+B = samma som Y
+
+det lämnar RB,LB,RT,LT till annat
+
+
+back = paus knappen, stannar allt i spelet även ingame time,
+vilket är nice för speedrunning.
+
+start öppnar menu, I MENU SÅ FORTSÄTTER INGAME TIME ATT RÄKNA
+(det gör speedrunning mycket mer soft)
+
+left spak/dpad = styr vart man går och sånt.
+
+högra spaken= dono, kanske styr kameran eller något.
