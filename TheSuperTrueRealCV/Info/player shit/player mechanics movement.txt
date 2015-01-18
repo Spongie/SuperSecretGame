@@ -1,0 +1,39 @@
+Player
+
+Movement OMEGA:
+
+Man hoppar på (A), 
+
+I börjar så har man bara 1 hopp men senare i spelet så får man dubble jump.
+
+Jag vet inte riktigt hur jag vill göra med att vända sig i luften. 
+man kan antingen göra så att så fort man trycker åt det andra hållet än player direction så vänder 
+han sig direkt även om man är i luften,
+eller så har player en direction och han ändrar bara sin direction i luften när han hoppar eller
+använder vissa moves.
+
+När man faller efter ett hopp och landar på mark så är där flera saker som kan hända,
+1 att man har fått hög speed nog och då hamnar playern i landing lag samt cancelar allt den höll på me.
+2 player har ganska låg falling speed och då landar den utan lag och allt den höll på med cancelar.
+Funderar på om och vad som ska kunna cancelas av att landa på marken. combo moves och liknande kanske
+inte ska gå att cancela på det här sättet men playerns basic attacks kan. det är något som måste 
+testas.
+
+Edge boost är en tech som händer om man hoppar och gör en dive(eller liknande) vid en kant,
+om man träffar rätt så kommer man få en edge boost vilet ger player en massa speed framåt så 
+player kastas ut för kanten.
+
+Om man gör en dive kick på fiender(med mera) så kommer man stutsa av dom och få ny höjd.
+
+Dagger: dagger kommer nog ha en uppgrade där man kan kasta dom i väggar för att få en plattform,
+vilket kan användas till movement.
+Rollouts: kommer rulla längts marken och kommer kanske gå att göra en divekick på för extra höjd.
+
+Hur man styr i luften påvärkar subweapons väldigt mycket, ska man kunna vända sig med ett subweapon
+om man kastar det bakåt eller ska det inte gå.
+
+Anfall kommer kunna ge player många olika movement options, saker som dive kick, "Slash rose",
+"Stampeding wild" och shadow step kommer ge spelaren skillade movement options när dom rör sig i spelet.
+
+
+

@@ -1,0 +1,27 @@
+PLAYER ATTACK
+
+anfall kommer delas up i flera subclasser. man har basic attacks, combo moves, magic,subweapon 
+och super moves.
+
+Basic attacks: funderar på hur man ska göra de, antingen så kör vi typ cv mode där man har ett
+basic anfall som är likandant alltid.
+eller
+så har man att man har en basic attack på neutral X och sen har man ett annat anfall om man håller upp,
+ner,framåt,bakåt. men här är en viktig sak att bestämma, om man kan vända sig i luften genom att styra
+åt andra hållet eller om man bara kan vända sig när man hoppar samt med anfall. om man kan vända sig i
+luften så får där ingen back attack så då får man neutral,fram,upp,ner.
+
+jag hade tänkt att basic attacks blir canceld när man landar så man kan land cancela basic attacks.
+
+COMBO MOVES: tänkte att man skulle ha ett input system där man göra vissa inputs i en viss ordning
+och sen aktiveras moves. vet dock inte om det blir för complext och kommer ta bort från core gameplaye.
+det är något som måste testas.
+
+tänker mig dock att där inte kommer vara en landcancel för combo moves.
+
+Magic/subweapon: båda kommer typ funka på samma sätt. man sätter sin move till en knapp 
+input(neutral,up,ner,fram/bak). med magic kommer man behöva hålla in knappen om det är magic 
+med casttime(och man kan då ofta styra vart den kommer läggas under casttimen).
+
+SUPER MOVES: den här är den jag har tänkt minst på. super moves ska vara saftiga, men inte auto win mot
+bossar. hur man ska aktivera dom har jag inte bestämt mig för än men det kommer inte vara helt lätt.
