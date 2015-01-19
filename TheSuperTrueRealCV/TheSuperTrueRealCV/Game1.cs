@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using CV_clone;
+using CVCommon;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -11,7 +13,8 @@ namespace TheSuperTrueRealCV
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        
+        Skeleton skeleton;
+        Moving_Entity player;
 
         public Game1()
             : base()
@@ -40,8 +43,15 @@ namespace TheSuperTrueRealCV
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
+            ContentHolder.InitOnlyContentManager(Content);
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Texture2D s = Content.Load<Texture2D>("Test.png");
+            Settings.objectSize = new Vector2(50, 50);
+
+            skeleton = new Skeleton(new Vector2(100, 100));
+            player = new Moving_Entity(s, new Vector2(400, 200), Settings.objectSize);
+
+            skeleton.Activate(player);
             // TODO: use this.Content to load your game content here
         }
 
@@ -63,8 +73,10 @@ namespace TheSuperTrueRealCV
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            player.ScreenPosition = player.WorldPosition;
 
-            // TODO: Add your update logic here
+            skeleton.Update(gameTime);
+            skeleton.ScreenPosition = skeleton.WorldPosition;
 
             base.Update(gameTime);
         }
@@ -77,8 +89,10 @@ namespace TheSuperTrueRealCV
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
-
+            spriteBatch.Begin();
+            skeleton.Draw(spriteBatch);
+            player.Draw(spriteBatch);
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }

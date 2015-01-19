@@ -36,7 +36,6 @@ namespace CVCommon
             if(contentManager == null)
                 contentManager = piManager;
 
-            tmp = LoadExtraContent<Texture2D>("HPBack");
         }
 
         public static void Init(ContentManager cM)
@@ -48,5 +47,6 @@ namespace CVCommon
         {
             return contentManager.Load<T>(piFileName);
         }
+
     }
 }
