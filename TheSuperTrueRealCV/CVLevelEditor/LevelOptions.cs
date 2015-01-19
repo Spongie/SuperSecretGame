@@ -59,7 +59,7 @@ namespace CVLevelEditor
 
         public bool ClickMode
         {
-            get { return !checkBox_mouseMode.Checked; }
+            get { return checkBox_mouseMode.Checked; }
         }
 
         public PlatformStatus SelectedPlatformStatus

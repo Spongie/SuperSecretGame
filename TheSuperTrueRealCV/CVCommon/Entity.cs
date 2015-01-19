@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Xml.Serialization;
 
 namespace CVCommon
 {
@@ -34,10 +35,13 @@ namespace CVCommon
 
         public Vector2 WorldPosition { get; set; }
 
+        [XmlIgnore]
         public Vector2 Size { get; set; }
 
+        [XmlIgnore]
         public Vector2 Speed { get; set; }
 
+        [XmlIgnore]
         public Vector2 ScreenPosition { get; set; }
 
         public virtual void Update(GameTime time)
