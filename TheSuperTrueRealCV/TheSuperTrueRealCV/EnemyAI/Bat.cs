@@ -13,7 +13,7 @@ namespace TheSuperTrueRealCV.EnemyAI
 {
     class Bat : Moving_Entity
     {
-        Moving_Entity Player;
+        Moving_Entity target;
         List<Action> AiList = new List<Action>();
         bool Newtimer = false;
         int randomNewState;
@@ -51,7 +51,7 @@ namespace TheSuperTrueRealCV.EnemyAI
 
         public void Activate(Moving_Entity target)
         {
-            Player = target;
+            this.target = target;
 
             if (target.WorldPosition.X <= WorldPosition.X)
             {
@@ -66,7 +66,10 @@ namespace TheSuperTrueRealCV.EnemyAI
 
         public void UpdateIdle()
         {
-            
+            if (Vector2.Distance(WorldPosition, target.WorldPosition) <= 200)
+            {
+
+            }
 
         }
 
