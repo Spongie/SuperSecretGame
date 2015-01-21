@@ -39,6 +39,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="EnemyAI\Bat.cs" />
     <Compile Include="FPS.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="IDTimer.cs" />

@@ -16,6 +16,7 @@ namespace TheSuperTrueRealCV
         Moving_Entity Player;
         List<Action> AiList = new List<Action>();
         bool HaveAttacked = false;
+        bool Newtimer = false;
         int randomNewState;
         Random random = new Random();
         public Timer AiTimer;
@@ -29,10 +30,8 @@ namespace TheSuperTrueRealCV
             CurrentStats.MaximumMana = 0;
             CurrentStats.Damage = 10;
             CurrentStats.Defense = 2;
-            CurrentStats.Luck = -1;
             CurrentStats.MagicDamage = 0;
             CurrentStats.MagicDefense = 3;
-            CurrentStats.Luck = 1;
 
             AiTimer = new Timer(0);
         }
@@ -58,8 +57,10 @@ namespace TheSuperTrueRealCV
         {
             AiTimer.Update(time);
 
-            if(AiList.Count > 0)
+            if (AiList.Count > 0)
+            {
                 AiList[0].Invoke();
+            }
 
             base.Update(time);
 
@@ -78,44 +79,61 @@ namespace TheSuperTrueRealCV
             AiList.Add(() => UpdateIdle());
         }
 
-        public void UpdateIdle()
+        public void UpdateIdle() 
         {
             //är idle så den gör inget
+            //ifsatsen gör att timern inte resetas
+            if(AiTimer.Done && Newtimer == false)
+            {
+                AiTimer = new Timer(random.Next(400, 1500));
+                Newtimer = true;
+            }
 
             if (AiTimer.Done)
             {
+                //sätter false igen så man kan sätta en ny timer i nästa state
+                Newtimer = false;
                 //turnaroundcheck kollar om man ska vända sig och om man ska det så kollar den vilket håll man vänder sig
                 TurnAroundCheck();
                 randomNewState = random.Next(0, 6);
 
                 if (randomNewState == 1 || randomNewState == 2)
+                {
                     AiList.Add(() => UpdateGoBack());
+                }
 
                 else if (randomNewState == 3 || randomNewState == 4)
+                {
                     AiList.Add(() => UpdateGoforward());
+                }
 
                 else if (randomNewState == 0)
+                {
                     AiList.Add(() => UpdateIdle());
+                }
 
                 else if (randomNewState == 5)
+                {
                     AiList.Add(() => UpdateAttack1());
+                }
                 //tar bort staten man är i så att man kommer vidare till nästa state
                 AiList.RemoveAt(0);
-
-                AiTimer = new Timer(random.Next(400, 600));
             }
         }
 
         public void UpdateAttack1()
         {
-            //timer som avgör när anfallet skickas.
+            if (AiTimer.Done && Newtimer == false)
+            {
+                AiTimer = new Timer(200);
+                Newtimer = true;
+            }
             if (AiTimer.Done && HaveAttacked == false)
             {
                 //gör så han inte anfaller igen under samma anfallsrunda
                 HaveAttacked = true;
                 //ny timer som avgör när han är färdig med sitt anfall och ska gå vidare med sin AI.
                 AiTimer = new Timer(500);
-
                 Speed = new Vector2(2000, 0);
                 //skapar själva anfallet!
                 //SkeletonBone attack = new SkeletonBone(bone, pos, new Vector2(50, 50), new Vector2(4, 4));
@@ -123,36 +141,35 @@ namespace TheSuperTrueRealCV
 
             if (AiTimer.Done)
             {
-                Speed = Vector2.Zero;
-                //turnaroundcheck kollar om man ska vända sig och om man ska det så kollar den vilket håll man vänder sig
-                TurnAroundCheck();
-                //randomar vilken state den ska in i
-                randomNewState = random.Next(0, 5);
-                //sätter haveattacked till false igen så att man kan anfalla igen nästa gång han kommer till attack1
                 HaveAttacked = false;
+                Newtimer = false;
+                Speed = Vector2.Zero;
+                TurnAroundCheck();
+                randomNewState = random.Next(0, 5);
 
                 if (randomNewState == 1 || randomNewState == 2)
                 {
                     AiList.Add(() => UpdateGoBack());
-                    AiTimer = new Timer(random.Next(400, 600));
                 }
                 else if (randomNewState == 3 || randomNewState == 4)
                 {
                     AiList.Add(() => UpdateGoforward());
-                    AiTimer = new Timer(random.Next(400, 600));
                 }
                 else if (randomNewState == 0)
                 {
                     AiList.Add(() => UpdateIdle());
-                    AiTimer = new Timer(random.Next(400, 600));
                 }
-                //tar bort staten man är i så att man kommer vidare till nästa state
                 AiList.RemoveAt(0);
             }
         }
 
         public void UpdateGoforward()
         {
+            if (AiTimer.Done && Newtimer == false)
+            {
+                AiTimer = new Timer(random.Next(600, 1200));
+                Newtimer = true;
+            }
             //timer som säger hur länge den ska gå
             //avgör vilken riktning som den ska gå
             if (direction == Direction.Right)
@@ -167,17 +184,22 @@ namespace TheSuperTrueRealCV
 
             if (AiTimer.Done)
             {
+                Newtimer = false;
                 TurnAroundCheck();
                 AiList.Add(() => UpdateAttack1());
                 //tar bort staten man är i så att man kommer vidare till nästa state
                 AiList.RemoveAt(0);
-                AiTimer = new Timer(random.Next(400, 600));
             }
 
         }
 
         public void UpdateGoBack()
         {
+            if (AiTimer.Done && Newtimer == false)
+            {
+                AiTimer = new Timer(random.Next(700, 1400));
+                Newtimer = true;
+            }
             //timer som säger hur länge den ska gå
             //avgör vilken riktning som den ska gå
             if (direction == Direction.Right)
@@ -192,20 +214,24 @@ namespace TheSuperTrueRealCV
 
             if (AiTimer.Done)
             {
+                Newtimer = false;
                 TurnAroundCheck();
                 AiList.Add(() => UpdateAttack1());
-                //tar bort staten man är i så att man kommer vidare till nästa state
                 AiList.RemoveAt(0);
-                AiTimer = new Timer(random.Next(400, 600));
-
             }
 
         }
 
         public void UpdateTurnAround()
         {
+            if (AiTimer.Done && Newtimer == false)
+            {
+                AiTimer = new Timer(500);
+                Newtimer = true;
+            }
             if (AiTimer.Done)
             {
+                Newtimer = false;
                 if (direction == Direction.Right)
                 {
                     direction = Direction.Left;
@@ -214,7 +240,6 @@ namespace TheSuperTrueRealCV
                 {
                     direction = Direction.Right;
                 }
-                //tar bort staten man är i så att man kommer vidare till nästa state
                 AiList.RemoveAt(0);
             }
 
@@ -225,12 +250,10 @@ namespace TheSuperTrueRealCV
             if (Player.WorldPosition.X < WorldPosition.X && direction == Direction.Right)
             {
                 AiList.Add(() => UpdateTurnAround());
-                AiTimer = new Timer(random.Next(400, 600));
             }
             else if (Player.WorldPosition.X > WorldPosition.X && direction == Direction.Left)
             {
                 AiList.Add(() => UpdateTurnAround());
-                AiTimer = new Timer(random.Next(400, 600));
             }
         }
 
