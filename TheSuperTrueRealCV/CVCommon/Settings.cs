@@ -30,7 +30,6 @@ namespace CVCommon
             playerSize = new Vector2(175, 125);
             objectSize = new Vector2(50, 50);
         }
-
         //public static vector2 GetMonsterSize(MonsterType type)
 
         public static Rectangle GetTriggerBox(Point p)

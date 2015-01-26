@@ -12,19 +12,24 @@ using CVCommon;
 
 namespace CV_clone
 {
-    class Player : Moving_Entity
+    public class Player : Moving_Entity
     {
+        
         bool m_HasJumped;
         private Vector2 m_Velocity;
+        private Rectangle attackBox;
+        private float attackBoxDuration;
+
         public Player(Texture2D tex, Vector2 vec, Vector2 size)
             :base(tex,vec,size)
         {
             Speed = new Vector2(0, 2);
+            attackBoxDuration = 1;
         }
 
-        public void Update()
+        public override void Update(GameTime gameTime)
         {
-            Speed = new Vector2();
+            speedchange = 0;
             CheckForJump();
             Move();
             ApplyPhysics();
@@ -32,19 +37,19 @@ namespace CV_clone
 
         private void Move()
         {
-            if (KeyMouseReader.KeyPressed(Keys.A)|| canMoveLeft)
+            if (KeyMouseReader.keyState.IsKeyDown(Keys.A))
             {
-                m_Velocity.X -= 2;
+                speedchange = -2;
             }
-            else if (KeyMouseReader.KeyPressed(Keys.D))
+            else if (KeyMouseReader.keyState.IsKeyDown(Keys.D))
             {
-                m_Velocity += new Vector2(2,0);
+                speedchange = 2;
             }
         }
 
         private void CheckForJump()
         {
-            if (KeyMouseReader.KeyPressed(Keys.Space) && !m_HasJumped)
+            if (KeyMouseReader.keyState.IsKeyDown(Keys.Space) && !m_HasJumped)
             {
                 Jump();
                 m_HasJumped = true;
@@ -54,8 +59,23 @@ namespace CV_clone
         private void ApplyPhysics()
         {
             m_Velocity += new Vector2(0,Settings.gravityPower);
-
+            m_Velocity.X = speedchange;
+            m_Velocity += Speed;
             WorldPosition += m_Velocity;
+        }
+
+        private void Attack()
+        {
+            int x = (int)WorldPosition.X-texture.Width;
+            int y = (int)WorldPosition.Y+(texture.Height/2);
+            if (direction == Direction.Left)
+            {
+                attackBox = new Rectangle((int)WorldPosition.X, y, texture.Width, texture.Height / 3);
+            }
+            else
+            {
+                attackBox = new Rectangle((int)x, y, texture.Width, texture.Height / 3);
+            }
         }
     }
 }

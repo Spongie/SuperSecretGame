@@ -14,7 +14,7 @@ namespace TheSuperTrueRealCV
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Skeleton skeleton;
-        Moving_Entity player;
+        Player player;
 
         public Game1()
             : base()
@@ -49,7 +49,7 @@ namespace TheSuperTrueRealCV
             Settings.objectSize = new Vector2(50, 50);
 
             skeleton = new Skeleton(new Vector2(100, 100));
-            player = new Moving_Entity(s, new Vector2(400, 200), Settings.objectSize);
+            player = new Player(s, new Vector2(400, 200), Settings.objectSize);
 
             skeleton.Activate(player);
             // TODO: use this.Content to load your game content here
@@ -77,7 +77,8 @@ namespace TheSuperTrueRealCV
 
             skeleton.Update(gameTime);
             skeleton.ScreenPosition = skeleton.WorldPosition;
-
+            player.Update(gameTime);
+            KeyMouseReader.Update();
             base.Update(gameTime);
         }
 
