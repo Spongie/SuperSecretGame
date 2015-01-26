@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Storage;
 using CVCommon;
 
 namespace CV_clone
@@ -33,6 +26,8 @@ namespace CV_clone
             CheckForJump();
             Move();
             ApplyPhysics();
+
+            base.Update(gameTime);
         }
 
         private void Move()
@@ -58,10 +53,9 @@ namespace CV_clone
 
         private void ApplyPhysics()
         {
-            m_Velocity += new Vector2(0,Settings.gravityPower);
+            //DUNNO WHAT DIS IS
             m_Velocity.X = speedchange;
             m_Velocity += Speed;
-            WorldPosition += m_Velocity;
         }
 
         private void Attack()
