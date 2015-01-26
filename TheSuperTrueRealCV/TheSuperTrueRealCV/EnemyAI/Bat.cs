@@ -82,6 +82,7 @@ namespace TheSuperTrueRealCV.EnemyAI
         public void UpdateDiveLeft()
         {
             //FIXA SÅ DEN FALLER NERÅT
+            
 
             if (AiTimer.Done && Newtimer == false)
             {
@@ -100,6 +101,8 @@ namespace TheSuperTrueRealCV.EnemyAI
         public void UpdateChillLeft()
         {
             //FIXA SPEED ÅT VÄNSTER/NER
+            Speed = new Vector2(10, Speed.Y);
+
 
             if (AiTimer.Done && Newtimer == false)
             {
@@ -172,7 +175,7 @@ namespace TheSuperTrueRealCV.EnemyAI
         public void UpdateRiseRight()
         {
             //FIXA SPEED ÅT HÖGER/UP
-
+            
             if (AiTimer.Done && Newtimer == false)
             {
                 AiTimer = new Timer(300);

@@ -40,6 +40,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="EnemyAI\Bat.cs" />
+    <Compile Include="EnemyAI\SkeletonArmor.cs" />
     <Compile Include="FPS.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="IDTimer.cs" />
