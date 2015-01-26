@@ -5,7 +5,7 @@ namespace CVCommon
 {
     public class Platform : Entity
     {
-        public Platform()
+        public Platform() : base(null, Vector2.Zero, Settings.objectSize)
         {
             PlatformSettings = new BlockSettings();
         }
@@ -17,14 +17,10 @@ namespace CVCommon
             PlatformSettings.Platform_Status = piPlatformStatus;
             PlatformSettings.Collidable = piCollidable;
             WorldPosition = piPosition.ToVector2();
+            texture = ContentHolder.LoadExtraContent<Texture2D>("test");
         }
 
         public BlockSettings PlatformSettings { get; set; }
-
-        public void UpdateScreenPosition()
-        {
-            ScreenPosition = CameraController.GetCamera().GetObjectScreenPosition(WorldPosition);
-        }
 
         public void DrawEditor(SpriteBatch spriteBatch, Rectangle rectangle, Texture2D texture)
         {

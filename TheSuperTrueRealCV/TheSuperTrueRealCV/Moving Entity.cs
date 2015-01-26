@@ -13,10 +13,7 @@ namespace CV_clone
 {
     public class Moving_Entity : Entity
     {
-        protected bool applyGravity;
         protected int jumpPower;
-        protected bool canMoveLeft;
-        protected bool canMoveRight;
         protected bool isHanging;
         protected float speedchange;
         protected float timeSinceAnimationChange;
@@ -31,6 +28,7 @@ namespace CV_clone
             CurrentStats = new Stats();
             direction = Direction.Right;
             spell = new List<Spell>();
+            Movement_Restrictions = new MovementRestrictions();
         }
 
         public Stats CurrentStats { get; set; }
@@ -46,11 +44,9 @@ namespace CV_clone
             get { return speedchange; }
         }
 
-        public bool ApplyGravity
-        {
-            get { return applyGravity; }
-            set { applyGravity = value; }
-        }
+        public bool ApplyGravity { get; set; }
+
+        public bool IgnoreCollision { get; set; }
 
         public bool IsFalling
         {
@@ -60,18 +56,6 @@ namespace CV_clone
         public bool IsJumping
         {
             get { return Speed.Y < 0.0f; }
-        }
-
-        public bool CanMoveLeft
-        {
-            get { return canMoveLeft; }
-            set { canMoveLeft = value; }
-        }
-
-        public bool CanMoveRight
-        {
-            get { return canMoveRight; }
-            set { canMoveRight = value; }
         }
 
         public override void Update(GameTime time)

@@ -15,6 +15,8 @@ namespace TheSuperTrueRealCV
         SpriteBatch spriteBatch;
         Skeleton skeleton;
         Moving_Entity player;
+        ObjectManager om;
+        Platform platform;
 
         public Game1()
             : base()
@@ -47,11 +49,23 @@ namespace TheSuperTrueRealCV
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Texture2D s = Content.Load<Texture2D>("Test.png");
             Settings.objectSize = new Vector2(50, 50);
+            Settings.gravityPower = 30;
+            graphics.PreferredBackBufferHeight = 600;
+            graphics.PreferredBackBufferWidth = 800;
+            graphics.ApplyChanges();
+
+            Settings.gameSize = new Vector2(800, 600);
 
             skeleton = new Skeleton(new Vector2(100, 100));
             player = new Moving_Entity(s, new Vector2(400, 200), Settings.objectSize);
-
+            platform = new Platform(new Point(0, 300), PlatformType.CastleFloor, PlatformStatus.Normal, true);
             skeleton.Activate(player);
+
+            om = new ObjectManager();
+            ObjectManager.player = player;
+            om.Monsters.Add(skeleton);
+            om.platforms.Add(platform);
+            CameraController.InitCamera();
             // TODO: use this.Content to load your game content here
         }
 
@@ -71,13 +85,14 @@ namespace TheSuperTrueRealCV
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-            player.ScreenPosition = player.WorldPosition;
+            platform.Size = new Vector2(2000, 1000);
+            om.ApplyPhysics(gameTime);
 
+            player.ScreenPosition = player.WorldPosition;
+            player.Update(gameTime);
             skeleton.Update(gameTime);
             skeleton.ScreenPosition = skeleton.WorldPosition;
-
+            platform.ScreenPosition = platform.WorldPosition;
             base.Update(gameTime);
         }
 
@@ -90,6 +105,7 @@ namespace TheSuperTrueRealCV
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
+            platform.Draw(spriteBatch);
             skeleton.Draw(spriteBatch);
             player.Draw(spriteBatch);
             spriteBatch.End();
