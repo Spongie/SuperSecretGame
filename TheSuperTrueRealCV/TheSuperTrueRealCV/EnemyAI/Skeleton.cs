@@ -175,7 +175,7 @@ namespace TheSuperTrueRealCV
                 AiList.Add(() => UpdateAttack1());
                 AiList.RemoveAt(0);
             }
-
+            
         }
 
         public void UpdateGoBack()
