@@ -179,6 +179,7 @@ namespace TheSuperTrueRealCV.EnemyAI
 
             if (AiTimer.Done)
             {
+                TurnAroundCheck();
                 HaveAttacked = false;
                 Newtimer = false;
                 AiList.Add(() => UpdateExhausted());
@@ -197,6 +198,7 @@ namespace TheSuperTrueRealCV.EnemyAI
             }
             if (AiTimer.Done)
             {
+                TurnAroundCheck();
                 Newtimer = false;
                 HaveAttacked = false;
                 AiList.Add(() => UpdateIdle());
@@ -220,6 +222,7 @@ namespace TheSuperTrueRealCV.EnemyAI
             }
             if (AiTimer.Done)
             {
+                TurnAroundCheck();
                 Newtimer = false;
                 HaveAttacked = false;
                 AiList.Add(() => UpdateIdle());
@@ -244,6 +247,7 @@ namespace TheSuperTrueRealCV.EnemyAI
             }
             if(AiTimer.Done)
             {
+                TurnAroundCheck();
                 Newtimer = false;
                 HaveAttacked = false;
                 AiList.Add(() => UpdateIdle());
@@ -253,26 +257,188 @@ namespace TheSuperTrueRealCV.EnemyAI
 
         public void UpdateMoveBack()
         {
+            if (AiTimer.Done && Newtimer == false)
+            {
+                AiTimer = new Timer(random.Next(700, 1000));
+                Newtimer = true;
+            }
 
+            if (direction == Direction.Right)
+            {
+                Speed = new Vector2(-10, Speed.Y);
+            }
+            else if (direction == Direction.Left)
+            {
+                Speed = new Vector2(10, Speed.Y);
+            }
+
+            if (AiTimer.Done)
+            {
+                Newtimer = false;
+                TurnAroundCheck();
+                randomNewState = random.Next(0,6);
+
+                if (randomNewState == 0)
+                {
+                    AiList.Add(() => UpdateIdle());
+                }
+                else if (randomNewState == 1)
+                {
+                    AiList.Add(() => UpdateJumpBack());
+                }
+                else if (randomNewState == 2)
+                {
+                    AiList.Add(() => UpdateJumpForward());
+                }
+                else if (randomNewState == 3)
+                {
+                    AiList.Add(() => UpdateMagicAttack1());
+                }
+                else if (randomNewState == 4)
+                {
+                    AiList.Add(() => UpdateAttack1());
+                }
+                else if (randomNewState == 5)
+                {
+                    AiList.Add(() => UpdateAttack2());
+                }
+                AiList.RemoveAt(0);
+
+            }
         }
 
         public void UpdateMoveForward()
         {
+            if (AiTimer.Done && Newtimer == false)
+            {
+                AiTimer = new Timer(random.Next(300, 600));
+                Newtimer = true;
+            }
 
+            if (direction == Direction.Right)
+            {
+                Speed = new Vector2(10, Speed.Y);
+            }
+            else if (direction == Direction.Left)
+            {
+                Speed = new Vector2(-10, Speed.Y);
+            }
+
+            if (AiTimer.Done)
+            {
+                Newtimer = false;
+                TurnAroundCheck();
+                randomNewState = random.Next(0, 6);
+
+                if (randomNewState == 0)
+                {
+                    AiList.Add(() => UpdateIdle());
+                }
+                else if (randomNewState == 1)
+                {
+                    AiList.Add(() => UpdateJumpBack());
+                }
+                else if (randomNewState == 2)
+                {
+                    AiList.Add(() => UpdateJumpForward());
+                }
+                else if (randomNewState == 3)
+                {
+                    AiList.Add(() => UpdateMagicAttack1());
+                }
+                else if (randomNewState == 4)
+                {
+                    AiList.Add(() => UpdateAttack1());
+                }
+                else if (randomNewState == 5)
+                {
+                    AiList.Add(() => UpdateAttack2());
+                }
+                AiList.RemoveAt(0);
+
+            }
         }
 
         public void UpdateJumpBack()
         {
+            if (AiTimer.Done && Newtimer == false)
+            {
+                AiTimer = new Timer(random.Next(700, 1000));
+                Newtimer = true;
+            }
+            //GLÖM INTE ATT GÖRA SÅ DEN HOPPAR ME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            if (direction == Direction.Right)
+            {
+                Speed = new Vector2(-10, Speed.Y);
+            }
+            else if (direction == Direction.Left)
+            {
+                Speed = new Vector2(10, Speed.Y);
+            }
 
+            if (AiTimer.Done)
+            {
+                Newtimer = false;
+                TurnAroundCheck();
+                AiList.Add(() => UpdateAttack1());
+                AiList.RemoveAt(0);
+            }
         }
 
         public void UpdateJumpForward() 
         {
+            if (AiTimer.Done && Newtimer == false)
+            {
+                AiTimer = new Timer(random.Next(700, 1000));
+                Newtimer = true;
+            }
+            //GLÖM INTE ATT GÖRA SÅ DEN HOPPAR ME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            if (direction == Direction.Right)
+            {
+                Speed = new Vector2(-10, Speed.Y);
+            }
+            else if (direction == Direction.Left)
+            {
+                Speed = new Vector2(10, Speed.Y);
+            }
 
+            if (AiTimer.Done)
+            {
+                Newtimer = false;
+                TurnAroundCheck();
+                AiList.Add(() => UpdateAttack2());
+                AiList.RemoveAt(0);
+            }
         }
 
         public void UpdateExhausted()
         {
+            if (AiTimer.Done && Newtimer == false)
+            {
+                AiTimer = new Timer(8000);
+                Newtimer = true;
+            }
+
+            if (AiTimer.Done)
+            {
+                Newtimer = false;
+                TurnAroundCheck();
+                randomNewState = random.Next(0, 3);
+
+                if (randomNewState == 0)
+                {
+                    AiList.Add(() => UpdateAttack1());
+                }
+                else if (randomNewState == 1)
+                {
+                    AiList.Add(() => UpdateAttack2());
+                }
+                else if (randomNewState == 2)
+                {
+                    AiList.Add(() => UpdateMagicAttack1());
+                }
+                AiList.RemoveAt(0);
+            }
  
         }
     }
