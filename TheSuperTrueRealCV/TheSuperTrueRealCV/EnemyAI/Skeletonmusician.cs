@@ -125,7 +125,7 @@ namespace TheSuperTrueRealCV.EnemyAI
             {
                 Newtimer = false;
                 TurnAroundCheck();
-                randomNewState = random.Next(0, 8);
+                randomNewState = random.Next(0, 7);
 
                 if (randomNewState == 0)
                 {
@@ -141,21 +141,17 @@ namespace TheSuperTrueRealCV.EnemyAI
                 }
                 else if (randomNewState == 3)
                 {
-                    AiList.Add(() => UpdateAttack1());
+                    AiList.Add(() => UpdateMoveBack());
                 }
                 else if (randomNewState == 4)
                 {
-                    AiList.Add(() => UpdateMoveBack());
+                    AiList.Add(() => UpdateMoveForward());
                 }
                 else if (randomNewState == 5)
                 {
-                    AiList.Add(() => UpdateMoveForward());
-                }
-                else if (randomNewState == 6)
-                {
                     AiList.Add(() => UpdateJumpBack());
                 }
-                else if (randomNewState == 7)
+                else if (randomNewState == 6)
                 {
                     AiList.Add(() => UpdateJumpForward());
                 }
@@ -192,17 +188,67 @@ namespace TheSuperTrueRealCV.EnemyAI
 
         public void UpdateMagicAttack1()
         {
+            if (AiTimer.Done && HaveAttacked == false)
+            {
+                //skickar sin fireball efter 1500
+                AiTimer = new Timer(1700);
+                //skapa fireball anfallet
+                HaveAttacked = true;
+            }
+            if (AiTimer.Done)
+            {
+                Newtimer = false;
+                HaveAttacked = false;
+                AiList.Add(() => UpdateIdle());
+                AiList.RemoveAt(0);
+            }
 
         }
 
         public void UpdateAttack1()
         {
+            if (AiTimer.Done && Newtimer == false)
+            {
+                AiTimer = new Timer(400);
+                Newtimer = true;
+            }
+            if (AiTimer.Done && HaveAttacked == false)
+            {
+                AiTimer = new Timer(600);
+                //anfallet tar 600 att göra(kastar random instrument i en kast bana
+                HaveAttacked = true;
+            }
+            if (AiTimer.Done)
+            {
+                Newtimer = false;
+                HaveAttacked = false;
+                AiList.Add(() => UpdateIdle());
+                AiList.RemoveAt(0);
+            }
 
         }
 
         public void UpdateAttack2()
         {
-
+            if (AiTimer.Done && Newtimer == false)
+            {
+                AiTimer = new Timer(200);
+                Newtimer = true;
+            }
+            if (AiTimer.Done && HaveAttacked == false)
+            {
+                HaveAttacked = true;
+                AiTimer = new Timer(500);
+                //gör en stabb med sitt vapen och skickar ner en blixt framför sig
+                //skapa anfallet
+            }
+            if(AiTimer.Done)
+            {
+                Newtimer = false;
+                HaveAttacked = false;
+                AiList.Add(() => UpdateIdle());
+                AiList.RemoveAt(0);
+            }
         }
 
         public void UpdateMoveBack()
