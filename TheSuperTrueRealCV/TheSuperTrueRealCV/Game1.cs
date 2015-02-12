@@ -17,6 +17,8 @@ namespace TheSuperTrueRealCV
 
         ObjectManager om;
         Platform platform;
+        Platform platform2;
+        Platform platform3;
 
         Player player;
 
@@ -63,7 +65,13 @@ namespace TheSuperTrueRealCV
 
             platform = new Platform(new Point(0, 300), PlatformType.CastleFloor, PlatformStatus.Normal, true);
 
-            player = new Player(s, new Vector2(400, 200), Settings.objectSize);
+            platform2 = new Platform(new Point(0, 100), PlatformType.CastleFloor, PlatformStatus.Normal, true);
+            platform2.Size = new Vector2(50, 200);
+
+            platform3 = new Platform(new Point(600, 100), PlatformType.CastleFloor, PlatformStatus.Normal, true);
+            platform3.Size = new Vector2(50, 200);
+
+            player = new Player(s, new Vector2(551, 200), Settings.objectSize);
 
 
             skeleton.Activate(player);
@@ -71,7 +79,9 @@ namespace TheSuperTrueRealCV
             om = new ObjectManager();
             ObjectManager.player = player;
             om.Monsters.Add(skeleton);
-            om.platforms.Add(platform);
+            om.Platforms.Add(platform);
+            om.Platforms.Add(platform2);
+            om.Platforms.Add(platform3);
             CameraController.InitCamera();
             // TODO: use this.Content to load your game content here
         }
@@ -92,17 +102,18 @@ namespace TheSuperTrueRealCV
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            KeyMouseReader.Update();
             platform.Size = new Vector2(2000, 1000);
-            om.ApplyPhysics(gameTime);
 
-            player.ScreenPosition = player.WorldPosition;
+            if (KeyMouseReader.keyState.IsKeyDown(Keys.A))
+                ObjectManager.player.Speed = new Vector2(-25, ObjectManager.player.Speed.Y);
+            if (KeyMouseReader.keyState.IsKeyDown(Keys.D))
+                ObjectManager.player.Speed = new Vector2(25, ObjectManager.player.Speed.Y);
+
             player.Update(gameTime);
             skeleton.Update(gameTime);
-            skeleton.ScreenPosition = skeleton.WorldPosition;
 
-            platform.ScreenPosition = platform.WorldPosition;
-
-            KeyMouseReader.Update();
+            om.ApplyPhysics(gameTime);
 
             base.Update(gameTime);
         }
@@ -116,9 +127,7 @@ namespace TheSuperTrueRealCV
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-            platform.Draw(spriteBatch);
-            skeleton.Draw(spriteBatch);
-            player.Draw(spriteBatch);
+            om.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
         }

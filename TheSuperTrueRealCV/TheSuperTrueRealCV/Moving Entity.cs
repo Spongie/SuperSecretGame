@@ -85,22 +85,10 @@ namespace CV_clone
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            for (int i = 0; i < spell.Count; i++)
-            {
-                spell[i].Draw(spriteBatch);                
-            }
-            
-            if (Speed.X == 0)
-            {
-                if (Facing == Direction.Left)
-                    spriteBatch.Draw(texture, new Rectangle((int)ScreenPosition.X, (int)ScreenPosition.Y, (int)Size.X, (int)Size.Y), null, Color.White, 0.0f, Vector2.Zero, SpriteEffects.None, 0.0f);
-                else
-                    spriteBatch.Draw(texture, new Rectangle((int)ScreenPosition.X, (int)ScreenPosition.Y, (int)Size.X, (int)Size.Y), null, Color.White, 0.0f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0.0f);
-            }
-            else if (Facing == Direction.Left)
-                spriteBatch.Draw(texture, new Rectangle((int)ScreenPosition.X, (int)ScreenPosition.Y, (int)Size.X, (int)Size.Y), animationRectangles[animationIndex], Color.White, 0.0f, Vector2.Zero, SpriteEffects.None, 0.0f);
-            else if (Facing == Direction.Right)
-                spriteBatch.Draw(texture, new Rectangle((int)ScreenPosition.X, (int)ScreenPosition.Y, (int)Size.X, (int)Size.Y), animationRectangles[animationIndex], Color.White, 0.0f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0.0f);
+            if (Facing == Direction.Left)
+                spriteBatch.Draw(texture, new Rectangle((int)ScreenPosition.X, (int)ScreenPosition.Y, (int)Size.X, (int)Size.Y), null, Color.White, 0.0f, Vector2.Zero, SpriteEffects.None, 0.0f);
+            else
+                spriteBatch.Draw(texture, new Rectangle((int)ScreenPosition.X, (int)ScreenPosition.Y, (int)Size.X, (int)Size.Y), null, Color.White, 0.0f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0.0f);
         }
     }
 }

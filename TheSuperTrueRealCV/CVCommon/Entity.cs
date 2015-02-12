@@ -25,7 +25,7 @@ namespace CVCommon
 
         public Vector2 Center
         {
-            get { return new Vector2(WorldPosition.X + Size.X, WorldPosition.Y + Size.Y); }
+            get { return new Vector2(WorldPosition.X + (Size.X / 2), WorldPosition.Y + (Size.Y / 2)); }
         }
 
         public Rectangle Rect

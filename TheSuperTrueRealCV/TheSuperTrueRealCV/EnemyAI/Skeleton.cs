@@ -120,7 +120,7 @@ namespace TheSuperTrueRealCV
                 HaveAttacked = true;
                 //ny timer som avgör när han är färdig med sitt anfall och ska gå vidare med sin AI.
                 AiTimer = new Timer(500);
-                Speed = new Vector2(2000, 0);
+               // Speed = new Vector2(2000, 0);
                 //skapar själva anfallet!
                 //SkeletonBone attack = new SkeletonBone(bone, pos, new Vector2(50, 50), new Vector2(4, 4));
             }
