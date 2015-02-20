@@ -1,0 +1,57 @@
+spelet kommer vara uppbyggt i ett antal olika major areas som alla kommer ha sitt eget tema.
+områdena kommer vara:
+Forest
+Castle
+Undergroundcomplex
+Garden of creation
+Crystal lake
+Tower of creation
+Temple of creation
+Realm of the dark god
+Trial of the true god
+
+Forest: börjar spelet här. är skogen utanför slottet. en intro area till spelet
+där man sätter stämningen för hur spelet kommer vara och introducerar main char
+och vad för värld man är i. kommer kanske ha hidden saker man kan komma tillbaka till
+senare när man har mer powerups.
+
+Castle: typ main arean av spelet. i början när man kommer in i slottet så är det ganska tomt
+(lite fiender och så men det är ganska livlöst).man tar sig längre in och når tillslut första bossen
+(Skeletonmusician) och efter den bossen så börjar spelet ordentligt(major plott elements introduceras,
+får tillgång till shopen och mer frihet till spelaren efter de). Castle arean kommer vara 
+väldigt stor och vara uppdelad i flera delar(spelar kommer komma tillbaka till castle flera gånger i
+spelet och kunna utforska mer av det med sina nya powerups).
+
+Undergroundcomplex: ett tunnelsystem under Castle arean. kommer utforska den och ta sig allt 
+längre ner i marken. i slutet av tunnelsystemet kommer spelaren hitta vägen till Garden of creation.
+
+Garden of creation: en stor grotta under marken med sin egen minisol. skapar ett paradisliknande
+område. tänkte försöka ge spelaren en känsla av wonder och frihet när dom kommer ner här genom
+att ha stora map områden utan så många loadtriggers. spelaren kommer ut från undergroundcomplex
+ganska högt uppe och det här området är att spelaren tar sen ner för en kulle/bergsområde(tänker mig att
+det här området kommer ha en "William and sly2" känsla till sig(det är ett flash spel på kongregate
+ni borde kolla in det lite snabbt för att få en bra bild av de).
+
+Crystal lake: ett skö område som är enda vägen förbi barriern som ligger runt tower of creation.
+kommer finnas ruin rester i vattnet så området kommer dels vara att man tar sig fram i undervatten 
+tunnlar och sånt samt att man hoppar fram på ruinbyggnader som är precis över vattnet.
+
+Tower of creation: ruinstaden som ligger i garden of creation. området kommer vara mest det stora 
+tornet som ligger mitt i staden(tower of creation) så området kommer vara väldigt vertikalt, där 
+man arbetar sig längre och längre upp i tornet.
+
+Temple of creation: man aktiverar tower of creation för att ta bort magin som gömmer temple of creation.
+man hittar sista nyckeln för att ta sig in till Realm of the dark god här så det här området är det sista
+stora området som finns kvar i spelet(Realm of the dark god är bara ett litet område där man typslåss
+mot de 2 sista bossarna i spelet och Trial of the true god är ett gömt extra område).
+
+Realm of the dark god: man tar sig in till "the dark god" minirealm han har skapat som finns i garden of
+creation. området är typ hans slott där man vandrar in och möter först sin syster i huvudentrén och 
+sedan går man vidare och möter "the dark god" i hans throne room.
+
+Trial of the true god: finns gömt i Temple of creation. är ett extra område(har inte bestämt hur vi ska
+göra den här, kanske en sorts bossrush eller liknande). området ska vara en "trial" för dom som hade syndat
+mot "the true god" vilket betyde att folk skickades in här för att dö. i slutet av området så kommer
+man få lite bonus story(man hittar en död persons sista berättelse, han var en av ledarna för culten som
+levde i garden of creation för längesen).
+
