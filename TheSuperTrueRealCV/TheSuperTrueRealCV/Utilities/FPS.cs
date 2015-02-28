@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using CVCommon;
 
-namespace CV_clone
+namespace CV_clone.Utilities
 {
     public class FPS
     {

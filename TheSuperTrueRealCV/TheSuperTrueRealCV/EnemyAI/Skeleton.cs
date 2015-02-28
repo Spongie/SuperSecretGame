@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using CVCommon;
+using CV_clone.Utilities;
 
 namespace TheSuperTrueRealCV
 {

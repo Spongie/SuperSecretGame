@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 
-namespace CV_clone
+namespace CV_clone.Utilities
 {
     public class Queue<T>
     {

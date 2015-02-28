@@ -1,13 +1,10 @@
 ﻿using CV_clone;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using CVCommon;
+using CV_clone.Utilities;
 
 namespace TheSuperTrueRealCV.EnemyAI
 {
@@ -16,7 +13,6 @@ namespace TheSuperTrueRealCV.EnemyAI
         Moving_Entity target;
         List<Action> AiList = new List<Action>();
         bool Newtimer = false;
-        int randomNewState;
         Random random = new Random();
         public Timer AiTimer;
 

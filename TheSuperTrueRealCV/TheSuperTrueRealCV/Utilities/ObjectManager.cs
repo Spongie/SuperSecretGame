@@ -5,26 +5,26 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
-namespace TheSuperTrueRealCV
+namespace TheSuperTrueRealCV.Utilities
 {
-    public class ObjectManager
+    public static class ObjectManager
     {
-        public ObjectManager()
+        public static void Init()
         {
             Monsters = new List<Moving_Entity>();
             Platforms = new List<Entity>();
         }
-        public static Moving_Entity player;
 
-        public List<Moving_Entity> Monsters { get; set; }
-        public List<Entity> Platforms { get; set; }
+        public static Player player;
 
-        public void ApplyPhysics(GameTime gameTime)
+        public static List<Moving_Entity> Monsters { get; set; }
+        public static List<Entity> Platforms { get; set; }
+
+        public static void ApplyPhysics(GameTime gameTime)
         {
             Camera camera = CameraController.GetCamera();
-            player.Speed += new Vector2(0, Settings.gravityPower) * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            player.Speed += new Vector2(0, Settings.gravityPower);
             foreach (var platform in Platforms.Where(plat => camera.IsInsideVeiwSpace(plat.ScreenRect)))
             {
                 if (platform.WorldRect.Intersects(player.WorldRect))
@@ -56,9 +56,15 @@ namespace TheSuperTrueRealCV
 
                 foreach (var monster in Monsters.Where(mon => camera.IsInsideVeiwSpace(mon.ScreenRect)))
                 {
-                    monster.Speed += new Vector2(0, Settings.gravityPower) * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    monster.Speed += new Vector2(0, Settings.gravityPower);
                     if(monster.IgnoreCollision)
                         continue;
+
+                    if(player.WorldRect.Intersects(monster.WorldRect))
+                    {
+                        player.Speed = new Vector2(0, -500);
+                        player.Controllable = false;
+                    }
 
                     if (platform.WorldRect.Intersects(monster.WorldRect))
                     {
@@ -92,12 +98,12 @@ namespace TheSuperTrueRealCV
             recalculateScreenPositions();
         }
 
-        private bool IsInsideXRange(Moving_Entity entity, Entity platform)
+        private static bool IsInsideXRange(Moving_Entity entity, Entity platform)
         {
             return platform.WorldRect.X < entity.Center.X && platform.WorldRect.Right > entity.Center.X;
         }
 
-        private void recalculateScreenPositions()
+        private static void recalculateScreenPositions()
         {
             recalculateMonsterScreenPosition();
             recalculatePlatformScreenPosition();
@@ -105,7 +111,7 @@ namespace TheSuperTrueRealCV
             player.ScreenPosition = CameraController.GetCamera().GetObjectScreenPosition(player.WorldPosition);
         }
 
-        private void recalculateMonsterScreenPosition()
+        private static void recalculateMonsterScreenPosition()
         {
             Camera camera = CameraController.GetCamera();
 
@@ -115,7 +121,7 @@ namespace TheSuperTrueRealCV
             }
         }
 
-        private void recalculatePlatformScreenPosition()
+        private static void recalculatePlatformScreenPosition()
         {
             Camera camera = CameraController.GetCamera();
 
@@ -125,7 +131,7 @@ namespace TheSuperTrueRealCV
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public static void Draw(SpriteBatch spriteBatch)
         {
             foreach (var platform in Platforms)
             {
@@ -138,6 +144,11 @@ namespace TheSuperTrueRealCV
             }
 
             player.Draw(spriteBatch);
+        }
+
+        public static void RegisterAttack(Attack piAttack)
+        {
+
         }
     }
 }

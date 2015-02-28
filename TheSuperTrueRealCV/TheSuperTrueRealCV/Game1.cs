@@ -3,6 +3,7 @@ using CVCommon;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using TheSuperTrueRealCV.Utilities;
 
 namespace TheSuperTrueRealCV
 {
@@ -15,7 +16,6 @@ namespace TheSuperTrueRealCV
         SpriteBatch spriteBatch;
         Skeleton skeleton;
 
-        ObjectManager om;
         Platform platform;
         Platform platform2;
         Platform platform3;
@@ -61,7 +61,7 @@ namespace TheSuperTrueRealCV
 
             Settings.gameSize = new Vector2(800, 600);
 
-            skeleton = new Skeleton(new Vector2(100, 100));
+            skeleton = new Skeleton(new Vector2(100, 50));
 
             platform = new Platform(new Point(0, 300), PlatformType.CastleFloor, PlatformStatus.Normal, true);
 
@@ -75,13 +75,12 @@ namespace TheSuperTrueRealCV
 
 
             skeleton.Activate(player);
-
-            om = new ObjectManager();
+            ObjectManager.Init();
             ObjectManager.player = player;
-            om.Monsters.Add(skeleton);
-            om.Platforms.Add(platform);
-            om.Platforms.Add(platform2);
-            om.Platforms.Add(platform3);
+            ObjectManager.Monsters.Add(skeleton);
+            ObjectManager.Platforms.Add(platform);
+            ObjectManager.Platforms.Add(platform2);
+            ObjectManager.Platforms.Add(platform3);
             CameraController.InitCamera();
             // TODO: use this.Content to load your game content here
         }
@@ -102,18 +101,13 @@ namespace TheSuperTrueRealCV
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            ObjectManager.ApplyPhysics(gameTime);
             KeyMouseReader.Update();
             platform.Size = new Vector2(2000, 1000);
-
-            if (KeyMouseReader.keyState.IsKeyDown(Keys.A))
-                ObjectManager.player.Speed = new Vector2(-25, ObjectManager.player.Speed.Y);
-            if (KeyMouseReader.keyState.IsKeyDown(Keys.D))
-                ObjectManager.player.Speed = new Vector2(25, ObjectManager.player.Speed.Y);
 
             player.Update(gameTime);
             skeleton.Update(gameTime);
 
-            om.ApplyPhysics(gameTime);
 
             base.Update(gameTime);
         }
@@ -127,7 +121,7 @@ namespace TheSuperTrueRealCV
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-            om.Draw(spriteBatch);
+            ObjectManager.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
         }
