@@ -22,5 +22,15 @@
         {
             get { return CurrentHealth / MaximumHealth; }
         }
+
+        public void DealDamage(float amount)
+        {
+            CurrentHealth -= (int)amount;
+        }
+
+        public void DrainMana(int amount)
+        {
+            CurrentMana -= amount;
+        }
     }
 }

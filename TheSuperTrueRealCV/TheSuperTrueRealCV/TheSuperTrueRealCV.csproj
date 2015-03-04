@@ -43,8 +43,10 @@
     <Compile Include="EnemyAI\Bat.cs" />
     <Compile Include="EnemyAI\SkeletonArmor.cs" />
     <Compile Include="EnemyAI\Skeletonmusician.cs" />
+    <Compile Include="Utilities\AttackCreator.cs" />
     <Compile Include="Utilities\AttackDamageScaling.cs" />
     <Compile Include="Utilities\DamageCalcualtor.cs" />
+    <Compile Include="Utilities\Enums\AttackEnums.cs" />
     <Compile Include="Utilities\FPS.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Utilities\IDTimer.cs" />
@@ -68,6 +70,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\tmpAttack.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\test.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

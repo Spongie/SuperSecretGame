@@ -10,15 +10,17 @@ namespace CV_clone
     public class Player : Moving_Entity
     {
         private Vector2 extraSpeed;
-        private bool doneLastFrame = false;
+
         public Player(Texture2D tex, Vector2 vec, Vector2 size)
             :base(tex,vec,size)
         {
+            jumpPower = 600;
         }
 
         public override void Update(GameTime gameTime)
         {
             HandleInput();
+            Direction preUpdate = direction;
             base.Update(gameTime);
 
             if(!IsFalling && !IsJumping && !Controllable)
@@ -26,7 +28,8 @@ namespace CV_clone
                 Controllable = true;
                 Speed = Vector2.Zero;
             }
-
+            if(direction != preUpdate)
+                ObjectManager.FlipAttacks(direction);
             if(Controllable)
                 Speed -= extraSpeed;
         }
@@ -37,16 +40,25 @@ namespace CV_clone
                 return;
 
             if (KeyMouseReader.keyState.IsKeyDown(Keys.A))
-                extraSpeed = new Vector2(-50, 0);
+                extraSpeed = new Vector2(-100, 0);
             else if (KeyMouseReader.keyState.IsKeyDown(Keys.D))
-                extraSpeed = new Vector2(50, 0);
+                extraSpeed = new Vector2(100, 0);
             else
                 extraSpeed = Vector2.Zero;
+
+            if (KeyMouseReader.KeyPressed(Keys.Q))
+                ObjectManager.RegisterAttack(AttackCreator.CreateTestAttack(WorldPosition + new Vector2(100, 0), new Vector2(100, 100)));
+
+            if (KeyMouseReader.KeyPressed(Keys.Space) && CanJump)
+                Jump();
 
             Speed += extraSpeed;
         }
 
-        public Stats Stats { get; set; }
+        public bool CanJump
+        {
+            get { return !IsFalling && !IsJumping; }
+        }
 
         public bool Controllable { get; set; }
 

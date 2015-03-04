@@ -50,7 +50,7 @@ namespace TheSuperTrueRealCV
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            ContentHolder.InitOnlyContentManager(Content);
+            ContentHolder.Init(Content);
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Texture2D s = Content.Load<Texture2D>("Test.png");
             Settings.objectSize = new Vector2(50, 50);
@@ -104,10 +104,7 @@ namespace TheSuperTrueRealCV
             ObjectManager.ApplyPhysics(gameTime);
             KeyMouseReader.Update();
             platform.Size = new Vector2(2000, 1000);
-
-            player.Update(gameTime);
-            skeleton.Update(gameTime);
-
+            ObjectManager.Update(gameTime);
 
             base.Update(gameTime);
         }

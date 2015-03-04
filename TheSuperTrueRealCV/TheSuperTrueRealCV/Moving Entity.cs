@@ -29,6 +29,7 @@ namespace CV_clone
             direction = Direction.Right;
             spell = new List<Spell>();
             Movement_Restrictions = new MovementRestrictions();
+            jumpPower = 400;
         }
 
         public Stats CurrentStats { get; set; }
@@ -37,6 +38,11 @@ namespace CV_clone
         {
             get { return direction; }
             set { direction = value; }
+        }
+
+        public bool IsAlive
+        {
+            get { return CurrentStats.CurrentHealth > 0; }
         }
 
         public float SpeedChange
@@ -89,6 +95,16 @@ namespace CV_clone
                 spriteBatch.Draw(texture, new Rectangle((int)ScreenPosition.X, (int)ScreenPosition.Y, (int)Size.X, (int)Size.Y), null, Color.White, 0.0f, Vector2.Zero, SpriteEffects.None, 0.0f);
             else
                 spriteBatch.Draw(texture, new Rectangle((int)ScreenPosition.X, (int)ScreenPosition.Y, (int)Size.X, (int)Size.Y), null, Color.White, 0.0f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0.0f);
+        }
+
+        public void DealDamage(float amount)
+        {
+            CurrentStats.DealDamage(amount);
+        }
+
+        public void DrainMana(int amount)
+        {
+            CurrentStats.DrainMana(amount);
         }
     }
 }

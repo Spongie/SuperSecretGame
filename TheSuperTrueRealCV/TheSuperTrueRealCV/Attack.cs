@@ -5,31 +5,30 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using TheSuperTrueRealCV.Utilities;
+using Microsoft.Xna.Framework.Graphics;
+using TheSuperTrueRealCV.Utilities.Enums;
 
 namespace TheSuperTrueRealCV
 {
-    public enum AttackTarget
-    {
-        Player,
-        Monsters,
-        Everything
-    }
-
-    public enum AttackType
-    {
-        FollowOwner,
-        Moving,
-        Stationary
-    }
-
     public class Attack : Moving_Entity
     {
         private Vector2 positionOffset;
+        private float msToLive;
+        private Timer lifeTimer;
+        private Vector2 leftOffset;
+        private Vector2 rightOffset;
 
-        public Attack() : base(ContentHolder.tmp, Vector2.Zero, Vector2.Zero)
+        public Attack(Vector2 piPosition, Vector2 piSize, Vector2 piSpeed, Moving_Entity piOwner, float piMsToLiveOnLast) : base(ContentHolder.tmp, piPosition, piSize)
         {
+            Owner = piOwner;
+            Speed = piSpeed;
             ApplyGravity = false;
-            positionOffset = Owner.WorldPosition - WorldPosition;
+            leftOffset = Owner.WorldPosition - WorldPosition;
+            rightOffset = WorldPosition - new Vector2(Owner.WorldRect.Right, Owner.WorldRect.Y);
+            HitBoxes = new List<Rectangle>();
+            HitboxTimers = new List<Timer>();
+            EntitiesHit = new Dictionary<Moving_Entity, Timer>();
+            msToLive = piMsToLiveOnLast;
         }
 
         public Dictionary<Moving_Entity, Timer> EntitiesHit { get; set; }
@@ -51,24 +50,51 @@ namespace TheSuperTrueRealCV
             get { return new Rectangle((int)WorldPosition.X, (int)WorldPosition.Y, CurrentHitbox.Width, CurrentHitbox.Height); }
         }
 
+        public Rectangle ScreenCollision
+        {
+            get { return new Rectangle((int)ScreenPosition.X, (int)ScreenPosition.Y, CurrentHitbox.Width, CurrentHitbox.Height); }
+        }
+
+        public bool ReadyToDestroy { get; private set; }
+
         public AttackTarget TargetType { get; set; }
 
         public bool CanHitEntity(Moving_Entity piEntity)
         {
+            if (piEntity == Owner && TargetType == AttackTarget.Everything)
+                return false;
+
             if (!EntitiesHit.ContainsKey(piEntity))
                 return true;
 
             return EntitiesHit[piEntity].Done;
         }
 
+        public void Flip(Direction piDirection)
+        {
+            if (piDirection == Direction.Right)
+                positionOffset = rightOffset;
+            else
+                positionOffset = leftOffset;
+        }
+
         public override void Update(GameTime time)
         {
-            if (AttackType == TheSuperTrueRealCV.AttackType.FollowOwner)
+            if (HitboxTimers.Count == 0 && lifeTimer == null)
+                lifeTimer = new Timer(msToLive);
+
+            if (AttackType == AttackType.FollowOwner)
                 WorldPosition = Owner.WorldPosition + positionOffset;
-            else if (AttackType == TheSuperTrueRealCV.AttackType.Stationary)
+            else if (AttackType == AttackType.Stationary)
                 Speed = Vector2.Zero;
 
             HandleHitboxChanging(time);
+
+            if (lifeTimer != null)
+            {
+                lifeTimer.Update(time);
+                ReadyToDestroy = lifeTimer.Done;
+            }
 
             base.Update(time);
         }
@@ -82,9 +108,20 @@ namespace TheSuperTrueRealCV
                 if (HitboxTimers.First().Done)
                 {
                     HitboxTimers.Remove(HitboxTimers.First());
-                    HitBoxes.Remove(CurrentHitbox);
+                    if(HitboxTimers.Count == 0)
+                    {
+                        lifeTimer = new Timer(msToLive);
+                    }
+                    else
+                        HitBoxes.Remove(CurrentHitbox);
                 }
             }
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            base.Draw(spriteBatch);
+            spriteBatch.Draw(texture, ScreenCollision, new Color(Color.Red, 150));
         }
     }
 }

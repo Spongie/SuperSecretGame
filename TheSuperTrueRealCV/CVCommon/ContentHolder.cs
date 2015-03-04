@@ -41,6 +41,8 @@ namespace CVCommon
         public static void Init(ContentManager cM)
         {
             InitOnlyContentManager(cM);
+
+            tmp = LoadExtraContent<Texture2D>("tmpAttack");
         }
 
         public static T LoadExtraContent<T>(string piFileName)
