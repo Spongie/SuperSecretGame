@@ -36,7 +36,6 @@ namespace TheSuperTrueRealCV.Utilities
             if (!player.Movement_Restrictions.Down)
                 player.Speed += new Vector2(0, Settings.gravityPower);
 
-            recalculateScreenPositions();
         }
 
         public static void Update(GameTime gameTime)
@@ -104,6 +103,15 @@ namespace TheSuperTrueRealCV.Utilities
                         }
                     }
                 }
+
+                foreach (var attack in Attacks)
+                {
+                    if (attack.CurrentHitbox.Intersects(monster.WorldRect))
+                        monster.DealDamage(DamageCalcualtor.CalculateDamage(attack.Owner.CurrentStats, monster.CurrentStats, attack.Scaling));
+
+                    if(attack.CurrentHitbox.Intersects(player.WorldRect))
+                        player.DealDamage(DamageCalcualtor.CalculateDamage(attack.Owner.CurrentStats, player.CurrentStats, attack.Scaling));
+                }
             }
         }
 
@@ -150,39 +158,6 @@ namespace TheSuperTrueRealCV.Utilities
             return platform.WorldRect.X < entity.Center.X && platform.WorldRect.Right > entity.Center.X;
         }
 
-        private static void recalculateScreenPositions()
-        {
-            recalculateMonsterScreenPosition();
-            recalculatePlatformScreenPosition();
-
-            foreach (var attack in Attacks)
-            {
-                attack.UpdateScreenPosition();
-            }
-
-            player.UpdateScreenPosition();
-        }
-
-        private static void recalculateMonsterScreenPosition()
-        {
-            Camera camera = CameraController.GetCamera();
-
-            foreach (var monster in Monsters)
-            {
-                monster.UpdateScreenPosition();
-            }
-        }
-
-        private static void recalculatePlatformScreenPosition()
-        {
-            Camera camera = CameraController.GetCamera();
-
-            foreach (var platform in Platforms)
-            {
-                platform.UpdateScreenPosition();
-            }
-        }
-
         public static void Draw(SpriteBatch spriteBatch)
         {
             foreach (var platform in Platforms)
@@ -207,6 +182,7 @@ namespace TheSuperTrueRealCV.Utilities
         {
             if(piAttack.AttackType == AttackType.FollowOwner)
                 piAttack.Flip(player.Facing);
+
             Attacks.Add(piAttack);
         }
 

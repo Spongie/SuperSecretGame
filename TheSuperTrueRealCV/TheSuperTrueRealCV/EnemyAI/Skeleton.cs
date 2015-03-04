@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 using CVCommon;
 using CV_clone.Utilities;
 
-namespace TheSuperTrueRealCV
+namespace TheSuperTrueRealCV.EnemyAI
 {
     class Skeleton : Moving_Entity
     {
