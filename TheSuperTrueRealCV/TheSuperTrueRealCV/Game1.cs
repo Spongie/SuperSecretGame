@@ -15,7 +15,7 @@ namespace TheSuperTrueRealCV
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Skeleton skeleton;
+        SkeletonArmor skeleton;
 
         Platform platform;
         Platform platform2;
@@ -62,7 +62,7 @@ namespace TheSuperTrueRealCV
 
             Settings.gameSize = new Vector2(800, 600);
 
-            skeleton = new Skeleton(new Vector2(100, 50));
+            skeleton = new SkeletonArmor(new Vector2(100, 50));
 
             platform = new Platform(new Point(0, 300), PlatformType.CastleFloor, PlatformStatus.Normal, true);
 
