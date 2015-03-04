@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using CVCommon;
 using CV_clone.Utilities;
+using TheSuperTrueRealCV.Utilities;
 
 namespace TheSuperTrueRealCV.EnemyAI
 {
@@ -145,15 +146,15 @@ namespace TheSuperTrueRealCV.EnemyAI
         {
             if (AiTimer.Done && Newtimer == false)
             {
-                AiTimer = new Timer(200);
+                AiTimer = new Timer(600);
                 Newtimer = true;
             }
             if (AiTimer.Done && HaveAttacked == false)
             {
                 HaveAttacked = true;
-                //megashieldattackofdoom!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                ObjectManager.RegisterAttack(AttackCreator.CreateTestAttack(WorldPosition + new Vector2(100, 0), new Vector2(100, 100), this),this);
 
-                AiTimer = new Timer(500);
+                AiTimer = new Timer(1000);
             }
 
             if (AiTimer.Done)

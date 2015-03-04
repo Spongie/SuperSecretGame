@@ -47,7 +47,7 @@ namespace CV_clone
                 extraSpeed = Vector2.Zero;
 
             if (KeyMouseReader.KeyPressed(Keys.Q))
-                ObjectManager.RegisterAttack(AttackCreator.CreateTestAttack(WorldPosition + new Vector2(100, 0), new Vector2(100, 100)));
+                ObjectManager.RegisterAttack(AttackCreator.CreateTestAttack(WorldPosition + new Vector2(100, 0), new Vector2(100, 100), this),this);
 
             if (KeyMouseReader.KeyPressed(Keys.Space) && CanJump)
                 Jump();

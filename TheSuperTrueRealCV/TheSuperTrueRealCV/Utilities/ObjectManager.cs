@@ -203,10 +203,10 @@ namespace TheSuperTrueRealCV.Utilities
             player.Draw(spriteBatch);
         }
 
-        public static void RegisterAttack(Attack piAttack)
+        public static void RegisterAttack(Attack piAttack, Moving_Entity owner)
         {
             if(piAttack.AttackType == AttackType.FollowOwner)
-                piAttack.Flip(player.Facing);
+                piAttack.Flip(owner.Facing);
             Attacks.Add(piAttack);
         }
 
