@@ -31,6 +31,7 @@ namespace TheSuperTrueRealCV.Utilities
             {
                 PlayerToPlatformCollision(platform);
                 MonsterCollision(camera, platform);
+                platform.UpdateScreenPosition();
             }
 
             if (!player.Movement_Restrictions.Down)
@@ -41,25 +42,38 @@ namespace TheSuperTrueRealCV.Utilities
         public static void Update(GameTime gameTime)
         {
             player.Update(gameTime);
-            foreach (var monster in Monsters)
-            {
-                monster.Update(gameTime);
-                monster.UpdateScreenPosition();
-            }
-            var attacksToRemove = new List<Attack>();
+            UpdateMonsters(gameTime);
+            UpdateAttacks(gameTime);
+        }
 
+        private static void UpdateAttacks(GameTime gameTime)
+        {
+            var attacksToRemove = new List<Attack>();
             foreach (var attack in Attacks)
             {
                 attack.Update(gameTime);
                 if (attack.ReadyToDestroy)
                     attacksToRemove.Add(attack);
-
-                attack.UpdateScreenPosition();
             }
 
             foreach (var attack in attacksToRemove)
             {
                 Attacks.Remove(attack);
+            }
+        }
+
+        private static void UpdateMonsters(GameTime gameTime)
+        {
+            var monsterToKill = new List<Moving_Entity>();
+            foreach (var monster in Monsters)
+            {
+                monster.Update(gameTime);
+                if (!monster.IsAlive)
+                    monsterToKill.Add(monster);
+            }
+            foreach (var monster in monsterToKill)
+            {
+                Monsters.Remove(monster);
             }
         }
 
@@ -106,10 +120,10 @@ namespace TheSuperTrueRealCV.Utilities
 
                 foreach (var attack in Attacks)
                 {
-                    if (attack.CurrentHitbox.Intersects(monster.WorldRect))
+                    if (attack.RealHitbox.Intersects(monster.WorldRect))
                         monster.DealDamage(DamageCalcualtor.CalculateDamage(attack.Owner.CurrentStats, monster.CurrentStats, attack.Scaling));
 
-                    if(attack.CurrentHitbox.Intersects(player.WorldRect))
+                    if(attack.RealHitbox.Intersects(player.WorldRect))
                         player.DealDamage(DamageCalcualtor.CalculateDamage(attack.Owner.CurrentStats, player.CurrentStats, attack.Scaling));
                 }
             }
@@ -181,12 +195,8 @@ namespace TheSuperTrueRealCV.Utilities
         public static void RegisterAttack(Attack piAttack, Moving_Entity owner)
         {
             if(piAttack.AttackType == AttackType.FollowOwner)
-<<<<<<< HEAD
-                piAttack.Flip(player.Facing);
-
-=======
                 piAttack.Flip(owner.Facing);
->>>>>>> origin/master
+
             Attacks.Add(piAttack);
         }
 

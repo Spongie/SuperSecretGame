@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using TheSuperTrueRealCV.EnemyAI;
+using TheSuperTrueRealCV.Interface;
 using TheSuperTrueRealCV.Utilities;
 
 namespace TheSuperTrueRealCV
@@ -22,7 +23,7 @@ namespace TheSuperTrueRealCV
         Platform platform3;
 
         Player player;
-
+        PlayerPortrait pp;
 
         public Game1()
             : base()
@@ -52,6 +53,8 @@ namespace TheSuperTrueRealCV
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             ContentHolder.Init(Content);
+            CameraController.InitCamera();
+
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Texture2D s = Content.Load<Texture2D>("Test.png");
             Settings.objectSize = new Vector2(50, 50);
@@ -73,8 +76,7 @@ namespace TheSuperTrueRealCV
             platform3.Size = new Vector2(50, 200);
 
             player = new Player(s, new Vector2(551, 200), Settings.objectSize);
-
-
+            pp = new PlayerPortrait();
             skeleton.Activate(player);
             ObjectManager.Init();
             ObjectManager.player = player;
@@ -82,7 +84,6 @@ namespace TheSuperTrueRealCV
             ObjectManager.Platforms.Add(platform);
             ObjectManager.Platforms.Add(platform2);
             ObjectManager.Platforms.Add(platform3);
-            CameraController.InitCamera();
             // TODO: use this.Content to load your game content here
         }
 
@@ -119,6 +120,7 @@ namespace TheSuperTrueRealCV
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
+            pp.Draw(spriteBatch, ObjectManager.player.CurrentStats);
             ObjectManager.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);

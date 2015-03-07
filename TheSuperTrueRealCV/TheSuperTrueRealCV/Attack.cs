@@ -29,6 +29,7 @@ namespace TheSuperTrueRealCV
             HitboxTimers = new List<Timer>();
             EntitiesHit = new Dictionary<Moving_Entity, Timer>();
             msToLive = piMsToLiveOnLast;
+            Scaling = new AttackDamageScaling();
         }
 
         public Dictionary<Moving_Entity, Timer> EntitiesHit { get; set; }

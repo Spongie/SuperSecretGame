@@ -24,7 +24,7 @@ namespace CVLevelEditor
             Init();
             screenSize = piSize;
             font = ContentHolder.LoadExtraContent<SpriteFont>("Font");
-            light = ContentHolder.LoadExtraContent<Texture2D>("PropLight");
+            light = ContentHolder.LoadTexture("PropLight");
             blockSize = Point.Zero;
 
             blockSize.X = (int)screenSize.X / 20;
@@ -49,8 +49,8 @@ namespace CVLevelEditor
             map.Platforms = new List<Platform>();
             PlatformTextures = new Dictionary<PlatformType, Texture2D>();
 
-            PlatformTextures[PlatformType.CastleFloor] = ContentHolder.LoadExtraContent<Texture2D>("CastleFloor.png");
-            PlatformTextures[PlatformType.CastleWall] = ContentHolder.LoadExtraContent<Texture2D>("CastleWall.png");
+            PlatformTextures[PlatformType.CastleFloor] = ContentHolder.LoadTexture("CastleFloor.png");
+            PlatformTextures[PlatformType.CastleWall] = ContentHolder.LoadTexture("CastleWall.png");
         }
 
         public void Update(PlacingMode placingMode, float intensity)

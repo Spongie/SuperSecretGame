@@ -10,6 +10,7 @@ namespace TheSuperTrueRealCV.Utilities
             var attack = new Attack(piPosition, piSize, Vector2.Zero, owner, 1000);
 
             attack.HitBoxes.Add(new Rectangle(0, 0, 100, 100));
+            attack.Scaling.Damage = 1;
 
             return attack;
         }

@@ -67,6 +67,7 @@ namespace CVCommon
             Speed = Movement_Restrictions.Apply(Speed);
             WorldPosition += Speed * (float)time.ElapsedGameTime.TotalSeconds;
             Movement_Restrictions.Reset();
+            UpdateScreenPosition();
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)

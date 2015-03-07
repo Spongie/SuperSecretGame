@@ -17,7 +17,7 @@ namespace CVCommon
             PlatformSettings.Platform_Status = piPlatformStatus;
             PlatformSettings.Collidable = piCollidable;
             WorldPosition = piPosition.ToVector2();
-            texture = ContentHolder.LoadExtraContent<Texture2D>("test");
+            texture = ContentHolder.LoadTexture("test");
         }
 
         public BlockSettings PlatformSettings { get; set; }

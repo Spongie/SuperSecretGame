@@ -20,7 +20,7 @@ namespace TheSuperTrueRealCV.EnemyAI
         public Timer AiTimer;
 
         public Skeletonmusician(Vector2 position) 
-            : base(ContentHolder.LoadExtraContent<Texture2D>("Test"), position, Settings.objectSize)
+            : base(ContentHolder.LoadTexture("Test"), position, Settings.objectSize)
         {
             //FIX ANIMATION FRAMES
 

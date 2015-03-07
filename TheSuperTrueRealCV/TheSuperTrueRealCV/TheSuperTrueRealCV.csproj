@@ -43,6 +43,7 @@
     <Compile Include="EnemyAI\Bat.cs" />
     <Compile Include="EnemyAI\SkeletonArmor.cs" />
     <Compile Include="EnemyAI\Skeletonmusician.cs" />
+    <Compile Include="Interface\PlayerPortrait.cs" />
     <Compile Include="Utilities\AttackCreator.cs" />
     <Compile Include="Utilities\AttackDamageScaling.cs" />
     <Compile Include="Utilities\DamageCalcualtor.cs" />
@@ -70,6 +71,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Portrait\BlueFilling.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Portrait\Outline.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Portrait\Portrait.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Portrait\RedFilling.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Portrait\YellowFilling.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\tmpAttack.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -15,10 +15,20 @@ namespace CV_clone
             :base(tex,vec,size)
         {
             jumpPower = 600;
+            CurrentStats.MaximumHealth = 100;
+            CurrentStats.MaximumMana = 50;
+            CurrentStats.CurrentMana = 50;
+            CurrentStats.CurrentHealth = 100;
+            CurrentStats.Damage = 1337;
+            CurrentStats.MaximumExp = 125;
+            CurrentStats.RewardExperience(50);
         }
 
         public override void Update(GameTime gameTime)
         {
+            if (!IsAlive)
+                return;
+
             HandleInput();
             Direction preUpdate = direction;
             base.Update(gameTime);
