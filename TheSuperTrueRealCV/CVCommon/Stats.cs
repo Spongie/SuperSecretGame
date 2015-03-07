@@ -29,6 +29,16 @@
         public float MagicDefense { get; set; }
         public float Luck { get; set; }
         public float Resistance { get; set; }
+        public float BaseCurseResist { get; set; }
+        public float BaseMpDrainResist { get; set; }
+        public float BaseLifeLeechResist { get; set; }
+        public float BaseInstaKillResist { get; set; }
+        public float BaseSlowResist { get; set; }
+        public float BaseStatsLossResist { get; set; }
+        public float BaseTimeStopResist { get; set; }
+        public float BaseFreezeResist { get; set; }
+        public float BaseFearResist { get; set; }
+
 
         public float ManaPercentage
         {
