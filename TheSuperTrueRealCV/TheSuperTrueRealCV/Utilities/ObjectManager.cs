@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TheSuperTrueRealCV.EnemyAI;
 using TheSuperTrueRealCV.Utilities.Enums;
 
 namespace TheSuperTrueRealCV.Utilities
@@ -13,13 +14,13 @@ namespace TheSuperTrueRealCV.Utilities
     {
         public static void Init()
         {
-            Monsters = new List<Moving_Entity>();
+            Monsters = new List<Monster>();
             Platforms = new List<Entity>();
             Attacks = new List<Attack>();
         }
 
         public static Player player;
-        public static List<Moving_Entity> Monsters { get; private set; }
+        public static List<Monster> Monsters { get; private set; }
         public static List<Entity> Platforms { get; private set; }
         public static List<Attack> Attacks { get; private set; }
 
@@ -64,7 +65,7 @@ namespace TheSuperTrueRealCV.Utilities
 
         private static void UpdateMonsters(GameTime gameTime)
         {
-            var monsterToKill = new List<Moving_Entity>();
+            var monsterToKill = new List<Monster>();
             foreach (var monster in Monsters)
             {
                 monster.Update(gameTime);
@@ -121,11 +122,19 @@ namespace TheSuperTrueRealCV.Utilities
                 foreach (var attack in Attacks)
                 {
                     if (attack.RealHitbox.Intersects(monster.WorldRect))
-                        monster.DealDamage(DamageCalcualtor.CalculateDamage(attack.Owner.CurrentStats, monster.CurrentStats, attack.Scaling));
-
-                    if(attack.RealHitbox.Intersects(player.WorldRect))
-                        player.DealDamage(DamageCalcualtor.CalculateDamage(attack.Owner.CurrentStats, player.CurrentStats, attack.Scaling));
+                        HandleAttackHit(attack, monster);
+                    if (attack.RealHitbox.Intersects(player.WorldRect))
+                        HandleAttackHit(attack, player);
                 }
+            }
+        }
+
+        private static void HandleAttackHit(Attack piAttack, Moving_Entity piTarget)
+        {
+            if (piAttack.CanHitEntity(piTarget))
+            {
+                piTarget.DealDamage(DamageCalcualtor.CalculateDamage(piAttack.Owner.CurrentStats, piTarget.CurrentStats, piAttack.Scaling));
+                piAttack.EntitiesHit.Add(piTarget, piAttack.getHitResetTimer());
             }
         }
 

@@ -8,19 +8,12 @@ using CV_clone.Utilities;
 
 namespace TheSuperTrueRealCV.EnemyAI
 {
-    class Skeletonmusician : Moving_Entity
+    class Skeletonmusician : Monster
     {
-        Moving_Entity target;
-        List<Action> AiList = new List<Action>();
-        bool HaveAttacked = false;
-        bool Newtimer = false;
         bool HaveUsedSuperAttack = false;
-        int randomNewState;
-        Random random = new Random();
-        public Timer AiTimer;
 
         public Skeletonmusician(Vector2 position) 
-            : base(ContentHolder.LoadTexture("Test"), position, Settings.objectSize)
+            : base(position)
         {
             //FIX ANIMATION FRAMES
 
@@ -34,21 +27,7 @@ namespace TheSuperTrueRealCV.EnemyAI
             AiTimer = new Timer(0);
         }
 
-        public override void Update(GameTime time)
-        {
-            AiTimer.Update(time);
-
-            if (AiList.Count > 0)
-            {
-                AiList[0].Invoke();
-            }
-
-            base.Update(time);
-
-            Speed *= new Vector2(0, 1);
-        }
-
-        public void TurnAroundCheck()
+        public override void TurnAroundCheck()
         {
             if (target.WorldPosition.X < WorldPosition.X && direction == Direction.Right)
             {
@@ -60,7 +39,7 @@ namespace TheSuperTrueRealCV.EnemyAI
             }
         }
 
-        public void UpdateTurnAround()
+        public override void UpdateTurnAround()
         {
             if (AiTimer.Done && Newtimer == false)
             {
@@ -83,27 +62,7 @@ namespace TheSuperTrueRealCV.EnemyAI
 
         }
 
-        public void Activate(Moving_Entity target)
-        {
-            this.target = target;
-
-            if (target.WorldPosition.X <= WorldPosition.X)
-            {
-                direction = Direction.Left;
-            }
-            else
-            {
-                direction = Direction.Right;
-            }
-            AiList.Add(() => UpdateIdle());
-        }
-
-        public void Disable()
-        {
-            AiList.Clear();
-        }
-
-        public void UpdateIdle()
+        public override void UpdateIdle()
         {
             if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.HealthPercentage <= 40)
             {
@@ -122,33 +81,33 @@ namespace TheSuperTrueRealCV.EnemyAI
             {
                 Newtimer = false;
                 TurnAroundCheck();
-                randomNewState = random.Next(0, 7);
+                newState = random.Next(0, 7);
 
-                if (randomNewState == 0)
+                if (newState == 0)
                 {
                     AiList.Add(() => UpdateMagicAttack1());
                 }
-                else if (randomNewState == 1)
+                else if (newState == 1)
                 {
-                    AiList.Add(() => UpdateAttack1());
+                    AiList.Add(() => UpdateAttack());
                 }
-                else if (randomNewState == 2)
+                else if (newState == 2)
                 {
                     AiList.Add(() => UpdateAttack2());
                 }
-                else if (randomNewState == 3)
+                else if (newState == 3)
                 {
                     AiList.Add(() => UpdateMoveBack());
                 }
-                else if (randomNewState == 4)
+                else if (newState == 4)
                 {
-                    AiList.Add(() => UpdateMoveForward());
+                    AiList.Add(() => UpdateGoForward());
                 }
-                else if (randomNewState == 5)
+                else if (newState == 5)
                 {
                     AiList.Add(() => UpdateJumpBack());
                 }
-                else if (randomNewState == 6)
+                else if (newState == 6)
                 {
                     AiList.Add(() => UpdateJumpForward());
                 }
@@ -204,7 +163,7 @@ namespace TheSuperTrueRealCV.EnemyAI
 
         }
 
-        public void UpdateAttack1()
+        public override void UpdateAttack()
         {
             if (AiTimer.Done && Newtimer == false)
             {
@@ -273,29 +232,29 @@ namespace TheSuperTrueRealCV.EnemyAI
             {
                 Newtimer = false;
                 TurnAroundCheck();
-                randomNewState = random.Next(0,6);
+                newState = random.Next(0,6);
 
-                if (randomNewState == 0)
+                if (newState == 0)
                 {
                     AiList.Add(() => UpdateIdle());
                 }
-                else if (randomNewState == 1)
+                else if (newState == 1)
                 {
                     AiList.Add(() => UpdateJumpBack());
                 }
-                else if (randomNewState == 2)
+                else if (newState == 2)
                 {
                     AiList.Add(() => UpdateJumpForward());
                 }
-                else if (randomNewState == 3)
+                else if (newState == 3)
                 {
                     AiList.Add(() => UpdateMagicAttack1());
                 }
-                else if (randomNewState == 4)
+                else if (newState == 4)
                 {
-                    AiList.Add(() => UpdateAttack1());
+                    AiList.Add(() => UpdateAttack());
                 }
-                else if (randomNewState == 5)
+                else if (newState == 5)
                 {
                     AiList.Add(() => UpdateAttack2());
                 }
@@ -304,7 +263,7 @@ namespace TheSuperTrueRealCV.EnemyAI
             }
         }
 
-        public void UpdateMoveForward()
+        public override void UpdateGoForward()
         {
             if (AiTimer.Done && Newtimer == false)
             {
@@ -325,29 +284,29 @@ namespace TheSuperTrueRealCV.EnemyAI
             {
                 Newtimer = false;
                 TurnAroundCheck();
-                randomNewState = random.Next(0, 6);
+                newState = random.Next(0, 6);
 
-                if (randomNewState == 0)
+                if (newState == 0)
                 {
                     AiList.Add(() => UpdateIdle());
                 }
-                else if (randomNewState == 1)
+                else if (newState == 1)
                 {
                     AiList.Add(() => UpdateJumpBack());
                 }
-                else if (randomNewState == 2)
+                else if (newState == 2)
                 {
                     AiList.Add(() => UpdateJumpForward());
                 }
-                else if (randomNewState == 3)
+                else if (newState == 3)
                 {
                     AiList.Add(() => UpdateMagicAttack1());
                 }
-                else if (randomNewState == 4)
+                else if (newState == 4)
                 {
-                    AiList.Add(() => UpdateAttack1());
+                    AiList.Add(() => UpdateAttack());
                 }
-                else if (randomNewState == 5)
+                else if (newState == 5)
                 {
                     AiList.Add(() => UpdateAttack2());
                 }
@@ -377,7 +336,7 @@ namespace TheSuperTrueRealCV.EnemyAI
             {
                 Newtimer = false;
                 TurnAroundCheck();
-                AiList.Add(() => UpdateAttack1());
+                AiList.Add(() => UpdateAttack());
                 AiList.RemoveAt(0);
             }
         }
@@ -420,17 +379,17 @@ namespace TheSuperTrueRealCV.EnemyAI
             {
                 Newtimer = false;
                 TurnAroundCheck();
-                randomNewState = random.Next(0, 3);
+                newState = random.Next(0, 3);
 
-                if (randomNewState == 0)
+                if (newState == 0)
                 {
-                    AiList.Add(() => UpdateAttack1());
+                    AiList.Add(() => UpdateAttack());
                 }
-                else if (randomNewState == 1)
+                else if (newState == 1)
                 {
                     AiList.Add(() => UpdateAttack2());
                 }
-                else if (randomNewState == 2)
+                else if (newState == 2)
                 {
                     AiList.Add(() => UpdateMagicAttack1());
                 }

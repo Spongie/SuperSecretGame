@@ -1,23 +1,14 @@
-﻿using CV_clone;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using CVCommon;
 using CV_clone.Utilities;
 
 namespace TheSuperTrueRealCV.EnemyAI
 {
-    class Bat : Moving_Entity
+    class Bat : Monster
     {
-        Moving_Entity target;
-        List<Action> AiList = new List<Action>();
-        bool Newtimer = false;
-        Random random = new Random();
-        public Timer AiTimer;
-
         public Bat(Vector2 position) 
-            : base(ContentHolder.LoadTexture("Test"), position, Settings.objectSize)
+            : base(position)
         {
             //FIX ANIMATION FRAMES
 
@@ -31,36 +22,7 @@ namespace TheSuperTrueRealCV.EnemyAI
             AiTimer = new Timer(0);
         }
 
-        public override void Update(GameTime time)
-        {
-            AiTimer.Update(time);
-
-            if (AiList.Count > 0)
-            {
-                AiList[0].Invoke();
-            }
-
-            base.Update(time);
-
-            Speed *= new Vector2(0, 1);
-        }
-
-        public void Activate(Moving_Entity target)
-        {
-            this.target = target;
-
-            if (target.WorldPosition.X <= WorldPosition.X)
-            {
-                direction = Direction.Left;
-            }
-            else
-            {
-                direction = Direction.Right;
-            }
-            AiList.Add(() => UpdateIdle());
-        }
-
-        public void UpdateIdle()
+        public override void UpdateIdle()
         {
             if (Vector2.Distance(WorldPosition, target.WorldPosition) <= 200 && target.WorldPosition.X <= WorldPosition.X)
             {
@@ -184,6 +146,22 @@ namespace TheSuperTrueRealCV.EnemyAI
                 AiList.Add(() => UpdateChillRight());
             }
             AiList.RemoveAt(0);
+        }
+
+        public override void TurnAroundCheck()
+        {
+        }
+
+        public override void UpdateTurnAround()
+        {
+        }
+
+        public override void UpdateGoForward()
+        {
+        }
+
+        public override void UpdateAttack()
+        {
         }
     }
 }

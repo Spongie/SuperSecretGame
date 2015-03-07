@@ -1,25 +1,15 @@
-﻿using CV_clone;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using CVCommon;
 using CV_clone.Utilities;
 using TheSuperTrueRealCV.Utilities;
 
 namespace TheSuperTrueRealCV.EnemyAI
 {
-    class SkeletonArmor : Moving_Entity
+    class SkeletonArmor : Monster
     {
-        Moving_Entity target;
-        List<Action> AiList = new List<Action>();
-        bool HaveAttacked = false;
-        bool Newtimer = false;
-        Random random = new Random();
-        public Timer AiTimer;
-
         public SkeletonArmor(Vector2 position) 
-            : base(ContentHolder.LoadTexture("Test"), position, Settings.objectSize)
+            : base(position)
         {
             //FIX ANIMATION FRAMES
 
@@ -29,25 +19,9 @@ namespace TheSuperTrueRealCV.EnemyAI
             CurrentStats.Defense = 2;
             CurrentStats.MagicDamage = 0;
             CurrentStats.MagicDefense = 3;
-
-            AiTimer = new Timer(0);
         }
 
-        public override void Update(GameTime time)
-        {
-            AiTimer.Update(time);
-
-            if (AiList.Count > 0)
-            {
-                AiList[0].Invoke();
-            }
-
-            base.Update(time);
-
-            Speed *= new Vector2(0, 1);
-        }
-
-        public void TurnAroundCheck()
+        public override void TurnAroundCheck()
         {
             if (target.WorldPosition.X < WorldPosition.X && direction == Direction.Right)
             {
@@ -59,7 +33,7 @@ namespace TheSuperTrueRealCV.EnemyAI
             }
         }
 
-        public void UpdateTurnAround()
+        public override void UpdateTurnAround()
         {
             if (AiTimer.Done && Newtimer == false)
             {
@@ -82,33 +56,13 @@ namespace TheSuperTrueRealCV.EnemyAI
 
         }
 
-        public void Activate(Moving_Entity target)
-        {
-            this.target = target;
-
-            if (target.WorldPosition.X <= WorldPosition.X)
-            {
-                direction = Direction.Left;
-            }
-            else
-            {
-                direction = Direction.Right;
-            }
-            AiList.Add(() => UpdateIdle());
-        }
-
-        public void Disable()
-        {
-            AiList.Clear();
-        }
-
-        public void UpdateIdle()
+        public override void UpdateIdle()
         {
             AiList.Add(() => UpdateGoForward());
             AiList.RemoveAt(0);
         }
 
-        public void UpdateGoForward()
+        public override void UpdateGoForward()
         {
             if (direction == Direction.Right)
             {
@@ -142,7 +96,7 @@ namespace TheSuperTrueRealCV.EnemyAI
 
         }
 
-        public void UpdateAttack()
+        public override void UpdateAttack()
         {
             if (AiTimer.Done && Newtimer == false)
             {

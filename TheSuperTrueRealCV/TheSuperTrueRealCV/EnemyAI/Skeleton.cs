@@ -1,29 +1,13 @@
-﻿using CV_clone;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
 using CVCommon;
 using CV_clone.Utilities;
 
 namespace TheSuperTrueRealCV.EnemyAI
 {
-    class Skeleton : Moving_Entity
+    class Skeleton : Monster
     {
-        Moving_Entity target;
-        List<Action> AiList = new List<Action>();
-        bool HaveAttacked = false;
-        bool Newtimer = false;
-        int randomNewState;
-        Random random = new Random();
-        public Timer AiTimer;
-
         public Skeleton(Vector2 position) 
-            : base(ContentHolder.LoadTexture("Test"), position, Settings.objectSize)
+            : base(position)
         {
             //FIX ANIMATION FRAMES
 
@@ -37,41 +21,7 @@ namespace TheSuperTrueRealCV.EnemyAI
             AiTimer = new Timer(0);
         }
 
-        public override void Update(GameTime time)
-        {
-            AiTimer.Update(time);
-
-            if (AiList.Count > 0)
-            {
-                AiList[0].Invoke();
-            }
-
-            base.Update(time);
-
-            Speed *= new Vector2(0, 1);
-        }
-
-        public void Activate(Moving_Entity target)
-        {
-            this.target = target;
-
-            if (target.WorldPosition.X <= WorldPosition.X)
-            {
-                direction = Direction.Left;
-            }
-            else
-            {
-                direction = Direction.Right;
-            }
-            AiList.Add( ()=> UpdateIdle() );
-        }
-
-        public void Disable()
-        {
-            AiList.Clear();            
-        }
-
-        public void UpdateIdle() 
+        public override void UpdateIdle() 
         {
             //är idle så den gör inget
             if(AiTimer.Done && Newtimer == false)
@@ -84,24 +34,24 @@ namespace TheSuperTrueRealCV.EnemyAI
             {
                 Newtimer = false;
                 TurnAroundCheck();
-                randomNewState = random.Next(0, 6);
+                newState = random.Next(0, 6);
 
-                if (randomNewState == 1 || randomNewState == 2)
+                if (newState == 1 || newState == 2)
                 {
                     AiList.Add(() => UpdateGoBack());
                 }
 
-                else if (randomNewState == 3 || randomNewState == 4)
+                else if (newState == 3 || newState == 4)
                 {
-                    AiList.Add(() => UpdateGoforward());
+                    AiList.Add(() => UpdateGoForward());
                 }
 
-                else if (randomNewState == 0)
+                else if (newState == 0)
                 {
                     AiList.Add(() => UpdateIdle());
                 }
 
-                else if (randomNewState == 5)
+                else if (newState == 5)
                 {
                     AiList.Add(() => UpdateAttack1());
                 }
@@ -132,17 +82,17 @@ namespace TheSuperTrueRealCV.EnemyAI
                 Newtimer = false;
                 Speed = Vector2.Zero;
                 TurnAroundCheck();
-                randomNewState = random.Next(0, 5);
+                newState = random.Next(0, 5);
 
-                if (randomNewState == 1 || randomNewState == 2)
+                if (newState == 1 || newState == 2)
                 {
                     AiList.Add(() => UpdateGoBack());
                 }
-                else if (randomNewState == 3 || randomNewState == 4)
+                else if (newState == 3 || newState == 4)
                 {
-                    AiList.Add(() => UpdateGoforward());
+                    AiList.Add(() => UpdateGoForward());
                 }
-                else if (randomNewState == 0)
+                else if (newState == 0)
                 {
                     AiList.Add(() => UpdateIdle());
                 }
@@ -150,7 +100,7 @@ namespace TheSuperTrueRealCV.EnemyAI
             }
         }
 
-        public void UpdateGoforward()
+        public override void UpdateGoForward()
         {
             if (AiTimer.Done && Newtimer == false)
             {
@@ -208,7 +158,7 @@ namespace TheSuperTrueRealCV.EnemyAI
 
         }
 
-        public void UpdateTurnAround()
+        public override void UpdateTurnAround()
         {
             if (AiTimer.Done && Newtimer == false)
             {
@@ -231,7 +181,7 @@ namespace TheSuperTrueRealCV.EnemyAI
 
         }
 
-        public void TurnAroundCheck()
+        public override void TurnAroundCheck()
         {
             if (target.WorldPosition.X < WorldPosition.X && direction == Direction.Right)
             {
@@ -243,5 +193,8 @@ namespace TheSuperTrueRealCV.EnemyAI
             }
         }
 
+        public override void UpdateAttack()
+        {
+        }
     }
 }

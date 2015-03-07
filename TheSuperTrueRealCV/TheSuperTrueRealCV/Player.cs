@@ -60,8 +60,10 @@ namespace CV_clone
                 ObjectManager.RegisterAttack(AttackCreator.CreateTestAttack(WorldPosition + new Vector2(100, 0), new Vector2(100, 100), this),this);
 
             if (KeyMouseReader.KeyPressed(Keys.Space) && CanJump)
-                Jump();
-
+            {
+                CurrentStats.RewardExperience(10);
+                //Jump();
+            }
             Speed += extraSpeed;
         }
 

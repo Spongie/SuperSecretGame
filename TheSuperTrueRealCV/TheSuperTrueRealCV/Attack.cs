@@ -14,11 +14,12 @@ namespace TheSuperTrueRealCV
     {
         private Vector2 positionOffset;
         private float msToLive;
+        private float msHitReset;
         private Timer lifeTimer;
         private Vector2 leftOffset;
         private Vector2 rightOffset;
 
-        public Attack(Vector2 piPosition, Vector2 piSize, Vector2 piSpeed, Moving_Entity piOwner, float piMsToLiveOnLast) : base(ContentHolder.tmp, piPosition, piSize)
+        public Attack(Vector2 piPosition, Vector2 piSize, Vector2 piSpeed, Moving_Entity piOwner, float piMsToLiveOnLast, float hitResetTimer) : base(ContentHolder.tmp, piPosition, piSize)
         {
             Owner = piOwner;
             Speed = piSpeed;
@@ -36,7 +37,6 @@ namespace TheSuperTrueRealCV
 
         public List<Rectangle> HitBoxes { get; set; }
         public List<Timer> HitboxTimers { get; set; }
-
         public Moving_Entity Owner { get; set; }
         public AttackType AttackType { get; set; }
         public AttackDamageScaling Scaling { get; set; }
@@ -117,6 +117,11 @@ namespace TheSuperTrueRealCV
                         HitBoxes.Remove(CurrentHitbox);
                 }
             }
+        }
+
+        public Timer getHitResetTimer()
+        {
+            return new Timer(msHitReset);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
