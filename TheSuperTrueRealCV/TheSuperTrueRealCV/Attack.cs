@@ -57,13 +57,17 @@ namespace TheSuperTrueRealCV
             get { return new Rectangle((int)ScreenPosition.X, (int)ScreenPosition.Y, CurrentHitbox.Width, CurrentHitbox.Height); }
         }
 
-        public bool ReadyToDestroy { get; private set; }
+        public bool Bouncing { get; set; }
+        public int BouncesLeft { get; set; }
+        public bool DiesOnCollision { get; set; }
+
+        public bool ReadyToDestroy { get; set; }
 
         public AttackTarget TargetType { get; set; }
 
         public bool CanHitEntity(Moving_Entity piEntity)
         {
-            if (piEntity == Owner && TargetType == AttackTarget.Everything)
+            if (piEntity == Owner && TargetType != AttackTarget.Everything)
                 return false;
 
             if (!EntitiesHit.ContainsKey(piEntity))
@@ -92,10 +96,16 @@ namespace TheSuperTrueRealCV
 
             HandleHitboxChanging(time);
 
-            if (lifeTimer != null)
+            if (!ReadyToDestroy)
             {
-                lifeTimer.Update(time);
-                ReadyToDestroy = lifeTimer.Done;
+                if (lifeTimer != null)
+                {
+                    lifeTimer.Update(time);
+                    ReadyToDestroy = lifeTimer.Done;
+                }
+
+                if (Bouncing && BouncesLeft <= 0)
+                    ReadyToDestroy = true;
             }
 
             base.Update(time);

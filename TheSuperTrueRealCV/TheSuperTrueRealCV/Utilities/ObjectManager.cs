@@ -32,6 +32,31 @@ namespace TheSuperTrueRealCV.Utilities
             {
                 PlayerToPlatformCollision(platform);
                 MonsterCollision(camera, platform);
+
+                foreach (var attack in Attacks)
+                {
+                    if(attack.RealHitbox.Intersects(platform.WorldRect))
+                    {
+                        if (attack.Bouncing)
+                        {
+                            if (IsInsideXRange(attack.RealHitbox, platform))
+                            {
+                                attack.WorldPosition += new Vector2(0, -1);
+                                attack.Speed *= new Vector2(0.8f, -0.8f);
+                            }
+                            if (attack.RealHitbox.Right >= platform.WorldRect.X && Math.Abs(attack.RealHitbox.Right - platform.WorldRect.X) < 10)
+                                attack.Speed *= new Vector2(-0.8f, -0.8f);
+
+                            else if (platform.WorldRect.Right >= attack.RealHitbox.Left && Math.Abs(platform.WorldRect.Right - attack.RealHitbox.Left) < 10)
+                                attack.Speed *= new Vector2(-0.8f, -0.8f);
+
+                            attack.BouncesLeft--;
+                        }
+                        if (attack.DiesOnCollision)
+                            attack.ReadyToDestroy = true;
+                    }
+                }
+
                 platform.UpdateScreenPosition();
             }
         }
@@ -89,7 +114,7 @@ namespace TheSuperTrueRealCV.Utilities
 
                 if (platform.WorldRect.Intersects(monster.WorldRect))
                 {
-                    bool isInXRange = IsInsideXRange(monster, platform);
+                    bool isInXRange = IsInsideXRange(monster.WorldRect, platform);
 
                     if (isInXRange)
                     {
@@ -130,6 +155,9 @@ namespace TheSuperTrueRealCV.Utilities
             {
                 piTarget.DealDamage(DamageCalcualtor.CalculateDamage(piAttack.Owner.CurrentStats, piTarget.CurrentStats, piAttack.Scaling));
                 piAttack.EntitiesHit.Add(piTarget, piAttack.getHitResetTimer());
+
+                if (piAttack.DiesOnCollision)
+                    piAttack.ReadyToDestroy = true;
             }
         }
 
@@ -137,7 +165,7 @@ namespace TheSuperTrueRealCV.Utilities
         {
             if (platform.WorldRect.Intersects(player.WorldRect))
             {
-                bool playerInXRange = IsInsideXRange(player, platform);
+                bool playerInXRange = IsInsideXRange(player.WorldRect, platform);
 
                 if (playerInXRange)
                 {
@@ -155,25 +183,19 @@ namespace TheSuperTrueRealCV.Utilities
                 else
                 {
                     if (player.WorldRect.Right >= platform.WorldRect.X && Math.Abs(player.WorldRect.Right - platform.WorldRect.X) < 10)
-                    {
-                        player.WorldPosition += new Vector2(-1, 0);
                         player.Movement_Restrictions.Right = true;
-                    }
 
-                    else if (platform.WorldRect.Right > player.WorldRect.Left && Math.Abs(platform.WorldRect.Right - player.WorldRect.Left) < 10)
-                    {
-                        player.WorldPosition += new Vector2(1, 0);
+                    else if (platform.WorldRect.Right >= player.WorldRect.Left && Math.Abs(platform.WorldRect.Right - player.WorldRect.Left) < 10)
                         player.Movement_Restrictions.Left = true;
-                    }
                 }
             }
             else if (player.WorldRect.Bottom == platform.WorldPosition.Y)
                 player.Movement_Restrictions.Down = true;
         }
 
-        private static bool IsInsideXRange(Moving_Entity entity, Entity platform)
+        private static bool IsInsideXRange(Rectangle hitbox, Entity platform)
         {
-            return platform.WorldRect.X < entity.Center.X && platform.WorldRect.Right > entity.Center.X;
+            return platform.WorldRect.X < hitbox.Center.X && platform.WorldRect.Right > hitbox.Center.X;
         }
 
         public static void Draw(SpriteBatch spriteBatch)
