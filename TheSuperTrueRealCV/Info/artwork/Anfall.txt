@@ -1,0 +1,118 @@
+NORMAL ATTACKS
+
+Normal ground: normal attack while standing still. 1hit/monster
+
+Normal air: do a spin attack that starts over the head and goes almost a full spin. 1hit/monster
+
+Up air: do 2 quick stabs above the head.
+
+Down air:DIVE KICK!!!
+
+Back air: do a slash behind the char. the attack has a sweet spot that deals more elemental dmg.
+the attack also turn the char around.
+
+Forward air: do a slash stright ahead that has a sweet spot that multi hits with elemental dmg.
+
+
+COMBO ATTACK
+
+Slash rose: send the user upwards while slashing around itself.
+
+Stampeding wild: same as slash rose but it moves forward and has an extra hitbox in front of the char.
+the char will bounce if the forward hitboxs hits. will bounce upp/back.
+
+Tripple stab: 3 swift stabs in front.first stab stright forward. second goes slightly lower and 
+the last one goes slightly higher then the first stab.
+
+SHADOW FUCKING STEP!!!!!: do a slash in front of the char while sending the char back/down. 
+the move is very fast and mostly the for movement.
+
+Deamons wrath: do a big smash attack that covers a big area in front of the char.
+
+
+
+SUPERS!!!!!!
+
+THE DEMON WITHIN: STANNAR ALLT. cut sceen.main char says something awesome. everthing goes 
+black and silent for like 2 sec. BAM!. a sword cut over the screen and the blackness 
+is removed like shatterd glass followed by loads of explosions and awesomenes as the main char
+just fucking destroy everything in its path. the first cut deals massive PH DMG and the 
+explosions deal magic dmg. All enemies hit gets affected by burn.
+
+HOLY SONG: CUTSCENE. main char is raidiating holy light as she starts to rise her voice 
+that ends with light covering the whole screen. deals holy magic dmg to all enemies on 
+screen as well as lowering the stats on all of them. also gives the main char massive stats buffs.
+
+NEGATIV GATE: CUTSCENE.(timestop). main char says something cool while opening a black gate. 
+sucks all the color out of everything exept the main char. 
+everything(including bosses!) exept the main char is stopped during the move. 
+any magic or projektile used during the move stays until its over. 
+when the move ends all the color return and time starts again and the gate is closed.
+all the moves used by the main char that got stuck during the move aktivate at the same time.
+all enemies hit by this move are affected by manadestruction for the duration of the move.
+
+
+
+SUB WEAPONS
+
+DAGGER: throw a crosslike weapon stright forward dealing dmg to the first enemy hit.
+if charged it will go through enemies and when it hits a wall it will remain there like a 
+platform for a small amount of time.
+
+AXE: Throw crosslike axes in an arc over the char. can lvl up to throw more at the same time.
+
+ROLLOUT: drops a crosslikethingy that starts to roll forward on the ground until it hits a wall.
+with powerup you can bounce of rollouts to gain more hight.
+
+THUNDER ORBS: Throws thunder orbs in a forward/down direction. thunder orbs will stick to objects 
+and when that object is hit with an attack all the thunder orbs in an area close to that activate 
+and deal dmg in the area depending on the number of orbs. can only be a certan number of orbs 
+active at the same time. when there is to many the start to get destroyed in order of creation.
+more orbs throwen depending on lvl of skill. orbs last only a limited amount of time.
+
+MORE LATER!!!!!!!!!!!!!!
+
+
+
+MAGIC
+
+DEEP GRAVE: fucking best magic ever!!!!. in front of the char you send up a piano through the ground
+that crush everything in the area and the starts to melt into the ground again. 
+all enemies hit take magic dmg and has a chance to got ohko.
+
+Wail of the voidling: deal dmg around the char. deals more dmg the closer the target is. 
+multi hit aswell as a chance to ohko. if hit during the spell its canceled.
+
+gravity well: do dmg to all enemies in the area. can move where the area will be during the cast time.
+multi hits.
+
+Healing well: heals all targets in an area including enemies. the healing will remain aktive 
+for a long duration(around 10sec).
+multi hit.
+
+Natures wrath: create a thunderpoint. any enemy that enters within an area of the thunderpoint will 
+get zapped. has high rate of fire. will remain for a long time or until a number of hits is done.
+
+POWER OF THE FLAME: rise the DMG stats on the char. only one buff can be active on the char at once.
+
+ARMOR OF THE EARTH: rise the DEF stats on the char. only one buff can be active on the char at once.
+
+SHARPNESS OF THE WIND: rise the MDMG stats on the char. only one buff can be active on the char at once.
+
+CALM OF THE WATER: rise the MDEF stats on the char. only one buff can be active on the char at once.
+
+Natures unleash: depending on what if one of the 4 buffs are on the char the effect of this spell change.
+when used the char will lose the buff.
+POWER OF THE FLAME: Unleash a giant fireball that travels forward from the char until it hits a wall.
+ARMOR OF THE EARTH: Send earthfragments all around the char dealing dmg aswell as lowering the 
+defence on targets hit.
+SHARPNESS OF THE WIND: all enemies on the screen gets hit by this attack. when hit they get 
+thier attack stats lowered.
+CALM OF THE WATER: A giant wave flow over the screen hitting all enemies one time dealing a lot of dmg.
+
+IGNITE: fires a small lazer beam forward going through enemies. all enemies hit take dmg 
+and get status burn.
+
+DRAIN: affect enemies in an area infront of the char with status drain.
+
+SLEEP: affect enemies in an area infront of the char with status sleep.

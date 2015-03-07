@@ -12,15 +12,15 @@ once again become the only thing in existance.
 
 
 story notes:
-main char: Gloandi Rascal. föräldrar dog när hon var liten. vet inget om sin familj 
+main char: NAMN: Gloandi Rascal. föräldrar dog när hon var liten. vet inget om sin familj 
 har får klara sig själv. letar efter en plats som hon kommer ihåg från sin bardom fast 
 hon vet inte vad eller var den är.
 
-void champion: Glandini rascal. gloandis syster. när dom är små så stannar hon för att 
+void champion: NAMN: Glandini rascal. gloandis syster. när dom är små så stannar hon för att 
 studera med morgan rascal. när morgan rascal råkar öppna vägen för the void så går hon 
 med the void av okänd anledning. när detta händer så sätter morgan rascal henne i en stasis.
 
-cool dude: Morgan Rascal. gloandis och glandinis farfar. en biff mage. kan höra lite lite av 
+cool dude: NAMN: Morgan Rascal. gloandis och glandinis farfar. en biff mage. kan höra lite lite av 
 the song of creation. är väldigt mäktigt. blir för självsäker och råkar öppna en gate som 
 släpper in the void. efter det händer så inser han sitt mistag och kallar fram the 
 power of the song of creation. med hjälp så hindrar han the void från att komma in. 
