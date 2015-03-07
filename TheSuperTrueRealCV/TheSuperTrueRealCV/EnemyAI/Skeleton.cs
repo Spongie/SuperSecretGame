@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using CVCommon;
 using CV_clone.Utilities;
+using TheSuperTrueRealCV.Utilities;
 
 namespace TheSuperTrueRealCV.EnemyAI
 {
@@ -53,13 +54,13 @@ namespace TheSuperTrueRealCV.EnemyAI
 
                 else if (newState == 5)
                 {
-                    AiList.Add(() => UpdateAttack1());
+                    AiList.Add(() => UpdateAttack());
                 }
                 AiList.RemoveAt(0);
             }
         }
 
-        public void UpdateAttack1()
+        public override void UpdateAttack()
         {
             if (AiTimer.Done && Newtimer == false)
             {
@@ -71,9 +72,8 @@ namespace TheSuperTrueRealCV.EnemyAI
                 HaveAttacked = true;
                 //ny timer som avgör när han är färdig med sitt anfall och ska gå vidare med sin AI.
                 AiTimer = new Timer(500);
-               // Speed = new Vector2(2000, 0);
-                //skapar själva anfallet!
-                //SkeletonBone attack = new SkeletonBone(bone, pos, new Vector2(50, 50), new Vector2(4, 4));
+                int xSpeed = direction == Direction.Left ? -400 : 400;
+                ObjectManager.RegisterAttack(AttackCreator.CreateSkeletonAttack(WorldPosition, this, new Vector2(xSpeed, -300)), this);
             }
 
             if (AiTimer.Done)
@@ -123,7 +123,7 @@ namespace TheSuperTrueRealCV.EnemyAI
             {
                 Newtimer = false;
                 TurnAroundCheck();
-                AiList.Add(() => UpdateAttack1());
+                AiList.Add(() => UpdateAttack());
                 AiList.RemoveAt(0);
             }
             
@@ -152,7 +152,7 @@ namespace TheSuperTrueRealCV.EnemyAI
             {
                 Newtimer = false;
                 TurnAroundCheck();
-                AiList.Add(() => UpdateAttack1());
+                AiList.Add(() => UpdateAttack());
                 AiList.RemoveAt(0);
             }
 
@@ -162,7 +162,7 @@ namespace TheSuperTrueRealCV.EnemyAI
         {
             if (AiTimer.Done && Newtimer == false)
             {
-                AiTimer = new Timer(500);
+                AiTimer = new Timer(4000);
                 Newtimer = true;
             }
             if (AiTimer.Done)
@@ -191,10 +191,6 @@ namespace TheSuperTrueRealCV.EnemyAI
             {
                 AiList.Add(() => UpdateTurnAround());
             }
-        }
-
-        public override void UpdateAttack()
-        {
         }
     }
 }

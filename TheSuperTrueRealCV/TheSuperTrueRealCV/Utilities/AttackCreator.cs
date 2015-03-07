@@ -14,5 +14,18 @@ namespace TheSuperTrueRealCV.Utilities
 
             return attack;
         }
+
+        public static Attack CreateSkeletonAttack(Vector2 piPosition, Moving_Entity owner, Vector2 speed)
+        {
+            var attack = new Attack(piPosition, new Vector2(50,50), speed, owner, int.MaxValue, 500);
+
+            attack.HitBoxes.Add(new Rectangle(0, 0, 100, 100));
+            attack.Scaling.Damage = 1;
+            attack.AttackType = Enums.AttackType.Moving;
+            attack.ApplyGravity = true;
+
+
+            return attack;
+        }
     }
 }
