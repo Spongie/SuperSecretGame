@@ -71,10 +71,13 @@
         {
             if (amount > ExpToLevel)
             {
-                CurrentExp = amount - ExpToLevel;
+                amount -= ExpToLevel;
+                CurrentExp = 0;
                 Level++;
 
                 MaximumExp = (int)(1.33 * MaximumExp);
+
+                RewardExperience(amount);
             }
             else
                 CurrentExp += amount;

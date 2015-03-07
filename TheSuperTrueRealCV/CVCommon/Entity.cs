@@ -7,7 +7,6 @@ namespace CVCommon
     public class Entity
     {
         protected Texture2D texture;
-        protected Direction direction;
         
         public Entity(Texture2D tex, Vector2 pos, Vector2 size)
         {
@@ -15,7 +14,6 @@ namespace CVCommon
             this.Size = size;
             WorldPosition = pos;
             ScreenPosition = Vector2.Zero;
-            direction = Direction.Right;
         }
 
         public Entity()

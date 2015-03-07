@@ -27,12 +27,12 @@ namespace TheSuperTrueRealCV.EnemyAI
             if (Vector2.Distance(WorldPosition, target.WorldPosition) <= 200 && target.WorldPosition.X <= WorldPosition.X)
             {
                 AiList.Add(() => UpdateDiveLeft());
-                direction = Direction.Left;
+                Direction = Direction.Left;
             }
             else if (Vector2.Distance(WorldPosition, target.WorldPosition) <= 200 && target.WorldPosition.X >= WorldPosition.X)
             {
                 AiList.Add(() => UpdateDiveRight());
-                direction = Direction.Right;
+                Direction = Direction.Right;
             }
             AiList.RemoveAt(0);
         }

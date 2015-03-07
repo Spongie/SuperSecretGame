@@ -21,12 +21,15 @@ namespace CV_clone
         protected int animationIndex;
         protected List<Rectangle> animationRectangles;
         protected List<Spell> spell;
+        protected bool autoDirectionControl;
 
         public Moving_Entity(Texture2D tex, Vector2 pos, Vector2 size)
             : base(tex, pos, size)
         {
+            autoDirectionControl = true;
+            ApplyGravity = true;
             CurrentStats = new Stats();
-            direction = Direction.Right;
+            Direction = Direction.Right;
             spell = new List<Spell>();
             Movement_Restrictions = new MovementRestrictions();
             jumpPower = 400;
@@ -34,11 +37,7 @@ namespace CV_clone
 
         public Stats CurrentStats { get; set; }
 
-        public Direction Facing
-        {
-            get { return direction; }
-            set { direction = value; }
-        }
+        public Direction Direction { get; set; }
 
         public bool IsAlive
         {
@@ -66,15 +65,16 @@ namespace CV_clone
 
         public override void Update(GameTime time)
         {
-            for (int i = 0; i < spell.Count; i++)
-            {
-                spell[i].Update(time);
-            }
+            if(ApplyGravity && !Movement_Restrictions.Down)
+                Speed += new Vector2(0, Settings.gravityPower);
 
-            if (Speed.X > 0)
-                Facing = Direction.Right;
-            else if (Speed.X < 0)
-                Facing = Direction.Left;
+            if (autoDirectionControl)
+            {
+                if (Speed.X > 0)
+                    Direction = Direction.Right;
+                else if (Speed.X < 0)
+                    Direction = Direction.Left;
+            }
 
             base.Update(time);
         }
@@ -91,7 +91,7 @@ namespace CV_clone
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (Facing == Direction.Left)
+            if (Direction == Direction.Left)
                 spriteBatch.Draw(texture, new Rectangle((int)ScreenPosition.X, (int)ScreenPosition.Y, (int)Size.X, (int)Size.Y), null, Color.White, 0.0f, Vector2.Zero, SpriteEffects.None, 0.0f);
             else
                 spriteBatch.Draw(texture, new Rectangle((int)ScreenPosition.X, (int)ScreenPosition.Y, (int)Size.X, (int)Size.Y), null, Color.White, 0.0f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0.0f);

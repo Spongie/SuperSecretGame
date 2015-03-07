@@ -28,6 +28,7 @@ namespace TheSuperTrueRealCV.EnemyAI
             HaveAttacked = false;
             Newtimer = false;
             AiTimer = new Timer(0);
+            autoDirectionControl = false;
         }
 
         public void Activate(Moving_Entity target)
@@ -35,9 +36,9 @@ namespace TheSuperTrueRealCV.EnemyAI
             this.target = target;
 
             if (target.WorldPosition.X <= WorldPosition.X)
-                direction = Direction.Left;
+                Direction = Direction.Left;
             else
-                direction = Direction.Right;
+                Direction = Direction.Right;
             
             AiList.Add(() => UpdateIdle());
         }
@@ -65,6 +66,8 @@ namespace TheSuperTrueRealCV.EnemyAI
         {
             get { return AiList.Count > 0; }
         }
+
+
 
         public abstract void TurnAroundCheck();
         public abstract void UpdateTurnAround();

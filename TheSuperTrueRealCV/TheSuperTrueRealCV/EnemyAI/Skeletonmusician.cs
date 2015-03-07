@@ -29,11 +29,11 @@ namespace TheSuperTrueRealCV.EnemyAI
 
         public override void TurnAroundCheck()
         {
-            if (target.WorldPosition.X < WorldPosition.X && direction == Direction.Right)
+            if (target.WorldPosition.X < WorldPosition.X && Direction == Direction.Right)
             {
                 AiList.Add(() => UpdateTurnAround());
             }
-            else if (target.WorldPosition.X > WorldPosition.X && direction == Direction.Left)
+            else if (target.WorldPosition.X > WorldPosition.X && Direction == Direction.Left)
             {
                 AiList.Add(() => UpdateTurnAround());
             }
@@ -49,13 +49,13 @@ namespace TheSuperTrueRealCV.EnemyAI
             if (AiTimer.Done)
             {
                 Newtimer = false;
-                if (direction == Direction.Right)
+                if (Direction == Direction.Right)
                 {
-                    direction = Direction.Left;
+                    Direction = Direction.Left;
                 }
                 else
                 {
-                    direction = Direction.Right;
+                    Direction = Direction.Right;
                 }
                 AiList.RemoveAt(0);
             }
@@ -219,11 +219,11 @@ namespace TheSuperTrueRealCV.EnemyAI
                 Newtimer = true;
             }
 
-            if (direction == Direction.Right)
+            if (Direction == Direction.Right)
             {
                 Speed = new Vector2(-10, Speed.Y);
             }
-            else if (direction == Direction.Left)
+            else if (Direction == Direction.Left)
             {
                 Speed = new Vector2(10, Speed.Y);
             }
@@ -271,11 +271,11 @@ namespace TheSuperTrueRealCV.EnemyAI
                 Newtimer = true;
             }
 
-            if (direction == Direction.Right)
+            if (Direction == Direction.Right)
             {
                 Speed = new Vector2(10, Speed.Y);
             }
-            else if (direction == Direction.Left)
+            else if (Direction == Direction.Left)
             {
                 Speed = new Vector2(-10, Speed.Y);
             }
@@ -323,11 +323,11 @@ namespace TheSuperTrueRealCV.EnemyAI
                 Newtimer = true;
             }
             //GLÖM INTE ATT GÖRA SÅ DEN HOPPAR ME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            if (direction == Direction.Right)
+            if (Direction == Direction.Right)
             {
                 Speed = new Vector2(-10, Speed.Y);
             }
-            else if (direction == Direction.Left)
+            else if (Direction == Direction.Left)
             {
                 Speed = new Vector2(10, Speed.Y);
             }
@@ -349,11 +349,11 @@ namespace TheSuperTrueRealCV.EnemyAI
                 Newtimer = true;
             }
             //GLÖM INTE ATT GÖRA SÅ DEN HOPPAR ME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            if (direction == Direction.Right)
+            if (Direction == Direction.Right)
             {
                 Speed = new Vector2(-10, Speed.Y);
             }
-            else if (direction == Direction.Left)
+            else if (Direction == Direction.Left)
             {
                 Speed = new Vector2(10, Speed.Y);
             }

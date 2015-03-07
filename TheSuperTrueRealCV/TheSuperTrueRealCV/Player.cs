@@ -21,7 +21,7 @@ namespace CV_clone
             CurrentStats.CurrentHealth = 100;
             CurrentStats.Damage = 1337;
             CurrentStats.MaximumExp = 125;
-            CurrentStats.RewardExperience(50);
+            CurrentStats.RewardExperience(16);
         }
 
         public override void Update(GameTime gameTime)
@@ -30,7 +30,7 @@ namespace CV_clone
                 return;
 
             HandleInput();
-            Direction preUpdate = direction;
+            Direction preUpdate = Direction;
             base.Update(gameTime);
 
             if(!IsFalling && !IsJumping && !Controllable)
@@ -38,8 +38,8 @@ namespace CV_clone
                 Controllable = true;
                 Speed = Vector2.Zero;
             }
-            if(direction != preUpdate)
-                ObjectManager.FlipAttacks(direction);
+            if(Direction != preUpdate)
+                ObjectManager.FlipAttacks(Direction);
             if(Controllable)
                 Speed -= extraSpeed;
         }
@@ -60,10 +60,8 @@ namespace CV_clone
                 ObjectManager.RegisterAttack(AttackCreator.CreateTestAttack(WorldPosition + new Vector2(100, 0), new Vector2(100, 100), this),this);
 
             if (KeyMouseReader.KeyPressed(Keys.Space) && CanJump)
-            {
-                CurrentStats.RewardExperience(10);
-                //Jump();
-            }
+                Jump();
+            
             Speed += extraSpeed;
         }
 

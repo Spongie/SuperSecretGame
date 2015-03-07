@@ -34,10 +34,6 @@ namespace TheSuperTrueRealCV.Utilities
                 MonsterCollision(camera, platform);
                 platform.UpdateScreenPosition();
             }
-
-            if (!player.Movement_Restrictions.Down)
-                player.Speed += new Vector2(0, Settings.gravityPower);
-
         }
 
         public static void Update(GameTime gameTime)
@@ -82,7 +78,6 @@ namespace TheSuperTrueRealCV.Utilities
         {
             foreach (var monster in Monsters.Where(mon => camera.IsInsideVeiwSpace(mon.ScreenRect)))
             {
-                monster.Speed += new Vector2(0, Settings.gravityPower);
                 if (monster.IgnoreCollision)
                     continue;
 
@@ -204,7 +199,7 @@ namespace TheSuperTrueRealCV.Utilities
         public static void RegisterAttack(Attack piAttack, Moving_Entity owner)
         {
             if(piAttack.AttackType == AttackType.FollowOwner)
-                piAttack.Flip(owner.Facing);
+                piAttack.Flip(owner.Direction);
 
             Attacks.Add(piAttack);
         }
