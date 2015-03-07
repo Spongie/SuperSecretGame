@@ -61,7 +61,9 @@ namespace CV_clone
 
             if (KeyMouseReader.KeyPressed(Keys.Space) && CanJump)
                 Jump();
-            
+
+            extraSpeed = Movement_Restrictions.Apply(extraSpeed);
+
             Speed += extraSpeed;
         }
 

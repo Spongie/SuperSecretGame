@@ -19,11 +19,12 @@ namespace TheSuperTrueRealCV.Utilities
         {
             var attack = new Attack(piPosition, new Vector2(50,50), speed, owner, int.MaxValue, 500);
 
-            attack.HitBoxes.Add(new Rectangle(0, 0, 100, 100));
+            attack.HitBoxes.Add(new Rectangle(0, 0, 50, 50));
             attack.Scaling.Damage = 1;
             attack.AttackType = Enums.AttackType.Moving;
             attack.ApplyGravity = true;
-
+            attack.Bouncing = true;
+            attack.BouncesLeft = 3;
 
             return attack;
         }

@@ -72,8 +72,8 @@ namespace TheSuperTrueRealCV.EnemyAI
                 HaveAttacked = true;
                 //ny timer som avgör när han är färdig med sitt anfall och ska gå vidare med sin AI.
                 AiTimer = new Timer(500);
-                int xSpeed = direction == Direction.Left ? -400 : 400;
-                ObjectManager.RegisterAttack(AttackCreator.CreateSkeletonAttack(WorldPosition, this, new Vector2(xSpeed, -300)), this);
+                int xSpeed = Direction == Direction.Left ? -200 : 200;
+                ObjectManager.RegisterAttack(AttackCreator.CreateSkeletonAttack(WorldPosition, this, new Vector2(xSpeed, -600)), this);
             }
 
             if (AiTimer.Done)
