@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using CVCommon.Camera;
+using CVCommon.Utility;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Xml.Serialization;
 

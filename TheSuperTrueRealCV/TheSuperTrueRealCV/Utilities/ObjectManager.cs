@@ -1,5 +1,7 @@
 ﻿using CV_clone;
 using CVCommon;
+using CVCommon.Camera;
+using CVCommon.Utility;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -28,7 +30,7 @@ namespace TheSuperTrueRealCV.Utilities
         {
             Camera camera = CameraController.GetCamera();
 
-            foreach (var platform in Platforms.Where(plat => camera.IsInsideVeiwSpace(plat.ScreenRect)))
+            foreach (var platform in Platforms.Where(plat => camera.IsInsideUpdateSpace(plat.ScreenRect)))
             {
                 PlayerToPlatformCollision(platform);
                 MonsterCollision(camera, platform);
@@ -87,21 +89,32 @@ namespace TheSuperTrueRealCV.Utilities
         private static void UpdateMonsters(GameTime gameTime)
         {
             var monsterToKill = new List<Monster>();
-            foreach (var monster in Monsters)
+            foreach (var monster in Monsters.Where(mon => CameraController.GetCamera().IsInsideUpdateSpace(mon.ScreenRect)))
             {
+                if (!monster.IsActive)
+                    monster.Activate(player);
+
                 monster.Update(gameTime);
                 if (!monster.IsAlive)
                     monsterToKill.Add(monster);
             }
+
+            foreach (var monster in Monsters.Where(monster => !CameraController.GetCamera().IsInsideUpdateSpace(monster.ScreenRect)))
+            {
+                if (monster.IsActive)
+                    monster.Disable();
+            }
+
             foreach (var monster in monsterToKill)
             {
                 Monsters.Remove(monster);
+                player.CurrentStats.RewardExperience(monster.ExpReward);
             }
         }
 
         private static void MonsterCollision(Camera camera, Entity platform)
         {
-            foreach (var monster in Monsters.Where(mon => camera.IsInsideVeiwSpace(mon.ScreenRect)))
+            foreach (var monster in Monsters.Where(mon => camera.IsInsideUpdateSpace(mon.ScreenRect)))
             {
                 if (monster.IgnoreCollision)
                     continue;
@@ -221,7 +234,7 @@ namespace TheSuperTrueRealCV.Utilities
         public static void RegisterAttack(Attack piAttack, Moving_Entity owner)
         {
             if(piAttack.AttackType == AttackType.FollowOwner)
-                piAttack.Flip(owner.Direction);
+                piAttack.Flip(owner.CurrentDirection);
 
             Attacks.Add(piAttack);
         }

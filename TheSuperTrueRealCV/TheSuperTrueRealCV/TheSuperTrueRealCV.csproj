@@ -52,8 +52,8 @@
     <Compile Include="Utilities\FPS.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Utilities\IDTimer.cs" />
-    <Compile Include="Inventory.cs" />
-    <Compile Include="Item.cs" />
+    <Compile Include="ItemEntities\Inventory.cs" />
+    <Compile Include="ItemEntities\Item.cs" />
     <Compile Include="Moving Entity.cs" />
     <Compile Include="Utilities\ObjectManager.cs" />
     <Compile Include="Player.cs" />

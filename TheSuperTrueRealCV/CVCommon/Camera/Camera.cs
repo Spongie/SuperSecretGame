@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using CVCommon.Utility;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Storage;
 
-namespace CVCommon
+namespace CVCommon.Camera
 {
     public class Camera
     {
@@ -34,17 +28,22 @@ namespace CVCommon
 
         public Rectangle CameraViewSpace
         {
-            get { return new Rectangle((int)worldPosition.X, (int)worldPosition.Y, (int)Settings.gameSize.X, (int)Settings.gameSize.Y); }
+            get { return new Rectangle((int)worldPosition.X, (int)worldPosition.Y, (int)CameraVeiwSize.X, (int)CameraVeiwSize.Y); }
+        }
+
+        public Rectangle UpdateSpace
+        {
+            get { return new Rectangle((int)worldPosition.X - 200, (int)worldPosition.Y - 200, (int)CameraVeiwSize.X + 400, (int)CameraVeiwSize.Y + 200); }
         }
 
         public Rectangle CameraRightSpace
         {
-            get { return new Rectangle((int)worldPosition.X + (int)Settings.gameSize.X - ((int)Settings.gameSize.X/5), (int)worldPosition.Y, (int)Settings.gameSize.X/5, (int)Settings.gameSize.Y); }
+            get { return new Rectangle((int)worldPosition.X + (int)CameraVeiwSize.X - ((int)CameraVeiwSize.X / 5), (int)worldPosition.Y, (int)CameraVeiwSize.X / 5, (int)CameraVeiwSize.Y); }
         }
 
         public Rectangle CameraLeftSpace
         {
-            get { return new Rectangle((int)worldPosition.X, (int)worldPosition.Y, (int)Settings.gameSize.X/5, (int)Settings.gameSize.Y); }
+            get { return new Rectangle((int)worldPosition.X, (int)worldPosition.Y, (int)CameraVeiwSize.X / 5, (int)CameraVeiwSize.Y); }
         }
 
         public void Update(Vector2 playerpos)
@@ -85,5 +84,12 @@ namespace CVCommon
         {
             return CameraViewSpace.Intersects(rec);
         }
+
+        public bool IsInsideUpdateSpace(Rectangle rec)
+        {
+            return UpdateSpace.Intersects(rec);
+        }
+
+        
     }
 }

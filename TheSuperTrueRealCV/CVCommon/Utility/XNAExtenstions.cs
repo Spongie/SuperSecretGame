@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace CVCommon
+namespace CVCommon.Utility
 {
     public static class XNAExtenstions
     {

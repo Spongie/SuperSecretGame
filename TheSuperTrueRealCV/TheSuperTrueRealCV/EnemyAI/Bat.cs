@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using CVCommon;
 using CV_clone.Utilities;
+using CVCommon.Utility;
 
 namespace TheSuperTrueRealCV.EnemyAI
 {
@@ -27,12 +28,12 @@ namespace TheSuperTrueRealCV.EnemyAI
             if (Vector2.Distance(WorldPosition, target.WorldPosition) <= 200 && target.WorldPosition.X <= WorldPosition.X)
             {
                 AiList.Add(() => UpdateDiveLeft());
-                Direction = Direction.Left;
+                CurrentDirection = Direction.Left;
             }
             else if (Vector2.Distance(WorldPosition, target.WorldPosition) <= 200 && target.WorldPosition.X >= WorldPosition.X)
             {
                 AiList.Add(() => UpdateDiveRight());
-                Direction = Direction.Right;
+                CurrentDirection = Direction.Right;
             }
             AiList.RemoveAt(0);
         }

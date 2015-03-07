@@ -1,5 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using CVCommon.Utility;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 namespace CVCommon
 {
     public class Light : Entity

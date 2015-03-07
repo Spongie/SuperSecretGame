@@ -1,12 +1,9 @@
 ﻿using CV_clone;
 using CV_clone.Utilities;
-using CVCommon;
+using CVCommon.Utility;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TheSuperTrueRealCV.EnemyAI
 {
@@ -29,6 +26,7 @@ namespace TheSuperTrueRealCV.EnemyAI
             Newtimer = false;
             AiTimer = new Timer(0);
             autoDirectionControl = false;
+            ExpReward = 25;
         }
 
         public void Activate(Moving_Entity target)
@@ -36,9 +34,9 @@ namespace TheSuperTrueRealCV.EnemyAI
             this.target = target;
 
             if (target.WorldPosition.X <= WorldPosition.X)
-                Direction = Direction.Left;
+                CurrentDirection = Direction.Left;
             else
-                Direction = Direction.Right;
+                CurrentDirection = Direction.Right;
             
             AiList.Add(() => UpdateIdle());
         }
@@ -67,7 +65,11 @@ namespace TheSuperTrueRealCV.EnemyAI
             get { return AiList.Count > 0; }
         }
 
-
+        public int ExpReward
+        {
+            get;
+            set;
+        }
 
         public abstract void TurnAroundCheck();
         public abstract void UpdateTurnAround();

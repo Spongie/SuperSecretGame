@@ -1,4 +1,4 @@
-﻿namespace CVCommon
+﻿namespace CVCommon.Utility
 {
     public enum EnemyTypes
     {

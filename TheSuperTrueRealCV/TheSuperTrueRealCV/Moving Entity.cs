@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using CVCommon;
+using CVCommon.Utility;
 
 namespace CV_clone
 {
@@ -29,7 +30,7 @@ namespace CV_clone
             autoDirectionControl = true;
             ApplyGravity = true;
             CurrentStats = new Stats();
-            Direction = Direction.Right;
+            CurrentDirection = Direction.Right;
             spell = new List<Spell>();
             Movement_Restrictions = new MovementRestrictions();
             jumpPower = 400;
@@ -37,7 +38,7 @@ namespace CV_clone
 
         public Stats CurrentStats { get; set; }
 
-        public Direction Direction { get; set; }
+        public Direction CurrentDirection { get; set; }
 
         public bool IsAlive
         {
@@ -71,9 +72,9 @@ namespace CV_clone
             if (autoDirectionControl)
             {
                 if (Speed.X > 0)
-                    Direction = Direction.Right;
+                    CurrentDirection = Direction.Right;
                 else if (Speed.X < 0)
-                    Direction = Direction.Left;
+                    CurrentDirection = Direction.Left;
             }
 
             base.Update(time);
@@ -91,7 +92,7 @@ namespace CV_clone
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (Direction == Direction.Left)
+            if (CurrentDirection == Direction.Left)
                 spriteBatch.Draw(texture, new Rectangle((int)ScreenPosition.X, (int)ScreenPosition.Y, (int)Size.X, (int)Size.Y), null, Color.White, 0.0f, Vector2.Zero, SpriteEffects.None, 0.0f);
             else
                 spriteBatch.Draw(texture, new Rectangle((int)ScreenPosition.X, (int)ScreenPosition.Y, (int)Size.X, (int)Size.Y), null, Color.White, 0.0f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0.0f);

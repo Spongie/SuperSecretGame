@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace CVCommon
+namespace CVCommon.Camera
 {
     public class CameraController
     {
@@ -15,5 +15,7 @@ namespace CVCommon
         {
             return camera;
         }
+
+
     }
 }

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using TheSuperTrueRealCV.Utilities;
 using Microsoft.Xna.Framework.Graphics;
 using TheSuperTrueRealCV.Utilities.Enums;
+using CVCommon.Utility;
 
 namespace TheSuperTrueRealCV
 {

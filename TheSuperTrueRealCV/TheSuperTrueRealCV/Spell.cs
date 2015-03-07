@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using CVCommon;
 using CV_clone.Utilities;
+using CVCommon.Utility;
 
 namespace CV_clone
 {

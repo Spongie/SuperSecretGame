@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using System.Threading;
 using CVCommon;
+using CVCommon.Utility;
+using CVCommon.Camera;
 
 namespace CVLevelEditor
 {

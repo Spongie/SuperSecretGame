@@ -30,7 +30,7 @@ namespace CV_clone
                 return;
 
             HandleInput();
-            Direction preUpdate = Direction;
+            var preUpdate = CurrentDirection;
             base.Update(gameTime);
 
             if(!IsFalling && !IsJumping && !Controllable)
@@ -38,8 +38,8 @@ namespace CV_clone
                 Controllable = true;
                 Speed = Vector2.Zero;
             }
-            if(Direction != preUpdate)
-                ObjectManager.FlipAttacks(Direction);
+            if(CurrentDirection != preUpdate)
+                ObjectManager.FlipAttacks(CurrentDirection);
             if(Controllable)
                 Speed -= extraSpeed;
         }
