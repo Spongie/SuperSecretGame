@@ -1,20 +1,21 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using CVCommon;
 using TheSuperTrueRealCV.Utilities;
-using CV_clone.Utilities;
+using TheSuperTrueRealCV.Interface;
 
 namespace CV_clone
 {
     public class Player : Moving_Entity
     {
         private Vector2 extraSpeed;
+        private PlayerPortrait ivPortrait;
 
         public Player(Texture2D tex, Vector2 vec, Vector2 size)
             :base(tex,vec,size)
         {
-            jumpPower = 600;
+            jumpPower = 300;
+            ivPortrait = new PlayerPortrait();
             CurrentStats.MaximumHealth = 100;
             CurrentStats.MaximumMana = 50;
             CurrentStats.CurrentMana = 50;
@@ -42,6 +43,14 @@ namespace CV_clone
                 ObjectManager.FlipAttacks(CurrentDirection);
             if(Controllable)
                 Speed -= extraSpeed;
+
+            ivPortrait.Update(gameTime);
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            ivPortrait.Draw(spriteBatch, CurrentStats);
+            base.Draw(spriteBatch);
         }
 
         private void HandleInput()

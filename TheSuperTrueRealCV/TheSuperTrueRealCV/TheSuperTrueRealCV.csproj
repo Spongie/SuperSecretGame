@@ -44,18 +44,21 @@
     <Compile Include="EnemyAI\Monster.cs" />
     <Compile Include="EnemyAI\SkeletonArmor.cs" />
     <Compile Include="EnemyAI\Skeletonmusician.cs" />
+    <Compile Include="Handlers\GameHandler.cs" />
+    <Compile Include="Handlers\MapHandler.cs" />
     <Compile Include="Interface\PlayerPortrait.cs" />
     <Compile Include="Utilities\AttackCreator.cs" />
     <Compile Include="Utilities\AttackDamageScaling.cs" />
     <Compile Include="Utilities\DamageCalcualtor.cs" />
     <Compile Include="Utilities\Enums\AttackEnums.cs" />
+    <Compile Include="Utilities\Enums\GameState.cs" />
     <Compile Include="Utilities\FPS.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Utilities\IDTimer.cs" />
     <Compile Include="ItemEntities\Inventory.cs" />
     <Compile Include="ItemEntities\Item.cs" />
     <Compile Include="Moving Entity.cs" />
-    <Compile Include="Utilities\ObjectManager.cs" />
+    <Compile Include="Handlers\ObjectManager.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,6 +75,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\CastleFloor.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\CastleWall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Portrait\BlueFilling.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -101,9 +110,16 @@
       <Project>{caaa74ed-382d-4beb-ab68-e69fc01079c5}</Project>
       <Name>CVCommon</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CVStorage\CVStorage.csproj">
+      <Project>{8ec57086-4b2f-4d23-8d81-721e45ca579e}</Project>
+      <Name>CVStorage</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <Content Include="Content\Font.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

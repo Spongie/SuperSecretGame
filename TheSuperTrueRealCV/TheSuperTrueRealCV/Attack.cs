@@ -143,10 +143,10 @@ namespace TheSuperTrueRealCV
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if(texture != null)
+            if(Texture != null)
                 base.Draw(spriteBatch);
 
-            spriteBatch.Draw(texture, ScreenCollision, new Color(Color.Red, 150));
+            spriteBatch.Draw(Texture, ScreenCollision, new Color(Color.Red, 150));
         }
     }
 }

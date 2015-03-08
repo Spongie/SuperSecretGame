@@ -17,22 +17,22 @@ namespace TheSuperTrueRealCV.Utilities
         public static void Init()
         {
             Monsters = new List<Monster>();
-            Platforms = new List<Entity>();
+            Platforms = new List<Platform>();
             Attacks = new List<Attack>();
         }
 
         public static Player player;
-        public static List<Monster> Monsters { get; private set; }
-        public static List<Entity> Platforms { get; private set; }
+        public static List<Monster> Monsters { get; set; }
+        public static List<Platform> Platforms { get; private set; }
         public static List<Attack> Attacks { get; private set; }
 
         public static void ApplyPhysics(GameTime gameTime)
         {
             Camera camera = CameraController.GetCamera();
 
-            foreach (var platform in Platforms.Where(plat => camera.IsInsideUpdateSpace(plat.ScreenRect)))
+            foreach (var platform in Platforms.Where(plat => camera.IsInsideUpdateSpace(plat.WorldRect) && plat.PlatformSettings.Collidable))
             {
-                PlayerToPlatformCollision(platform);
+                HandleEntityToPlatformCollision(player, platform);           
                 MonsterCollision(camera, platform);
 
                 foreach (var attack in Attacks)
@@ -41,11 +41,12 @@ namespace TheSuperTrueRealCV.Utilities
                     {
                         if (attack.Bouncing)
                         {
-                            if (IsInsideXRange(attack.RealHitbox, platform))
+                            if (IsInsideXRangeFromCenter(attack.RealHitbox, platform))
                             {
                                 attack.WorldPosition += new Vector2(0, -1);
                                 attack.Speed *= new Vector2(0.8f, -0.8f);
                             }
+
                             if (attack.RealHitbox.Right >= platform.WorldRect.X && Math.Abs(attack.RealHitbox.Right - platform.WorldRect.X) < 10)
                                 attack.Speed *= new Vector2(-0.8f, -0.8f);
 
@@ -89,7 +90,7 @@ namespace TheSuperTrueRealCV.Utilities
         private static void UpdateMonsters(GameTime gameTime)
         {
             var monsterToKill = new List<Monster>();
-            foreach (var monster in Monsters.Where(mon => CameraController.GetCamera().IsInsideUpdateSpace(mon.ScreenRect)))
+            foreach (var monster in Monsters.Where(mon => CameraController.GetCamera().IsInsideUpdateSpace(mon.WorldRect)))
             {
                 if (!monster.IsActive)
                     monster.Activate(player);
@@ -99,7 +100,7 @@ namespace TheSuperTrueRealCV.Utilities
                     monsterToKill.Add(monster);
             }
 
-            foreach (var monster in Monsters.Where(monster => !CameraController.GetCamera().IsInsideUpdateSpace(monster.ScreenRect)))
+            foreach (var monster in Monsters.Where(monster => !CameraController.GetCamera().IsInsideUpdateSpace(monster.WorldRect)))
             {
                 if (monster.IsActive)
                     monster.Disable();
@@ -112,9 +113,20 @@ namespace TheSuperTrueRealCV.Utilities
             }
         }
 
+        public static void SetPlatforms(List<Platform> piPlatforms)
+        {
+            foreach (var platform in piPlatforms)
+            {
+                if (platform.Texture == null)
+                    platform.Texture = ContentHolder.LoadTexture(platform.TextureName);
+
+                Platforms.Add(platform);
+            }
+        }
+
         private static void MonsterCollision(Camera camera, Entity platform)
         {
-            foreach (var monster in Monsters.Where(mon => camera.IsInsideUpdateSpace(mon.ScreenRect)))
+            foreach (var monster in Monsters.Where(mon => camera.IsInsideUpdateSpace(mon.WorldRect)))
             {
                 if (monster.IgnoreCollision)
                     continue;
@@ -125,32 +137,7 @@ namespace TheSuperTrueRealCV.Utilities
                     player.Controllable = false;
                 }
 
-                if (platform.WorldRect.Intersects(monster.WorldRect))
-                {
-                    bool isInXRange = IsInsideXRange(monster.WorldRect, platform);
-
-                    if (isInXRange)
-                    {
-                        if (monster.WorldPosition.Y > platform.WorldPosition.X)
-                            monster.Movement_Restrictions.Down = true;
-                        else if (monster.WorldPosition.Y < platform.WorldPosition.X)
-                            monster.Movement_Restrictions.Up = true;
-                    }
-                    else
-                    {
-                        if (monster.WorldRect.Right >= platform.WorldRect.X && Math.Abs(monster.WorldRect.Right - platform.WorldRect.X) < 10)
-                        {
-                            monster.WorldPosition += new Vector2(-1, 0);
-                            monster.Movement_Restrictions.Right = true;
-                        }
-
-                        else if (platform.WorldRect.Right > monster.WorldRect.Left && Math.Abs(platform.WorldRect.Right - monster.WorldRect.Left) < 10)
-                        {
-                            monster.WorldPosition += new Vector2(1, 0);
-                            monster.Movement_Restrictions.Left = true;
-                        }
-                    }
-                }
+                HandleEntityToPlatformCollision(monster, platform);
 
                 foreach (var attack in Attacks)
                 {
@@ -174,41 +161,67 @@ namespace TheSuperTrueRealCV.Utilities
             }
         }
 
-        private static void PlayerToPlatformCollision(Entity platform)
-        {
-            if (platform.WorldRect.Intersects(player.WorldRect))
-            {
-                bool playerInXRange = IsInsideXRange(player.WorldRect, platform);
 
-                if (playerInXRange)
+        private static void HandleEntityToPlatformCollision(Moving_Entity piEntity, Entity piPlatform)
+        {
+            bool entityInXRange = IsInsideXRangeFromCenter(piEntity.WorldRect, piPlatform);
+
+            if (piPlatform.WorldRect.Intersects(piEntity.WorldRect))
+            {
+
+                if (entityInXRange)
                 {
-                    if (player.WorldPosition.Y + 1.5f <= platform.WorldPosition.Y)
+                    if (piEntity.WorldPosition.Y + 1.5f <= piPlatform.WorldPosition.Y)
                     {
-                        player.Movement_Restrictions.Down = true;
-                        player.WorldPosition = new Vector2(player.WorldPosition.X, platform.WorldPosition.Y - player.WorldRect.Height);
+                        piEntity.Movement_Restrictions.Down = true;
+                        piEntity.WorldPosition = new Vector2(piEntity.WorldPosition.X, piPlatform.WorldPosition.Y - piEntity.WorldRect.Height);
                     }
-                    else if (player.WorldPosition.Y >= platform.WorldPosition.Y)
+                    else if (piEntity.WorldPosition.Y >= piPlatform.WorldPosition.Y)
                     {
-                        player.Movement_Restrictions.Up = true;
-                        player.WorldPosition = new Vector2(player.WorldPosition.X, platform.WorldPosition.Y + platform.WorldRect.Height);
+                        piEntity.Movement_Restrictions.Up = true;
+                        piEntity.WorldPosition = new Vector2(piEntity.WorldPosition.X, piPlatform.WorldPosition.Y + piPlatform.WorldRect.Height);
                     }
                 }
                 else
                 {
-                    if (player.WorldRect.Right >= platform.WorldRect.X && Math.Abs(player.WorldRect.Right - platform.WorldRect.X) < 10)
-                        player.Movement_Restrictions.Right = true;
+                    if (piEntity.WorldRect.Right >= piPlatform.WorldRect.X && Math.Abs(piEntity.WorldRect.Right - piPlatform.WorldRect.X) < 10)
+                        piEntity.Movement_Restrictions.Right = true;
 
-                    else if (platform.WorldRect.Right >= player.WorldRect.Left && Math.Abs(platform.WorldRect.Right - player.WorldRect.Left) < 10)
-                        player.Movement_Restrictions.Left = true;
+                    else if (piPlatform.WorldRect.Right >= piEntity.WorldRect.Left + 1 && Math.Abs(piPlatform.WorldRect.Right - piEntity.WorldRect.Left) < 10)
+                        piEntity.Movement_Restrictions.Left = true;
                 }
+
+
             }
-            else if (player.WorldRect.Bottom == platform.WorldPosition.Y)
-                player.Movement_Restrictions.Down = true;
+            else if (CheckStandingOnPlatform(piEntity, piPlatform))
+                piEntity.Movement_Restrictions.Down = true;
         }
 
-        private static bool IsInsideXRange(Rectangle hitbox, Entity platform)
+        private static bool CheckStandingOnPlatform(Moving_Entity piEntity, Entity piPlatform)
+        {
+            if (piEntity.WorldRect.Bottom == piPlatform.WorldPosition.Y && IsInsideXRangeFromCenter(piEntity.WorldRect, piPlatform))
+                return true;
+            else if (piEntity.WorldRect.Bottom == piPlatform.WorldPosition.Y && IsInsideXRangeFromLeft(piEntity.WorldRect, piPlatform))
+                return true;
+            else if (piEntity.WorldRect.Bottom == piPlatform.WorldPosition.Y && IsInsideXRangeFromRight(piEntity.WorldRect, piPlatform))
+                return true;
+
+            return false;
+        }
+
+        private static bool IsInsideXRangeFromCenter(Rectangle hitbox, Entity platform)
         {
             return platform.WorldRect.X < hitbox.Center.X && platform.WorldRect.Right > hitbox.Center.X;
+        }
+
+        private static bool IsInsideXRangeFromLeft(Rectangle hitbox, Entity platform)
+        {
+            return platform.WorldRect.X < hitbox.Left && platform.WorldRect.Right > hitbox.Left;
+        }
+
+        private static bool IsInsideXRangeFromRight(Rectangle hitbox, Entity platform)
+        {
+            return platform.WorldRect.X < hitbox.Right && platform.WorldRect.Right > hitbox.Right;
         }
 
         public static void Draw(SpriteBatch spriteBatch)

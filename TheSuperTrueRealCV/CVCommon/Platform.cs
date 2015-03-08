@@ -18,14 +18,20 @@ namespace CVCommon
             PlatformSettings.Platform_Status = piPlatformStatus;
             PlatformSettings.Collidable = piCollidable;
             WorldPosition = piPosition.ToVector2();
-            texture = ContentHolder.LoadTexture("test");
+            Texture = ContentHolder.LoadTexture("test");
         }
 
         public BlockSettings PlatformSettings { get; set; }
 
         public void DrawEditor(SpriteBatch spriteBatch, Rectangle rectangle, Texture2D texture)
         {
-            spriteBatch.Draw(texture, rectangle, Color.White);
+            Color platformColor = Color.White;
+            if (PlatformSettings.Platform_Status == PlatformStatus.Ice)
+                platformColor = Color.LightBlue;
+            else if (PlatformSettings.Platform_Status == PlatformStatus.Mud)
+                platformColor = Color.Brown;
+
+            spriteBatch.Draw(texture, rectangle, platformColor);
         }
     }
 }

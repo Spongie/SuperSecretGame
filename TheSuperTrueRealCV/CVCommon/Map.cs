@@ -40,6 +40,9 @@ namespace CVCommon
             {
                 platform.PlatformSettings.Position *= new Point((int)Settings.objectSize.X, 1);
                 platform.PlatformSettings.Position *= new Point(1, (int)Settings.objectSize.Y);
+
+                platform.WorldPosition = platform.PlatformSettings.Position.ToVector2();
+                platform.Size = Settings.objectSize;
             }
 
             foreach (var light in Lights)

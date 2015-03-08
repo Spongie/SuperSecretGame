@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using TheSuperTrueRealCV.EnemyAI;
+using TheSuperTrueRealCV.Handlers;
 using TheSuperTrueRealCV.Interface;
 using TheSuperTrueRealCV.Utilities;
 
@@ -26,6 +27,8 @@ namespace TheSuperTrueRealCV
 
         Player player;
         PlayerPortrait pp;
+
+        GameHandler gameHandler;
 
         private RenderTarget2D gameRenderTarget;
 
@@ -61,34 +64,31 @@ namespace TheSuperTrueRealCV
             
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Texture2D s = Content.Load<Texture2D>("Test.png");
-            Settings.objectSize = new Vector2(50, 50);
-            Settings.gravityPower = 30;
-            graphics.PreferredBackBufferHeight = 900;
-            graphics.PreferredBackBufferWidth = 1200;
+            Settings.SetDefaults();
+            graphics.PreferredBackBufferHeight = 800;
+            graphics.PreferredBackBufferWidth = 600;
             graphics.ApplyChanges();
 
-            Settings.gameSize = new Vector2(800, 600);
+            //skeleton = new Skeleton(new Vector2(100, 50));
 
-            skeleton = new Skeleton(new Vector2(100, 50));
+            //platform = new Platform(new Point(0, 300), PlatformType.CastleFloor, PlatformStatus.Normal, true);
 
-            platform = new Platform(new Point(0, 300), PlatformType.CastleFloor, PlatformStatus.Normal, true);
+            //platform2 = new Platform(new Point(0, 100), PlatformType.CastleFloor, PlatformStatus.Normal, true);
+            //platform2.Size = new Vector2(50, 200);
 
-            platform2 = new Platform(new Point(0, 100), PlatformType.CastleFloor, PlatformStatus.Normal, true);
-            platform2.Size = new Vector2(50, 200);
+            //platform3 = new Platform(new Point(600, 100), PlatformType.CastleFloor, PlatformStatus.Normal, true);
+            //platform3.Size = new Vector2(50, 200);
 
-            platform3 = new Platform(new Point(600, 100), PlatformType.CastleFloor, PlatformStatus.Normal, true);
-            platform3.Size = new Vector2(50, 200);
-
-            player = new Player(s, new Vector2(551, 200), Settings.objectSize);
-            pp = new PlayerPortrait();
-            skeleton.Activate(player);
-            ObjectManager.Init();
-            ObjectManager.player = player;
-            ObjectManager.Monsters.Add(skeleton);
-            ObjectManager.Platforms.Add(platform);
-            ObjectManager.Platforms.Add(platform2);
-            ObjectManager.Platforms.Add(platform3);
-
+            //player = new Player(s, new Vector2(551, 200), Settings.objectSize);
+            //pp = new PlayerPortrait();
+            //skeleton.Activate(player);
+            //ObjectManager.Init();
+            //ObjectManager.player = player;
+            //ObjectManager.Monsters.Add(skeleton);
+            //ObjectManager.Platforms.Add(platform);
+            //ObjectManager.Platforms.Add(platform2);
+            //ObjectManager.Platforms.Add(platform3);
+            gameHandler = new GameHandler();
             gameRenderTarget = new RenderTarget2D(GraphicsDevice, 800, 600);
             // TODO: use this.Content to load your game content here
         }
@@ -109,11 +109,11 @@ namespace TheSuperTrueRealCV
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            ObjectManager.ApplyPhysics(gameTime);
+            //ObjectManager.ApplyPhysics(gameTime);
             KeyMouseReader.Update();
-            platform.Size = new Vector2(2000, 1000);
-            ObjectManager.Update(gameTime);
-
+            //platform.Size = new Vector2(2000, 1000);
+            //ObjectManager.Update(gameTime);
+            gameHandler.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -143,8 +143,8 @@ namespace TheSuperTrueRealCV
             GraphicsDevice.SetRenderTarget(gameRenderTarget);
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
-            pp.Draw(spriteBatch, ObjectManager.player.CurrentStats);
-            ObjectManager.Draw(spriteBatch);
+            gameHandler.Draw(spriteBatch);
+            //ObjectManager.Draw(spriteBatch);
             spriteBatch.End();
         }
     }

@@ -75,7 +75,7 @@ namespace TheSuperTrueRealCV.EnemyAI
                 AiTimer = new Timer(500);
 
                 int xSpeed = CurrentDirection == Direction.Left ? -200 : 200;
-                ObjectManager.RegisterAttack(AttackCreator.CreateSkeletonAttack(WorldPosition, this, new Vector2(xSpeed, -600)), this);
+                ObjectManager.RegisterAttack(AttackCreator.CreateSkeletonAttack(WorldPosition, this, new Vector2(xSpeed, -300)), this);
             }
 
             if (AiTimer.Done)

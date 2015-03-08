@@ -103,7 +103,11 @@ namespace CVLevelEditor
             catch { }
 
             if (targetRect != null)
-                map.Platforms.Add(new Platform(camera.GetObjectWorldPosition(targetRect.Location.ToVector2()).ToPoint(), Platform_Type, Platform_Status, Collidable));
+            {
+                var platform = new Platform(camera.GetObjectWorldPosition(targetRect.Location.ToVector2()).ToPoint(), Platform_Type, Platform_Status, Collidable);
+                platform.TextureName = PlatformTextures[platform.PlatformSettings.Platform_Type].Name;
+                map.Platforms.Add(platform);
+            }
         }
 
         private bool Clicked()
