@@ -180,14 +180,15 @@ namespace TheSuperTrueRealCV.Utilities
 
         private static void HandleEntityToPlatformCollision(Moving_Entity piEntity, Entity piPlatform)
         {
-            bool entityInXRange = IsInsideXRangeFromCenter(piEntity.WorldRect, piPlatform);
-
             if (piEntity.BotttomRect.Intersects(piPlatform.TopRect))
             {
                 piEntity.Movement_Restrictions.Down = true;
                 if(piEntity.WorldRect.Bottom > piPlatform.WorldPosition.Y)
                     piEntity.WorldPosition = new Vector2(piEntity.WorldPosition.X, piPlatform.WorldPosition.Y - piEntity.Size.Y);
+
+                piEntity.IsJumping = false;
             }
+
             if (piEntity.TopRect.Intersects(piPlatform.BotttomRect))
                 piEntity.Movement_Restrictions.Up = true;
 

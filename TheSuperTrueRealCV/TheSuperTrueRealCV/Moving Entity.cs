@@ -66,7 +66,8 @@ namespace CV_clone
 
         public bool IsJumping
         {
-            get { return Speed.Y < 0.0f; }
+            get;
+            set;
         }
 
         public override void Update(GameTime time)
@@ -87,12 +88,13 @@ namespace CV_clone
 
         public virtual void Jump()
         {
-            Speed = new Vector2(Speed.X,  -jumpPower);
+            Jump(jumpPower);
         }
 
         public virtual void Jump(int power)
         {
             Speed = new Vector2(Speed.X , -power);
+            IsJumping = true;
         }
 
         public override void Draw(SpriteBatch spriteBatch)

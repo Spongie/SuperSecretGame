@@ -47,7 +47,7 @@ namespace CVCommon
 
         public Rectangle BotttomRect
         {
-            get { return new Rectangle((int)WorldPosition.X, (int)(WorldPosition.Y + (Size.Y - (Size.Y / 10)) + 1), (int)Size.X, (int)(Size.Y / 10) + 1); }
+            get { return new Rectangle((int)WorldPosition.X, (int)(WorldPosition.Y + (Size.Y - (Size.Y / 10)) + 1), (int)Size.X, (int)(Size.Y / 10)); }
         }
 
         public Rectangle TopRect
@@ -62,7 +62,7 @@ namespace CVCommon
 
         public Rectangle RightRect
         {
-            get { return new Rectangle((int)(WorldPosition.X + (Size.X - (Size.X / 10)) + 1), (int)(WorldPosition.Y), (int)(Size.X / 10) + 1, (int)Size.Y); }
+            get { return new Rectangle((int)(WorldPosition.X + (Size.X - (Size.X / 10))), (int)(WorldPosition.Y), (int)(Size.X / 10), (int)Size.Y); }
         }
 
         public void UpdateScreenPosition()

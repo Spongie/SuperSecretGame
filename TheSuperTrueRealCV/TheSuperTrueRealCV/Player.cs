@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using TheSuperTrueRealCV.Utilities;
 using TheSuperTrueRealCV.Interface;
 using System.Xml.Serialization;
+using CVCommon.Utility;
 
 namespace CV_clone
 {
@@ -70,9 +71,9 @@ namespace CV_clone
                 extraSpeed = Vector2.Zero;
 
             if (KeyMouseReader.KeyPressed(Keys.Q))
-                ObjectManager.RegisterAttack(AttackCreator.CreateTestAttack(WorldPosition + new Vector2(100, 0), new Vector2(100, 100), this),this);
+                ObjectManager.RegisterAttack(AttackCreator.CreateTestAttack(WorldPosition + new Vector2(100, 0), Settings.objectSize, this),this);
 
-            if (KeyMouseReader.KeyPressed(Keys.Space) && CanJump)
+            if (CanJump && KeyMouseReader.KeyPressed(Keys.Space))
                 Jump();
 
             extraSpeed = Movement_Restrictions.Apply(extraSpeed);
