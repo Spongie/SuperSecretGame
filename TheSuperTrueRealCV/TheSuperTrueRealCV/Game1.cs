@@ -27,6 +27,8 @@ namespace TheSuperTrueRealCV
         Player player;
         PlayerPortrait pp;
 
+        private RenderTarget2D gameRenderTarget;
+
         public Game1()
             : base()
         {
@@ -56,13 +58,13 @@ namespace TheSuperTrueRealCV
             // Create a new SpriteBatch, which can be used to draw textures.
             ContentHolder.Init(Content);
             CameraController.InitCamera();
-
+            
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Texture2D s = Content.Load<Texture2D>("Test.png");
             Settings.objectSize = new Vector2(50, 50);
             Settings.gravityPower = 30;
-            graphics.PreferredBackBufferHeight = 600;
-            graphics.PreferredBackBufferWidth = 800;
+            graphics.PreferredBackBufferHeight = 900;
+            graphics.PreferredBackBufferWidth = 1200;
             graphics.ApplyChanges();
 
             Settings.gameSize = new Vector2(800, 600);
@@ -86,6 +88,8 @@ namespace TheSuperTrueRealCV
             ObjectManager.Platforms.Add(platform);
             ObjectManager.Platforms.Add(platform2);
             ObjectManager.Platforms.Add(platform3);
+
+            gameRenderTarget = new RenderTarget2D(GraphicsDevice, 800, 600);
             // TODO: use this.Content to load your game content here
         }
 
@@ -119,13 +123,29 @@ namespace TheSuperTrueRealCV
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            DrawFirstPass();
+            DrawSecondPass();
 
+            base.Draw(gameTime);
+        }
+
+        private void DrawSecondPass()
+        {
+            GraphicsDevice.SetRenderTarget(null);
+            GraphicsDevice.Clear(Color.Black);
+            spriteBatch.Begin();
+            spriteBatch.Draw(gameRenderTarget, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+            spriteBatch.End();
+        }
+
+        private void DrawFirstPass()
+        {
+            GraphicsDevice.SetRenderTarget(gameRenderTarget);
+            GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
             pp.Draw(spriteBatch, ObjectManager.player.CurrentStats);
             ObjectManager.Draw(spriteBatch);
             spriteBatch.End();
-            base.Draw(gameTime);
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using CV_clone;
 using CV_clone.Utilities;
-using CVCommon;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -38,10 +37,24 @@ namespace TheSuperTrueRealCV
         public Dictionary<Moving_Entity, Timer> EntitiesHit { get; set; }
 
         public List<Rectangle> HitBoxes { get; set; }
+
         public List<Timer> HitboxTimers { get; set; }
+
         public Moving_Entity Owner { get; set; }
+
         public AttackType AttackType { get; set; }
+
         public AttackDamageScaling Scaling { get; set; }
+
+        public bool Bouncing { get; set; }
+
+        public int BouncesLeft { get; set; }
+
+        public bool DiesOnCollision { get; set; }
+
+        public bool ReadyToDestroy { get; set; }
+
+        public AttackTarget TargetType { get; set; }
 
         public Rectangle CurrentHitbox
         {
@@ -57,14 +70,6 @@ namespace TheSuperTrueRealCV
         {
             get { return new Rectangle((int)ScreenPosition.X, (int)ScreenPosition.Y, CurrentHitbox.Width, CurrentHitbox.Height); }
         }
-
-        public bool Bouncing { get; set; }
-        public int BouncesLeft { get; set; }
-        public bool DiesOnCollision { get; set; }
-
-        public bool ReadyToDestroy { get; set; }
-
-        public AttackTarget TargetType { get; set; }
 
         public bool CanHitEntity(Moving_Entity piEntity)
         {
@@ -138,7 +143,9 @@ namespace TheSuperTrueRealCV
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            base.Draw(spriteBatch);
+            if(texture != null)
+                base.Draw(spriteBatch);
+
             spriteBatch.Draw(texture, ScreenCollision, new Color(Color.Red, 150));
         }
     }
