@@ -65,8 +65,8 @@ namespace TheSuperTrueRealCV
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Texture2D s = Content.Load<Texture2D>("Test.png");
             Settings.SetDefaults();
-            graphics.PreferredBackBufferHeight = 800;
-            graphics.PreferredBackBufferWidth = 600;
+            graphics.PreferredBackBufferHeight = 600;
+            graphics.PreferredBackBufferWidth = 800;
             graphics.ApplyChanges();
 
             //skeleton = new Skeleton(new Vector2(100, 50));

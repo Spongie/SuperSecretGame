@@ -24,6 +24,11 @@ namespace CV_clone
         protected List<Spell> spell;
         protected bool autoDirectionControl;
 
+        public Moving_Entity()
+        {
+
+        }
+
         public Moving_Entity(Texture2D tex, Vector2 pos, Vector2 size)
             : base(tex, pos, size)
         {

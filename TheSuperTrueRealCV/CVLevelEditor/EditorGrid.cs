@@ -55,7 +55,7 @@ namespace CVLevelEditor
             PlatformTextures[PlatformType.CastleWall] = ContentHolder.LoadTexture("CastleWall.png");
         }
 
-        public void Update(PlacingMode placingMode, float intensity)
+        public void Update(PlacingMode placingMode, float intensity, string piSpawnName)
         {
             camera = CameraController.GetCamera();
             camera.UpdateEditorCamera(blockSize.ToVector2());
@@ -79,9 +79,23 @@ namespace CVLevelEditor
                     PlacePlatform(mousePosition);
                 else if (placingMode == PlacingMode.Props)
                     PlaceProp(mousePosition, intensity);
+                else if (placingMode == PlacingMode.Spawning)
+                    PlaceSpawn(mousePosition, piSpawnName);
             }
 
             lastPosition = mousePosition;
+        }
+
+        private void PlaceSpawn(Point mousePosition, string piSpawnName)
+        {
+            Vector2 worldPos = camera.GetObjectWorldPosition(mousePosition.ToVector2());
+            var spawn = new EnemySpawn(ContentHolder.LoadTexture("Monsters\\" + piSpawnName), worldPos, Vector2.Zero, piSpawnName);
+            spawn.TextureName = "Monsters\\"+piSpawnName;
+
+            if (piSpawnName.Contains("Player"))
+                map.PlayerSpawnPosition = worldPos;
+            else
+                map.EnemySpawns.Add(spawn);
         }
 
         private void PlaceProp(Point mousePosition, float intensity)
@@ -118,7 +132,7 @@ namespace CVLevelEditor
             return KeyMouseReader.mouseState.LeftButton == ButtonState.Pressed;
         }
 
-        public void Draw(SpriteBatch spriteBatch, PlacingMode placingMode)
+        public void Draw(SpriteBatch spriteBatch, PlacingMode placingMode, Texture2D enemyTexture)
         {
             Camera camera = CameraController.GetCamera();
 
@@ -135,10 +149,19 @@ namespace CVLevelEditor
                 light.Draw(spriteBatch);
             }
 
+            foreach (var enemy in map.EnemySpawns)
+            {
+                enemy.Size = Settings.objectSize;
+                enemy.ScreenPosition = camera.GetObjectScreenPosition(enemy.WorldPosition);
+                enemy.Draw(spriteBatch);
+            }
+
             if (placingMode == PlacingMode.Platforms)
                 DrawMouseOverPlatforms(spriteBatch);
             else if (placingMode == PlacingMode.Props)
                 DrawMouseOverProps(spriteBatch);
+            else if (placingMode == PlacingMode.Spawning)
+                DrawMouseOverSpawn(spriteBatch, enemyTexture);
         }
 
         private void DrawMouseOverPlatforms(SpriteBatch spriteBatch)
@@ -150,7 +173,13 @@ namespace CVLevelEditor
         private void DrawMouseOverProps(SpriteBatch spriteBatch)
         {
             if (indexToDraw >= 0)
-                spriteBatch.Draw(light, new Rectangle(lastPosition.X, lastPosition.Y, (int)Settings.objectSize.X / 2, (int)Settings.objectSize.Y / 2), Color.White);
+                spriteBatch.Draw(light, new Rectangle(lastPosition.X, lastPosition.Y, (int)Settings.objectSize.X, (int)Settings.objectSize.Y), Color.White);
+        }
+
+        private void DrawMouseOverSpawn(SpriteBatch spriteBatch, Texture2D texture)
+        {
+            if (indexToDraw >= 0 && texture != null)
+                spriteBatch.Draw(texture, new Rectangle(lastPosition.X, lastPosition.Y, (int)Settings.objectSize.X, (int)Settings.objectSize.Y), Color.White);
         }
 
         public Map GetMap()
@@ -162,6 +191,9 @@ namespace CVLevelEditor
         {
             map.Platforms = piMap.Platforms;
             map.Name = piMap.Name;
+            map.EnemySpawns = piMap.EnemySpawns;
+            map.Lights = piMap.Lights;
+            map.DeNormalizePositions();
         }
 
         public Dictionary<PlatformType, Texture2D> PlatformTextures { get; set; }

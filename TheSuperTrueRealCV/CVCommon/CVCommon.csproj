@@ -43,10 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EnemySpawn.cs" />
     <Compile Include="Utility\BlockSettings.cs" />
     <Compile Include="Interface\Button.cs" />
     <Compile Include="Camera\Camera.cs" />
     <Compile Include="Camera\CameraController.cs" />
+    <Compile Include="Utility\CameraStyle.cs" />
     <Compile Include="Utility\ContentHolder.cs" />
     <Compile Include="Utility\EnemyEnums.cs" />
     <Compile Include="Entity.cs" />

@@ -39,20 +39,24 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage_Platforms = new System.Windows.Forms.TabPage();
             this.tabPage_Props = new System.Windows.Forms.TabPage();
-            this.tabPage_Edit = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBox_PropTypes = new System.Windows.Forms.ComboBox();
-            this.label_intensity = new System.Windows.Forms.Label();
             this.trackBar_Intensity = new System.Windows.Forms.TrackBar();
+            this.label_intensity = new System.Windows.Forms.Label();
+            this.comboBox_PropTypes = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tabPage_Edit = new System.Windows.Forms.TabPage();
+            this.tabPage_Spawning = new System.Windows.Forms.TabPage();
+            this.ivComboBoxSpawn = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabPage_Platforms.SuspendLayout();
             this.tabPage_Props.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_Intensity)).BeginInit();
+            this.tabPage_Spawning.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBox_Types
             // 
+            this.comboBox_Types.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_Types.FormattingEnabled = true;
             this.comboBox_Types.Location = new System.Drawing.Point(43, 3);
             this.comboBox_Types.Name = "comboBox_Types";
@@ -71,6 +75,7 @@
             // 
             // comboBox_Status
             // 
+            this.comboBox_Status.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_Status.FormattingEnabled = true;
             this.comboBox_Status.Location = new System.Drawing.Point(170, 3);
             this.comboBox_Status.Name = "comboBox_Status";
@@ -134,6 +139,7 @@
             this.tabControl.Controls.Add(this.tabPage_Platforms);
             this.tabControl.Controls.Add(this.tabPage_Props);
             this.tabControl.Controls.Add(this.tabPage_Edit);
+            this.tabControl.Controls.Add(this.tabPage_Spawning);
             this.tabControl.Location = new System.Drawing.Point(16, 12);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
@@ -169,32 +175,13 @@
             this.tabPage_Props.Text = "Props";
             this.tabPage_Props.UseVisualStyleBackColor = true;
             // 
-            // tabPage_Edit
+            // trackBar_Intensity
             // 
-            this.tabPage_Edit.Location = new System.Drawing.Point(4, 22);
-            this.tabPage_Edit.Name = "tabPage_Edit";
-            this.tabPage_Edit.Size = new System.Drawing.Size(300, 232);
-            this.tabPage_Edit.TabIndex = 2;
-            this.tabPage_Edit.Text = "Edit";
-            this.tabPage_Edit.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 7);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Type: ";
-            // 
-            // comboBox_PropTypes
-            // 
-            this.comboBox_PropTypes.FormattingEnabled = true;
-            this.comboBox_PropTypes.Location = new System.Drawing.Point(50, 4);
-            this.comboBox_PropTypes.Name = "comboBox_PropTypes";
-            this.comboBox_PropTypes.Size = new System.Drawing.Size(121, 21);
-            this.comboBox_PropTypes.TabIndex = 1;
-            this.comboBox_PropTypes.SelectedIndexChanged += new System.EventHandler(this.comboBox_PropTypes_SelectedIndexChanged);
+            this.trackBar_Intensity.Location = new System.Drawing.Point(63, 34);
+            this.trackBar_Intensity.Maximum = 100;
+            this.trackBar_Intensity.Name = "trackBar_Intensity";
+            this.trackBar_Intensity.Size = new System.Drawing.Size(104, 45);
+            this.trackBar_Intensity.TabIndex = 3;
             // 
             // label_intensity
             // 
@@ -205,13 +192,58 @@
             this.label_intensity.TabIndex = 2;
             this.label_intensity.Text = "Intensity";
             // 
-            // trackBar_Intensity
+            // comboBox_PropTypes
             // 
-            this.trackBar_Intensity.Location = new System.Drawing.Point(63, 34);
-            this.trackBar_Intensity.Maximum = 100;
-            this.trackBar_Intensity.Name = "trackBar_Intensity";
-            this.trackBar_Intensity.Size = new System.Drawing.Size(104, 45);
-            this.trackBar_Intensity.TabIndex = 3;
+            this.comboBox_PropTypes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_PropTypes.FormattingEnabled = true;
+            this.comboBox_PropTypes.Location = new System.Drawing.Point(50, 4);
+            this.comboBox_PropTypes.Name = "comboBox_PropTypes";
+            this.comboBox_PropTypes.Size = new System.Drawing.Size(121, 21);
+            this.comboBox_PropTypes.TabIndex = 1;
+            this.comboBox_PropTypes.SelectedIndexChanged += new System.EventHandler(this.comboBox_PropTypes_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 7);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(37, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Type: ";
+            // 
+            // tabPage_Edit
+            // 
+            this.tabPage_Edit.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_Edit.Name = "tabPage_Edit";
+            this.tabPage_Edit.Size = new System.Drawing.Size(300, 232);
+            this.tabPage_Edit.TabIndex = 2;
+            this.tabPage_Edit.Text = "Edit";
+            this.tabPage_Edit.UseVisualStyleBackColor = true;
+            // 
+            // tabPage_Spawning
+            // 
+            this.tabPage_Spawning.Controls.Add(this.ivComboBoxSpawn);
+            this.tabPage_Spawning.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_Spawning.Name = "tabPage_Spawning";
+            this.tabPage_Spawning.Size = new System.Drawing.Size(300, 232);
+            this.tabPage_Spawning.TabIndex = 3;
+            this.tabPage_Spawning.Text = "Spawning";
+            this.tabPage_Spawning.UseVisualStyleBackColor = true;
+            // 
+            // ivComboBoxSpawn
+            // 
+            this.ivComboBoxSpawn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ivComboBoxSpawn.FormattingEnabled = true;
+            this.ivComboBoxSpawn.Items.AddRange(new object[] {
+            "PlayerSpawn",
+            "Bat",
+            "Skeleton",
+            "SkeletonArmor",
+            "SkeletonMusician"});
+            this.ivComboBoxSpawn.Location = new System.Drawing.Point(83, 3);
+            this.ivComboBoxSpawn.Name = "ivComboBoxSpawn";
+            this.ivComboBoxSpawn.Size = new System.Drawing.Size(121, 21);
+            this.ivComboBoxSpawn.TabIndex = 0;
             // 
             // LevelOptions
             // 
@@ -230,6 +262,7 @@
             this.tabPage_Props.ResumeLayout(false);
             this.tabPage_Props.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_Intensity)).EndInit();
+            this.tabPage_Spawning.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -252,5 +285,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TrackBar trackBar_Intensity;
         private System.Windows.Forms.Label label_intensity;
+        private System.Windows.Forms.TabPage tabPage_Spawning;
+        private System.Windows.Forms.ComboBox ivComboBoxSpawn;
     }
 }

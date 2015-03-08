@@ -15,16 +15,14 @@ namespace TheSuperTrueRealCV.Handlers
     {
         PlayingState ivGameState;
         MapHandler ivMapHandler;
-        Skeleton skeleton;
 
         public GameHandler()
         {
             ivMapHandler = new MapHandler();
             ObjectManager.Init();
-            ObjectManager.player = new Player(ContentHolder.LoadTexture("test"), new Vector2(751, 450), Settings.playerSize);
-            skeleton = new Skeleton(new Vector2(500, 430));
-            ObjectManager.Monsters.Add(skeleton);
+            ObjectManager.player = new Player(ContentHolder.LoadTexture("test"), ivMapHandler.ActiveMap.PlayerSpawnPosition, Settings.playerSize);
             ObjectManager.SetPlatforms(ivMapHandler.ActiveMap.Platforms);
+            //ObjectManager.SpawnEnemies(ivMapHandler.ActiveMap.EnemySpawns);
         }
 
         public void Update(GameTime gameTime)
@@ -42,7 +40,7 @@ namespace TheSuperTrueRealCV.Handlers
 
         private void UpdatePlaying(GameTime gameTime)
         {
-            CameraController.GetCamera().Update(ObjectManager.player.WorldPosition);
+            CameraController.GetCamera().Update(ObjectManager.player.WorldPosition, gameTime);
             ObjectManager.ApplyPhysics(gameTime);
             ObjectManager.Update(gameTime);
         }

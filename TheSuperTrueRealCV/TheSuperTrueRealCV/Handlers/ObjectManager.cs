@@ -30,9 +30,15 @@ namespace TheSuperTrueRealCV.Utilities
         {
             Camera camera = CameraController.GetCamera();
 
-            foreach (var platform in Platforms.Where(plat => camera.IsInsideUpdateSpace(plat.WorldRect) && plat.PlatformSettings.Collidable))
+            foreach (var platform in Platforms.Where(plat => camera.IsInsideUpdateSpace(plat.WorldRect)))
             {
-                HandleEntityToPlatformCollision(player, platform);           
+                platform.UpdateScreenPosition();
+
+                if (!platform.PlatformSettings.Collidable)
+                    continue;
+
+                HandleEntityToPlatformCollision(player, platform);
+
                 MonsterCollision(camera, platform);
 
                 foreach (var attack in Attacks)
@@ -60,7 +66,17 @@ namespace TheSuperTrueRealCV.Utilities
                     }
                 }
 
-                platform.UpdateScreenPosition();
+            }
+        }
+
+        public static void SpawnEnemies(List<EnemySpawn> piSpawnPoints)
+        {
+            foreach (var enemySpawn in piSpawnPoints)
+            {
+                var monsterType = Type.GetType("TheSuperTrueRealCV.EnemyAI." + enemySpawn.EnemyName);
+                Monster monster = (Monster)Activator.CreateInstance(monsterType, enemySpawn.WorldPosition);
+
+                Monsters.Add(monster);
             }
         }
 
@@ -166,35 +182,20 @@ namespace TheSuperTrueRealCV.Utilities
         {
             bool entityInXRange = IsInsideXRangeFromCenter(piEntity.WorldRect, piPlatform);
 
-            if (piPlatform.WorldRect.Intersects(piEntity.WorldRect))
+            if (piEntity.BotttomRect.Intersects(piPlatform.TopRect))
             {
-
-                if (entityInXRange)
-                {
-                    if (piEntity.WorldPosition.Y + 1.5f <= piPlatform.WorldPosition.Y)
-                    {
-                        piEntity.Movement_Restrictions.Down = true;
-                        piEntity.WorldPosition = new Vector2(piEntity.WorldPosition.X, piPlatform.WorldPosition.Y - piEntity.WorldRect.Height);
-                    }
-                    else if (piEntity.WorldPosition.Y >= piPlatform.WorldPosition.Y)
-                    {
-                        piEntity.Movement_Restrictions.Up = true;
-                        piEntity.WorldPosition = new Vector2(piEntity.WorldPosition.X, piPlatform.WorldPosition.Y + piPlatform.WorldRect.Height);
-                    }
-                }
-                else
-                {
-                    if (piEntity.WorldRect.Right >= piPlatform.WorldRect.X && Math.Abs(piEntity.WorldRect.Right - piPlatform.WorldRect.X) < 10)
-                        piEntity.Movement_Restrictions.Right = true;
-
-                    else if (piPlatform.WorldRect.Right >= piEntity.WorldRect.Left + 1 && Math.Abs(piPlatform.WorldRect.Right - piEntity.WorldRect.Left) < 10)
-                        piEntity.Movement_Restrictions.Left = true;
-                }
-
-
-            }
-            else if (CheckStandingOnPlatform(piEntity, piPlatform))
                 piEntity.Movement_Restrictions.Down = true;
+                if(piEntity.WorldRect.Bottom > piPlatform.WorldPosition.Y)
+                    piEntity.WorldPosition = new Vector2(piEntity.WorldPosition.X, piPlatform.WorldPosition.Y - piEntity.Size.Y);
+            }
+            if (piEntity.TopRect.Intersects(piPlatform.BotttomRect))
+                piEntity.Movement_Restrictions.Up = true;
+
+            if (piEntity.LeftRect.Intersects(piPlatform.RightRect))
+                piEntity.Movement_Restrictions.Left = true;
+
+            if (piEntity.RightRect.Intersects(piPlatform.LeftRect))
+                piEntity.Movement_Restrictions.Right = true;
         }
 
         private static bool CheckStandingOnPlatform(Moving_Entity piEntity, Entity piPlatform)

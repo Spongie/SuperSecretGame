@@ -21,6 +21,8 @@ namespace TheSuperTrueRealCV.EnemyAI
             CurrentStats.MagicDefense = 3;
 
             AiTimer = new Timer(0);
+
+            Size = Settings.playerSize;
         }
 
         public override void UpdateIdle() 

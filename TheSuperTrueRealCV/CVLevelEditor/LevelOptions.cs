@@ -17,7 +17,8 @@ namespace CVLevelEditor
     {
         Platforms,
         Props,
-        Edit
+        Edit,
+        Spawning
     }
 
     public enum PlacingProp
@@ -60,7 +61,13 @@ namespace CVLevelEditor
 
         public bool ClickMode
         {
-            get { return checkBox_mouseMode.Checked; }
+            get 
+            {
+                if (Placing_Mode == PlacingMode.Spawning)
+                    checkBox_mouseMode.Checked = true;
+
+                return checkBox_mouseMode.Checked; 
+            }
         }
 
         public PlatformStatus SelectedPlatformStatus
@@ -71,6 +78,16 @@ namespace CVLevelEditor
                     return PlatformStatus.Normal;
 
                 return (PlatformStatus)comboBox_Status.SelectedIndex;
+            }
+        }
+
+        public string SelectedSpawn 
+        { 
+            get 
+            {
+                if (ivComboBoxSpawn.SelectedItem == null)
+                    return string.Empty;
+                return ivComboBoxSpawn.SelectedItem.ToString(); 
             }
         }
 

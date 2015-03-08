@@ -12,9 +12,9 @@ namespace CVCommon.Utility
         public static void SetDefaults()
         {
             gameSize = new Vector2(800, 600);
-            gravityPower = 15;
-            playerSize = new Vector2(40, 55);
-            objectSize = new Vector2(50, 50);
+            gravityPower = 10;
+            playerSize = new Vector2(30, 60);
+            objectSize = new Vector2(50, 30);
         }
 
         public static Rectangle GetTriggerBox(Point p)

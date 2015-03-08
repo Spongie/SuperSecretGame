@@ -9,6 +9,7 @@ namespace CVCommon.Camera
         public static void InitCamera()
         {
             camera = new Camera(Vector2.Zero);
+            camera.Style = Utilities.CameraStyle.Horizontal;
         }
 
         public static Camera GetCamera()

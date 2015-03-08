@@ -10,6 +10,7 @@ namespace CVCommon
         {
             Platforms = new List<Platform>();
             Lights = new List<Light>();
+            EnemySpawns = new List<EnemySpawn>();
             Name = "UNNAMEDMAP";
         }
 
@@ -50,12 +51,18 @@ namespace CVCommon
                 light.WorldPosition *= new Vector2(Settings.objectSize.X, 1);
                 light.WorldPosition *= new Vector2(1, Settings.objectSize.Y);
             }
+
+
         }
 
         public string Name { get; set; }
 
+        public List<EnemySpawn> EnemySpawns { get; set; }
+
         public List<Platform> Platforms { get; set; }
 
         public List<Light> Lights { get; set; }
+
+        public Vector2 PlayerSpawnPosition { get; set; }
     }
 }

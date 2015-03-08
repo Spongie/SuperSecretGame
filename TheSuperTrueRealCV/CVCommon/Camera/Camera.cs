@@ -1,4 +1,5 @@
-﻿using CVCommon.Utility;
+﻿using CVCommon.Utilities;
+using CVCommon.Utility;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
@@ -19,6 +20,8 @@ namespace CVCommon.Camera
             worldPosition = pos;
             cameraSpeed = new Vector2(300, 300);
         }
+
+        public CameraStyle Style { get; set; }
 
         public Vector2 Position
         {
@@ -46,10 +49,17 @@ namespace CVCommon.Camera
             get { return new Rectangle((int)worldPosition.X, (int)worldPosition.Y, (int)CameraVeiwSize.X / 5, (int)CameraVeiwSize.Y); }
         }
 
-        public void Update(Vector2 playerpos)
+        public void Update(Vector2 playerpos, GameTime gameTime)
         {
-            worldPosition.X = playerpos.X + Settings.playerSize.X/2 - Settings.gameSize.X / 2;
-            worldPosition.Y = playerpos.Y + Settings.playerSize.Y - Settings.gameSize.Y / 2;
+            if(Style == CameraStyle.Open)
+            {
+                worldPosition.X = playerpos.X + Settings.playerSize.X / 2 - Settings.gameSize.X / 2;
+                worldPosition.Y = playerpos.Y + Settings.playerSize.Y - Settings.gameSize.Y / 2;
+            }
+            else if(Style == CameraStyle.Horizontal)
+                worldPosition.X = playerpos.X + Settings.playerSize.X / 2 - Settings.gameSize.X / 2;
+            else if(Style == CameraStyle.Vertical)
+                worldPosition.Y = playerpos.Y + Settings.playerSize.Y - Settings.gameSize.Y / 2;
         }
 
         /// <summary>

@@ -38,6 +38,10 @@ namespace CVLevelEditor
 
             ContentHolder.InitOnlyContentManager(Content);
 
+            graphics.PreferredBackBufferWidth = 800;
+            graphics.PreferredBackBufferHeight = 600;
+            graphics.ApplyChanges();
+
             editorGrid = new EditorGrid(new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight));
             CameraController.InitCamera();
         }
@@ -56,7 +60,7 @@ namespace CVLevelEditor
             KeyMouseReader.Update();
             SetEditorGridValues();
 
-            editorGrid.Update(lvlOptions.Placing_Mode, lvlOptions.LightIntensity);
+            editorGrid.Update(lvlOptions.Placing_Mode, lvlOptions.LightIntensity, lvlOptions.SelectedSpawn);
             base.Update(gameTime);
             lvlOptions.GameMap = editorGrid.GetMap();
         }
@@ -73,8 +77,11 @@ namespace CVLevelEditor
         {
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
+            Texture2D enemyTexture = null;
+            if(lvlOptions.SelectedSpawn != string.Empty)
+                enemyTexture = ContentHolder.LoadTexture("Monsters\\"+lvlOptions.SelectedSpawn);
 
-            editorGrid.Draw(spriteBatch, lvlOptions.Placing_Mode);
+            editorGrid.Draw(spriteBatch, lvlOptions.Placing_Mode, enemyTexture);
 
             spriteBatch.End();
             base.Draw(gameTime);

@@ -3,18 +3,21 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using TheSuperTrueRealCV.Utilities;
 using TheSuperTrueRealCV.Interface;
+using System.Xml.Serialization;
 
 namespace CV_clone
 {
     public class Player : Moving_Entity
     {
-        private Vector2 extraSpeed;
+        public Vector2 extraSpeed;
         private PlayerPortrait ivPortrait;
+
+        public Player() { }
 
         public Player(Texture2D tex, Vector2 vec, Vector2 size)
             :base(tex,vec,size)
         {
-            jumpPower = 300;
+            jumpPower = 340;
             ivPortrait = new PlayerPortrait();
             CurrentStats.MaximumHealth = 100;
             CurrentStats.MaximumMana = 50;
@@ -23,6 +26,7 @@ namespace CV_clone
             CurrentStats.Damage = 1337;
             CurrentStats.MaximumExp = 125;
             CurrentStats.RewardExperience(16);
+            CurrentStats.Level = 1;
         }
 
         public override void Update(GameTime gameTime)
@@ -74,6 +78,11 @@ namespace CV_clone
             extraSpeed = Movement_Restrictions.Apply(extraSpeed);
 
             Speed += extraSpeed;
+        }
+
+        public Vector2 GetAmountToMove(GameTime gameTime)
+        {
+            return WorldPosition + ((Speed + extraSpeed) * (float)gameTime.ElapsedGameTime.TotalSeconds); 
         }
 
         public bool CanJump

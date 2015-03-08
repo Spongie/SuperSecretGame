@@ -45,6 +45,26 @@ namespace CVCommon
             get { return new Rectangle((int)WorldPosition.X, (int)WorldPosition.Y, (int)Size.X, (int)Size.Y); }
         }
 
+        public Rectangle BotttomRect
+        {
+            get { return new Rectangle((int)WorldPosition.X, (int)(WorldPosition.Y + (Size.Y - (Size.Y / 10)) + 1), (int)Size.X, (int)(Size.Y / 10) + 1); }
+        }
+
+        public Rectangle TopRect
+        {
+            get { return new Rectangle((int)WorldPosition.X, (int)(WorldPosition.Y), (int)Size.X, (int)(Size.Y / 10)); }
+        }
+
+        public Rectangle LeftRect
+        {
+            get { return new Rectangle((int)WorldPosition.X - 1, (int)(WorldPosition.Y), (int)(Size.X / 10), (int)Size.Y); }
+        }
+
+        public Rectangle RightRect
+        {
+            get { return new Rectangle((int)(WorldPosition.X + (Size.X - (Size.X / 10)) + 1), (int)(WorldPosition.Y), (int)(Size.X / 10) + 1, (int)Size.Y); }
+        }
+
         public void UpdateScreenPosition()
         {
             ScreenPosition = CameraController.GetCamera().GetObjectScreenPosition(WorldPosition);
@@ -76,6 +96,8 @@ namespace CVCommon
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
+            if (Texture == null)
+                Texture = ContentHolder.LoadTexture(TextureName);
             spriteBatch.Draw(Texture, new Rectangle((int)ScreenPosition.X, (int)ScreenPosition.Y, (int)Size.X, (int)Size.Y), Color.White);
         }
     }

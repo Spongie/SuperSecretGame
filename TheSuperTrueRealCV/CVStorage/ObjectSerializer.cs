@@ -18,8 +18,11 @@ namespace CVStorage
 
             var pathName = GetPathName(piFileName);
 
-            if (!Directory.Exists(pathName))
-                Directory.CreateDirectory(pathName);
+            if (pathName != piFileName)
+            {
+                if (!Directory.Exists(pathName))
+                    Directory.CreateDirectory(pathName);
+            }
 
             var fileStream = new FileStream(piFileName, FileMode.Create);
             serializer.Serialize(fileStream, piObject);
@@ -30,6 +33,9 @@ namespace CVStorage
 
         private static string GetPathName(string piFileName)
         {
+            if (!piFileName.Contains("\\"))
+                return piFileName;
+
             return piFileName.Substring(0, piFileName.LastIndexOf("\\"));
         }
 
