@@ -47,14 +47,15 @@ namespace TheSuperTrueRealCV.EnemyAI
 
             if (AiTimer.Done && Newtimer == false)
             {
-                AiTimer = new Timer(300);
+                AiTimer = new Timer(1500);
                 Newtimer = true;
             }
 
-            if (Math.Abs(WorldPosition.Y - target.WorldPosition.Y) <= 100 || AiTimer.Done)
+            if (Math.Abs(WorldPosition.Y - target.WorldPosition.Y) <= 5 || AiTimer.Done)
             {
+                AiTimer = new Timer(0);
                 Newtimer = false;
-                AiList.Add(() => UpdateChillLeft());
+                AiList.Add(() => UpdateRiseLeft());
                 AiList.RemoveAt(0);
             }
         }
@@ -67,7 +68,7 @@ namespace TheSuperTrueRealCV.EnemyAI
 
             if (AiTimer.Done && Newtimer == false)
             {
-                AiTimer = new Timer(300);
+                AiTimer = new Timer(350);
                 Newtimer = true;
             }
 
@@ -82,7 +83,7 @@ namespace TheSuperTrueRealCV.EnemyAI
         public void UpdateRiseLeft()
         {
             //FIXA SPEED ÅT VÄNSTER/UP
-            Speed = new Vector2(-50, -75);
+            Speed = new Vector2(-100, -75);
             if (AiTimer.Done && Newtimer == false)
             {
                 AiTimer = new Timer(300);
@@ -100,17 +101,18 @@ namespace TheSuperTrueRealCV.EnemyAI
         public void UpdateDiveRight()
         {
             //FIXA SÅ DEN FALLER NERÅT
-            Speed = new Vector2(100, Speed.Y);
+            this.ApplyGravity = true;
             if (AiTimer.Done && Newtimer == false)
             {
-                AiTimer = new Timer(300);
+                AiTimer = new Timer(1500);
                 Newtimer = true;
             }
 
-            if (Math.Abs(WorldPosition.Y - target.WorldPosition.Y) <= 100 || AiTimer.Done)
+            if (Math.Abs(WorldPosition.Y - target.WorldPosition.Y) <= 5 || AiTimer.Done)
             {
+                AiTimer = new Timer(0);
                 Newtimer = false;
-                AiList.Add(() => UpdateChillRight());
+                AiList.Add(() => UpdateRiseRight());
                 AiList.RemoveAt(0);
             }
         }
@@ -118,17 +120,17 @@ namespace TheSuperTrueRealCV.EnemyAI
         public void UpdateChillRight()
         {
             //FIXA SPEED ÅT HÖGER/NER
-
+            Speed = new Vector2(100, Speed.Y);
             if (AiTimer.Done && Newtimer == false)
             {
-                AiTimer = new Timer(300);
+                AiTimer = new Timer(350);
                 Newtimer = true;
             }
 
             if (AiTimer.Done)
             {
                 Newtimer = false;
-                AiList.Add(() => UpdateRiseLeft());
+                AiList.Add(() => UpdateRiseRight());
                 AiList.RemoveAt(0);
             }
         }
@@ -136,7 +138,7 @@ namespace TheSuperTrueRealCV.EnemyAI
         public void UpdateRiseRight()
         {
             //FIXA SPEED ÅT HÖGER/UP
-            
+            Speed = new Vector2(100, -75);
             if (AiTimer.Done && Newtimer == false)
             {
                 AiTimer = new Timer(300);
