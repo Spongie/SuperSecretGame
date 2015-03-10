@@ -73,7 +73,7 @@ namespace TheSuperTrueRealCV.Utilities
         {
             foreach (var enemySpawn in piSpawnPoints)
             {
-                var monsterType = Type.GetType("TheSuperTrueRealCV.EnemyAI." + enemySpawn.EnemyName);
+                var monsterType = Type.GetType("TheSuperTrueRealCV.EnemyAI." + enemySpawn.EnemyName, true, true);
                 Monster monster = (Monster)Activator.CreateInstance(monsterType, enemySpawn.WorldPosition);
 
                 Monsters.Add(monster);
@@ -147,9 +147,15 @@ namespace TheSuperTrueRealCV.Utilities
                 if (monster.IgnoreCollision)
                     continue;
 
-                if (player.WorldRect.Intersects(monster.WorldRect))
+                if(player.LeftRect.Intersects(monster.RightRect))
                 {
-                    player.Speed = new Vector2(0, -500);
+                    player.Speed = new Vector2(200, -300);
+                    player.Controllable = false;
+                }
+
+                if (player.RightRect.Intersects(monster.LeftRect))
+                {
+                    player.Speed = new Vector2(-200, -300);
                     player.Controllable = false;
                 }
 
