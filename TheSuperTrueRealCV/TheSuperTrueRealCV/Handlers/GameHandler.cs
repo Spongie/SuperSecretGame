@@ -22,7 +22,7 @@ namespace TheSuperTrueRealCV.Handlers
             ObjectManager.Init();
             ObjectManager.player = new Player(ContentHolder.LoadTexture("test"), ivMapHandler.ActiveMap.PlayerSpawnPosition, Settings.playerSize);
             ObjectManager.SetPlatforms(ivMapHandler.ActiveMap.Platforms);
-            //ObjectManager.SpawnEnemies(ivMapHandler.ActiveMap.EnemySpawns);
+            ObjectManager.SpawnEnemies(ivMapHandler.ActiveMap.EnemySpawns);
         }
 
         public void Update(GameTime gameTime)

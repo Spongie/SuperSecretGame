@@ -146,6 +146,12 @@ namespace TheSuperTrueRealCV.EnemyAI
 
         public void UpdateMagicAttack1()
         {
+            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.HealthPercentage <= 40)
+            {
+                Newtimer = false;
+                AiList.Add(() => UpdateDeepGrave());
+                AiList.RemoveAt(0);
+            }
             if (AiTimer.Done && HaveAttacked == false)
             {
                 //skickar sin fireball efter 1500
@@ -166,6 +172,12 @@ namespace TheSuperTrueRealCV.EnemyAI
 
         public override void UpdateAttack()
         {
+            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.HealthPercentage <= 40)
+            {
+                Newtimer = false;
+                AiList.Add(() => UpdateDeepGrave());
+                AiList.RemoveAt(0);
+            }
             if (AiTimer.Done && Newtimer == false)
             {
                 AiTimer = new Timer(400);
@@ -190,6 +202,12 @@ namespace TheSuperTrueRealCV.EnemyAI
 
         public void UpdateAttack2()
         {
+            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.HealthPercentage <= 40)
+            {
+                Newtimer = false;
+                AiList.Add(() => UpdateDeepGrave());
+                AiList.RemoveAt(0);
+            }
             if (AiTimer.Done && Newtimer == false)
             {
                 AiTimer = new Timer(200);
@@ -214,6 +232,12 @@ namespace TheSuperTrueRealCV.EnemyAI
 
         public void UpdateMoveBack()
         {
+            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.HealthPercentage <= 40)
+            {
+                Newtimer = false;
+                AiList.Add(() => UpdateDeepGrave());
+                AiList.RemoveAt(0);
+            }
             if (AiTimer.Done && Newtimer == false)
             {
                 AiTimer = new Timer(random.Next(700, 1000));
@@ -222,11 +246,11 @@ namespace TheSuperTrueRealCV.EnemyAI
 
             if (CurrentDirection == Direction.Right)
             {
-                Speed = new Vector2(-10, Speed.Y);
+                Speed = new Vector2(-100, Speed.Y);
             }
             else if (CurrentDirection == Direction.Left)
             {
-                Speed = new Vector2(10, Speed.Y);
+                Speed = new Vector2(100, Speed.Y);
             }
 
             if (AiTimer.Done)
@@ -266,6 +290,12 @@ namespace TheSuperTrueRealCV.EnemyAI
 
         public override void UpdateGoForward()
         {
+            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.HealthPercentage <= 40)
+            {
+                Newtimer = false;
+                AiList.Add(() => UpdateDeepGrave());
+                AiList.RemoveAt(0);
+            }
             if (AiTimer.Done && Newtimer == false)
             {
                 AiTimer = new Timer(random.Next(300, 600));
@@ -274,11 +304,11 @@ namespace TheSuperTrueRealCV.EnemyAI
 
             if (CurrentDirection == Direction.Right)
             {
-                Speed = new Vector2(10, Speed.Y);
+                Speed = new Vector2(100, Speed.Y);
             }
             else if (CurrentDirection == Direction.Left)
             {
-                Speed = new Vector2(-10, Speed.Y);
+                Speed = new Vector2(-100, Speed.Y);
             }
 
             if (AiTimer.Done)
@@ -318,6 +348,12 @@ namespace TheSuperTrueRealCV.EnemyAI
 
         public void UpdateJumpBack()
         {
+            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.HealthPercentage <= 40)
+            {
+                Newtimer = false;
+                AiList.Add(() => UpdateDeepGrave());
+                AiList.RemoveAt(0);
+            }
             if (AiTimer.Done && Newtimer == false)
             {
                 AiTimer = new Timer(random.Next(700, 1000));
@@ -326,11 +362,11 @@ namespace TheSuperTrueRealCV.EnemyAI
             //GLÖM INTE ATT GÖRA SÅ DEN HOPPAR ME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             if (CurrentDirection == Direction.Right)
             {
-                Speed = new Vector2(-10, Speed.Y);
+                Speed = new Vector2(-100, 200);
             }
             else if (CurrentDirection == Direction.Left)
             {
-                Speed = new Vector2(10, Speed.Y);
+                Speed = new Vector2(100, 200);
             }
 
             if (AiTimer.Done)
@@ -344,6 +380,12 @@ namespace TheSuperTrueRealCV.EnemyAI
 
         public void UpdateJumpForward() 
         {
+            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.HealthPercentage <= 40)
+            {
+                Newtimer = false;
+                AiList.Add(() => UpdateDeepGrave());
+                AiList.RemoveAt(0);
+            }
             if (AiTimer.Done && Newtimer == false)
             {
                 AiTimer = new Timer(random.Next(700, 1000));
@@ -352,11 +394,11 @@ namespace TheSuperTrueRealCV.EnemyAI
             //GLÖM INTE ATT GÖRA SÅ DEN HOPPAR ME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             if (CurrentDirection == Direction.Right)
             {
-                Speed = new Vector2(-10, Speed.Y);
+                Speed = new Vector2(100, 200);
             }
             else if (CurrentDirection == Direction.Left)
             {
-                Speed = new Vector2(10, Speed.Y);
+                Speed = new Vector2(-100, 200);
             }
 
             if (AiTimer.Done)

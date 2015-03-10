@@ -23,8 +23,6 @@ namespace TheSuperTrueRealCV.Utilities
             attack.Scaling.Damage = 1;
             attack.AttackType = Enums.AttackType.Moving;
             attack.ApplyGravity = true;
-            attack.Bouncing = true;
-            attack.BouncesLeft = 3;
 
             return attack;
         }
