@@ -78,9 +78,6 @@ namespace CVCommon
         public Vector2 Size { get; set; }
 
         [XmlIgnore]
-        public Vector2 Speed { get; set; }
-
-        [XmlIgnore]
         public Vector2 ScreenPosition { get; set; }
 
         [XmlIgnore]
@@ -88,9 +85,6 @@ namespace CVCommon
 
         public virtual void Update(GameTime time)
         {
-            Speed = Movement_Restrictions.Apply(Speed);
-            WorldPosition += Speed * (float)time.ElapsedGameTime.TotalSeconds;
-            Movement_Restrictions.Reset();
             UpdateScreenPosition();
         }
 

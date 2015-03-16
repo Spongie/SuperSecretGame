@@ -189,7 +189,14 @@ namespace TheSuperTrueRealCV.Utilities
             if (piEntity.BotttomRect.Intersects(piPlatform.TopRect))
             {
                 piEntity.Movement_Restrictions.Down = true;
-                if(piEntity.WorldRect.Bottom > piPlatform.WorldPosition.Y)
+
+                if(((Platform)piPlatform).PlatformSettings.Platform_Type == PlatformType.SlopeUp)
+                {
+                    piEntity.WorldPosition = new Vector2(piEntity.WorldPosition.X,piEntity.WorldRect.Bottom + (piEntity.Center.X - piPlatform.WorldPosition.X) + (piPlatform.Size.Y / piPlatform.Size.X) - piEntity.Size.Y);
+                }
+
+
+                else if(piEntity.WorldRect.Bottom > piPlatform.WorldPosition.Y)
                     piEntity.WorldPosition = new Vector2(piEntity.WorldPosition.X, piPlatform.WorldPosition.Y - piEntity.Size.Y);
 
                 piEntity.IsJumping = false;

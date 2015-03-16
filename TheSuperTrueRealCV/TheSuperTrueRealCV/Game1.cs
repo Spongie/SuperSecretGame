@@ -61,7 +61,6 @@ namespace TheSuperTrueRealCV
             // Create a new SpriteBatch, which can be used to draw textures.
             ContentHolder.Init(Content);
             CameraController.InitCamera();
-            
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Texture2D s = Content.Load<Texture2D>("Test.png");
             Settings.SetDefaults();

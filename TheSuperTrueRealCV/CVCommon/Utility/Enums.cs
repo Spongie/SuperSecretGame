@@ -30,7 +30,9 @@
     public enum PlatformType
     {
         CastleWall,
-        CastleFloor
+        CastleFloor,
+        SlopeUp,
+        SlopeDown
     }
 
     public enum DamageType

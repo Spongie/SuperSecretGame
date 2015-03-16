@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Storage;
 using CVCommon;
 using CVCommon.Utility;
+using System.Xml.Serialization;
+using TheSuperTrueRealCV;
 
 namespace CV_clone
 {
@@ -17,12 +12,8 @@ namespace CV_clone
         protected int jumpPower;
         protected bool isHanging;
         protected float speedchange;
-        protected float timeSinceAnimationChange;
-        protected float timeBetweenAnimations;
-        protected int animationIndex;
-        protected List<Rectangle> animationRectangles;
-        protected List<Spell> spell;
         protected bool autoDirectionControl;
+        protected AnimationController ivAnimationController;
 
         public Moving_Entity()
         {
@@ -36,9 +27,9 @@ namespace CV_clone
             ApplyGravity = true;
             CurrentStats = new Stats();
             CurrentDirection = Direction.Right;
-            spell = new List<Spell>();
             Movement_Restrictions = new MovementRestrictions();
             jumpPower = 400;
+            ivAnimationController = new AnimationController();
         }
 
         public Stats CurrentStats { get; set; }
@@ -54,6 +45,9 @@ namespace CV_clone
         {
             get { return speedchange; }
         }
+
+        [XmlIgnore]
+        public Vector2 Speed { get; set; }
 
         public bool ApplyGravity { get; set; }
 
@@ -83,7 +77,13 @@ namespace CV_clone
                     CurrentDirection = Direction.Left;
             }
 
+            Speed = Movement_Restrictions.Apply(Speed);
+            WorldPosition += Speed * (float)time.ElapsedGameTime.TotalSeconds;
+            Movement_Restrictions.Reset();
+
             base.Update(time);
+
+            ivAnimationController.Update(time);
         }
 
         public virtual void Jump()
@@ -99,10 +99,21 @@ namespace CV_clone
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (CurrentDirection == Direction.Left)
-                spriteBatch.Draw(Texture, new Rectangle((int)ScreenPosition.X, (int)ScreenPosition.Y, (int)Size.X, (int)Size.Y), null, Color.White, 0.0f, Vector2.Zero, SpriteEffects.None, 0.0f);
+            if (ivAnimationController.CurrentAnimation != null)
+            {
+               Rectangle sourceFromAnimation = ivAnimationController.CurrentAnimation.getCurrentRectangle();
+               if (CurrentDirection == Direction.Left)
+                   spriteBatch.Draw(Texture, new Rectangle((int)ScreenPosition.X, (int)ScreenPosition.Y, (int)Size.X, (int)Size.Y), sourceFromAnimation, Color.White, 0.0f, Vector2.Zero, SpriteEffects.None, 0.0f);
+               else
+                   spriteBatch.Draw(Texture, new Rectangle((int)ScreenPosition.X, (int)ScreenPosition.Y, (int)Size.X, (int)Size.Y), sourceFromAnimation, Color.White, 0.0f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0.0f);
+            }
             else
-                spriteBatch.Draw(Texture, new Rectangle((int)ScreenPosition.X, (int)ScreenPosition.Y, (int)Size.X, (int)Size.Y), null, Color.White, 0.0f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0.0f);
+            {
+                if (CurrentDirection == Direction.Left)
+                    spriteBatch.Draw(Texture, new Rectangle((int)ScreenPosition.X, (int)ScreenPosition.Y, (int)Size.X, (int)Size.Y), null, Color.White, 0.0f, Vector2.Zero, SpriteEffects.None, 0.0f);
+                else
+                    spriteBatch.Draw(Texture, new Rectangle((int)ScreenPosition.X, (int)ScreenPosition.Y, (int)Size.X, (int)Size.Y), null, Color.White, 0.0f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0.0f);
+            }
         }
 
         public void DealDamage(float amount)

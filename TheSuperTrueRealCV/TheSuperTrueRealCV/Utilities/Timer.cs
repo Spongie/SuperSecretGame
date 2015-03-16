@@ -22,5 +22,10 @@ namespace CV_clone.Utilities
         {
             timeRunning += (float)time.ElapsedGameTime.TotalMilliseconds;
         }
+
+        public void Restart()
+        {
+            timeRunning = 0;
+        }
     }
 }
