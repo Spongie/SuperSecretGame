@@ -42,27 +42,27 @@
         Super
     }
 
-    public enum AIState
-    {
-        TurnAround,
-        NotAktive,
-        Idle,
-        Attack1,
-        Attack2,
-        GoForward,
-        GoBack,
-        RunLeft,
-        RunRight,
-        DiveRight,
-        DiveLeft,
-        FlyLeft,
-        FlyRight,
-        Jump,
-        JumpRight,
-        JumpLeft,
-        Spell1,
-        Spell2
-    }
+    //public enum AIState
+    //{
+    //    TurnAround,
+    //    NotAktive,
+    //    Idle,
+    //    Attack1,
+    //    Attack2,
+    //    GoForward,
+    //    GoBack,
+    //    RunLeft,
+    //    RunRight,
+    //    DiveRight,
+    //    DiveLeft,
+    //    FlyLeft,
+    //    FlyRight,
+    //    Jump,
+    //    JumpRight,
+    //    JumpLeft,
+    //    Spell1,
+    //    Spell2
+    //}
 
     public enum AIResult
     {
