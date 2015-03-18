@@ -3,19 +3,9 @@ using System.Collections;
 
 public class Timer : MonoBehaviour {
 
-	private float timeToRun;
-	private float timeRunning;
-	
-	public Timer(float msToRun)
-	{
-		timeToRun = msToRun;
-		timeRunning = 0;
-	}
-	
-	public bool Done
-	{
-		get { return timeToRun < timeRunning; }
-	}
+	public float timeToRun;
+	public float timeRunning;
+    public bool Done;
 	
 	public void Restart()
 	{
@@ -31,5 +21,6 @@ public class Timer : MonoBehaviour {
 	void Update () 
     {
 		timeRunning += Time.deltaTime;
+        Done = timeToRun < timeRunning;
 	}
 }
