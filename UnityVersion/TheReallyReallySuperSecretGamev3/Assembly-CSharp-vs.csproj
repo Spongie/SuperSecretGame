@@ -47,18 +47,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Attack.cs" />
     <Compile Include="Assets\Scripts\Character\Character_Controller.cs" />
     <Compile Include="Assets\Scripts\Character\Monsters\Bat.cs" />
     <Compile Include="Assets\Scripts\Character\Monsters\Monster.cs" />
     <Compile Include="Assets\Scripts\Character\Monsters\Skeleton.cs" />
     <Compile Include="Assets\Scripts\Character\Monsters\SkeletonArmor.cs" />
     <Compile Include="Assets\Scripts\Character\Monsters\Skeletonmusician.cs" />
-    <Compile Include="Assets\Scripts\PlayerControl.cs" />
     <Compile Include="Assets\Scripts\Utility\AttackDamageScaling.cs" />
     <Compile Include="Assets\Scripts\Utility\DamageCalcualtor.cs" />
     <Compile Include="Assets\Scripts\Utility\Enums.cs" />
+    <Compile Include="Assets\Scripts\Utility\ManualTimer.cs" />
     <Compile Include="Assets\Scripts\Utility\Stats.cs" />
     <Compile Include="Assets\Scripts\Utility\Timer.cs" />
+    <Compile Include="Assets\ThirdParty\Spriter2Unity\Example\Scripts\AnimationTestScript.cs" />
+    <Compile Include="Assets\ThirdParty\Spriter2Unity\Runtime\SortingOrderUpdate.cs" />
+    <Compile Include="Assets\ThirdParty\Spriter2Unity\Runtime\SpriterEntity.cs" />
+    <None Include="Assets\ThirdParty\Spriter2Unity\Example\Spriter Project\GreyGuy\Copyright_Information_Please_Read.txt" />
     <Reference Include="UnityEngine.UI">
       <HintPath>E:/Programs/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
     </Reference>

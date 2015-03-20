@@ -1,6 +1,7 @@
-﻿namespace TheSuperTrueRealCV.Utilities
+﻿using UnityEngine;
+namespace TheSuperTrueRealCV.Utilities
 {
-    public class AttackDamageScaling
+    public class AttackDamageScaling : MonoBehaviour
     {
         public float Damage;
         public float Magic;

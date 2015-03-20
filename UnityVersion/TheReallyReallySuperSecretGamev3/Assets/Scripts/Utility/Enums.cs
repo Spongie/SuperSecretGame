@@ -11,4 +11,18 @@ namespace Assets.Scripts.Utility
         Right,
         Still
     }
+
+    public enum AttackType
+    {
+        FollowOwner,
+        Moving,
+        Stationary
+    }
+
+    public enum AttackTarget
+    {
+        Player,
+        Monsters,
+        Everything
+    }
 }

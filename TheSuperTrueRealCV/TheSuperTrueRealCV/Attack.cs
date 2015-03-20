@@ -90,7 +90,7 @@ namespace TheSuperTrueRealCV
                 positionOffset = leftOffset;
         }
 
-        public override void Update(GameTime time)
+        void Update(GameTime time)
         {
             if (HitboxTimers.Count == 0 && lifeTimer == null)
                 lifeTimer = new Timer(msToLive);

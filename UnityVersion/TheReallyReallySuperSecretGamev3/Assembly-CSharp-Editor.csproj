@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+	<ProductVersion>10.0.20506</ProductVersion>
+	<SchemaVersion>2.0</SchemaVersion>
+	<ProjectGuid>{D6338495-DF35-0D2B-6550-CCB48D3FB297}</ProjectGuid>
+	<OutputType>Library</OutputType>
+	<AppDesignerFolder>Properties</AppDesignerFolder>
+	<RootNamespace></RootNamespace>
+	<AssemblyName>Assembly-CSharp-Editor</AssemblyName>
+	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+	<FileAlignment>512</FileAlignment>
+	<BaseDirectory>Assets</BaseDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	<DebugSymbols>true</DebugSymbols>
+	<DebugType>full</DebugType>
+	<Optimize>false</Optimize>
+	<OutputPath>Temp\bin\Debug\</OutputPath>
+	<DefineConstants>DEBUG;TRACE;UNITY_5_0_0;UNITY_5_0;UNITY_5;ENABLE_LICENSE_RENAME;ENABLE_NEW_BUGREPORTER;ENABLE_2D_PHYSICS;ENABLE_4_6_FEATURES;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_NEW_HIERARCHY;ENABLE_PHYSICS;ENABLE_PHYSICS_PHYSX3;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_AUDIOMIXER_SUSPEND;ENABLE_NONPRO;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_TEXTUREID_MAP;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_MONO;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;CROSS_PLATFORM_INPUT</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+	<DebugType>pdbonly</DebugType>
+	<Optimize>true</Optimize>
+	<OutputPath>Temp\bin\Release\</OutputPath>
+	<DefineConstants>TRACE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+	<Reference Include="System" />
+    <Reference Include="System.XML" />
+	<Reference Include="System.Core" />
+	<Reference Include="System.Xml.Linq" />
+	<Reference Include="UnityEngine">
+	  <HintPath>E:/Programs/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityEditor">
+	  <HintPath>E:/Programs/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	</Reference>
+  </ItemGroup>
+  <ItemGroup>
+     <Compile Include="Assets\ThirdParty\Spriter2Unity\Editor\GUI\SpriterEntityInspector.cs" />
+     <Compile Include="Assets\ThirdParty\Spriter2Unity\Editor\Spriter\BoneRef.cs" />
+     <Compile Include="Assets\ThirdParty\Spriter2Unity\Editor\Spriter\BoneTimelineKey.cs" />
+     <Compile Include="Assets\ThirdParty\Spriter2Unity\Editor\Spriter\Entity.cs" />
+     <Compile Include="Assets\ThirdParty\Spriter2Unity\Editor\Spriter\File.cs" />
+     <Compile Include="Assets\ThirdParty\Spriter2Unity\Editor\Spriter\Folder.cs" />
+     <Compile Include="Assets\ThirdParty\Spriter2Unity\Editor\Spriter\Key.cs" />
+     <Compile Include="Assets\ThirdParty\Spriter2Unity\Editor\Spriter\KeyElem.cs" />
+     <Compile Include="Assets\ThirdParty\Spriter2Unity\Editor\Spriter\MainlineKey.cs" />
+     <Compile Include="Assets\ThirdParty\Spriter2Unity\Editor\Spriter\ObjectRef.cs" />
+     <Compile Include="Assets\ThirdParty\Spriter2Unity\Editor\Spriter\ObjectType.cs" />
+     <Compile Include="Assets\ThirdParty\Spriter2Unity\Editor\Spriter\Ref.cs" />
+     <Compile Include="Assets\ThirdParty\Spriter2Unity\Editor\Spriter\ScmlObject.cs" />
+     <Compile Include="Assets\ThirdParty\Spriter2Unity\Editor\Spriter\SpatialInfo.cs" />
+     <Compile Include="Assets\ThirdParty\Spriter2Unity\Editor\Spriter\SpatialTimelineKey.cs" />
+     <Compile Include="Assets\ThirdParty\Spriter2Unity\Editor\Spriter\SpriteTimelineKey.cs" />
+     <Compile Include="Assets\ThirdParty\Spriter2Unity\Editor\Spriter\SpriterAnimation.cs" />
+     <Compile Include="Assets\ThirdParty\Spriter2Unity\Editor\Spriter\Timeline.cs" />
+     <Compile Include="Assets\ThirdParty\Spriter2Unity\Editor\Spriter\TimelineKey.cs" />
+     <Compile Include="Assets\ThirdParty\Spriter2Unity\Editor\Unity\AnimationBuilder.cs" />
+     <Compile Include="Assets\ThirdParty\Spriter2Unity\Editor\Unity\AnimationCurveBuilder.cs" />
+     <Compile Include="Assets\ThirdParty\Spriter2Unity\Editor\Unity\PrefabBuilder.cs" />
+     <Compile Include="Assets\ThirdParty\Spriter2Unity\Editor\Unity\ScmlPostProcessor.cs" />
+     <Compile Include="Assets\ThirdParty\Spriter2Unity\Editor\Utils\AnimationCurveUtils.cs" />
+     <Compile Include="Assets\ThirdParty\Spriter2Unity\Editor\Utils\AssetUtils.cs" />
+     <Compile Include="Assets\ThirdParty\Spriter2Unity\Editor\Utils\PrefabUtils.cs" />
+     <Compile Include="Assets\ThirdParty\Spriter2Unity\Editor\Utils\XmlUtils.cs" />
+     <Compile Include="Assets\ThirdParty\Spriter2Unity\Example\Editor\AnimationTestScriptInspector.cs" />
+     <None Include="Assets\ThirdParty\Spriter2Unity\Example\Spriter Project\GreyGuy\Copyright_Information_Please_Read.txt" />
+ <Reference Include="UnityEngine.UI">
+ <HintPath>E:/Programs/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.Graphs">
+ <HintPath>E:/Programs/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.Android.Extensions">
+ <HintPath>E:/Programs/Editor/Data/PlaybackEngines/androidplayer/UnityEditor.Android.Extensions.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.iOS.Extensions">
+ <HintPath>E:/Programs/Editor/Data/PlaybackEngines/iossupport/UnityEditor.iOS.Extensions.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.WP8.Extensions">
+ <HintPath>E:/Programs/Editor/Data/PlaybackEngines/wp8support/UnityEditor.WP8.Extensions.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.Metro.Extensions">
+ <HintPath>E:/Programs/Editor/Data/PlaybackEngines/metrosupport/UnityEditor.Metro.Extensions.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.BB10.Extensions">
+ <HintPath>E:/Programs/Editor/Data/PlaybackEngines/blackberryplayer/UnityEditor.BB10.Extensions.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.WebGL.Extensions">
+ <HintPath>E:/Programs/Editor/Data/PlaybackEngines/webglsupport/UnityEditor.WebGL.Extensions.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.LinuxStandalone.Extensions">
+ <HintPath>E:/Programs/Editor/Data/PlaybackEngines/linuxstandalonesupport/UnityEditor.LinuxStandalone.Extensions.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.WindowsStandalone.Extensions">
+ <HintPath>E:/Programs/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.OSXStandalone.Extensions">
+ <HintPath>E:/Programs/Editor/Data/PlaybackEngines/macstandalonesupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp.csproj">
+      <Project>{9F17D0EE-DDEA-F057-FCAE-BE96C2FC59F5}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+	   Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  
+</Project>

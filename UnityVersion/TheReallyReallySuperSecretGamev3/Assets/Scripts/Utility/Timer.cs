@@ -1,16 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Timer : MonoBehaviour {
+public class Timer : MonoBehaviour 
+{
 
 	public float timeToRun;
-	public float timeRunning;
-    public bool Done;
+	private float timeRunning;
 	
 	public void Restart()
 	{
 		timeRunning = 0;
 	}
+
+    public bool Done
+    {
+        get { return timeToRun < timeRunning; }
+    }
 
 	public void Restart(float piTimeToRun)
 	{
@@ -21,6 +26,5 @@ public class Timer : MonoBehaviour {
 	void Update () 
     {
 		timeRunning += Time.deltaTime;
-        Done = timeToRun < timeRunning;
 	}
 }

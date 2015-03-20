@@ -15,6 +15,8 @@ namespace TheSuperTrueRealCV.EnemyAI
         protected bool HaveAttacked;
         protected bool Newtimer;
         protected int newState;
+        protected bool waitingForAnimation = false;
+
 
         public override void Start()
         {
@@ -44,6 +46,9 @@ namespace TheSuperTrueRealCV.EnemyAI
 
         public virtual void Update()
         {
+            if (waitingForAnimation)
+                return;
+
             ivRigidbody.velocity = new Vector2(0, ivRigidbody.velocity.y);
 
             if (AiList.Count > 0)
@@ -51,7 +56,7 @@ namespace TheSuperTrueRealCV.EnemyAI
                 AiList[0].Invoke();
             }
 
-            ivAnimator.SetFloat("Speed", ivRigidbody.velocity.x);
+            
         }
 
         public override void FixedUpdate()
