@@ -8,6 +8,7 @@ namespace TheSuperTrueRealCV.EnemyAI
     class Skeleton : Monster
     {
         public GameObject ThrowAttack;
+        public Transform throwStartPosition;
 
         public override void Start()
         {
@@ -19,7 +20,7 @@ namespace TheSuperTrueRealCV.EnemyAI
             CurrentStats.Defense = 2;
             CurrentStats.MagicDamage = 0;
             CurrentStats.MagicDefense = 3;
-
+            ivFacingRight = true;
             AiTimer.Restart(0);          
         }
 
@@ -76,14 +77,14 @@ namespace TheSuperTrueRealCV.EnemyAI
         {
             if (AiTimer.Done && Newtimer == false)
             {
-                AiTimer.Restart(0.2f);
+                AiTimer.Restart(0.4f);
                 Newtimer = true;
             }
             if (AiTimer.Done && HaveAttacked == false)
             {
                 HaveAttacked = true;
                 //ny timer som avgör när han är färdig med sitt anfall och ska gå vidare med sin AI.
-                AiTimer.Restart(0.5f);
+                AiTimer.Restart(1f);
 
                 int speed = !ivFacingRight ? -200 : 200;
                 ivAnimator.SetTrigger("Throw");
@@ -119,7 +120,7 @@ namespace TheSuperTrueRealCV.EnemyAI
         {
             if (AiTimer.Done && Newtimer == false)
             {
-                float timer = random.Next(600, 1200) / 1000;
+                float timer = random.Next(1000, 1600) / 1000;
                 AiTimer.Restart(timer);
                 Newtimer = true;
             }
@@ -128,12 +129,12 @@ namespace TheSuperTrueRealCV.EnemyAI
             if (ivFacingRight == true)
             {
                 ivRigidbody.velocity = new Vector2(3, ivRigidbody.velocity.y);
-                ivAnimator.SetFloat("Speed", Mathf.Abs(ivRigidbody.velocity.x));
+                //ivAnimator.SetFloat("Speed", Mathf.Abs(ivRigidbody.velocity.x));
             }
             else if (ivFacingRight == false)
             {
                 ivRigidbody.velocity = new Vector2(-3, ivRigidbody.velocity.y);
-                ivAnimator.SetFloat("Speed", Mathf.Abs(ivRigidbody.velocity.x));
+                //ivAnimator.SetFloat("Speed", Mathf.Abs(ivRigidbody.velocity.x));
             }
             //ska röra sig i 1/4 ivRigidbody.velocity av spelaren
 
@@ -160,12 +161,13 @@ namespace TheSuperTrueRealCV.EnemyAI
             if (ivFacingRight == true)
             {
                 ivRigidbody.velocity = new Vector2(-3, ivRigidbody.velocity.y);
-                ivAnimator.SetFloat("Speed", Mathf.Abs(ivRigidbody.velocity.x));
+//                ivAnimator.SetFloat("Speed", Mathf.Abs(ivRigidbody.velocity.x));
+
             }
             else if (ivFacingRight == false)
             {
                 ivRigidbody.velocity = new Vector2(3, ivRigidbody.velocity.y);
-                ivAnimator.SetFloat("Speed", Mathf.Abs(ivRigidbody.velocity.x));
+  //              ivAnimator.SetFloat("Speed", Mathf.Abs(ivRigidbody.velocity.x));
             }
             //ska röra sig i 1/4 ivRigidbody.velocity av spelaren
 
@@ -212,8 +214,10 @@ namespace TheSuperTrueRealCV.EnemyAI
         public void OnThrowDone()
         {
             waitingForAnimation = false;
-            GameObject attack = Instantiate(ThrowAttack);
-            attack.GetComponent<Attack>().Owner = GetComponent<GameObject>();
+            GameObject attack = (GameObject)Instantiate(ThrowAttack, throwStartPosition.position, Quaternion.identity);
+            attack.GetComponent<Attack>().Owner = gameObject;
+            float xForce = 300 * (ivFacingRight ? 1 : -1);
+            attack.GetComponent<Rigidbody2D>().AddForce(new Vector2(xForce, 200));
         }
 
         private void Flip()

@@ -56,7 +56,7 @@ namespace TheSuperTrueRealCV.EnemyAI
                 AiList[0].Invoke();
             }
 
-            
+            ivAnimator.SetFloat("Speed", Mathf.Abs(ivRigidbody.velocity.x));            
         }
 
         public override void FixedUpdate()

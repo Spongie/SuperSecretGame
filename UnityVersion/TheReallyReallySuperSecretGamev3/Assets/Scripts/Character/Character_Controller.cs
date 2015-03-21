@@ -10,7 +10,7 @@ public class Character_Controller : MonoBehaviour
     public float Speed;
     public float JumpPower;
     public LayerMask GroundLayerMask;
-    protected bool ivFacingRight;
+    public bool ivFacingRight;
     protected Rigidbody2D ivRigidbody;
     private CircleCollider2D ivFeetCollider;
     protected Animator ivAnimator;

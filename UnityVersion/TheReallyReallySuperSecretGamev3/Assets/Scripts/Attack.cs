@@ -22,7 +22,7 @@ public class Attack : MonoBehaviour
         ivRigidBody.gravityScale = ApplyGravity ? 1 : 0;
 
         EntitiesHit = new Dictionary<GameObject, ManualTimer>();
-        Scaling = new AttackDamageScaling();
+        Scaling = GetComponent<AttackDamageScaling>();
         lifeTimer = GetComponent<Timer>();
         Scaling = GetComponent<AttackDamageScaling>();
 
@@ -43,6 +43,9 @@ public class Attack : MonoBehaviour
 
     public bool CanHitEntity(GameObject piEntity)
     {
+        if (piEntity.tag.ToLower() == "ground")
+            return false;
+
         if (piEntity == Owner && TargetType != AttackTarget.Everything)
             return false;
 
@@ -75,27 +78,13 @@ public class Attack : MonoBehaviour
         if (DiesOnCollision)
             Destroy(gameObject);
 
-        if (coll.gameObject.tag == "Ground")
-            HandleGroundCollision();
-
         if(CanHitEntity(coll.gameObject))
         {
             AddEntityToHit(coll.gameObject);
             var targetController = coll.gameObject.GetComponent<Character_Controller>();
+            Debug.Log(Owner == null);
             float dmg = DamageCalcualtor.CalculateDamage(Owner.GetComponent<Character_Controller>().CurrentStats, targetController.CurrentStats, Scaling);
             coll.gameObject.GetComponent<Character_Controller>().CurrentStats.DealDamage(dmg);
-        }
-    }
-
-    private void HandleGroundCollision()
-    {
-        if (Bouncing)
-        {
-            BouncesLeft--;
-            ivRigidBody.velocity = new Vector2(-0.8f * ivRigidBody.velocity.x, -0.8f * ivRigidBody.velocity.y);
-
-            if (BouncesLeft <= 0)
-                Destroy(gameObject);
         }
     }
 }

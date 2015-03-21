@@ -1,5 +1,21 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &164462
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 471476}
+  - 61: {fileID: 6193438}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &181118
 GameObject:
   m_ObjectHideFlags: 0
@@ -27,10 +43,23 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 181118}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2.45600271, y: -.55531925, z: 0}
   m_LocalScale: {x: .200000003, y: .150000006, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 471476}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!4 &471476
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 164462}
+  m_LocalRotation: {x: 0, y: 0, z: .161345482, w: .986898005}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 410954}
   m_RootOrder: 0
 --- !u!50 &5059776
 Rigidbody2D:
@@ -47,6 +76,19 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
+--- !u!61 &6193438
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 164462}
+  m_Enabled: 1
+  m_Material: {fileID: 6200000, guid: 34698ea0a2379ab43a4abc16abf3b39a, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: -.0599999987, y: 0}
+  serializedVersion: 2
+  m_Size: {x: .349999994, y: 2.70000005}
 --- !u!114 &11456802
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -73,7 +115,7 @@ MonoBehaviour:
   secondsToLive: 0
   secondsHitReset: 0
   lifeTimer: {fileID: 0}
-  ApplyGravity: 0
+  ApplyGravity: 1
   Owner: {fileID: 0}
   Bouncing: 1
   BouncesLeft: 3
