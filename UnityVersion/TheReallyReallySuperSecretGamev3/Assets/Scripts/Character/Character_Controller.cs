@@ -68,7 +68,6 @@ public class Character_Controller : MonoBehaviour
                     Flip();
                 break;
             case MovingState.Still:
-                ivRigidbody.velocity = new Vector2(0, ivRigidbody.velocity.y);
                 break;
         }
     }

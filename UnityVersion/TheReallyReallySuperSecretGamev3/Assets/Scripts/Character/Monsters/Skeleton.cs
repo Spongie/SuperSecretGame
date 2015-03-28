@@ -9,6 +9,7 @@ namespace TheSuperTrueRealCV.EnemyAI
     {
         public GameObject ThrowAttack;
         public Transform throwStartPosition;
+        public Vector2 RIGIDSPEED;
 
         public override void Start()
         {
@@ -21,11 +22,14 @@ namespace TheSuperTrueRealCV.EnemyAI
             CurrentStats.MagicDamage = 0;
             CurrentStats.MagicDefense = 3;
             ivFacingRight = true;
-            AiTimer.Restart(0);          
+            AiTimer.Restart(0);
+
+            Debug.Log(ivRigidbody.gravityScale);
         }
 
         public override void Update()
         {
+            RIGIDSPEED = ivRigidbody.velocity;
             base.Update();
         }
 
@@ -96,6 +100,7 @@ namespace TheSuperTrueRealCV.EnemyAI
             {
                 HaveAttacked = false;
                 Newtimer = false;
+                Debug.Log("zero");
                 ivRigidbody.velocity = Vector2.zero;
                 TurnAroundCheck();
                 newState = random.Next(0, 5);

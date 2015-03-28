@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TheSuperTrueRealCV.Utilities;
 using Assets.Scripts.Utility;
+using CVCommon.Utility;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Timer))]
@@ -57,6 +58,9 @@ public class Attack : MonoBehaviour
 
     void Update()
     {
+        if (lifeTimer.Done)
+            Destroy(gameObject);
+
         foreach (var timer in EntitiesHit)
         {
             timer.Value.Update(Time.deltaTime);
@@ -83,7 +87,7 @@ public class Attack : MonoBehaviour
             AddEntityToHit(coll.gameObject);
             var targetController = coll.gameObject.GetComponent<Character_Controller>();
             Debug.Log(Owner == null);
-            float dmg = DamageCalcualtor.CalculateDamage(Owner.GetComponent<Character_Controller>().CurrentStats, targetController.CurrentStats, Scaling);
+            float dmg = DamageCalcualtor.CalculateDamage(Owner.GetComponent<Stats>(), targetController.CurrentStats, Scaling);
             coll.gameObject.GetComponent<Character_Controller>().CurrentStats.DealDamage(dmg);
         }
     }

@@ -61,7 +61,6 @@ namespace TheSuperTrueRealCV.EnemyAI
 
         public override void FixedUpdate()
         {
-            
         }
 
         public void Disable()

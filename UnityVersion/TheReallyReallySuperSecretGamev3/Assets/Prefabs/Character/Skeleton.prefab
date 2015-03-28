@@ -1,5 +1,20 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &158140
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 410142}
+  m_Layer: 0
+  m_Name: ThrowPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &192656
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,10 +24,13 @@ GameObject:
   m_Component:
   - 4: {fileID: 469802}
   - 212: {fileID: 21234892}
-  - 95: {fileID: 9557888}
   - 114: {fileID: 11474880}
   - 50: {fileID: 5093966}
   - 114: {fileID: 11494432}
+  - 61: {fileID: 6137006}
+  - 58: {fileID: 5899196}
+  - 95: {fileID: 9513026}
+  - 114: {fileID: 11462086}
   m_Layer: 0
   m_Name: Skeleton
   m_TagString: Monster
@@ -20,6 +38,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &410142
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158140}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.11999989, y: 2.0999999, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 469802}
+  m_RootOrder: 0
 --- !u!4 &469802
 Transform:
   m_ObjectHideFlags: 1
@@ -27,9 +57,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 192656}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.25300002, y: -.818000019, z: 0}
+  m_LocalPosition: {x: 1.25300002, y: .246999994, z: 0}
   m_LocalScale: {x: .200000003, y: .200000003, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 410142}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!50 &5093966
@@ -42,12 +73,38 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
   m_GravityScale: 1
-  m_FixedAngle: 0
+  m_FixedAngle: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
---- !u!95 &9557888
+--- !u!58 &5899196
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 192656}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: .0900000036, y: -4.86999989}
+  serializedVersion: 2
+  m_Radius: 1.11000001
+--- !u!61 &6137006
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 192656}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: -.639999986}
+  serializedVersion: 2
+  m_Size: {x: 1.55999994, y: 6.13000011}
+--- !u!95 &9513026
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -64,6 +121,39 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11462086
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 192656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a37ee77ace6d7bc4fb844e2c760a045d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaximumHealth: 111
+  CurrentExp: 0
+  MaximumExp: 0
+  Level: 0
+  CurrentHealth: 105
+  MaximumMana: 0
+  CurrentMana: 0
+  Damage: 3.82999992
+  Defense: 3.45000005
+  MagicDamage: 1.90999997
+  MagicDefense: 2.86999989
+  Luck: -4.88000011
+  Resistance: 0
+  BaseCurseResist: 0
+  BaseMpDrainResist: 0
+  BaseLifeLeechResist: 0
+  BaseInstaKillResist: 0
+  BaseSlowResist: 0
+  BaseStatsLossResist: 0
+  BaseTimeStopResist: 0
+  BaseFreezeResist: 0
+  BaseFearResist: 0
 --- !u!114 &11474880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -76,8 +166,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToRun: 0
-  timeRunning: 0
-  Done: 0
 --- !u!114 &11494432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -95,7 +183,11 @@ MonoBehaviour:
   GroundLayerMask:
     serializedVersion: 2
     m_Bits: 256
+  ivFacingRight: 0
   AiTimer: {fileID: 0}
+  ThrowAttack: {fileID: 181118, guid: 06865ffbd615ed84eac35509823121bd, type: 2}
+  throwStartPosition: {fileID: 410142}
+  RIGIDSPEED: {x: 0, y: 0}
 --- !u!212 &21234892
 SpriteRenderer:
   m_ObjectHideFlags: 1

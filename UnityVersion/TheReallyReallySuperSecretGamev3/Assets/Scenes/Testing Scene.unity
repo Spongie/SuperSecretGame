@@ -155,33 +155,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
---- !u!1 &472434598
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 472434599}
-  m_Layer: 0
-  m_Name: ThrowPosition
-  m_TagString: Untagged
-  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &472434599
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 472434598}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.11999989, y: 2.0999999, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2082864594}
-  m_RootOrder: 0
 --- !u!1001 &753615432
 Prefab:
   m_ObjectHideFlags: 0
@@ -221,6 +194,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5007068, guid: 8ad8c65a4f9134448b740cb5d4ea2962, type: 2}
+      propertyPath: m_AngularDrag
+      value: .0500000007
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866560, guid: 8ad8c65a4f9134448b740cb5d4ea2962, type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8ad8c65a4f9134448b740cb5d4ea2962, type: 2}
   m_IsPrefabParent: 0
@@ -248,7 +229,7 @@ BoxCollider2D:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 840863284}
   m_Enabled: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 4a7fd6c113504154091a6a80f390d7e0, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
@@ -520,85 +501,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 5093966, guid: 69d0aec1bf11b10498744aec4d1691f0, type: 2}
-      propertyPath: m_FixedAngle
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11494432, guid: 69d0aec1bf11b10498744aec4d1691f0, type: 2}
-      propertyPath: ThrowAttack
-      value: 
-      objectReference: {fileID: 181118, guid: 06865ffbd615ed84eac35509823121bd, type: 2}
-    - target: {fileID: 11494432, guid: 69d0aec1bf11b10498744aec4d1691f0, type: 2}
-      propertyPath: throwStartPosition
-      value: 
-      objectReference: {fileID: 472434599}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 69d0aec1bf11b10498744aec4d1691f0, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &2082864593
-GameObject:
-  m_PrefabParentObject: {fileID: 192656, guid: 69d0aec1bf11b10498744aec4d1691f0, type: 2}
-  m_PrefabInternal: {fileID: 2066968163}
---- !u!4 &2082864594
-Transform:
-  m_PrefabParentObject: {fileID: 469802, guid: 69d0aec1bf11b10498744aec4d1691f0, type: 2}
-  m_PrefabInternal: {fileID: 2066968163}
---- !u!61 &2082864600
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2082864593}
-  m_Enabled: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: -.639999986}
-  serializedVersion: 2
-  m_Size: {x: 1.55999994, y: 6.13000011}
---- !u!58 &2082864601
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2082864593}
-  m_Enabled: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: .0900000036, y: -4.86999989}
-  serializedVersion: 2
-  m_Radius: 1.11000001
---- !u!114 &2082864602
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2082864593}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a37ee77ace6d7bc4fb844e2c760a045d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaximumHealth: 111
-  CurrentExp: 0
-  MaximumExp: 0
-  Level: 0
-  CurrentHealth: 105
-  MaximumMana: 0
-  CurrentMana: 0
-  Damage: 3.82999992
-  Defense: 3.45000005
-  MagicDamage: 1.90999997
-  MagicDefense: 2.86999989
-  Luck: -4.88000011
-  Resistance: 0
-  BaseCurseResist: 0
-  BaseMpDrainResist: 0
-  BaseLifeLeechResist: 0
-  BaseInstaKillResist: 0
-  BaseSlowResist: 0
-  BaseStatsLossResist: 0
-  BaseTimeStopResist: 0
-  BaseFreezeResist: 0
-  BaseFearResist: 0
