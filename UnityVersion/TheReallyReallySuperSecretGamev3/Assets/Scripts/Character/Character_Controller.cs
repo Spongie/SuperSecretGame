@@ -37,6 +37,8 @@ public class Character_Controller : MonoBehaviour
             moving = MovingState.Right;
         else if (input < 0)
             moving = MovingState.Left;
+        else if (ivRigidbody.velocity.y > 0)
+            ivRigidbody.velocity = new Vector2(0, ivRigidbody.velocity.y);
 
         SetMovingState(moving);
     }

@@ -46,6 +46,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Elementals\Scripts\OrbitCamera.cs" />
+     <Compile Include="Assets\Elementals\Scripts\TestParticles.cs" />
      <Compile Include="Assets\Scripts\Attack.cs" />
      <Compile Include="Assets\Scripts\Character\Character_Controller.cs" />
      <Compile Include="Assets\Scripts\Character\Monsters\Bat.cs" />
@@ -53,6 +55,8 @@
      <Compile Include="Assets\Scripts\Character\Monsters\Skeleton.cs" />
      <Compile Include="Assets\Scripts\Character\Monsters\SkeletonArmor.cs" />
      <Compile Include="Assets\Scripts\Character\Monsters\Skeletonmusician.cs" />
+     <Compile Include="Assets\Scripts\Character\PlatCharController.cs" />
+     <Compile Include="Assets\Scripts\MovingPlatform.cs" />
      <Compile Include="Assets\Scripts\Utility\AttackDamageScaling.cs" />
      <Compile Include="Assets\Scripts\Utility\DamageCalcualtor.cs" />
      <Compile Include="Assets\Scripts\Utility\Enums.cs" />
@@ -63,6 +67,7 @@
      <Compile Include="Assets\ThirdParty\Spriter2Unity\Runtime\SortingOrderUpdate.cs" />
      <Compile Include="Assets\ThirdParty\Spriter2Unity\Runtime\SpriterEntity.cs" />
      <None Include="Assets\ThirdParty\Spriter2Unity\Example\Spriter Project\GreyGuy\Copyright_Information_Please_Read.txt" />
+     <None Include="Assets\Elementals\!Readme.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>E:/Programs/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

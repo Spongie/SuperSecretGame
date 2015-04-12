@@ -102,6 +102,7 @@ namespace TheSuperTrueRealCV.EnemyAI
                 Newtimer = false;
                 Debug.Log("zero");
                 ivRigidbody.velocity = Vector2.zero;
+                ivAnimator.SetFloat("Speed", 0f);
                 TurnAroundCheck();
                 newState = random.Next(0, 5);
 
@@ -134,12 +135,12 @@ namespace TheSuperTrueRealCV.EnemyAI
             if (ivFacingRight == true)
             {
                 ivRigidbody.velocity = new Vector2(3, ivRigidbody.velocity.y);
-                //ivAnimator.SetFloat("Speed", Mathf.Abs(ivRigidbody.velocity.x));
+                ivAnimator.SetFloat("Speed", Mathf.Abs(ivRigidbody.velocity.x));
             }
             else if (ivFacingRight == false)
             {
                 ivRigidbody.velocity = new Vector2(-3, ivRigidbody.velocity.y);
-                //ivAnimator.SetFloat("Speed", Mathf.Abs(ivRigidbody.velocity.x));
+                ivAnimator.SetFloat("Speed", Mathf.Abs(ivRigidbody.velocity.x));
             }
             //ska röra sig i 1/4 ivRigidbody.velocity av spelaren
 
@@ -166,13 +167,13 @@ namespace TheSuperTrueRealCV.EnemyAI
             if (ivFacingRight == true)
             {
                 ivRigidbody.velocity = new Vector2(-3, ivRigidbody.velocity.y);
-//                ivAnimator.SetFloat("Speed", Mathf.Abs(ivRigidbody.velocity.x));
+                ivAnimator.SetFloat("Speed", Mathf.Abs(ivRigidbody.velocity.x));
 
             }
             else if (ivFacingRight == false)
             {
                 ivRigidbody.velocity = new Vector2(3, ivRigidbody.velocity.y);
-  //              ivAnimator.SetFloat("Speed", Mathf.Abs(ivRigidbody.velocity.x));
+                ivAnimator.SetFloat("Speed", Mathf.Abs(ivRigidbody.velocity.x));
             }
             //ska röra sig i 1/4 ivRigidbody.velocity av spelaren
 
