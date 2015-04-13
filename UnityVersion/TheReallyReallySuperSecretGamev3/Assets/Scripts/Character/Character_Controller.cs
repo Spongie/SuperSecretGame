@@ -51,7 +51,6 @@ public class Character_Controller : MonoBehaviour
     public bool IsGrounded()
     {
         var hit = Physics2D.Raycast(ivFeetCollider.transform.position, -Vector2.up, ivFeetCollider.radius + 0.4f, GroundLayerMask);
-        Debug.Log((hit.collider != null).ToString());
         return hit.collider != null;
     }
 

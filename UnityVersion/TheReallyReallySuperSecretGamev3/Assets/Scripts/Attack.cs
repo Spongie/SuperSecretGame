@@ -85,10 +85,9 @@ public class Attack : MonoBehaviour
         if(CanHitEntity(coll.gameObject))
         {
             AddEntityToHit(coll.gameObject);
-            var targetController = coll.gameObject.GetComponent<Character_Controller>();
-            Debug.Log(Owner == null);
-            float dmg = DamageCalcualtor.CalculateDamage(Owner.GetComponent<Stats>(), targetController.CurrentStats, Scaling);
-            coll.gameObject.GetComponent<Character_Controller>().CurrentStats.DealDamage(dmg);
+            var targetStats = coll.gameObject.GetComponent<Stats>();
+            float dmg = DamageCalcualtor.CalculateDamage(Owner.GetComponent<Stats>(), targetStats, Scaling);
+            targetStats.DealDamage(dmg);
         }
     }
 }
