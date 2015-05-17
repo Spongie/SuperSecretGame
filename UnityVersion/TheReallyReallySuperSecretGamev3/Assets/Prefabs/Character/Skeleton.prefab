@@ -177,6 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45547eebf36a92d4fab667d7e37a13c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IgnoreGravityTime: 0
   CurrentStats: {fileID: 0}
   Speed: 0
   JumpPower: 0
@@ -187,7 +188,6 @@ MonoBehaviour:
   AiTimer: {fileID: 0}
   ThrowAttack: {fileID: 181118, guid: 06865ffbd615ed84eac35509823121bd, type: 2}
   throwStartPosition: {fileID: 410142}
-  RIGIDSPEED: {x: 0, y: 0}
 --- !u!212 &21234892
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -161,7 +161,7 @@ public class PlatCharController : MonoBehaviour
         // We start off by assuming we are maintaining our velocity.
         float xVel = ivRigidbody.velocity.x;
         float yVel = ivRigidbody.velocity.y;
-
+        
         // If we're grounded, maintain our velocity at platform velocity, with slight downward pressure to maintain the collision.
         if (isGrounded)
         {
@@ -231,6 +231,7 @@ public class PlatCharController : MonoBehaviour
                 xVel,
                 yVel
             );
+
 
         // Update facing
         Vector3 scale = this.transform.localScale;

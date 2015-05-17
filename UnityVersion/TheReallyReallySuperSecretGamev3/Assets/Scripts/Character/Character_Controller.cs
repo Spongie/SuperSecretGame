@@ -6,6 +6,7 @@ using Assets.Scripts.Utility;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Character_Controller : MonoBehaviour 
 {
+    public float IgnoreGravityTime;
     public Stats CurrentStats;
     public float Speed;
     public float JumpPower;
@@ -15,6 +16,9 @@ public class Character_Controller : MonoBehaviour
     private CircleCollider2D ivFeetCollider;
     protected Animator ivAnimator;
 
+    float ivOriginalGravity;
+    ManualTimer ivGravityTimer;
+
 	public virtual void Start() 
     {
         CurrentStats = GetComponent<Stats>();
@@ -22,16 +26,23 @@ public class Character_Controller : MonoBehaviour
         ivFacingRight = true;
         ivRigidbody = GetComponent<Rigidbody2D>();
         ivAnimator = GetComponent<Animator>();
+        ivOriginalGravity = ivRigidbody.gravityScale;
+        ivGravityTimer = new ManualTimer(0);
 	}
 
     public virtual void FixedUpdate()
     {
+        ivGravityTimer.Update(Time.deltaTime);
+
         float input = Input.GetAxisRaw("Horizontal");
 
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
             Jump();
 
         MovingState moving = MovingState.Still;
+
+        if (ivGravityTimer.Done)
+            ivRigidbody.gravityScale = ivOriginalGravity;
 
         if (input > 0)
             moving = MovingState.Right;
@@ -45,7 +56,10 @@ public class Character_Controller : MonoBehaviour
 
     protected void Jump()
     {
-        ivRigidbody.AddForce(Vector2.up * JumpPower);
+        ivRigidbody.velocity = new Vector2(ivRigidbody.velocity.x, JumpPower);
+
+         ivGravityTimer.Restart(IgnoreGravityTime);
+            ivRigidbody.gravityScale = 0f;
     }
 
     public bool IsGrounded()
