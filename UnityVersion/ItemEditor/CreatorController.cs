@@ -2,12 +2,9 @@
 using System.IO;
 using Newtonsoft.Json;
 using Assets.Scripts.Utility;
-using System.ComponentModel;
 using System;
-using System.Threading;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Controls;
 using System.Collections.ObjectModel;
 
 namespace ItemEditor
@@ -21,12 +18,12 @@ namespace ItemEditor
 
         public Item SelectedItem { get; set; }
 
-        public ObservableCollection<ImageSource> Images { get; set; }
+        public ObservableCollection<ItemIcon> Images { get; set; }
 
         public CreatorController()
         {
             Items = new ObservableCollection<Item>();
-            Images = new ObservableCollection<ImageSource>();
+            Images = new ObservableCollection<ItemIcon>();
 
             if (File.Exists("config.ini"))
             {
@@ -88,7 +85,7 @@ namespace ItemEditor
                 image.BeginInit();
                 image.UriSource = new Uri(file);
                 image.EndInit();
-                Images.Add(image);
+                Images.Add(new ItemIcon(image));
             }
         }
 

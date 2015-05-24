@@ -47,7 +47,10 @@
         <ListBox x:Name="ivListboxIcons" Grid.Column="2" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Stretch" ItemsSource="{Binding}" SelectionChanged="ivListboxIcons_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Image Height="64" HorizontalAlignment="Center" Stretch="Fill" Margin="0" VerticalAlignment="Top" Width="64" Source="{Binding}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Height="64" HorizontalAlignment="Center" Stretch="Fill" Margin="0" VerticalAlignment="Top" Width="64" Source="{Binding Path=Image}"/>
+                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center" FontSize="18" Margin="5"/>
+                    </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

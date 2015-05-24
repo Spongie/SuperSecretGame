@@ -46,13 +46,16 @@ namespace ItemEditor
 
         private void ivListboxItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ivController.SelectedItem = (Item)e.AddedItems[0];
-            ivItemEditorStack.DataContext = ivController.SelectedItem;
+            if (e.AddedItems.Count > 0)
+            {
+                ivController.SelectedItem = (Item)e.AddedItems[0];
+                ivItemEditorStack.DataContext = ivController.SelectedItem;
+            }
         }
 
         private void ivListboxIcons_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ivController.SelectedItem.IconName = System.IO.Path.GetFileNameWithoutExtension(((ImageSource)e.AddedItems[0]).ToString());
+            ivController.SelectedItem.IconName = ((ItemIcon)e.AddedItems[0]).Name;
         }
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
