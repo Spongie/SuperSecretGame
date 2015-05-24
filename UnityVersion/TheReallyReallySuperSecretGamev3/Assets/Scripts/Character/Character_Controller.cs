@@ -2,6 +2,8 @@
 using System.Collections;
 using CVCommon.Utility;
 using Assets.Scripts.Utility;
+using Newtonsoft.Json;
+using System.IO;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Character_Controller : MonoBehaviour 

@@ -53,6 +53,9 @@
  <Reference Include="UnityEngine.UI">
  <HintPath>E:/Programs/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
+ <Reference Include="Newtonsoft.Json">
+ <HintPath>E:/Programming/GitHub/SuperSecretGame/UnityVersion/TheReallyReallySuperSecretGamev3/Assets/Newtonsoft.Json.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>E:/Programs/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
  </Reference>
