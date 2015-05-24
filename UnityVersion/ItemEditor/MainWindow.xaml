@@ -1,0 +1,55 @@
+﻿<Window x:Class="ItemEditor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="600" Width="725">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="476*"/>
+            <RowDefinition Height="43*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="190*"/>
+            <ColumnDefinition Width="280*"/>
+            <ColumnDefinition Width="247*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox x:Name="ivListboxItems" Margin="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.RowSpan="2" ItemsSource="{Binding}" SelectionChanged="ivListboxItems_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding Path=Name}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel x:Name="ivItemEditorStack" Grid.Column="1" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Stretch" Grid.RowSpan="2">
+            <Label Content="Name"/>
+            <TextBox Height="50" TextWrapping="Wrap" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontSize="30"/>
+            <Label Content="Slot"/>
+            <ComboBox ItemsSource="{Binding Path=ItemSlots}" SelectedItem="{Binding Path=Slot}"/>
+            <Label Content="Damage"/>
+            <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=Damage}" FontSize="18"/>
+            <Label Content="Defense"/>
+            <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=Defense}" FontSize="18"/>
+            <Label Content="MagicDamage"/>
+            <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=MagicDamage}" FontSize="18"/>
+            <Label Content="MagicDefense"/>
+            <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=MagicDefense}" FontSize="18"/>
+            <Label Content="Luck"/>
+            <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=Luck}" FontSize="18"/>
+            <Label Content="Resistance"/>
+            <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=Resistance}" FontSize="18"/>
+            <Label Content="IconName"/>
+            <TextBlock Height="30" TextWrapping="Wrap" Text="{Binding Path=IconName}" FontSize="18"/>
+        </StackPanel>
+        <Button Content="Add Item" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="10,10,0,0" Grid.Row="1" Width="82" Click="ButtonAdd_Click"/>
+        <Button Content="Remove Item" HorizontalAlignment="Right" VerticalAlignment="Top" Width="93" Margin="0,10,0,0" Grid.Row="1" Click="ButtonRemove_Click"/>
+        <Button Content="Save Items" Grid.Column="2" HorizontalAlignment="Right" Margin="5,5,10,5" Grid.Row="1" VerticalAlignment="Stretch" Width="75" Click="ButtonSave_Click"/>
+        <Button Content="Clear Config" Grid.Column="2" HorizontalAlignment="Right" Margin="5,5,100,5" Grid.Row="1" VerticalAlignment="Stretch" Width="75" Click="ButtonClear_Click"/>
+        <ProgressBar x:Name="ivProgressBar" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2" Minimum="0" Maximum="100" FlowDirection="LeftToRight"/>
+        <ListBox x:Name="ivListboxIcons" Grid.Column="2" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Stretch" ItemsSource="{Binding}" SelectionChanged="ivListboxIcons_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Image Height="64" HorizontalAlignment="Center" Stretch="Fill" Margin="0" VerticalAlignment="Top" Width="64" Source="{Binding}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Window>
