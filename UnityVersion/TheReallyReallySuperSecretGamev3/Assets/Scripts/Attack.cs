@@ -30,6 +30,7 @@ public class Attack : MonoBehaviour
         EntitiesHit = new Dictionary<GameObject, ManualTimer>();
     }
 
+    //this is a nice comment
     public Dictionary<GameObject, ManualTimer> EntitiesHit { get; set; }
 
     private AttackDamageScaling Scaling;
