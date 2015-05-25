@@ -73,3 +73,6 @@ Ankh.NoLoad
 .Trashes
 ehthumbs.db
 [Tt]humbs.db
+*.csproj
+*.csproj
+*.sln
