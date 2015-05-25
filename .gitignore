@@ -77,3 +77,5 @@ ehthumbs.db
 *.csproj
 *.sln
 UnityVersion/TheReallyReallySuperSecretGamev3/Library/assetDatabase3
+UnityVersion/TheReallyReallySuperSecretGamev3/Library/guidmapper
+*.dwlt
