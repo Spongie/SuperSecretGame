@@ -58,6 +58,9 @@ namespace ItemEditor
         {
             foreach (var path in Directory.GetFiles(ivItemsPath))
             {
+                if (path.EndsWith(".meta"))
+                    continue;
+
                 var jsonItem = File.ReadAllText(path);
                 var item = JsonConvert.DeserializeObject<Item>(jsonItem);
                 Items.Add(item);
