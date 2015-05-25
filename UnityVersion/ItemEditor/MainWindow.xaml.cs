@@ -35,6 +35,8 @@ namespace ItemEditor
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
             ivController.AddItem();
+
+            ivListboxItems.SelectedIndex = ivListboxItems.Items.Count - 1;
         }
 
         private void ivListboxItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
