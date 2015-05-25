@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+
 namespace CVCommon.Utility
 {
 	public class Stats : MonoBehaviour

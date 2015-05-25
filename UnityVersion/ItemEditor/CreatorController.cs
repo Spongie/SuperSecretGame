@@ -3,7 +3,6 @@ using System.IO;
 using Newtonsoft.Json;
 using Assets.Scripts.Utility;
 using System;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Collections.ObjectModel;
 
@@ -34,6 +33,7 @@ namespace ItemEditor
 
             GetItemsPath();
             GetIcons();
+            LoadItems();
 
             File.WriteAllLines("config.ini", new string[] { ivItemsPath, ivIconPath });
         }
@@ -52,6 +52,16 @@ namespace ItemEditor
             }
             else
                 ivItemsPath = Application.ExecutablePath;
+        }
+
+        private void LoadItems()
+        {
+            foreach (var path in Directory.GetFiles(ivItemsPath))
+            {
+                var jsonItem = File.ReadAllText(path);
+                var item = JsonConvert.DeserializeObject<Item>(jsonItem);
+                Items.Add(item);
+            }
         }
 
         private void GetIcons()
@@ -93,7 +103,7 @@ namespace ItemEditor
         {
             var item = new Item()
             {
-                Name = "Temp",
+                Name = "Temp" + new Random().Next(Int16.MaxValue),
                 Damage = 0.0f,
                 Defense = 0.0f,
                 MagicDamage = 0.0f,
