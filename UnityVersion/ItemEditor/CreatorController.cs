@@ -5,6 +5,7 @@ using Assets.Scripts.Utility;
 using System;
 using System.Windows.Media.Imaging;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace ItemEditor
 {
@@ -12,6 +13,7 @@ namespace ItemEditor
     {
         private string ivItemsPath;
         private string ivIconPath;
+        private List<string> ivOriginalFiles;
 
         public ObservableCollection<Item> Items { get; set; }
 
@@ -23,6 +25,7 @@ namespace ItemEditor
         {
             Items = new ObservableCollection<Item>();
             Images = new ObservableCollection<ItemIcon>();
+            ivOriginalFiles = new List<string>();
 
             if (File.Exists("config.ini"))
             {
@@ -58,9 +61,14 @@ namespace ItemEditor
         {
             foreach (var path in Directory.GetFiles(ivItemsPath))
             {
+                if (path.EndsWith(".meta"))
+                    continue;
+
                 var jsonItem = File.ReadAllText(path);
                 var item = JsonConvert.DeserializeObject<Item>(jsonItem);
                 Items.Add(item);
+
+                ivOriginalFiles.Add(path);
             }
         }
 
@@ -118,12 +126,10 @@ namespace ItemEditor
 
         public void SaveItems(Action<int> piReportProgress)
         {
-            var files = Directory.GetFiles(ivItemsPath);
-
-            int maxProgress = files.Length + Items.Count;
+            int maxProgress = ivOriginalFiles.Count + Items.Count;
             int currentProgress = 0;
 
-            foreach (var file in files)
+            foreach (var file in ivOriginalFiles)
             {
                 File.Delete(file);
                 

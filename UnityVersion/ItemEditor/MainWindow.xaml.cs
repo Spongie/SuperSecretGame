@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Utility;
 using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.ComponentModel;
@@ -20,11 +21,15 @@ namespace ItemEditor
             ivController = new CreatorController();
             ivListboxItems.DataContext = ivController.Items;
             ivListboxIcons.DataContext = ivController.Images;
+
+            if (ivController.Items.Any())
+                ivListboxItems.SelectedIndex = 0;
         }
 
         private void ButtonRemove_Click(object sender, RoutedEventArgs e)
         {
-            ivController.Items.RemoveAt(ivListboxItems.SelectedIndex);
+            if(ivListboxItems.SelectedIndex >= 0)
+                ivController.Items.RemoveAt(ivListboxItems.SelectedIndex);
         }
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)

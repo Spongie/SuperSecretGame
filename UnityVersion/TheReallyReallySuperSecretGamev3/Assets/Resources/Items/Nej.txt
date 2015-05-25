@@ -1,0 +1,1 @@
+{"IconName":"Weapon01","Slot":0,"ItemSlots":[0,1,2,3,4,5,6,7,8],"Name":"Nej","Damage":2.0,"Defense":0.0,"MagicDamage":0.0,"MagicDefense":0.0,"Luck":0.0,"Resistance":0.0}
