@@ -1,11 +1,12 @@
-﻿using CVCommon;
+﻿using Assets.Scripts.Utility;
+using CVCommon;
 using CVCommon.Utility;
 
 namespace TheSuperTrueRealCV.Utilities
 {
     public static class DamageCalcualtor
     {
-        public static float CalculateDamage(Stats piAttacker, Stats piTarget, AttackDamageScaling piAttackScaling)
+        public static float CalculateDamage(CStats piAttacker, CStats piTarget, AttackDamageScaling piAttackScaling)
         {
             float baseDamage = (piAttacker.Damage * piAttackScaling.Damage) + (piAttacker.MagicDamage * piAttackScaling.Magic);
 

@@ -14,12 +14,12 @@ namespace TheSuperTrueRealCV.EnemyAI
         {
             base.Start();
 
-            CurrentStats.MaximumHealth = 100;
-            CurrentStats.MaximumMana = 0;
-            CurrentStats.Damage = 10;
-            CurrentStats.Defense = 2;
-            CurrentStats.MagicDamage = 0;
-            CurrentStats.MagicDefense = 3;
+            CurrentStats.stats.MaximumHealth = 100;
+            CurrentStats.stats.MaximumMana = 0;
+            CurrentStats.stats.Damage = 10;
+            CurrentStats.stats.Defense = 2;
+            CurrentStats.stats.MagicDamage = 0;
+            CurrentStats.stats.MagicDefense = 3;
             ivFacingRight = true;
             AiTimer.Restart(0);
         }

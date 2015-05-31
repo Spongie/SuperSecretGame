@@ -13,12 +13,12 @@ namespace TheSuperTrueRealCV.EnemyAI
         public override void Start()
         {
             base.Start();
-            CurrentStats.MaximumHealth = 100;
-            CurrentStats.MaximumMana = 0;
-            CurrentStats.Damage = 10;
-            CurrentStats.Defense = 2;
-            CurrentStats.MagicDamage = 0;
-            CurrentStats.MagicDefense = 3;
+            CurrentStats.stats.MaximumHealth = 100;
+            CurrentStats.stats.MaximumMana = 0;
+            CurrentStats.stats.Damage = 10;
+            CurrentStats.stats.Defense = 2;
+            CurrentStats.stats.MagicDamage = 0;
+            CurrentStats.stats.MagicDefense = 3;
 
             AiTimer.Restart(0);
         }
@@ -70,7 +70,7 @@ namespace TheSuperTrueRealCV.EnemyAI
 
         public override void UpdateIdle()
         {
-            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.HealthPercentage <= 40)
+            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.stats.HealthPercentage <= 40)
             {
                 Newtimer = false;
                 AiList.Add(() => UpdateDeepGrave());
@@ -152,7 +152,7 @@ namespace TheSuperTrueRealCV.EnemyAI
 
         public void UpdateMagicAttack1()
         {
-            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.HealthPercentage <= 40)
+            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.stats.HealthPercentage <= 40)
             {
                 Newtimer = false;
                 AiList.Add(() => UpdateDeepGrave());
@@ -178,7 +178,7 @@ namespace TheSuperTrueRealCV.EnemyAI
 
         public override void UpdateAttack()
         {
-            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.HealthPercentage <= 40)
+            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.stats.HealthPercentage <= 40)
             {
                 Newtimer = false;
                 AiList.Add(() => UpdateDeepGrave());
@@ -208,7 +208,7 @@ namespace TheSuperTrueRealCV.EnemyAI
 
         public void UpdateAttack2()
         {
-            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.HealthPercentage <= 40)
+            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.stats.HealthPercentage <= 40)
             {
                 Newtimer = false;
                 AiList.Add(() => UpdateDeepGrave());
@@ -238,7 +238,7 @@ namespace TheSuperTrueRealCV.EnemyAI
 
         public void UpdateMoveBack()
         {
-            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.HealthPercentage <= 40)
+            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.stats.HealthPercentage <= 40)
             {
                 Newtimer = false;
                 AiList.Add(() => UpdateDeepGrave());
@@ -297,7 +297,7 @@ namespace TheSuperTrueRealCV.EnemyAI
 
         public override void UpdateGoForward()
         {
-            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.HealthPercentage <= 40)
+            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.stats.HealthPercentage <= 40)
             {
                 Newtimer = false;
                 AiList.Add(() => UpdateDeepGrave());
@@ -356,7 +356,7 @@ namespace TheSuperTrueRealCV.EnemyAI
 
         public void UpdateJumpBack()
         {
-            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.HealthPercentage <= 40)
+            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.stats.HealthPercentage <= 40)
             {
                 Newtimer = false;
                 AiList.Add(() => UpdateDeepGrave());
@@ -389,7 +389,7 @@ namespace TheSuperTrueRealCV.EnemyAI
 
         public void UpdateJumpForward() 
         {
-            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.HealthPercentage <= 40)
+            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.stats.HealthPercentage <= 40)
             {
                 Newtimer = false;
                 AiList.Add(() => UpdateDeepGrave());

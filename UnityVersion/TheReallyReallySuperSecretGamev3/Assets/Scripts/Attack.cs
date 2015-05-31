@@ -87,8 +87,8 @@ public class Attack : MonoBehaviour
         {
             AddEntityToHit(coll.gameObject);
             var targetStats = coll.gameObject.GetComponent<Stats>();
-            float dmg = DamageCalcualtor.CalculateDamage(Owner.GetComponent<Stats>(), targetStats, Scaling);
-            targetStats.DealDamage(dmg);
+            float dmg = DamageCalcualtor.CalculateDamage(Owner.GetComponent<Stats>().stats, targetStats.stats, Scaling);
+            targetStats.stats.DealDamage(dmg);
         }
     }
 }
