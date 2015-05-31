@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   secondsToLive: 0
-  secondsHitReset: 0
+  secondsHitReset: 1
   lifeTimer: {fileID: 0}
   ApplyGravity: 1
   Owner: {fileID: 0}

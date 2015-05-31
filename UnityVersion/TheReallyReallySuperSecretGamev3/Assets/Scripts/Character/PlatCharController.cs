@@ -85,6 +85,32 @@ public class PlatCharController : MonoBehaviour
         }
         else
         {
+            var from = GetComponent<CircleCollider2D>().bounds.center;
+
+            Debug.DrawRay(from, new Vector3(0, -0.23f, 0), Color.green);
+
+            var hits = Physics2D.RaycastAll(from, new Vector2(0, -1), 0.23f);
+
+            foreach (var hit in hits)
+            {
+                if (hit.collider != null)
+                {
+                    if (hit.collider.gameObject.name == "Player")
+                        continue;
+
+                    if(hit.transform.rotation.z != 0)
+                    {
+                        if (groundedLastFrame)
+                            return true;
+
+                        groundedLastFrame = true;
+
+                        return false;
+                    }
+                }
+
+            }
+
             groundedLastFrame = false;
         }
 
@@ -225,7 +251,7 @@ public class PlatCharController : MonoBehaviour
             xVel = maxSpeed;
         else if (xVel < -0.05f)
             xVel = -maxSpeed;
-
+      
         // Apply the calculate velocity to our rigidbody
         ivRigidbody.velocity = new Vector2(
                 xVel,

@@ -46,6 +46,9 @@ public class Attack : MonoBehaviour
 
     public bool CanHitEntity(GameObject piEntity)
     {
+        if (piEntity.GetComponent<Attack>() != null)
+            return false;
+
         if (piEntity.tag.ToLower() == "ground")
             return false;
 
