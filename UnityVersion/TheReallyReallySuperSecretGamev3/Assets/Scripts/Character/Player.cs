@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Utility;
+﻿using Assets.Scripts.ResourceManagers;
+using Assets.Scripts.Utility;
 using CVCommon.Utility;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,12 @@ namespace Assets.Scripts.Character
     public class Player : MonoBehaviour
     {
         private CStats ivBaseStats;
+        private Inventory ivInventory;
 
         void Start()
         {
             ivBaseStats = GetComponent<Stats>().stats;
+            ivInventory = new Inventory();
 
             if(!LoadPlayer())
                 SetBaseStats();
@@ -35,9 +38,9 @@ namespace Assets.Scripts.Character
         /// Gets base-stats + equipped-stats
         /// </summary>
         /// <returns></returns>
-        private CStats GetTrueStats()
+        public CStats GetTrueStats()
         {
-            return null;
+            return ivBaseStats;
         }
 
         private bool LoadPlayer()

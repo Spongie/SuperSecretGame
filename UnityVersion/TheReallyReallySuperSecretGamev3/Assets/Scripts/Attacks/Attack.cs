@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TheSuperTrueRealCV.Utilities;
 using Assets.Scripts.Utility;
 using CVCommon.Utility;
+using Assets.Scripts.Character;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Timer))]
@@ -78,17 +79,29 @@ public class Attack : MonoBehaviour
             EntitiesHit.Add(piEntity, new ManualTimer(secondsHitReset));
     }
 
-    void OnCollisionStay2D(Collision2D coll) 
+    void OnCollisionEnter2D(Collision2D coll) 
     {
         if (DiesOnCollision)
             Destroy(gameObject);
 
-        if(CanHitEntity(coll.gameObject))
+        if (CanHitEntity(coll.gameObject))
         {
             AddEntityToHit(coll.gameObject);
-            var targetStats = coll.gameObject.GetComponent<Stats>();
-            float dmg = DamageCalculator.CalculateDamage(Owner.GetComponent<Stats>().stats, targetStats.stats, Scaling);
-            targetStats.stats.DealDamage(dmg);
+            var targetStats = GetStats(coll.gameObject);
+            float dmg = DamageCalculator.CalculateDamage(GetStats(Owner), targetStats, Scaling);
+            targetStats.DealDamage(dmg);
         }
+    }
+
+    private CStats GetStats(GameObject gameObject)
+    {
+        var player = gameObject.GetComponent<Player>();
+
+        if(player == null)
+        {
+            return gameObject.GetComponent<Stats>().stats;
+        }
+
+        return player.GetTrueStats();
     }
 }

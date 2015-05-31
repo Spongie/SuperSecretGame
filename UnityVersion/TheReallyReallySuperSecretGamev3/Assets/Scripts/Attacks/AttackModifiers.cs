@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using TheSuperTrueRealCV.Utilities;
 
@@ -11,7 +12,7 @@ namespace Assets.Scripts.Attacks
     {
         public float ApplyAttackEffect(string piEffectName, CStats piAttacker, CStats piTarget, AttackDamageScaling piAttackScaling, float piEffectPower, float piCurrentDamage)
         {
-            var method = GetType().GetMethod(piEffectName);
+            var method = GetType().GetMethod(piEffectName, BindingFlags.NonPublic | BindingFlags.Instance);
             
             if(method != null)
             {
