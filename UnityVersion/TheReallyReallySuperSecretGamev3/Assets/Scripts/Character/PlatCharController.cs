@@ -100,6 +100,7 @@ public class PlatCharController : MonoBehaviour
 
                     if(hit.transform.rotation.z != 0)
                     {
+                        transform.position = new Vector2(transform.position.x, hit.point.y);
                         if (groundedLastFrame)
                             return true;
 
