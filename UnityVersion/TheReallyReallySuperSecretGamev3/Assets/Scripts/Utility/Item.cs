@@ -21,7 +21,7 @@ namespace Assets.Scripts.Utility
     public class Item : INotifyPropertyChanged
     {
         private string ivName;
-        private float ivMagidDefense;
+        private float ivMagicDefense;
         private float ivResistance;
         private float ivDamage;
         private float ivMagicDamage;
@@ -29,6 +29,23 @@ namespace Assets.Scripts.Utility
         private float ivLuck;
         private ItemSlot ivSlot;
         private string ivIconName;
+
+        public Item() { }
+
+        public Item(Item original)
+        {
+            ivName = original.Name;
+            ivMagicDefense = original.MagicDefense;
+            ivResistance = original.Resistance;
+            ivDamage = original.Damage;
+            ivMagicDamage = original.MagicDamage;
+            ivLuck = original.Luck;
+            ivSlot = original.Slot;
+            ivIconName = original.IconName;
+            GenerateID();
+        }
+
+        public string ID { get; set; }
 
         public string IconName
         {
@@ -101,10 +118,10 @@ namespace Assets.Scripts.Utility
 
         public float MagicDefense
         {
-            get { return ivMagidDefense; }
+            get { return ivMagicDefense; }
             set 
             { 
-                ivMagidDefense = value;
+                ivMagicDefense = value;
                 FirePropertyChanged("MagicDefense");
             }
         }
@@ -135,6 +152,14 @@ namespace Assets.Scripts.Utility
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(property));
+        }
+
+        public void GenerateID()
+        {
+            var id = DateTime.Now.Ticks.ToString();
+            id += new Random().Next(100000, 999999);
+
+            ID = id;
         }
 
         public override string ToString()
