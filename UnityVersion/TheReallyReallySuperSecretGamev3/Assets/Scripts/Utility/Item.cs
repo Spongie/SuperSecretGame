@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Newtonsoft.Json;
 
 namespace Assets.Scripts.Utility
 {
@@ -29,10 +30,18 @@ namespace Assets.Scripts.Utility
         private float ivLuck;
         private ItemSlot ivSlot;
         private string ivIconName;
+        private string ivEffectName;
+        private float ivEffectValue;
 
-        public Item() { }
+        private AttackEffectLoader ivEffectLoader;
 
-        public Item(Item original)
+        public Item() 
+        {
+            ivEffectLoader = new AttackEffectLoader();
+            EffectName = "None";
+        }
+
+        public Item(Item original) :base()
         {
             ivName = original.Name;
             ivMagicDefense = original.MagicDefense;
@@ -46,6 +55,27 @@ namespace Assets.Scripts.Utility
         }
 
         public string ID { get; set; }
+
+        public string EffectName
+        {
+            get { return ivEffectName; }
+            set 
+            { 
+                ivEffectName = value;
+                FirePropertyChanged("EffectName");
+            }
+        }
+
+        public float EffectValue
+        {
+            get { return ivEffectValue; }
+            set 
+            {
+                ivEffectValue = value;
+                FirePropertyChanged("EffectValue");
+            }
+        }
+
 
         public string IconName
         {
@@ -67,6 +97,7 @@ namespace Assets.Scripts.Utility
             }
         }
 
+        [JsonIgnore]
         public IEnumerable<ItemSlot> ItemSlots
         {
             get
@@ -75,6 +106,11 @@ namespace Assets.Scripts.Utility
             }
         }
 
+        [JsonIgnore]
+        public List<string> AttackModifiers
+        {
+            get { return ivEffectLoader.GetAttackMethods(); }
+        }
 
         public string Name
         {

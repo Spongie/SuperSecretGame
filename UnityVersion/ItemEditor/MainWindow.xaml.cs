@@ -82,5 +82,10 @@ namespace ItemEditor
         {
             ivController.ClearConfig();
         }
+
+        private void EffectName_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ivTextboxEffectvalue.IsEnabled = e.AddedItems[0].ToString() != "None";
+        }
     }
 }
