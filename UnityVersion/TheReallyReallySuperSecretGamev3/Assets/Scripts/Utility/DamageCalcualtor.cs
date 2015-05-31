@@ -4,7 +4,7 @@ using CVCommon.Utility;
 
 namespace TheSuperTrueRealCV.Utilities
 {
-    public static class DamageCalcualtor
+    public static class DamageCalculator
     {
         public static float CalculateDamage(CStats piAttacker, CStats piTarget, AttackDamageScaling piAttackScaling)
         {

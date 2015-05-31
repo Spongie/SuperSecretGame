@@ -34,5 +34,15 @@ namespace Assets.Scripts.ResourceManagers
             ivItems.Remove(ItemId);
             ivEquippedItems.Add(item.Slot, item);
         }
+
+        public void AddItem(Item item)
+        {
+            ivItems.Add(item.ID, item);
+        }
+
+        public void DeleteItem(string id)
+        {
+            ivItems.Remove(id);
+        }
     }
 }

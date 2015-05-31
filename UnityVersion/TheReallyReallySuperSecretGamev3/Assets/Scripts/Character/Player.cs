@@ -27,6 +27,8 @@ namespace Assets.Scripts.Character
             ivBaseStats.CurrentHealth = 100;
             ivBaseStats.MaximumMana = 50;
             ivBaseStats.CurrentMana = 50;
+            ivBaseStats.MaximumExp = 100;
+            ivBaseStats.Level = 1;
         }
 
         /// <summary>
