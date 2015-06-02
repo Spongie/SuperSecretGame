@@ -19,6 +19,7 @@ namespace Assets.Scripts.Utility
         Shoulders
     }
 
+    [System.Serializable]
     public class Item : INotifyPropertyChanged
     {
         private string ivName;

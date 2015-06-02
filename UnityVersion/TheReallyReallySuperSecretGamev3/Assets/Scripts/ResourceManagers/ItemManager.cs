@@ -7,20 +7,22 @@ using Assets.Scripts.Utility;
 
 public class ItemManager : MonoBehaviour
 {
+    public List<Item> AllItems;
+
     void Start()
     {
-        IEnumerable<string> itemFiles = Resources.LoadAll("Items\\").Cast<string>();
+        AllItems = new List<Item>();
+
+        var itemFiles = Resources.LoadAll("Items/").Cast<TextAsset>();
 
         foreach (var itemFile in itemFiles)
         {
-            var item = JsonConvert.DeserializeObject<Item>(itemFile);
+            var item = JsonConvert.DeserializeObject<Item>(itemFile.text);
             AllItems.Add(item);
         }
 
-        Logger.Log("Items loaded");
+        Logger.Log(string.Format("{0} Items loaded", AllItems.Count()));
     }
-
-    public List<Item> AllItems { get; set; }
 
     public IEnumerable<Item> AllWeapons
     {

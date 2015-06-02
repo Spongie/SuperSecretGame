@@ -8,15 +8,17 @@ public class IconManager : MonoBehaviour
 {
     void Start()
     {
-        var icons = Resources.LoadAll<Sprite>("Icons\\").Cast<Sprite>();
+        Icons = new Dictionary<string, Sprite>();
+
+        var icons = Resources.LoadAll<Sprite>("Icons/").Cast<Sprite>();
 
         foreach (var icon in icons)
         {
             Icons.Add(icon.name, icon);
         }
 
-        Logger.Log("Icons loaded");
+        Logger.Log(string.Format("{0} Icons loaded", Icons.Count()));
     }
 
-    public Dictionary<string, Sprite> Icons { get; set; }
+    public Dictionary<string, Sprite> Icons;
 }
