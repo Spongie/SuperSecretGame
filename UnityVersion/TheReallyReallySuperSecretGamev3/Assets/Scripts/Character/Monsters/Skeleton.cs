@@ -86,7 +86,6 @@ namespace TheSuperTrueRealCV.EnemyAI
                 //ny timer som avgör när han är färdig med sitt anfall och ska gå vidare med sin AI.
                 AiTimer.Restart(1f);
 
-                int speed = !ivFacingRight ? -200 : 200;
                 ivAnimator.SetTrigger("Throw");
                 waitingForAnimation = true;
                 //ObjectManager.RegisterAttack(AttackCreator.CreateSkeletonAttack(WorldPosition, this, new Vector2(speed , -300)), this);

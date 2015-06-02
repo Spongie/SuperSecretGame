@@ -16,6 +16,8 @@ public class ItemManager : MonoBehaviour
             var item = JsonConvert.DeserializeObject<Item>(itemFile);
             AllItems.Add(item);
         }
+
+        Logger.Log("Items loaded");
     }
 
     public List<Item> AllItems { get; set; }

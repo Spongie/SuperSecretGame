@@ -62,7 +62,7 @@ public class PlatCharController : MonoBehaviour
         MovingPlatform mp = col.transform.root.GetComponent<MovingPlatform>();
         if (mp != null)
         {
-            Debug.Log("movingPlatform: " + mp.gameObject.name);
+            Logger.Log("movingPlatform: " + mp.gameObject.name);
             movingPlatform = mp;
         }
     }

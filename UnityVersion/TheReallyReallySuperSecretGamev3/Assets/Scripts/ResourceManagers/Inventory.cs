@@ -11,6 +11,11 @@ namespace Assets.Scripts.ResourceManagers
         private Dictionary<ItemSlot, Item> ivEquippedItems { get; set; }
         private Dictionary<string, Item> ivItems;
 
+        public Inventory()
+        {
+            ivItems = new Dictionary<string, Item>();
+        }
+
         private List<Item> GetEqippedItems()
         {
             return ivEquippedItems.Values.ToList();
