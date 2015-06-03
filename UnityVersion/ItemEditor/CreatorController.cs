@@ -14,6 +14,7 @@ namespace ItemEditor
     public class CreatorController
     {
         private string ivItemsPath;
+        private string ivLootTablePath;
         private string ivIconPath;
         private List<string> ivOriginalItemFiles;
         private List<string> ivOriginalLootTableFiles;
@@ -53,7 +54,10 @@ namespace ItemEditor
         private void GetItemsPath()
         {
             if (!string.IsNullOrEmpty(ivItemsPath))
+            {
+                ivLootTablePath = ivItemsPath.Replace("Item", "LootTable");
                 return;
+            }
 
             var folderBroswer = new FolderBrowserDialog();
             folderBroswer.Description = "Select the folder that contains all items";
@@ -64,6 +68,8 @@ namespace ItemEditor
             }
             else
                 ivItemsPath = Application.ExecutablePath;
+
+            ivLootTablePath = ivItemsPath.Replace("Item", "LootTable");
         }
 
         private void LoadItems()
@@ -80,7 +86,7 @@ namespace ItemEditor
                 ivOriginalItemFiles.Add(path);
             }
 
-            foreach (var path in Directory.GetFiles(ivItemsPath + "\\LootTables"))
+            foreach (var path in Directory.GetFiles(ivLootTablePath))
             {
                 if (path.EndsWith(".meta"))
                     continue;
@@ -185,7 +191,7 @@ namespace ItemEditor
             foreach (var lootTable in LootTables)
             {
                 var jsonItem = JsonConvert.SerializeObject(lootTable);
-                File.WriteAllText(ivItemsPath + "\\LootTables\\" + lootTable.Name + ".txt", jsonItem);
+                File.WriteAllText(ivLootTablePath + "\\" + lootTable.Name + ".txt", jsonItem);
             }
 
             MessageBox.Show("Items and LootTables saved!", "Success", MessageBoxButtons.OK);
