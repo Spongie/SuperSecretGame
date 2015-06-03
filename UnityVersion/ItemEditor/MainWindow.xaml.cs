@@ -19,8 +19,12 @@ namespace ItemEditor
         {
             InitializeComponent();
             ivController = new CreatorController();
+
             ivListboxItems.DataContext = ivController.Items;
+            ivListboxItemsTable.DataContext = ivController.LootTables;
             ivListboxIcons.DataContext = ivController.Images;
+            ivListboxAvailableItems.DataContext = ivController.Items;
+            ivListboxItemsInTable.DataContext = ivController.SelectedLootTable;
 
             if (ivController.Items.Any())
                 ivListboxItems.SelectedIndex = 0;
@@ -56,26 +60,7 @@ namespace ItemEditor
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
-            ivWorker = new BackgroundWorker();
-            ivWorker.ProgressChanged += s_ProgressChanged;
-            ivWorker.DoWork += s_DoWork;
-            ivWorker.WorkerReportsProgress = true;
-            ivWorker.RunWorkerAsync();
-        }
-
-        void s_DoWork(object sender, DoWorkEventArgs e)
-        {
-            ivController.SaveItems(ivWorker.ReportProgress);
-            Dispatcher.Invoke((Action)delegate()
-            {
-                ivProgressBar.Value = 0;
-
-            });
-        }
-
-        void s_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            ivProgressBar.Value = e.ProgressPercentage;
+            ivController.SaveItems();
         }
 
         private void ButtonClear_Click(object sender, RoutedEventArgs e)
@@ -86,6 +71,50 @@ namespace ItemEditor
         private void EffectName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ivTextboxEffectvalue.IsEnabled = e.AddedItems[0].ToString() != "None";
+        }
+
+        private void ivListboxItemsTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count > 0)
+            {
+                ivController.SelectedLootTable = (EditorLootTable)e.AddedItems[0];
+                ivListboxItemsInTable.DataContext = ivController.SelectedLootTable.LootItems;
+                ivTextBoxLootTableName.DataContext = ivController.SelectedLootTable;
+            }
+        }
+
+        private void Button_RemoveFromLootTable(object sender, RoutedEventArgs e)
+        {
+            if (ivListboxItemsInTable.SelectedIndex >= 0)
+                ivController.SelectedLootTable.LootItems.RemoveAt(ivListboxItemsInTable.SelectedIndex);
+        }
+
+        private void Button_AddToLootTable(object sender, RoutedEventArgs e)
+        {
+            if(ivController.SelectedLootTable != null && ivListboxAvailableItems.SelectedIndex != -1)
+            {
+                ivController.AddItemToLootTable((Item)ivListboxAvailableItems.SelectedItem);
+            }
+        }
+
+        private void Button_AddLootTable(object sender, RoutedEventArgs e)
+        {
+            ivController.AddLootTable();
+        }
+
+        private void Button_RemoveLootTable(object sender, RoutedEventArgs e)
+        {
+            if (ivListboxItemsTable.SelectedIndex >= 0)
+                ivController.LootTables.RemoveAt(ivListboxItemsTable.SelectedIndex);
+        }
+
+        private void ivListboxItemsInTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count > 0)
+            {
+                ivStackLootItem.DataContext = ivListboxItemsInTable.SelectedItem;
+                ivTextBoxLootTableName.DataContext = ivController.SelectedLootTable;
+            }
         }
     }
 }

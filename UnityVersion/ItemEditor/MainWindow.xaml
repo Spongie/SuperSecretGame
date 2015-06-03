@@ -3,62 +3,140 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Item Editor" Height="600" Width="725">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="476*"/>
-            <RowDefinition Height="43*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="190*"/>
-            <ColumnDefinition Width="280*"/>
-            <ColumnDefinition Width="247*"/>
-        </Grid.ColumnDefinitions>
-        <ListBox x:Name="ivListboxItems" Margin="5,5,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding}" SelectionChanged="ivListboxItems_SelectionChanged">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding Path=Name}"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <ScrollViewer Grid.Column="1" Grid.Row="0">
-        <StackPanel x:Name="ivItemEditorStack" Grid.Column="1" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Stretch" Grid.Row="0">
-            <Label Content="Name"/>
-            <TextBox Height="50" TextWrapping="Wrap" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontSize="30"/>
-            <Label Content="Slot"/>
-            <ComboBox ItemsSource="{Binding Path=ItemSlots}" SelectedItem="{Binding Path=Slot}"/>
-            <Label Content="Damage"/>
-            <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=Damage}" FontSize="18"/>
-            <Label Content="Defense"/>
-            <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=Defense}" FontSize="18"/>
-            <Label Content="MagicDamage"/>
-            <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=MagicDamage}" FontSize="18"/>
-            <Label Content="MagicDefense"/>
-            <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=MagicDefense}" FontSize="18"/>
-            <Label Content="Luck"/>
-            <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=Luck}" FontSize="18"/>
-            <Label Content="Resistance"/>
-            <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=Resistance}" FontSize="18"/>
-            <Label Content="IconName"/>
-            <TextBlock Height="30" TextWrapping="Wrap" Text="{Binding Path=IconName}" FontSize="18"/>
-            <Label Content="On Attack Effect" />
-            <ComboBox ItemsSource="{Binding Path=AttackModifiers}" SelectedItem="{Binding Path=EffectName}" SelectionChanged="EffectName_SelectionChanged"/>
-            <Label Content="Effectvalue" />
-            <TextBox x:Name="ivTextboxEffectvalue" Height="30" TextWrapping="Wrap" Text="{Binding Path=EffectValue}" FontSize="18" />
-            </StackPanel>
-        </ScrollViewer>
-        <Button Content="Add Item" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="10,10,0,0" Grid.Row="1" Width="82" Click="ButtonAdd_Click"/>
-        <Button Content="Remove Item" HorizontalAlignment="Right" VerticalAlignment="Top" Width="83" Margin="0,10,10,0" Grid.Row="1" Click="ButtonRemove_Click"/>
-        <Button Content="Save Items" Grid.Column="2" HorizontalAlignment="Right" Margin="5,5,10,5" Grid.Row="1" VerticalAlignment="Stretch" Width="75" Click="ButtonSave_Click"/>
-        <Button Content="Clear Config" Grid.Column="2" HorizontalAlignment="Right" Margin="5,5,100,5" Grid.Row="1" VerticalAlignment="Stretch" Width="75" Click="ButtonClear_Click"/>
-        <ProgressBar x:Name="ivProgressBar" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2" Minimum="0" Maximum="100" FlowDirection="LeftToRight"/>
-        <ListBox x:Name="ivListboxIcons" Grid.Column="2" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Stretch" ItemsSource="{Binding}" SelectionChanged="ivListboxIcons_SelectionChanged">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Image Height="64" HorizontalAlignment="Center" Stretch="Fill" Margin="0" VerticalAlignment="Top" Width="64" Source="{Binding Path=Image}"/>
-                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center" FontSize="18" Margin="5"/>
+        <TabControl>
+            <TabItem Header="Items">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="476*"/>
+                        <RowDefinition Height="43*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="190*"/>
+                        <ColumnDefinition Width="280*"/>
+                        <ColumnDefinition Width="247*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListBox x:Name="ivListboxItems" Margin="5,5,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding}" SelectionChanged="ivListboxItems_SelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding Path=Name}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <ScrollViewer Grid.Column="1" Grid.Row="0">
+                        <StackPanel x:Name="ivItemEditorStack" Grid.Column="1" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Stretch" Grid.Row="0">
+                            <Label Content="Name"/>
+                            <TextBox Height="50" TextWrapping="Wrap" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontSize="30"/>
+                            <Label Content="Slot"/>
+                            <ComboBox ItemsSource="{Binding Path=ItemSlots}" SelectedItem="{Binding Path=Slot}"/>
+                            <Label Content="Damage"/>
+                            <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=Damage}" FontSize="18"/>
+                            <Label Content="Defense"/>
+                            <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=Defense}" FontSize="18"/>
+                            <Label Content="MagicDamage"/>
+                            <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=MagicDamage}" FontSize="18"/>
+                            <Label Content="MagicDefense"/>
+                            <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=MagicDefense}" FontSize="18"/>
+                            <Label Content="Luck"/>
+                            <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=Luck}" FontSize="18"/>
+                            <Label Content="Resistance"/>
+                            <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=Resistance}" FontSize="18"/>
+                            <Label Content="IconName"/>
+                            <TextBlock Height="30" TextWrapping="Wrap" Text="{Binding Path=IconName}" FontSize="18"/>
+                            <Label Content="On Attack Effect" />
+                            <ComboBox ItemsSource="{Binding Path=AttackModifiers}" SelectedItem="{Binding Path=EffectName}" SelectionChanged="EffectName_SelectionChanged"/>
+                            <Label Content="Effectvalue" />
+                            <TextBox x:Name="ivTextboxEffectvalue" Height="30" TextWrapping="Wrap" Text="{Binding Path=EffectValue}" FontSize="18" />
+                        </StackPanel>
+                    </ScrollViewer>
+                    <Button Content="Add Item" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="10,10,0,0" Grid.Row="1" Width="82" Click="ButtonAdd_Click"/>
+                    <Button Content="Remove Item" HorizontalAlignment="Right" VerticalAlignment="Top" Width="83" Margin="0,10,10,0" Grid.Row="1" Click="ButtonRemove_Click"/>
+                    <Button Content="Save" Grid.Column="2" HorizontalAlignment="Right" Margin="5,5,10,5" Grid.Row="1" VerticalAlignment="Stretch" Width="75" Click="ButtonSave_Click"/>
+                    <Button Content="Clear Config" Grid.Column="2" HorizontalAlignment="Right" Margin="5,5,100,5" Grid.Row="1" VerticalAlignment="Stretch" Width="75" Click="ButtonClear_Click"/>
+                    <ListBox x:Name="ivListboxIcons" Grid.Column="2" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Stretch" ItemsSource="{Binding}" SelectionChanged="ivListboxIcons_SelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Height="64" HorizontalAlignment="Center" Stretch="Fill" Margin="0" VerticalAlignment="Top" Width="64" Source="{Binding Path=Image}"/>
+                                    <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center" FontSize="18" Margin="5"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Loot-Tables">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="476*"/>
+                        <RowDefinition Height="43*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="227*"/>
+                        <ColumnDefinition Width="236*"/>
+                        <ColumnDefinition Width="244*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="5*"/>
+                            <RowDefinition Height="95*"/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Loot-tables" Grid.Row="0"/>
+                        <ListBox x:Name="ivListboxItemsTable" Margin="5,5,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding}" Grid.Row="1" SelectionChanged="ivListboxItemsTable_SelectionChanged">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding Path=Name}"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="5*"/>
+                            <RowDefinition Height="45*"/>
+                            <RowDefinition Height="5*"/>
+                            <RowDefinition Height="45*"/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Available Items" Grid.Row="0"/>
+                        <ListBox x:Name="ivListboxAvailableItems" Margin="5,5,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding}" Grid.Row="1">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding Path=Name}"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <StackPanel Orientation="Horizontal" Grid.Row="2">
+                            <Label Content="LootTable"/>
+                            <Button Width="32"  Margin="50,0,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Center" Click="Button_AddToLootTable">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Images/DownArrow.png"/>
+                                </Button.Background>
+                            </Button>
+                            <Button Width="32"  Margin="5,0,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Click="Button_RemoveFromLootTable">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Images/UpArrow.png"/>
+                                </Button.Background>
+                            </Button>
+                        </StackPanel>
+                        <ListBox x:Name="ivListboxItemsInTable" Margin="5,5,5,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding}" Grid.Row="3" SelectionChanged="ivListboxItemsInTable_SelectionChanged">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding Path=ItemName}"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                    <Button Content="Add LootTable" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="10,10,0,0" Grid.Row="1" Width="90" Click="Button_AddLootTable" Height="23"/>
+                    <Button Content="Remove LootTable" HorizontalAlignment="Right" VerticalAlignment="Top" Width="115" Margin="0,10,0,0" Grid.Row="1" Click="Button_RemoveLootTable" Height="23"/>
+                    <StackPanel x:Name="ivStackLootItem" Grid.Column="2" Grid.Row="0">
+                        <Label Content="LootTable Name"/>
+                        <TextBox x:Name="ivTextBoxLootTableName" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Label Content="Dropchance in %"/>
+                        <TextBox Text="{Binding Path=DropChance, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+                    <Button Content="Save" Grid.Column="2" HorizontalAlignment="Right" Margin="0,5,10,5" Grid.Row="1" VerticalAlignment="Stretch" Width="75" Click="ButtonSave_Click"/>
+                    <Button Content="Clear Config" Grid.Column="2" HorizontalAlignment="Right" Margin="0,5,100,5" Grid.Row="1" VerticalAlignment="Stretch" Width="75" Click="ButtonClear_Click"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

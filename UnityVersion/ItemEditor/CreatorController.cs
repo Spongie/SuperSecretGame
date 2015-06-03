@@ -3,9 +3,11 @@ using System.IO;
 using Newtonsoft.Json;
 using Assets.Scripts.Utility;
 using System;
+using System.Linq;
 using System.Windows.Media.Imaging;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace ItemEditor
 {
@@ -13,19 +15,26 @@ namespace ItemEditor
     {
         private string ivItemsPath;
         private string ivIconPath;
-        private List<string> ivOriginalFiles;
+        private List<string> ivOriginalItemFiles;
+        private List<string> ivOriginalLootTableFiles;
 
         public ObservableCollection<Item> Items { get; set; }
 
         public Item SelectedItem { get; set; }
 
+        public EditorLootTable SelectedLootTable { get; set; }
+
         public ObservableCollection<ItemIcon> Images { get; set; }
+
+        public ObservableCollection<EditorLootTable> LootTables { get; set; }
 
         public CreatorController()
         {
             Items = new ObservableCollection<Item>();
             Images = new ObservableCollection<ItemIcon>();
-            ivOriginalFiles = new List<string>();
+            LootTables = new ObservableCollection<EditorLootTable>();
+            ivOriginalItemFiles = new List<string>();
+            ivOriginalLootTableFiles = new List<string>();
 
             if (File.Exists("config.ini"))
             {
@@ -68,7 +77,19 @@ namespace ItemEditor
                 var item = JsonConvert.DeserializeObject<Item>(jsonItem);
                 Items.Add(item);
 
-                ivOriginalFiles.Add(path);
+                ivOriginalItemFiles.Add(path);
+            }
+
+            foreach (var path in Directory.GetFiles(ivItemsPath + "\\LootTables"))
+            {
+                if (path.EndsWith(".meta"))
+                    continue;
+
+                var jsonItem = File.ReadAllText(path);
+                var item = JsonConvert.DeserializeObject<EditorLootTable>(jsonItem);
+                LootTables.Add(item);
+
+                ivOriginalLootTableFiles.Add(path);
             }
         }
 
@@ -124,27 +145,50 @@ namespace ItemEditor
             Items.Add(item);
         }
 
-        public void SaveItems(Action<int> piReportProgress)
+        public void AddItemToLootTable(Item piItem)
         {
-            int maxProgress = ivOriginalFiles.Count + Items.Count;
-            int currentProgress = 0;
+            var item = new LootTableItem()
+            {
+                ItemName = piItem.Name,
+                DropChance = 0
+            };
 
-            foreach (var file in ivOriginalFiles)
+            if(!SelectedLootTable.LootItems.Any(lootItem => lootItem.ItemName == item.ItemName))
+                SelectedLootTable.LootItems.Add(item);
+        }
+
+        public void AddLootTable()
+        {
+            var lootTable = new EditorLootTable()
+            {
+               Name = "Temp" + new Random().Next(Int16.MaxValue)
+            };
+            
+            LootTables.Add(lootTable);
+        }
+
+        public void SaveItems()
+        {
+            ivOriginalItemFiles.AddRange(ivOriginalLootTableFiles);
+
+            foreach (var file in ivOriginalItemFiles)
             {
                 File.Delete(file);
-                
-                currentProgress++;
-                piReportProgress((int)((currentProgress / maxProgress) * 100));
             }
 
             foreach (var item in Items)
             {
                 var jsonItem = JsonConvert.SerializeObject(item);
                 File.WriteAllText(ivItemsPath + "\\" + item.Name + ".txt", jsonItem);
-                
-                currentProgress++;
-                piReportProgress((int)(((float)currentProgress / (float)maxProgress) * 100));
             }
+
+            foreach (var lootTable in LootTables)
+            {
+                var jsonItem = JsonConvert.SerializeObject(lootTable);
+                File.WriteAllText(ivItemsPath + "\\LootTables\\" + lootTable.Name + ".txt", jsonItem);
+            }
+
+            MessageBox.Show("Items and LootTables saved!", "Success", MessageBoxButtons.OK);
         }
 
         public void ClearConfig()
