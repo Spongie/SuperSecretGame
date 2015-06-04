@@ -161,8 +161,8 @@ namespace ItemEditor
                 DropChance = 0
             };
 
-            if(!SelectedLootTable.LootItems.Any(lootItem => lootItem.ItemName == item.ItemName))
-                SelectedLootTable.LootItems.Add(item);
+            if (!SelectedLootTable.LootItems.Any(lootItem => lootItem.ItemName == item.ItemName))
+                SelectedLootTable.AddItem(item);
         }
 
         public void AddLootTable()

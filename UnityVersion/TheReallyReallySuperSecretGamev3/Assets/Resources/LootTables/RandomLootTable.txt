@@ -1,1 +1,1 @@
-{"TotalDropchance":0,"Items":[{"ItemName":"Nej","DropChance":0}],"Name":"RandomLootTable"}
+{"Items":[{"ItemName":"Nej","DropChance":55}],"Name":"RandomLootTable"}

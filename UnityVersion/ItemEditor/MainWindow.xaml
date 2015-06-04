@@ -132,8 +132,10 @@
                         <TextBox x:Name="ivTextBoxLootTableName" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"/>
                         <Label Content="Dropchance in %"/>
                         <TextBox Text="{Binding Path=DropChance, UpdateSourceTrigger=PropertyChanged}"/>
-                        <Label Content="Total Dropchance in table"/>
-                        <TextBlock x:Name="ivTextTotalDrop" Text="{Binding Path=TotalDropchance}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Total Dropchance in table: "/>
+                            <TextBlock x:Name="ivTextTotalDrop" Text="{Binding Path=TotalDropchance}" Margin="0,5,0,0"/>
+                        </StackPanel>
                     </StackPanel>
                     <Button Content="Save" Grid.Column="2" HorizontalAlignment="Right" Margin="0,5,10,5" Grid.Row="1" VerticalAlignment="Stretch" Width="75" Click="ButtonSave_Click"/>
                     <Button Content="Clear Config" Grid.Column="2" HorizontalAlignment="Right" Margin="0,5,100,5" Grid.Row="1" VerticalAlignment="Stretch" Width="75" Click="ButtonClear_Click"/>

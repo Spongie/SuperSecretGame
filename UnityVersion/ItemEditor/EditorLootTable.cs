@@ -20,20 +20,25 @@ namespace ItemEditor
         {
             LootItems = new ObservableCollection<LootTableItem>(piOriginal.Items);
             Name = piOriginal.Name;
+
+            foreach (var item in LootItems)
+            {
+                item.DropChanceChanged += item_DropChanceChanged;
+            }
         }
 
         [JsonIgnore]
         public ObservableCollection<LootTableItem> LootItems { get; set; }
 
         [JsonIgnore]
-        public int TotalDropchance 
+        public string TotalDropchance 
         {
             get { return TotalDropchanceOfTable(); }
         }
 
-        private int TotalDropchanceOfTable()
+        private string TotalDropchanceOfTable()
         {
-            return LootItems.Sum(item => item.DropChance);
+            return string.Format("{0} % ", LootItems.Sum(item => item.DropChance));
         }
 
         public override List<LootTableItem> Items
@@ -42,12 +47,25 @@ namespace ItemEditor
             {
                 if(ivItems.Any())
                     return base.Items;
+               
                 return new List<LootTableItem>(LootItems);
             }
             set
             {
                 base.Items = value;
             }
+        }
+
+        public void AddItem(LootTableItem piItem)
+        {
+            piItem.DropChanceChanged += item_DropChanceChanged;
+
+            LootItems.Add(piItem);
+        }
+
+        void item_DropChanceChanged(object sender, EventArgs e)
+        {
+            FirePropertyChanged("TotalDropchance");
         }
     }
 }

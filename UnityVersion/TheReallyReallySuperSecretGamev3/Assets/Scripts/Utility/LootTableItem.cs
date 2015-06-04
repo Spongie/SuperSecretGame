@@ -9,6 +9,7 @@ namespace Assets.Scripts.Utility
     public class LootTableItem : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+        public event EventHandler DropChanceChanged;
 
         private string ivItemName;
 
@@ -31,6 +32,9 @@ namespace Assets.Scripts.Utility
             { 
                 ivDropChange = value;
                 FirePropertyChanged("DropChance");
+
+                if (DropChanceChanged != null)
+                    DropChanceChanged(this, new EventArgs());
             }
         }
 

@@ -36,7 +36,7 @@ namespace Assets.Scripts.Utility
             }
         }
 
-        private void FirePropertyChanged(string property)
+        protected void FirePropertyChanged(string property)
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(property));
