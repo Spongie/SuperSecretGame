@@ -51,6 +51,8 @@ namespace ItemEditor
             File.WriteAllLines("config.ini", new string[] { ivItemsPath, ivIconPath });
         }
 
+        
+
         private void GetItemsPath()
         {
             if (!string.IsNullOrEmpty(ivItemsPath))
@@ -92,8 +94,8 @@ namespace ItemEditor
                     continue;
 
                 var jsonItem = File.ReadAllText(path);
-                var item = JsonConvert.DeserializeObject<EditorLootTable>(jsonItem);
-                LootTables.Add(item);
+                var item = JsonConvert.DeserializeObject<LootTable>(jsonItem);
+                LootTables.Add(new EditorLootTable(item));
 
                 ivOriginalLootTableFiles.Add(path);
             }

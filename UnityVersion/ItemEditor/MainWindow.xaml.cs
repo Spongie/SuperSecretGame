@@ -80,6 +80,7 @@ namespace ItemEditor
                 ivController.SelectedLootTable = (EditorLootTable)e.AddedItems[0];
                 ivListboxItemsInTable.DataContext = ivController.SelectedLootTable.LootItems;
                 ivTextBoxLootTableName.DataContext = ivController.SelectedLootTable;
+                ivTextTotalDrop.DataContext = ivController.SelectedLootTable;
             }
         }
 
@@ -114,6 +115,7 @@ namespace ItemEditor
             {
                 ivStackLootItem.DataContext = ivListboxItemsInTable.SelectedItem;
                 ivTextBoxLootTableName.DataContext = ivController.SelectedLootTable;
+                ivTextTotalDrop.DataContext = ivController.SelectedLootTable;
             }
         }
     }
