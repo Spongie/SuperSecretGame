@@ -43,11 +43,6 @@ Enemies
 	Har en typ (Undead,Demon.....)
 	Monster har en dropchans
 		om han droppar så hämtas det från hans loottable
-	
-	
-Story
-
-
 
 
 Art
@@ -60,7 +55,6 @@ Combat/spells
 	Buffs/Debuffs:
 		Can applyas från onhiteffecter
 	Curesed Area, allt inom den får en statuseffect
-	Har ingen lvl
 
 	
 
