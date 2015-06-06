@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Assets.Scripts.Utility;
+using UnityEditor;
 
 public class PlatCharController : MonoBehaviour
 {
     public float IgnoreGravityTime;
     // Horizontal speed
     public float maxSpeed = 8f;
+    private float originalMaxSpeed;
 
     // What we sent the Y velocity to during a jump
     public float jumpSpeed = 12f;
@@ -47,12 +49,13 @@ public class PlatCharController : MonoBehaviour
     public bool canDoublejump = false;
     public bool usedDoubleJump = false;
     bool canTriggerJump = true;
-
+    bool stop = false;
     bool dashing = false;
     bool diveKicking = false;
 
     ManualTimer jumpControlTimer = new ManualTimer(0);
     ManualTimer dashTimer = new ManualTimer(0);
+    ManualTimer boostReactionTimer = new ManualTimer(0);
 
     Rigidbody2D ivRigidbody;
     float ivOriginalGravity;
@@ -64,6 +67,7 @@ public class PlatCharController : MonoBehaviour
         ivRigidbody = GetComponent<Rigidbody2D>();
         ivOriginalGravity = ivRigidbody.gravityScale;
         ivGravityTimer = new ManualTimer(0);
+        originalMaxSpeed = maxSpeed;
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -74,6 +78,13 @@ public class PlatCharController : MonoBehaviour
         {
             Logger.Log("movingPlatform: " + mp.gameObject.name);
             movingPlatform = mp;
+        }
+
+        if(col.gameObject.tag == "Boost" && diveKicking)
+        {
+            boostReactionTimer.Restart(2);
+            stop = true;
+            Logger.Log("Landed on boost");
         }
     }
 
@@ -110,12 +121,11 @@ public class PlatCharController : MonoBehaviour
 
             if (groundedLastFrame)
             {
-                usedDoubleJump = false;
-                canDoublejump = true;
-                diveKicking = false;
-
+                setGrounded();
                 return true;
             }
+
+            Logger.Log("Grounded first frame");
 
             groundedLastFrame = true;
         }
@@ -123,7 +133,8 @@ public class PlatCharController : MonoBehaviour
         {
             var from = GetComponent<CircleCollider2D>().bounds.center;
 
-            Debug.DrawRay(from, new Vector3(0, -0.23f, 0), Color.green);
+            if(Debug.isDebugBuild)
+                Debug.DrawRay(from, new Vector3(0, -0.23f, 0), Color.green);
 
             var hits = Physics2D.RaycastAll(from, new Vector2(0, -1), 0.23f);
 
@@ -138,8 +149,12 @@ public class PlatCharController : MonoBehaviour
                     {
                         transform.position = new Vector2(transform.position.x, hit.point.y);
                         if (groundedLastFrame)
+                        {
+                            setGrounded();
                             return true;
+                        }
 
+                        Logger.Log("Grounded first frame");
                         groundedLastFrame = true;
 
                         return false;
@@ -152,6 +167,16 @@ public class PlatCharController : MonoBehaviour
         }
 
         return false;
+    }
+
+    private void setGrounded()
+    {
+        usedDoubleJump = false;
+        canDoublejump = true;
+        diveKicking = false;
+        maxSpeed = originalMaxSpeed;
+
+        Logger.Log("Really grounded");
     }
 
     /// <summary>
@@ -173,24 +198,37 @@ public class PlatCharController : MonoBehaviour
     {
         jumpControlTimer.Update(Time.deltaTime);
         dashTimer.Update(Time.deltaTime);
+        boostReactionTimer.Update(Time.deltaTime);
 
         if (CanMove() && canTriggerJump)
             CheckJump();
 
         if (Input.GetKeyDown(KeyCode.Z) && !dashing && !diveKicking)
         {
-            if (IsGrounded())
+            if (!boostReactionTimer.Done)
             {
-                dashTimer.Restart(0.15f);
-                dashing = true;
+                Logger.Log("Activated boost");
+                maxSpeed = 10;
+                ivRigidbody.velocity = new Vector2(SetDashSpeed(maxSpeed), 4);
+                boostReactionTimer.Restart(0);
             }
             else
             {
-                diveKicking = true;
+                if (IsGrounded())
+                {
+                    dashTimer.Restart(0.15f);
+                    dashing = true;
+                }
+                else
+                {
+                    diveKicking = true;
+                }
             }
 
         }
 
+        if (Input.GetAxisRaw("Horizontal") == 0)
+            maxSpeed = originalMaxSpeed;
     }
 
     private void CheckJump()
@@ -290,7 +328,7 @@ public class PlatCharController : MonoBehaviour
         // Allow x-velocity control
         if (wallJumpControlDelayLeft <= 0)
         {
-            if(!dashing)
+            if(CanMove())
                 xVel = Input.GetAxisRaw("Horizontal") * maxSpeed;
 
             xVel += PlatformVelocity().x;
@@ -354,6 +392,13 @@ public class PlatCharController : MonoBehaviour
             yVel = -jumpSpeed;
         }
 
+        if(stop)
+        {
+            yVel = 0;
+            xVel = 0;
+            stop = false;
+        }
+
         // Apply the calculate velocity to our rigidbody
         ivRigidbody.velocity = new Vector2(
                 xVel,
@@ -367,10 +412,12 @@ public class PlatCharController : MonoBehaviour
             if (scale.x < 0 && Input.GetAxis("Horizontal") > 0)
             {
                 scale.x = 1;
+                maxSpeed = originalMaxSpeed;
             }
             else if (scale.x > 0 && Input.GetAxis("Horizontal") < 0)
             {
                 scale.x = -1;
+                maxSpeed = originalMaxSpeed;
             }
             this.transform.localScale = scale;
         }
@@ -387,6 +434,6 @@ public class PlatCharController : MonoBehaviour
 
     private bool CanMove()
     {
-        return !dashing && !diveKicking;
+        return !dashing && !diveKicking && boostReactionTimer.Done;
     }
 }
