@@ -49,6 +49,7 @@ public class PlatCharController : MonoBehaviour
     bool canTriggerJump = true;
 
     bool dashing = false;
+    bool diveKicking = false;
 
     ManualTimer jumpControlTimer = new ManualTimer(0);
     ManualTimer dashTimer = new ManualTimer(0);
@@ -111,6 +112,8 @@ public class PlatCharController : MonoBehaviour
             {
                 usedDoubleJump = false;
                 canDoublejump = true;
+                diveKicking = false;
+
                 return true;
             }
 
@@ -171,13 +174,21 @@ public class PlatCharController : MonoBehaviour
         jumpControlTimer.Update(Time.deltaTime);
         dashTimer.Update(Time.deltaTime);
 
-        if (!dashing && canTriggerJump)
+        if (CanMove() && canTriggerJump)
             CheckJump();
 
-        if (Input.GetKeyDown(KeyCode.Z) && !dashing && IsGrounded())
+        if (Input.GetKeyDown(KeyCode.Z) && !dashing && !diveKicking)
         {
-            dashTimer.Restart(0.15f);
-            dashing = true;
+            if (IsGrounded())
+            {
+                dashTimer.Restart(0.15f);
+                dashing = true;
+            }
+            else
+            {
+                diveKicking = true;
+            }
+
         }
 
     }
@@ -334,10 +345,13 @@ public class PlatCharController : MonoBehaviour
         }
         else
         {
-            xVel = maxSpeed * 2;
+            xVel = SetDashSpeed(xVel);
+        }
 
-            if (transform.localScale.x == -1)
-                xVel *= -1;
+        if(diveKicking)
+        {
+            xVel = SetDashSpeed(xVel);
+            yVel = -jumpSpeed;
         }
 
         // Apply the calculate velocity to our rigidbody
@@ -346,7 +360,7 @@ public class PlatCharController : MonoBehaviour
                 yVel
             );
 
-        if (!dashing)
+        if (CanMove())
         {
             // Update facing
             Vector3 scale = this.transform.localScale;
@@ -360,5 +374,19 @@ public class PlatCharController : MonoBehaviour
             }
             this.transform.localScale = scale;
         }
+    }
+
+    private float SetDashSpeed(float xVel)
+    {
+        xVel = maxSpeed * 2;
+
+        if (transform.localScale.x == -1)
+            xVel *= -1;
+        return xVel;
+    }
+
+    private bool CanMove()
+    {
+        return !dashing && !diveKicking;
     }
 }
