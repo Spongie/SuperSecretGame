@@ -1,4 +1,5 @@
-﻿using CVCommon.Utility;
+﻿using Assets.Scripts.Character.Monsters;
+using CVCommon.Utility;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,7 @@ namespace TheSuperTrueRealCV.EnemyAI
         protected bool Newtimer;
         protected int newState;
         protected bool waitingForAnimation = false;
+        public MonsterTypes MonsterType = MonsterTypes.Humanoid;
 
 
         public override void Start()

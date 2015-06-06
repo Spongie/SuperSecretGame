@@ -1,0 +1,69 @@
+STUFF!
+
+
+	
+Player
+	Kan inte röra sig när han får stryk tills han landar igen
+	Slide mindre hitbox
+	Edge boost
+	Double jump (unlockable)
+	Jump control
+	Inte vända sig vid anfall
+	(Land cancel)
+	Movement:
+		Slopes inte glida när man står stilla
+		DiveKick  locked speed tills grounded
+		Basestats ökar med lvl
+		Vid attack räknas också equippedstats + buff stats in.
+		
+		LevelUp:
+			Får ett visst antal stats + några att välja själv
+			
+
+Items
+	Inga vapen droppar. Endast "gems" som fungerar som upgrades till dit vapen. Vapnet har ett visst antal gem slots.
+	Kanske uppgradera antalet slots i vapnet under spelets gång
+	Armor ändrar inte ditt utseende.
+	Möjlighet till att ha passiva grafiska effecter på armors.
+	Gem: Ger stats/special effekter -> 3slots + 1 Major gem slot. 
+		Major Gem Effekter: MpDrain on hit, life leach on hit, stats, stat boost+stat loss, chance inflict status(burn...) on hit, Active bonus,
+			extra dmg proc, Boostar ett anfall/spell.
+		Minor Gem Effekter: On hit effect, stat boosts, status on hit, life leach, mp drain, major gem boost.
+	
+	OnHitEffect:
+		Grafiska onhit effecter
+		Effector som utgår från damagen/ändrar damagen tex Lifesteal/manasteal/Extra dmg mot undead
+	Shop:
+		Duden är typ någon form av spriritdude
+		Level bestämmer vilka items som finns att köpa
+		Handla ger shopXp
+		Currency är typ magic essence som man får när fiender dör
+
+Enemies
+	Har en typ (Undead,Demon.....)
+	Monster har en dropchans
+		om han droppar så hämtas det från hans loottable
+	
+	
+Story
+
+
+
+
+Art
+	Mörk omgivning generellt
+	Fog
+	Dynamiskt ljus
+	Vind
+
+Combat/spells
+	Buffs/Debuffs:
+		Can applyas från onhiteffecter
+	Curesed Area, allt inom den får en statuseffect
+	Har ingen lvl
+
+	
+
+
+
+

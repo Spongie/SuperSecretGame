@@ -1,1 +1,0 @@
-{"ID":null,"EffectName":"None","EffectValue":0.0,"IconName":"Weapon01","Slot":0,"Name":"Nej","Damage":2.0,"Defense":0.0,"MagicDamage":0.0,"MagicDefense":5.0,"Luck":0.0,"Resistance":0.0}
