@@ -174,7 +174,7 @@ public class PlatCharController : MonoBehaviour
         if (!dashing && canTriggerJump)
             CheckJump();
 
-        if (Input.GetKeyDown(KeyCode.Z) && !dashing)
+        if (Input.GetKeyDown(KeyCode.Z) && !dashing && IsGrounded())
         {
             dashTimer.Restart(0.15f);
             dashing = true;
