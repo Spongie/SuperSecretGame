@@ -43,11 +43,15 @@ public class PlatCharController : MonoBehaviour
     MovingPlatform movingPlatform;		// The moving platform we are touching
     bool groundedLastFrame = false;		// Were we grounded last frame? Used by IsGrounded to eliminate top-of-arc issues.
     bool jumping = false;				// Is the player commanding us to jump?
-    bool isJumpControlling = false;
+    public bool isJumpControlling = false;
     public bool canDoublejump = false;
-    bool usedDoubleJump = false;
+    public bool usedDoubleJump = false;
+    bool canTriggerJump = true;
+
+    bool dashing = false;
 
     ManualTimer jumpControlTimer = new ManualTimer(0);
+    ManualTimer dashTimer = new ManualTimer(0);
 
     Rigidbody2D ivRigidbody;
     float ivOriginalGravity;
@@ -72,12 +76,32 @@ public class PlatCharController : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag == "Ground")
+        {
+            Logger.Log("Hit ground with head");
+            isJumpControlling = false;
+            jumping = false;
+            canTriggerJump = false;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "Ground")
+        {
+            Logger.Log("Head not touching roof");
+            canTriggerJump = true;
+        }
+    }
+
     /// <summary>
     /// Determines if the character is grounded based on having a zero velocity relative to his platform.
     /// </summary>
     bool IsGrounded()
     {
-        if (Mathf.Abs(RelativeVelocity().y) < 0.1f)
+        if (Mathf.Abs(RelativeVelocity().y) < 0.1f && !isJumpControlling && !jumping)
         {	// Checking floats for exact equality is bad. Also good for platforms that are moving down.
 
             // Since it's possible for our velocity to be exactly zero at the apex of our jump,
@@ -145,14 +169,27 @@ public class PlatCharController : MonoBehaviour
     void Update()
     {
         jumpControlTimer.Update(Time.deltaTime);
+        dashTimer.Update(Time.deltaTime);
 
-        // Get____Down and Get____Up are only reliable inside of Update(), not FixedUpdate().
+        if (!dashing && canTriggerJump)
+            CheckJump();
+
+        if (Input.GetKeyDown(KeyCode.Z) && !dashing)
+        {
+            dashTimer.Restart(0.15f);
+            dashing = true;
+        }
+
+    }
+
+    private void CheckJump()
+    {
         if ((Input.GetKey(KeyCode.Space) || Input.GetButton("Fire1")))
         {
             if (IsGrounded() || canDoublejump)
             {
                 if (!isJumpControlling)
-                    jumpControlTimer = new ManualTimer(0.3f);
+                    jumpControlTimer.Restart(0.3f);
 
                 if (!IsGrounded() && !isJumpControlling)
                 {
@@ -169,13 +206,12 @@ public class PlatCharController : MonoBehaviour
             isJumpControlling = false;
         }
 
-        if (!Input.GetKey(KeyCode.Space) && !isJumpControlling && !usedDoubleJump)
+        if ((!Input.GetKey(KeyCode.Space) && !Input.GetButton("Fire1")) && !isJumpControlling && !usedDoubleJump)
         {
             canDoublejump = true;
         }
         else
             canDoublejump = false;
-
     }
 
     /// <summary>
@@ -243,7 +279,9 @@ public class PlatCharController : MonoBehaviour
         // Allow x-velocity control
         if (wallJumpControlDelayLeft <= 0)
         {
-            xVel = Input.GetAxisRaw("Horizontal") * maxSpeed;
+            if(!dashing)
+                xVel = Input.GetAxisRaw("Horizontal") * maxSpeed;
+
             xVel += PlatformVelocity().x;
         }
 
@@ -277,9 +315,6 @@ public class PlatCharController : MonoBehaviour
                 xVel = -maxSpeed * this.transform.localScale.x;
                 wallJumpControlDelayLeft = wallJumpControlDelay;
             }
-
-            //ivGravityTimer.Restart(IgnoreGravityTime);
-            //ivRigidbody.gravityScale = 0f;
         }
 
         if (isJumpControlling && !jumpControlTimer.Done)
@@ -287,33 +322,43 @@ public class PlatCharController : MonoBehaviour
         else
             isJumpControlling = false;
 
-        //if (ivGravityTimer.Done)
-        //    ivRigidbody.gravityScale = ivOriginalGravity;
-
         jumping = false;
+        dashing = !dashTimer.Done;
 
-        if (xVel > 0.05)
-            xVel = maxSpeed;
-        else if (xVel < -0.05f)
-            xVel = -maxSpeed;
-      
+        if (!dashing)
+        {
+            if (xVel > 0.05)
+                xVel = maxSpeed;
+            else if (xVel < -0.05f)
+                xVel = -maxSpeed;
+        }
+        else
+        {
+            xVel = maxSpeed * 2;
+
+            if (transform.localScale.x == -1)
+                xVel *= -1;
+        }
+
         // Apply the calculate velocity to our rigidbody
         ivRigidbody.velocity = new Vector2(
                 xVel,
                 yVel
             );
 
-
-        // Update facing
-        Vector3 scale = this.transform.localScale;
-        if (scale.x < 0 && Input.GetAxis("Horizontal") > 0)
+        if (!dashing)
         {
-            scale.x = 1;
+            // Update facing
+            Vector3 scale = this.transform.localScale;
+            if (scale.x < 0 && Input.GetAxis("Horizontal") > 0)
+            {
+                scale.x = 1;
+            }
+            else if (scale.x > 0 && Input.GetAxis("Horizontal") < 0)
+            {
+                scale.x = -1;
+            }
+            this.transform.localScale = scale;
         }
-        else if (scale.x > 0 && Input.GetAxis("Horizontal") < 0)
-        {
-            scale.x = -1;
-        }
-        this.transform.localScale = scale;
     }
 }
