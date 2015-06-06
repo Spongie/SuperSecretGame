@@ -43,6 +43,11 @@ public class PlatCharController : MonoBehaviour
     MovingPlatform movingPlatform;		// The moving platform we are touching
     bool groundedLastFrame = false;		// Were we grounded last frame? Used by IsGrounded to eliminate top-of-arc issues.
     bool jumping = false;				// Is the player commanding us to jump?
+    bool isJumpControlling = false;
+    public bool canDoublejump = false;
+    bool usedDoubleJump = false;
+
+    ManualTimer jumpControlTimer = new ManualTimer(0);
 
     Rigidbody2D ivRigidbody;
     float ivOriginalGravity;
@@ -79,7 +84,11 @@ public class PlatCharController : MonoBehaviour
             // we actually require two zero velocity frames in a row.
 
             if (groundedLastFrame)
+            {
+                usedDoubleJump = false;
+                canDoublejump = true;
                 return true;
+            }
 
             groundedLastFrame = true;
         }
@@ -135,9 +144,37 @@ public class PlatCharController : MonoBehaviour
 
     void Update()
     {
+        jumpControlTimer.Update(Time.deltaTime);
+
         // Get____Down and Get____Up are only reliable inside of Update(), not FixedUpdate().
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Fire1"))
+        if ((Input.GetKey(KeyCode.Space) || Input.GetButton("Fire1")))
+        {
+            if (IsGrounded() || canDoublejump)
+            {
+                if (!isJumpControlling)
+                    jumpControlTimer = new ManualTimer(0.3f);
+
+                if (!IsGrounded() && !isJumpControlling)
+                {
+                    usedDoubleJump = true;
+                    canDoublejump = false;
+                }
+                isJumpControlling = true;
+            }
+
             jumping = true;
+        }
+        else
+        {
+            isJumpControlling = false;
+        }
+
+        if (!Input.GetKey(KeyCode.Space) && !isJumpControlling && !usedDoubleJump)
+        {
+            canDoublejump = true;
+        }
+        else
+            canDoublejump = false;
 
     }
 
@@ -229,6 +266,8 @@ public class PlatCharController : MonoBehaviour
         if (jumping && (isGrounded || (isGrabbing && allowWallJump)))
         {
             // NOTE: As-is, neither vertical velocity nor walljump speed is affected by PlatformVelocity().
+            isJumpControlling = true;
+
             yVel = jumpSpeed;
             if (platformRelativeJump)
                 yVel += PlatformVelocity().y;
@@ -239,12 +278,17 @@ public class PlatCharController : MonoBehaviour
                 wallJumpControlDelayLeft = wallJumpControlDelay;
             }
 
-            ivGravityTimer.Restart(IgnoreGravityTime);
-            ivRigidbody.gravityScale = 0f;
+            //ivGravityTimer.Restart(IgnoreGravityTime);
+            //ivRigidbody.gravityScale = 0f;
         }
 
-        if (ivGravityTimer.Done)
-            ivRigidbody.gravityScale = ivOriginalGravity;
+        if (isJumpControlling && !jumpControlTimer.Done)
+            yVel = jumpSpeed;
+        else
+            isJumpControlling = false;
+
+        //if (ivGravityTimer.Done)
+        //    ivRigidbody.gravityScale = ivOriginalGravity;
 
         jumping = false;
 

@@ -132,28 +132,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a37ee77ace6d7bc4fb844e2c760a045d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaximumHealth: 111
-  CurrentExp: 0
-  MaximumExp: 0
-  Level: 0
-  CurrentHealth: 105
-  MaximumMana: 0
-  CurrentMana: 0
-  Damage: 3.82999992
-  Defense: 3.45000005
-  MagicDamage: 1.90999997
-  MagicDefense: 2.86999989
-  Luck: -4.88000011
-  Resistance: 0
-  BaseCurseResist: 0
-  BaseMpDrainResist: 0
-  BaseLifeLeechResist: 0
-  BaseInstaKillResist: 0
-  BaseSlowResist: 0
-  BaseStatsLossResist: 0
-  BaseTimeStopResist: 0
-  BaseFreezeResist: 0
-  BaseFearResist: 0
+  stats:
+    MaximumHealth: 0
+    CurrentExp: 0
+    MaximumExp: 0
+    Level: 0
+    CurrentHealth: 0
+    MaximumMana: 0
+    CurrentMana: 0
+    Damage: 0
+    Defense: 0
+    MagicDamage: 0
+    MagicDefense: 0
+    Luck: 0
+    Resistance: 0
+    BaseCurseResist: 0
+    BaseMpDrainResist: 0
+    BaseLifeLeechResist: 0
+    BaseInstaKillResist: 0
+    BaseSlowResist: 0
+    BaseStatsLossResist: 0
+    BaseTimeStopResist: 0
+    BaseFreezeResist: 0
+    BaseFearResist: 0
 --- !u!114 &11474880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -186,6 +187,7 @@ MonoBehaviour:
     m_Bits: 256
   ivFacingRight: 0
   AiTimer: {fileID: 0}
+  MonsterType: 5
   ThrowAttack: {fileID: 181118, guid: 06865ffbd615ed84eac35509823121bd, type: 2}
   throwStartPosition: {fileID: 410142}
 --- !u!212 &21234892
