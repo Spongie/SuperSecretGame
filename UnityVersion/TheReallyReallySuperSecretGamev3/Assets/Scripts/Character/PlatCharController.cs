@@ -57,9 +57,15 @@ public class PlatCharController : MonoBehaviour
     ManualTimer dashTimer = new ManualTimer(0);
     ManualTimer boostReactionTimer = new ManualTimer(0);
 
+    private GameObject ivLastSlop;
+    public bool ivMovedLastFrame;
+
     Rigidbody2D ivRigidbody;
     float ivOriginalGravity;
     ManualTimer ivGravityTimer;
+
+    public PhysicsMaterial2D SlopeMaterial;
+    public PhysicsMaterial2D WallMaterial;
 
     // Use this for initialization
     void Start()
@@ -147,6 +153,7 @@ public class PlatCharController : MonoBehaviour
 
                     if(hit.transform.rotation.z != 0)
                     {
+                        ivLastSlop = hit.collider.gameObject;
                         transform.position = new Vector2(transform.position.x, hit.point.y);
                         if (groundedLastFrame)
                         {
@@ -328,10 +335,23 @@ public class PlatCharController : MonoBehaviour
         // Allow x-velocity control
         if (wallJumpControlDelayLeft <= 0)
         {
-            if(CanMove())
+            if (CanMove())
                 xVel = Input.GetAxisRaw("Horizontal") * maxSpeed;
 
             xVel += PlatformVelocity().x;
+            if(ivLastSlop != null)
+                Debug.Log(string.Format("XVel:{0}     Slope:{1}", xVel, ivLastSlop.name));
+
+            if (xVel == 0 && ivMovedLastFrame)
+            {
+                if (ivLastSlop != null)
+                    setLastSlopePhysicsMaterial(SlopeMaterial);
+            }
+            else if(xVel > 0 && !ivMovedLastFrame)
+            {
+                if (ivLastSlop != null)
+                    setLastSlopePhysicsMaterial(WallMaterial);
+            }
         }
 
         if (isGrabbing && RelativeVelocity().y <= 0)
@@ -399,6 +419,13 @@ public class PlatCharController : MonoBehaviour
             stop = false;
         }
 
+        if (Mathf.Abs(xVel) > 0)
+        {
+            ivMovedLastFrame = true;
+        }
+        else
+            ivMovedLastFrame = false;
+
         // Apply the calculate velocity to our rigidbody
         ivRigidbody.velocity = new Vector2(
                 xVel,
@@ -421,6 +448,13 @@ public class PlatCharController : MonoBehaviour
             }
             this.transform.localScale = scale;
         }
+    }
+
+    private void setLastSlopePhysicsMaterial(PhysicsMaterial2D piMaterial)
+    {
+        ivLastSlop.GetComponent<BoxCollider2D>().sharedMaterial = piMaterial;
+        ivLastSlop.GetComponent<BoxCollider2D>().enabled = false;
+        ivLastSlop.GetComponent<BoxCollider2D>().enabled = true;
     }
 
     private float SetDashSpeed(float xVel)

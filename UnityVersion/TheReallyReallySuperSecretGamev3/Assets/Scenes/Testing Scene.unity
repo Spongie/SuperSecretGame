@@ -525,6 +525,14 @@ Prefab:
       propertyPath: jumpSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 11446910, guid: 8ad8c65a4f9134448b740cb5d4ea2962, type: 2}
+      propertyPath: SlopeMaterial
+      value: 
+      objectReference: {fileID: 6200000, guid: 9e1c50fc3ca6a3c4d8c7f04f9f598319, type: 2}
+    - target: {fileID: 11446910, guid: 8ad8c65a4f9134448b740cb5d4ea2962, type: 2}
+      propertyPath: WallMaterial
+      value: 
+      objectReference: {fileID: 6200000, guid: c0288a17f81213d40b1178038f176197, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8ad8c65a4f9134448b740cb5d4ea2962, type: 2}
   m_IsPrefabParent: 0
