@@ -56,6 +56,7 @@ public class PlatCharController : MonoBehaviour
     ManualTimer jumpControlTimer = new ManualTimer(0);
     ManualTimer dashTimer = new ManualTimer(0);
     ManualTimer boostReactionTimer = new ManualTimer(0);
+    ManualTimer jumpStartTimer = new ManualTimer(0);
 
     private GameObject ivLastSlop;
     public bool ivMovedLastFrame;
@@ -137,6 +138,9 @@ public class PlatCharController : MonoBehaviour
         }
         else
         {
+            if (!jumpStartTimer.Done)
+                return false;
+
             var from = GetComponent<CircleCollider2D>().bounds.center;
 
             if(Debug.isDebugBuild)
@@ -206,6 +210,7 @@ public class PlatCharController : MonoBehaviour
         jumpControlTimer.Update(Time.deltaTime);
         dashTimer.Update(Time.deltaTime);
         boostReactionTimer.Update(Time.deltaTime);
+        jumpStartTimer.Update(Time.deltaTime);
 
         if (CanMove() && canTriggerJump)
             CheckJump();
@@ -374,6 +379,7 @@ public class PlatCharController : MonoBehaviour
         {
             // NOTE: As-is, neither vertical velocity nor walljump speed is affected by PlatformVelocity().
             isJumpControlling = true;
+            jumpStartTimer.Restart(0.1f);    
 
             yVel = jumpSpeed;
             if (platformRelativeJump)
