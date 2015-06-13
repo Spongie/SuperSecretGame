@@ -62,7 +62,6 @@ public class PlatCharController : MonoBehaviour
     public bool ivMovedLastFrame;
 
     Rigidbody2D ivRigidbody;
-    float ivOriginalGravity;
     ManualTimer ivGravityTimer;
 
     public PhysicsMaterial2D SlopeMaterial;
@@ -72,7 +71,6 @@ public class PlatCharController : MonoBehaviour
     void Start()
     {
         ivRigidbody = GetComponent<Rigidbody2D>();
-        ivOriginalGravity = ivRigidbody.gravityScale;
         ivGravityTimer = new ManualTimer(0);
         originalMaxSpeed = maxSpeed;
     }

@@ -17,6 +17,7 @@ namespace Assets.Scripts.Utility
 
             methodNames.Remove("Finalize");
             methodNames.Remove("MemberwiseClone");
+            methodNames.Remove("obj_address");
             methodNames.Add("None");
 
             return methodNames.OrderBy(name => name == "None").ToList();

@@ -346,7 +346,7 @@ Transform:
   m_LocalScale: {x: .469999999, y: 12.7600002, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 8
 --- !u!1 &435608448
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,11 +475,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 420276, guid: 8ad8c65a4f9134448b740cb5d4ea2962, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -.200000003
+      value: -1.32000005
       objectReference: {fileID: 0}
     - target: {fileID: 420276, guid: 8ad8c65a4f9134448b740cb5d4ea2962, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.88
+      value: -1.95000005
       objectReference: {fileID: 0}
     - target: {fileID: 420276, guid: 8ad8c65a4f9134448b740cb5d4ea2962, type: 2}
       propertyPath: m_LocalPosition.z
@@ -503,7 +503,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 420276, guid: 8ad8c65a4f9134448b740cb5d4ea2962, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11446910, guid: 8ad8c65a4f9134448b740cb5d4ea2962, type: 2}
       propertyPath: allowWallGrab
@@ -959,6 +959,31 @@ MonoBehaviour:
 GameObject:
   m_PrefabParentObject: {fileID: 154116, guid: 8ad8c65a4f9134448b740cb5d4ea2962, type: 2}
   m_PrefabInternal: {fileID: 753615432}
+--- !u!114 &1355967666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1355967665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 815feb8866d70cf4283feb910e492fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToRun: 0
+--- !u!114 &1355967667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1355967665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d896093dcfba1d14f8b80dc8384bc995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 0
+  Magic: 0
 --- !u!114 &1355967673
 MonoBehaviour:
   m_ObjectHideFlags: 0

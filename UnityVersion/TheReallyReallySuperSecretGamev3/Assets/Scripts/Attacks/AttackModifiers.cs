@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Utility;
+using CVCommon.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace Assets.Scripts.Attacks
 {
     public class AttackModifiers
     {
-        public float ApplyAttackEffect(string piEffectName, CStats piAttacker, CStats piTarget, AttackDamageScaling piAttackScaling, float piEffectPower, float piCurrentDamage)
+        public float ApplyAttackEffect(string piEffectName, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piEffectPower, float piCurrentDamage)
         {
             var method = GetType().GetMethod(piEffectName, BindingFlags.NonPublic | BindingFlags.Instance);
             
@@ -23,22 +24,27 @@ namespace Assets.Scripts.Attacks
             return piCurrentDamage;
         }
 
-        private float Lifesteal(CStats piAttacker, CStats piTarget, AttackDamageScaling piAttackScaling, float piEffectPower, float piCurrentDamage)
+        private float Lifesteal(GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piEffectPower, float piCurrentDamage)
         {
-            piAttacker.CurrentHealth += (int)(piCurrentDamage * piEffectPower);
+            CStats attackerStats = DamageCalculator.GetGameObjectsStats(piAttacker);
+
+            attackerStats.CurrentHealth += (int)(piCurrentDamage * piEffectPower);
 
             return piCurrentDamage;
         }
 
-        private float Manasteal(CStats piAttacker, CStats piTarget, AttackDamageScaling piAttackScaling, float piEffectPower, float piCurrentDamage)
+        private float Manasteal(GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piEffectPower, float piCurrentDamage)
         {
+            CStats attackerStats = DamageCalculator.GetGameObjectsStats(piAttacker);
+            CStats targetStats = DamageCalculator.GetGameObjectsStats(piTarget);
+
             int amount = (int)(piCurrentDamage * piEffectPower);
 
-            if (amount > piTarget.CurrentMana)
-                amount = piTarget.CurrentMana;
+            if (amount > targetStats.CurrentMana)
+                amount = targetStats.CurrentMana;
 
-            piAttacker.CurrentMana += amount;
-            piTarget.CurrentMana -= amount;
+            attackerStats.CurrentMana += amount;
+            targetStats.CurrentMana -= amount;
 
             return piCurrentDamage;
         }

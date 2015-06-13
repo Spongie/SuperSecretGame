@@ -5,20 +5,25 @@ using TheSuperTrueRealCV.Utilities;
 using Assets.Scripts.Utility;
 using CVCommon.Utility;
 using Assets.Scripts.Character;
+using System.Linq;
+using Assets.Scripts.Attacks;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Timer))]
 [RequireComponent(typeof(AttackDamageScaling))]
 public class Attack : MonoBehaviour 
 {
+    public bool IsMeleeAttack = false;
+    public bool IsRotating = false;
+    public bool ApplyGravity = false;
     public float secondsToLive;
     public float secondsHitReset;
     public Timer lifeTimer;
-    private Rigidbody2D ivRigidBody;
-    public bool ApplyGravity = false;
     public GameObject Owner;
+    public AttackEffect[] Saker = new AttackEffect[] { new AttackEffect(), new AttackEffect(), new AttackEffect(), new AttackEffect(), new AttackEffect() };
+    private Rigidbody2D ivRigidBody;
 
-    void Start()
+    void OnEnable()
     {
         ivRigidBody = GetComponent<Rigidbody2D>();
         ivRigidBody.gravityScale = ApplyGravity ? 1 : 0;
@@ -63,7 +68,7 @@ public class Attack : MonoBehaviour
 
     void Update()
     {
-        if (lifeTimer.Done)
+        if (lifeTimer.Done && !IsMeleeAttack)
             Destroy(gameObject);
 
         foreach (var timer in EntitiesHit)
@@ -71,6 +76,12 @@ public class Attack : MonoBehaviour
             timer.Value.Update(Time.deltaTime);
         }
 
+        if (IsRotating)
+            Rotate();
+    }
+
+    void Rotate()
+    {
         transform.Rotate(new Vector3(0, 0, 300 * Time.deltaTime));
     }
 
@@ -90,21 +101,13 @@ public class Attack : MonoBehaviour
         if (CanHitEntity(coll.gameObject))
         {
             AddEntityToHit(coll.gameObject);
-            var targetStats = GetStats(coll.gameObject);
-            float dmg = DamageCalculator.CalculateDamage(GetStats(Owner), targetStats, Scaling);
-            targetStats.DealDamage(dmg);
+            DamageCalculator.DealDamage(Owner, coll.gameObject, Scaling, GetAttackEffects());
         }
     }
 
-    private CStats GetStats(GameObject gameObject)
+
+    public IEnumerable<AttackEffect> GetAttackEffects()
     {
-        var player = gameObject.GetComponent<Player>();
-
-        if(player == null)
-        {
-            return gameObject.GetComponent<Stats>().stats;
-        }
-
-        return player.GetTrueStats();
+        return Saker.Where(effect => effect.Name != "None");
     }
 }

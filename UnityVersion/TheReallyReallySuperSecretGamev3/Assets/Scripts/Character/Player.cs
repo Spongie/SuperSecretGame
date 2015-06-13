@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.ResourceManagers;
+﻿using Assets.Scripts.Attacks;
+using Assets.Scripts.ResourceManagers;
 using Assets.Scripts.Utility;
 using CVCommon.Utility;
 using System;
@@ -41,6 +42,11 @@ namespace Assets.Scripts.Character
         public CStats GetTrueStats()
         {
             return ivBaseStats;
+        }
+
+        public IEnumerable<AttackEffect> GetAttackEffectsFromEquippedItems()
+        {
+            return ivInventory.GetEqippedItems().Where(item => item.EffectName != "None").Select(item => new AttackEffect() { Name = item.EffectName, Power = item.EffectValue });
         }
 
         private bool LoadPlayer()

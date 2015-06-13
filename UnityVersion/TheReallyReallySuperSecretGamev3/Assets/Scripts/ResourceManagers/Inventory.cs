@@ -16,7 +16,7 @@ namespace Assets.Scripts.ResourceManagers
             ivItems = new Dictionary<string, Item>();
         }
 
-        private List<Item> GetEqippedItems()
+        public List<Item> GetEqippedItems()
         {
             return ivEquippedItems.Values.ToList();
         }
