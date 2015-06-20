@@ -37,7 +37,7 @@ namespace Assets.Scripts.Environment
             Logger.Log("Fading Screen");
             while (alpha < 255)
             {
-                alpha += 15f;
+                alpha += 20f;
                 ivFadeImage.color = new Color(ivFadeImage.color.r, ivFadeImage.color.g, ivFadeImage.color.b, alpha / 255);
                 yield return new WaitForSeconds(0.025f);
             }
@@ -47,7 +47,7 @@ namespace Assets.Scripts.Environment
 
             while (alpha > 0)
             {
-                alpha -= 10f;
+                alpha -= 5f;
                 ivFadeImage.color = new Color(ivFadeImage.color.r, ivFadeImage.color.g, ivFadeImage.color.b, alpha / 255);
                 yield return new WaitForSeconds(0.025f);
             }
