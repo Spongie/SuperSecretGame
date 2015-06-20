@@ -1,27 +1,27 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Utility;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.Environment
 {
-    [RequireComponent(typeof(Timer))]
     public class Door : MonoBehaviour
     {
         public Transform Target;
         private Image ivFadeImage;
         private bool ivCanEnter = false;
-        private Timer OpenLockTimer;
+        public Timer OpenLockTimer;
 
         void Start()
         {
-            ivFadeImage = FindObjectsOfType<Image>().Where(image => image.name == "FadeImage").First();
-            OpenLockTimer = GetComponent<Timer>();
+            ivFadeImage = GameObject.FindGameObjectWithTag("FadeImage").GetComponent<Image>();
+            OpenLockTimer = GameObject.FindGameObjectWithTag("Player").GetComponent<Timer>();
         }
 
         void Update()
         {
-            if (Input.GetButton("Fire1") && OpenLockTimer.Done)
+            if (Input.GetButtonDown("Fire1") && OpenLockTimer.Done && ivCanEnter)
                 OpenDoor();
         }
 
@@ -31,24 +31,30 @@ namespace Assets.Scripts.Environment
             StartCoroutine("DoorTransition");
         }
 
-        IEnumerable DoorTransition()
+        IEnumerator DoorTransition()
         {
-            while(ivFadeImage.color.a < 255)
+            float alpha = 0f;
+            Logger.Log("Fading Screen");
+            while (alpha < 255)
             {
-                ivFadeImage.color = new Color(ivFadeImage.color.r, ivFadeImage.color.g, ivFadeImage.color.b, ivFadeImage.color.a + 15);
-                yield return new WaitForSeconds(0.05f);
+                alpha += 15f;
+                ivFadeImage.color = new Color(ivFadeImage.color.r, ivFadeImage.color.g, ivFadeImage.color.b, alpha / 255);
+                yield return new WaitForSeconds(0.025f);
             }
 
+            Logger.Log("Moving player");
             GameObject.FindGameObjectWithTag("Player").transform.position = Target.position;
 
-            while (ivFadeImage.color.a > 0)
+            while (alpha > 0)
             {
-                ivFadeImage.color = new Color(ivFadeImage.color.r, ivFadeImage.color.g, ivFadeImage.color.b, ivFadeImage.color.a - 15);
-                yield return new WaitForSeconds(0.05f);
+                alpha -= 10f;
+                ivFadeImage.color = new Color(ivFadeImage.color.r, ivFadeImage.color.g, ivFadeImage.color.b, alpha / 255);
+                yield return new WaitForSeconds(0.025f);
             }
+            Logger.Log("UnFading Screen");
         }
 
-        void OnCollisionEnter2D(Collision2D coll)
+        void OnTriggerEnter2D(Collider2D coll)
         {
             if(coll.gameObject.tag == "Player")
             {
@@ -56,7 +62,7 @@ namespace Assets.Scripts.Environment
             }
         }
 
-        void OnCollisionExit(Collision collisionInfo) 
+        void OnTriggerExit2D(Collider2D collisionInfo) 
         {
             if (collisionInfo.gameObject.tag == "Player")
             {

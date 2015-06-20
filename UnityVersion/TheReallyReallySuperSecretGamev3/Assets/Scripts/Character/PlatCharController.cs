@@ -184,8 +184,6 @@ public class PlatCharController : MonoBehaviour
         canDoublejump = true;
         diveKicking = false;
         maxSpeed = originalMaxSpeed;
-
-        Logger.Log("Really grounded");
     }
 
     /// <summary>
@@ -243,7 +241,7 @@ public class PlatCharController : MonoBehaviour
 
     private void CheckJump()
     {
-        if ((Input.GetKey(KeyCode.Space) || Input.GetButton("Fire1")))
+        if (Input.GetButton("Jump"))
         {
             if (IsGrounded() || canDoublejump)
             {

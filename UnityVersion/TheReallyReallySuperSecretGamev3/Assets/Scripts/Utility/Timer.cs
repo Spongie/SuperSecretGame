@@ -4,27 +4,27 @@ using System.Collections;
 public class Timer : MonoBehaviour 
 {
 
-	public float timeToRun;
-	private float timeRunning;
+	public float TimeToRun;
+	public float TimeRunning;
 	
 	public void Restart()
 	{
-		timeRunning = 0;
+		TimeRunning = 0;
 	}
 
     public bool Done
     {
-        get { return timeToRun < timeRunning; }
+        get { return TimeToRun < TimeRunning; }
     }
 
 	public void Restart(float piTimeToRun)
 	{
-		timeToRun = piTimeToRun;
-		timeRunning = 0;
+		TimeToRun = piTimeToRun;
+		TimeRunning = 0;
 	}
 
 	void Update () 
     {
-		timeRunning += Time.deltaTime;
+		TimeRunning += Time.deltaTime;
 	}
 }
