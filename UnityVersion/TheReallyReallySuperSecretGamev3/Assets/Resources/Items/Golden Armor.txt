@@ -1,1 +1,1 @@
-{"ID":null,"EffectName":"None","EffectValue":0.0,"IconName":"Armor05","Slot":1,"Name":"Golden Armor","Damage":0.0,"Defense":50.0,"MagicDamage":5.0,"MagicDefense":0.0,"Luck":0.0,"Resistance":10.0}
+{"ID":null,"EffectName":"None","EffectValue":0.0,"EffectDuration":0.0,"EffectTicks":0,"IconName":"Armor05","Slot":1,"Name":"Golden Armor","Damage":0.0,"Defense":50.0,"MagicDamage":5.0,"MagicDefense":0.0,"Luck":0.0,"Resistance":10.0}

@@ -1,11 +1,12 @@
-﻿using Assets.Scripts.Character.Monsters;
-using CVCommon.Utility;
+﻿using Assets.Scripts.Buffs;
+using Assets.Scripts.Character.Monsters;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace TheSuperTrueRealCV.EnemyAI
 {
+    [RequireComponent(typeof(BuffContainer))]
     [RequireComponent(typeof(Timer))]
     public abstract class Monster : Character_Controller
     {
@@ -19,7 +20,6 @@ namespace TheSuperTrueRealCV.EnemyAI
         protected bool waitingForAnimation = false;
         public MonsterTypes MonsterType = MonsterTypes.Humanoid;
 
-
         public override void Start()
         {
             base.Start();
@@ -32,6 +32,8 @@ namespace TheSuperTrueRealCV.EnemyAI
             AiTimer.Restart(0);
             ExpReward = 25;
             Activate();
+
+            GetComponent<BuffContainer>().ivStats = CurrentStats.stats;
         }
 
         public void Activate()

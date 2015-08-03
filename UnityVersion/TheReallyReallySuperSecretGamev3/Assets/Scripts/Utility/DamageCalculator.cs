@@ -1,12 +1,10 @@
 ﻿using Assets.Scripts.Attacks;
 using Assets.Scripts.Character;
 using Assets.Scripts.Utility;
-using CVCommon;
 using CVCommon.Utility;
 using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
-using TheSuperTrueRealCV.EnemyAI;
 
 namespace TheSuperTrueRealCV.Utilities
 {
@@ -27,7 +25,7 @@ namespace TheSuperTrueRealCV.Utilities
 
             foreach (var effect in piEffectsFromAttack.Concat(GetAttackEffectsFromAttackersEquippedItems(piAttacker)))
             {
-                baseDamage = attackModifiers.ApplyAttackEffect(effect.Name, piAttacker, piTarget, piAttackScaling, effect.Power, baseDamage);
+                baseDamage = attackModifiers.ApplyAttackEffect(effect.Name, piAttacker, piTarget, piAttackScaling, effect.Power, effect.Duration, effect.Ticks, baseDamage);
             }
 
             float realDamage = baseDamage - physicalDefense - magicDefense;

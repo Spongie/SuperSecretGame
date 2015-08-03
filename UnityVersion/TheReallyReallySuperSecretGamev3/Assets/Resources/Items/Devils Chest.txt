@@ -1,1 +1,1 @@
-{"ID":null,"EffectName":"None","EffectValue":0.0,"IconName":"Armor11","Slot":1,"Name":"Devils Chest","Damage":0.0,"Defense":100.0,"MagicDamage":0.0,"MagicDefense":100.0,"Luck":0.0,"Resistance":100.0}
+{"ID":null,"EffectName":"None","EffectValue":0.0,"EffectDuration":0.0,"EffectTicks":0,"IconName":"Armor11","Slot":1,"Name":"Devils Chest","Damage":0.0,"Defense":100.0,"MagicDamage":0.0,"MagicDefense":100.0,"Luck":0.0,"Resistance":100.0}

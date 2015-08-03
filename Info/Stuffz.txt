@@ -51,6 +51,10 @@ Combat/spells
 	Buffs/Debuffs:
 		Can applyas från onhiteffecter
 	Curesed Area, allt inom den får en statuseffect
+	Slow
+	Fear
+	Timestop meck usch
+	
 	
 Handkontroll
 

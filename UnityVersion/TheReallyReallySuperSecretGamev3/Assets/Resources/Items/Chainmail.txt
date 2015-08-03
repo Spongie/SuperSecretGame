@@ -1,1 +1,1 @@
-{"ID":null,"EffectName":"None","EffectValue":0.0,"IconName":"Armor01","Slot":0,"Name":"Chainmail","Damage":0.0,"Defense":10.0,"MagicDamage":0.0,"MagicDefense":5.0,"Luck":0.0,"Resistance":0.0}
+{"ID":null,"EffectName":"None","EffectValue":0.0,"EffectDuration":0.0,"EffectTicks":0,"IconName":"Armor01","Slot":0,"Name":"Chainmail","Damage":0.0,"Defense":10.0,"MagicDamage":0.0,"MagicDefense":5.0,"Luck":0.0,"Resistance":0.0}

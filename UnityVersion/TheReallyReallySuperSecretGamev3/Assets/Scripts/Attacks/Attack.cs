@@ -1,10 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using TheSuperTrueRealCV.Utilities;
 using Assets.Scripts.Utility;
-using CVCommon.Utility;
-using Assets.Scripts.Character;
 using System.Linq;
 using Assets.Scripts.Attacks;
 
@@ -20,7 +17,7 @@ public class Attack : MonoBehaviour
     public float secondsHitReset;
     public Timer lifeTimer;
     public GameObject Owner;
-    public AttackEffect[] Saker = new AttackEffect[] { new AttackEffect(), new AttackEffect(), new AttackEffect(), new AttackEffect(), new AttackEffect() };
+    public AttackEffect[] Saker;
     private Rigidbody2D ivRigidBody;
 
     void OnEnable()

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Assets.Scripts.Attacks
 {
@@ -10,5 +7,7 @@ namespace Assets.Scripts.Attacks
     {
         public string Name = "None";
         public float Power = 0.0f;
+        public float Duration = 0.0f;
+        public int Ticks = 0;
     }
 }

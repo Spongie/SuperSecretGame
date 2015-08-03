@@ -33,6 +33,8 @@ namespace Assets.Scripts.Utility
         private string ivIconName;
         private string ivEffectName;
         private float ivEffectValue;
+        private float ivEffectDuration;
+        private int ivTicks;
 
         [NonSerialized]
         private AttackEffectLoader ivEffectLoader;
@@ -78,6 +80,25 @@ namespace Assets.Scripts.Utility
             }
         }
 
+        public float EffectDuration
+        {
+            get { return ivEffectDuration; }
+            set
+            {
+                ivEffectDuration = value;
+                FirePropertyChanged("EffectDuration");
+            }
+        }
+
+        public int EffectTicks
+        {
+            get { return ivTicks; }
+            set
+            {
+                ivTicks = value;
+                FirePropertyChanged("Ticks");
+            }
+        }
 
         public string IconName
         {

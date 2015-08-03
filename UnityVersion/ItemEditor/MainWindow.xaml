@@ -46,6 +46,10 @@
                             <ComboBox ItemsSource="{Binding Path=AttackModifiers}" SelectedItem="{Binding Path=EffectName}" SelectionChanged="EffectName_SelectionChanged"/>
                             <Label Content="Effectvalue" />
                             <TextBox x:Name="ivTextboxEffectvalue" Height="30" TextWrapping="Wrap" Text="{Binding Path=EffectValue}" FontSize="18" />
+                            <Label Content="EffectDuration" />
+                            <TextBox x:Name="ivTextboxEffectDuration" Height="30" TextWrapping="Wrap" Text="{Binding Path=EffectDuration}" FontSize="18" />
+                            <Label Content="EffectTicks" />
+                            <TextBox x:Name="ivTextboxEffectTicks" Height="30" TextWrapping="Wrap" Text="{Binding Path=EffectTicks}" FontSize="18" />
                         </StackPanel>
                     </ScrollViewer>
                     <Button Content="Add Item" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="10,10,0,0" Grid.Row="1" Width="82" Click="ButtonAdd_Click"/>

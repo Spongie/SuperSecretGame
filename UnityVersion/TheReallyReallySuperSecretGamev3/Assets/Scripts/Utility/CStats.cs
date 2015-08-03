@@ -1,13 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Assets.Scripts.Utility
 {
     [Serializable]
     public class CStats
     {
+        public CStats() : this(0) { }
+
+        public CStats(int piValue)
+        {
+            Damage = piValue;
+            Defense = piValue;
+            MagicDamage = piValue;
+            MagicDefense = piValue;
+            Luck = piValue;
+            MaximumHealth = piValue;
+            MaximumMana = piValue;
+        }
+
         public int MaximumHealth;
         public int CurrentExp;
         public int MaximumExp;
@@ -75,6 +85,26 @@ namespace Assets.Scripts.Utility
             }
             else
                 CurrentExp += amount;
+        }
+
+        public static CStats operator +(CStats piFirst, CStats piOther)
+        {
+            var newStats = new CStats()
+            {
+                MaximumHealth = piFirst.MaximumHealth + piOther.MaximumHealth,
+                MaximumMana = piFirst.MaximumMana + piOther.MaximumMana,
+                Damage = piFirst.Damage + piOther.Damage,
+                Defense = piFirst.Defense + piOther.Defense,
+                MagicDamage = piFirst.MagicDamage + piOther.MagicDamage,
+                MagicDefense = piFirst.MagicDefense + piOther.MagicDefense,
+                Luck = piFirst.Luck + piOther.Luck,
+                Resistance = piFirst.Resistance + piOther.Resistance
+            };
+
+            newStats.CurrentHealth = (piFirst.CurrentHealth > piOther.CurrentHealth) ? piFirst.CurrentHealth : piOther.CurrentHealth;
+            newStats.CurrentMana = (piFirst.CurrentMana > piOther.CurrentMana) ? piFirst.CurrentMana : piOther.CurrentMana;
+
+            return newStats;
         }
     }
 }

@@ -1,18 +1,19 @@
 ﻿using Assets.Scripts.Attacks;
+using Assets.Scripts.Buffs;
 using Assets.Scripts.ResourceManagers;
 using Assets.Scripts.Utility;
 using CVCommon.Utility;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using UnityEngine;
 
 namespace Assets.Scripts.Character
 {
     [RequireComponent(typeof(Stats))]
+    [RequireComponent(typeof(BuffContainer))]
     public class Player : MonoBehaviour
     {
+        private BuffContainer Buffs;
         private CStats ivBaseStats;
         private Inventory ivInventory;
 
@@ -20,6 +21,8 @@ namespace Assets.Scripts.Character
         {
             ivBaseStats = GetComponent<Stats>().stats;
             ivInventory = new Inventory();
+            Buffs = GetComponent<BuffContainer>();
+            Buffs.ivStats = ivBaseStats;
 
             if(!LoadPlayer())
                 SetBaseStats();
@@ -36,17 +39,17 @@ namespace Assets.Scripts.Character
         }
 
         /// <summary>
-        /// Gets base-stats + equipped-stats
+        /// Gets base-stats + equipped-stats + Buffstats
         /// </summary>
         /// <returns></returns>
         public CStats GetTrueStats()
         {
-            return ivBaseStats;
+            return ivBaseStats + Buffs.GetBuffStats();
         }
 
         public IEnumerable<AttackEffect> GetAttackEffectsFromEquippedItems()
         {
-            return ivInventory.GetEqippedItems().Where(item => item.EffectName != "None").Select(item => new AttackEffect() { Name = item.EffectName, Power = item.EffectValue });
+            return ivInventory.GetEqippedItems().Where(item => item.EffectName != "None").Select(item => new AttackEffect() { Name = item.EffectName, Power = item.EffectValue, Duration = item.EffectDuration, Ticks = item.EffectTicks });
         }
 
         private bool LoadPlayer()

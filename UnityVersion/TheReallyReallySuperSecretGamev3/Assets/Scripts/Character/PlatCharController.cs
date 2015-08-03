@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
 using Assets.Scripts.Utility;
-using UnityEditor;
 
 public class PlatCharController : MonoBehaviour
 {
