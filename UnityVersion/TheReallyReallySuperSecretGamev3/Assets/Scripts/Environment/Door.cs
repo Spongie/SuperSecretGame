@@ -21,7 +21,7 @@ namespace Assets.Scripts.Environment
 
         void Update()
         {
-            if (Input.GetButtonDown("Fire1") && OpenLockTimer.Done && ivCanEnter)
+            if (Input.GetButtonDown("Y") && OpenLockTimer.Done && ivCanEnter)
                 OpenDoor();
         }
 

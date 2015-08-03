@@ -209,7 +209,7 @@ public class PlatCharController : MonoBehaviour
         if (CanMove() && canTriggerJump)
             CheckJump();
 
-        if (Input.GetButtonDown("Dash") && !dashing && !diveKicking)
+        if (Input.GetButtonDown("RB") && !dashing && !diveKicking)
         {
             if (!boostReactionTimer.Done)
             {
@@ -239,7 +239,7 @@ public class PlatCharController : MonoBehaviour
 
     private void CheckJump()
     {
-        if (Input.GetButton("Jump"))
+        if (Input.GetButton("A"))
         {
             if (IsGrounded() || canDoublejump)
             {
@@ -261,7 +261,7 @@ public class PlatCharController : MonoBehaviour
             isJumpControlling = false;
         }
 
-        if (!Input.GetButton("Jump") && !isJumpControlling && !usedDoubleJump)
+        if (!Input.GetButton("A") && !isJumpControlling && !usedDoubleJump)
         {
             canDoublejump = true;
         }
