@@ -52,14 +52,12 @@ Combat/spells
 		Can applyas från onhiteffecter
 	Curesed Area, allt inom den får en statuseffect
 	Slow
+	Freeze
 	Fear
 	Timestop meck usch
 	
 	
 Handkontroll
-
-Camera movment
-	
 	
 Fredriks 2.0
 
@@ -82,7 +80,22 @@ Slide
 	
 	
 	
-	
+BUGGS:
+
+[16:57:42] Fredrik(Dalfen): ska skriva ner allt
+[16:57:46] Fredrik(Dalfen): och börja fixa
+[16:58:02] Fredrik(Dalfen): så 1
+om man står på lutande mark
+och håller in hopp
+så hoppar den så fort den landar
+[16:58:16] Fredrik(Dalfen): 2
+man kan hamna i egde boost utan att landa på kanten
+genom att divekicka precist av mot en kant
+så att äns hitbox nuddar kanten men man fortsätter ner
+[16:58:51] Fredrik(Dalfen): 3 om man hamnar i egde boost mode utan att sluta vara i dive kick mode så kommer man glida när man hamnar på marken
+[16:59:16] Fredrik(Dalfen): 4 kan bära med sig egde boost igenom dörrar
+[17:00:20] Fredrik(Dalfen): 5 lyckades dive kicka in i en egde boost kant och min char fick reversat momentum och åkte började glida iväg(förmodligen linkat till 3an)
+[17:00:26] Fredrik(Dalfen): där är allt
 	
 	
 	
