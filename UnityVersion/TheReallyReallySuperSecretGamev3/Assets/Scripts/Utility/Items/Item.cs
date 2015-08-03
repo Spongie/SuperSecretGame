@@ -19,7 +19,7 @@ namespace Assets.Scripts.Utility
         Shoulders
     }
 
-    [System.Serializable]
+    [Serializable]
     public class Item : INotifyPropertyChanged
     {
         private string ivName;
@@ -34,6 +34,7 @@ namespace Assets.Scripts.Utility
         private string ivEffectName;
         private float ivEffectValue;
 
+        [NonSerialized]
         private AttackEffectLoader ivEffectLoader;
 
         public Item() 

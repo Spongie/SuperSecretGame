@@ -7,7 +7,6 @@ using System.Linq;
 using System.Windows.Media.Imaging;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
-using System.Threading;
 
 namespace ItemEditor
 {

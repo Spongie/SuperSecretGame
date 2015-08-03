@@ -13,7 +13,6 @@ namespace ItemEditor
     public partial class MainWindow : Window
     {
         private CreatorController ivController;
-        private BackgroundWorker ivWorker;
 
         public MainWindow()
         {
