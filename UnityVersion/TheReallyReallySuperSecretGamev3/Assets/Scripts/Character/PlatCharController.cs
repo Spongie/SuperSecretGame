@@ -209,6 +209,9 @@ public class PlatCharController : MonoBehaviour
         if (CanMove() && canTriggerJump)
             CheckJump();
 
+        if (!boostReactionTimer.Done && Mathf.Abs(ivRigidbody.velocity.y) > 0.3f)
+            boostReactionTimer.Restart(0);
+
         if (Input.GetButtonDown("RB") && !dashing && !diveKicking)
         {
             if (!boostReactionTimer.Done)
