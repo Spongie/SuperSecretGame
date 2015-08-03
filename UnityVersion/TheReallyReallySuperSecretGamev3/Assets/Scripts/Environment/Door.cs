@@ -28,7 +28,7 @@ namespace Assets.Scripts.Environment
         public void OpenDoor()
         {
             OpenLockTimer.Restart(3);
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlatCharController>().setGrounded();
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlatCharController>().OnOpenDoor();
             StartCoroutine("DoorTransition");
         }
 

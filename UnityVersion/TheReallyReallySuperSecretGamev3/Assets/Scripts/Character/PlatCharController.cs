@@ -182,7 +182,13 @@ public class PlatCharController : MonoBehaviour
         return false;
     }
 
-    public void setGrounded()
+    public void OnOpenDoor()
+    {
+        setGrounded();
+        ivRigidbody.velocity = Vector2.zero;
+    }
+
+    private void setGrounded()
     {
         usedDoubleJump = false;
         canDoublejump = true;
