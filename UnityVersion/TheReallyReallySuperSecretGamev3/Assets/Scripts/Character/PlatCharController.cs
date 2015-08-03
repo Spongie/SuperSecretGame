@@ -182,7 +182,7 @@ public class PlatCharController : MonoBehaviour
         return false;
     }
 
-    private void setGrounded()
+    public void setGrounded()
     {
         usedDoubleJump = false;
         canDoublejump = true;
