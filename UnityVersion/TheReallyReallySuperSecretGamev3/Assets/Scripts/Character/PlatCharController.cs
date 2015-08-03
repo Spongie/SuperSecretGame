@@ -65,12 +65,15 @@ public class PlatCharController : MonoBehaviour
     public PhysicsMaterial2D SlopeMaterial;
     public PhysicsMaterial2D WallMaterial;
 
+    private CircleCollider2D ivFeetCollider;
+
     // Use this for initialization
     void Start()
     {
         ivRigidbody = GetComponent<Rigidbody2D>();
         ivGravityTimer = new ManualTimer(0);
         originalMaxSpeed = maxSpeed;
+        ivFeetCollider = GetComponent<CircleCollider2D>();
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -85,9 +88,12 @@ public class PlatCharController : MonoBehaviour
 
         if(col.gameObject.tag == "Boost" && diveKicking)
         {
-            boostReactionTimer.Restart(2);
-            stop = true;
-            Logger.Log("Landed on boost");
+            if (col.collider.transform.position.y <= ivFeetCollider.bounds.center.y - ivFeetCollider.radius)
+            {
+              boostReactionTimer.Restart(2);
+              stop = true;
+              Logger.Log("Landed on boost");
+            }
         }
     }
 
