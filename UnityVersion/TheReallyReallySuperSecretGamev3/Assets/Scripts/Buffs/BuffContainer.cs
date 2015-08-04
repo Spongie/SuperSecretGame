@@ -6,7 +6,7 @@ namespace Assets.Scripts.Buffs
 {
     public class BuffContainer : MonoBehaviour
     {
-        public CStats ivStats;
+        public CStats Stats;
         public int NrOfBuffs;
 
         void Start()
@@ -29,7 +29,7 @@ namespace Assets.Scripts.Buffs
                 {
                     var debuff = (PoisonDebuff)buff;
                     if (debuff.ShouldTick)
-                        debuff.Tick(ivStats);
+                        debuff.Tick(Stats);
                 }
 
                 if (buff.Expired)

@@ -22,7 +22,7 @@ namespace Assets.Scripts.Character
             ivBaseStats = GetComponent<Stats>().stats;
             ivInventory = new Inventory();
             Buffs = GetComponent<BuffContainer>();
-            Buffs.ivStats = ivBaseStats;
+            Buffs.Stats = ivBaseStats;
 
             if(!LoadPlayer())
                 SetBaseStats();

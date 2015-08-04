@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Buffs;
 using Assets.Scripts.Character.Monsters;
+using Assets.Scripts.Utility;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,7 @@ namespace TheSuperTrueRealCV.EnemyAI
         protected int newState;
         protected bool waitingForAnimation = false;
         public MonsterTypes MonsterType = MonsterTypes.Humanoid;
+        private BuffContainer Buffs;
 
         public override void Start()
         {
@@ -33,7 +35,8 @@ namespace TheSuperTrueRealCV.EnemyAI
             ExpReward = 25;
             Activate();
 
-            GetComponent<BuffContainer>().ivStats = CurrentStats.stats;
+            Buffs = GetComponent<BuffContainer>();
+            Buffs.Stats = CurrentStats.stats;
         }
 
         public void Activate()
@@ -46,6 +49,11 @@ namespace TheSuperTrueRealCV.EnemyAI
                 ivFacingRight = true;
             
             AiList.Add(() => UpdateIdle());
+        }
+
+        public CStats GetTrueStats()
+        {
+            return CurrentStats.stats + Buffs.GetBuffStats();
         }
 
         public virtual void Update()

@@ -16,7 +16,11 @@ namespace Assets.Scripts.Utility
         Hands,
         Neck,
         Ring,
-        Shoulders
+        Shoulders,
+        MinorGem1,
+        MinorGem2,
+        MinorGem3,
+        MajorGem
     }
 
     [Serializable]

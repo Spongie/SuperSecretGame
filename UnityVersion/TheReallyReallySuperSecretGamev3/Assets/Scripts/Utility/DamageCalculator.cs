@@ -5,6 +5,7 @@ using CVCommon.Utility;
 using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
+using TheSuperTrueRealCV.EnemyAI;
 
 namespace TheSuperTrueRealCV.Utilities
 {
@@ -50,7 +51,7 @@ namespace TheSuperTrueRealCV.Utilities
             if (player != null)
                 return player.GetTrueStats();
 
-            return piObject.GetComponent<Stats>().stats;
+            return piObject.GetComponent<Monster>().GetTrueStats();
         }
     }
 }
