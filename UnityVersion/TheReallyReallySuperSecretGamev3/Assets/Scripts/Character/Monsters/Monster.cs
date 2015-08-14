@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Buffs;
+using Assets.Scripts.Character;
 using Assets.Scripts.Character.Monsters;
 using Assets.Scripts.Utility;
 using System;
@@ -9,6 +10,7 @@ namespace TheSuperTrueRealCV.EnemyAI
 {
     [RequireComponent(typeof(BuffContainer))]
     [RequireComponent(typeof(Timer))]
+    [RequireComponent(typeof(ItemDropper))]
     public abstract class Monster : Character_Controller
     {
         protected GameObject target;
@@ -68,7 +70,21 @@ namespace TheSuperTrueRealCV.EnemyAI
                 AiList[0].Invoke();
             }
 
-            ivAnimator.SetFloat("Speed", Mathf.Abs(ivRigidbody.velocity.x));            
+            ivAnimator.SetFloat("Speed", Mathf.Abs(ivRigidbody.velocity.x));         
+            
+            if(CurrentStats.IsDead())
+                HandleDeath();
+        }
+
+        private void HandleDeath()
+        {
+            var drops = GetComponent<ItemDropper>().GetDroppedItems();
+            Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+
+            player.GiveLoot(drops);
+            player.RewardExp(ExpReward);
+
+            Destroy(gameObject);
         }
 
         public override void FixedUpdate()

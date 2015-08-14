@@ -38,6 +38,19 @@ namespace Assets.Scripts.Character
             ivBaseStats.Level = 1;
         }
 
+        public void GiveLoot(List<Item> piDrops)
+        {
+            foreach (Item item in piDrops)
+            {
+                ivInventory.AddItem(item);
+            }
+        }
+
+        public void RewardExp(int piAmount)
+        {
+            ivBaseStats.RewardExperience(piAmount);
+        }
+
         /// <summary>
         /// Gets base-stats + equipped-stats + Buffstats
         /// </summary>

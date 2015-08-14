@@ -15,5 +15,10 @@ namespace CVCommon.Utility
             if (stats.CurrentMana > stats.MaximumMana)
                 stats.CurrentMana = stats.MaximumMana;
         }
+
+        public bool IsDead()
+        {
+            return stats.CurrentHealth <= 0;
+        }
 	}
 }
