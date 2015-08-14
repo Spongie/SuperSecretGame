@@ -1,6 +1,5 @@
 ﻿using Assets.Scripts.Utility;
 using System.Collections;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +11,7 @@ namespace Assets.Scripts.Environment
         private Image ivFadeImage;
         private bool ivCanEnter = false;
         public Timer OpenLockTimer;
+        public string ActivationButton = "Y";
 
         void Start()
         {
@@ -21,7 +21,7 @@ namespace Assets.Scripts.Environment
 
         void Update()
         {
-            if (Input.GetButtonDown("Y") && OpenLockTimer.Done && ivCanEnter)
+            if (Input.GetButtonDown(ActivationButton) && OpenLockTimer.Done && ivCanEnter)
                 OpenDoor();
         }
 
@@ -60,6 +60,7 @@ namespace Assets.Scripts.Environment
             if(coll.gameObject.tag == "Player")
             {
                 ivCanEnter = true;
+                ButtonLock.Instance.AddLock(ActivationButton);
             }
         }
 
@@ -68,6 +69,7 @@ namespace Assets.Scripts.Environment
             if (collisionInfo.gameObject.tag == "Player")
             {
                 ivCanEnter = false;
+                ButtonLock.Instance.ClearLock(ActivationButton);
             }
         }
     }

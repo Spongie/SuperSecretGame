@@ -3,6 +3,9 @@ using Assets.Scripts.Utility;
 
 public class PlatCharController : MonoBehaviour
 {
+    public string JumpButton = "A";
+    public string DashButton = "RB";
+    
     public float IgnoreGravityTime;
     // Horizontal speed
     public float maxSpeed = 8f;
@@ -224,7 +227,7 @@ public class PlatCharController : MonoBehaviour
         if (!boostReactionTimer.Done && Mathf.Abs(ivRigidbody.velocity.y) > 0.3f)
             boostReactionTimer.Restart(0);
 
-        if (Input.GetButtonDown("RB") && !dashing && !diveKicking)
+        if (Input.GetButtonDown(DashButton) && !dashing && !diveKicking && !ButtonLock.Instance.IsButtonLocked(DashButton))
         {
             if (!boostReactionTimer.Done)
             {
@@ -254,7 +257,7 @@ public class PlatCharController : MonoBehaviour
 
     private void CheckJump()
     {
-        if (Input.GetButton("A"))
+        if (Input.GetButton(JumpButton) && !ButtonLock.Instance.IsButtonLocked(JumpButton))
         {
             if (IsGrounded() || canDoublejump)
             {
@@ -276,7 +279,7 @@ public class PlatCharController : MonoBehaviour
             isJumpControlling = false;
         }
 
-        if (!Input.GetButton("A") && !isJumpControlling && !usedDoubleJump)
+        if (!Input.GetButton(JumpButton) && !isJumpControlling && !usedDoubleJump && !ButtonLock.Instance.IsButtonLocked(JumpButton))
         {
             canDoublejump = true;
         }
