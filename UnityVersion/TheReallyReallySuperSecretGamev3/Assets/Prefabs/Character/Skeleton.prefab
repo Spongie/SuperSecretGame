@@ -32,6 +32,7 @@ GameObject:
   - 95: {fileID: 9513026}
   - 114: {fileID: 11462086}
   - 114: {fileID: 11437536}
+  - 114: {fileID: 11494016}
   m_Layer: 0
   m_Name: Skeleton
   m_TagString: Monster
@@ -66,6 +67,7 @@ Transform:
   m_RootOrder: 0
 --- !u!50 &5093966
 Rigidbody2D:
+  serializedVersion: 2
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -74,11 +76,11 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
   m_GravityScale: 1
-  m_FixedAngle: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!58 &5899196
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -133,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3d6fab95c7d1964898716a4f513f0bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ivStats:
+  Stats:
     MaximumHealth: 0
     CurrentExp: 0
     MaximumExp: 0
@@ -156,6 +158,7 @@ MonoBehaviour:
     BaseTimeStopResist: 0
     BaseFreezeResist: 0
     BaseFearResist: 0
+  NrOfBuffs: 0
 --- !u!114 &11462086
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -203,6 +206,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeToRun: 0
   TimeRunning: 0
+--- !u!114 &11494016
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 192656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08e4457a970eb0849a7f5a720905563c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LootTableName: Skeleton
+  MaxItemDrops: 6
 --- !u!114 &11494432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -258,7 +274,15 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: MaxItemDrops
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: LootTableName
+      value: Skeleton
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 192656}

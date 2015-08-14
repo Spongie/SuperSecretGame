@@ -431,6 +431,7 @@ MonoBehaviour:
   m_SubmitButton: Submit
   m_CancelButton: Cancel
   m_InputActionsPerSecond: 10
+  m_RepeatDelay: .5
   m_AllowActivationOnMobileDevice: 0
 --- !u!114 &435608451
 MonoBehaviour:
@@ -609,6 +610,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 1085454297}
   OpenLockTimer: {fileID: 0}
+  ActivationButton: Y
 --- !u!114 &710773181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -711,7 +713,7 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8ad8c65a4f9134448b740cb5d4ea2962, type: 2}
   m_IsPrefabParent: 0
---- !u!4 &753615433
+--- !u!4 &753615433 stripped
 Transform:
   m_PrefabParentObject: {fileID: 420276, guid: 8ad8c65a4f9134448b740cb5d4ea2962, type: 2}
   m_PrefabInternal: {fileID: 753615432}
@@ -997,7 +999,7 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 990700065}
---- !u!4 &1085454297
+--- !u!4 &1085454297 stripped
 Transform:
   m_PrefabParentObject: {fileID: 402926, guid: aaa37e120261c044d8be12ce44c02185, type: 2}
   m_PrefabInternal: {fileID: 123861342}
@@ -1098,7 +1100,7 @@ GameObject:
   - 114: {fileID: 1289456482}
   m_Layer: 0
   m_Name: ResourceManager
-  m_TagString: Untagged
+  m_TagString: Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

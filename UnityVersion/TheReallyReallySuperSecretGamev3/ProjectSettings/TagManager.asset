@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - Boost
   - FadeImage
+  - Manager
   layers:
   - Default
   - TransparentFX
