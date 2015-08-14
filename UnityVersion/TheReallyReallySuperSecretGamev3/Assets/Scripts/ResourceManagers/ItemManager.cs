@@ -38,4 +38,15 @@ public class ItemManager : MonoBehaviour
         get { return AllItems.Where(item => item.Slot == ItemSlot.Weapon); }
     }
 
+    public LootTable GetLootTable(string name)
+    {
+        return AllLootTables.First(table => table.Name.ToLower() == name.ToLower());
+    }
+
+    public Item GetItemForDrop(string name)
+    {
+        Item original = AllItems.First(item => item.Name == name);
+
+        return new Item(original);
+    }
 }

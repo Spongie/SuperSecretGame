@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts.Attacks;
 using Assets.Scripts.Character;
 using Assets.Scripts.Utility;
-using CVCommon.Utility;
 using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;

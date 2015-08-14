@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 
 namespace Assets.Scripts.Utility
 {
@@ -34,6 +31,21 @@ namespace Assets.Scripts.Utility
                 ivName = value;
                 FirePropertyChanged("Name");
             }
+        }
+
+        public List<string> GetRollingList()
+        {
+            var rollingList = new List<string>();
+
+            foreach (LootTableItem item in Items)
+            {
+                for (int i = 0; i < item.DropChance; i++)
+                {
+                    rollingList.Add(item.ItemName);
+                }
+            }
+
+            return rollingList;
         }
 
         protected void FirePropertyChanged(string property)
