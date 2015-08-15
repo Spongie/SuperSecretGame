@@ -132,17 +132,17 @@
             </timeline>
             <timeline id="7" name="Hero_BackUpperArm">
                 <key id="0" spin="0">
-                    <object folder="0" file="7" x="6.527295" y="9.11249" pivot_x="0.277215" pivot_y="0.823224" angle="96.008955" scale_x="-1"/>
+                    <object folder="0" file="7" x="2.435688" y="2.461598" pivot_x="0.277215" pivot_y="0.823224" angle="96.008955" scale_x="-1"/>
                 </key>
             </timeline>
             <timeline id="8" name="Hero_BackLowerArm">
                 <key id="0" spin="0">
-                    <object folder="0" file="8" x="10.581736" y="-5.258681" pivot_x="0.301266" pivot_y="0.684575" angle="84.139117" scale_x="-1"/>
+                    <object folder="0" file="8" x="-6.523693" y="-10.153187" pivot_x="0.301266" pivot_y="0.684575" angle="84.139117" scale_x="-1"/>
                 </key>
             </timeline>
             <timeline id="9" name="Hero_BackHand">
                 <key id="0" spin="0">
-                    <object folder="0" file="9" x="6.053652" y="-0.258565" pivot_x="0.283312" pivot_y="0.540395" angle="251.097487" scale_x="0.97858" scale_y="-0.96534"/>
+                    <object folder="0" file="9" x="-11.728036" y="0.344306" pivot_x="0.283312" pivot_y="0.540395" angle="251.097487" scale_x="0.97858" scale_y="-0.96534"/>
                 </key>
             </timeline>
             <timeline id="10" name="Hero_Neck">
@@ -197,12 +197,12 @@
             </timeline>
             <timeline id="20" obj="17" name="bone_017" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="11.416783" y="-0.518945" angle="349.267335"/>
+                    <bone x="11.416783" y="-0.518945" angle="354.794868"/>
                 </key>
             </timeline>
             <timeline id="21" obj="18" name="bone_018" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="115.460436" y="-0.101015" angle="1.634301" scale_x="1"/>
+                    <bone x="115.460436" y="-0.101015" angle="348.21454" scale_x="1"/>
                 </key>
             </timeline>
             <timeline id="22" obj="19" name="bone_019" object_type="bone">
@@ -212,17 +212,17 @@
             </timeline>
             <timeline id="23" obj="20" name="bone_020" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="17.190043" y="0.648681" angle="359.834086"/>
+                    <bone x="17.190043" y="0.648681" angle="25.018082"/>
                 </key>
             </timeline>
             <timeline id="24" obj="21" name="bone_021" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="100.80543" y="-0" angle="349.433249"/>
+                    <bone x="100.80543" y="0" angle="328.966332"/>
                 </key>
             </timeline>
             <timeline id="25" obj="22" name="bone_022" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="151.522882" y="-0" angle="65.394876" scale_x="1"/>
+                    <bone x="151.522882" y="0" angle="65.394876" scale_x="1"/>
                 </key>
             </timeline>
             <timeline id="26" obj="23" name="bone_023" object_type="bone">
@@ -237,22 +237,22 @@
             </timeline>
             <timeline id="28" obj="25" name="bone_025" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="116.535884" y="-0" angle="18.911578"/>
+                    <bone x="116.535884" y="-0" angle="25.366085"/>
                 </key>
             </timeline>
             <timeline id="29" obj="26" name="bone_026" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="17.641556" y="-0" angle="324.868593"/>
+                    <bone x="17.641556" y="0" angle="319.689275"/>
                 </key>
             </timeline>
             <timeline id="30" obj="27" name="bone_027" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="115.261861" y="3.629433" angle="157.341149" scale_x="1"/>
+                    <bone x="115.261861" y="3.629433" angle="165.948807" scale_x="1"/>
                 </key>
             </timeline>
             <timeline id="31" obj="28" name="bone_028" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="80.67635" y="0" angle="28.329909" scale_x="1"/>
+                    <bone x="80.67635" y="0" angle="59.651563" scale_x="1"/>
                 </key>
             </timeline>
             <timeline id="32" obj="29" name="bone_029" object_type="bone">
@@ -262,17 +262,17 @@
             </timeline>
             <timeline id="33" obj="30" name="bone_030" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="112.284763" y="0.897508" angle="198.097001"/>
+                    <bone x="112.284763" y="0.897508" angle="228.293746"/>
                 </key>
             </timeline>
             <timeline id="34" obj="31" name="bone_031" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="73.234318" y="0" angle="23.461838"/>
+                    <bone x="73.234318" y="-0" angle="35.522919"/>
                 </key>
             </timeline>
             <timeline id="35" obj="32" name="bone_032" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="88.401334" y="-0" angle="17.90963" scale_x="1"/>
+                    <bone x="88.401334" y="0" angle="17.90963" scale_x="1"/>
                 </key>
             </timeline>
         </animation>

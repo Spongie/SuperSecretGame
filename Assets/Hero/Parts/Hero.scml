@@ -212,17 +212,17 @@
             </timeline>
             <timeline id="23" obj="20" name="bone_020" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="17.190043" y="0.648681" angle="25.018082"/>
+                    <bone x="17.190043" y="0.648681" angle="44.250341"/>
                 </key>
             </timeline>
             <timeline id="24" obj="21" name="bone_021" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="100.80543" y="0" angle="328.966332"/>
+                    <bone x="100.80543" y="0" angle="312.734725"/>
                 </key>
             </timeline>
             <timeline id="25" obj="22" name="bone_022" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="151.522882" y="0" angle="65.394876" scale_x="1"/>
+                    <bone x="151.522882" y="-0" angle="65.394876" scale_x="1"/>
                 </key>
             </timeline>
             <timeline id="26" obj="23" name="bone_023" object_type="bone">
