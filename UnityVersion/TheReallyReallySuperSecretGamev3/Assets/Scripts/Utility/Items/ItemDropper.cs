@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using Assets.Scripts.Utility;
-using System.Collections.Generic;
+using Assets.Scripts.Utility.Items;
 
 public class ItemDropper : MonoBehaviour
 {
     public string LootTableName;
 
-    [Range(1, 10)]
+    [Range(1, 50)]
     public int MaxItemDrops;
 
     private ItemManager ivItemManager;
@@ -18,17 +18,17 @@ public class ItemDropper : MonoBehaviour
         ivLootTable = ivItemManager.GetLootTable(LootTableName);
     }
 
-    public List<Item> GetDroppedItems()
+    public void DropItems()
     {
-        var drops = new List<Item>();
-        int nrOfDrops = Random.Range(0, MaxItemDrops);
+        int nrOfDrops = Random.Range(1, MaxItemDrops);
 
         for (int i = 1; i <= nrOfDrops; i++)
         {
             string itemName = ivLootTable.GetRollingList()[Random.Range(0, 99)];
-            drops.Add(ivItemManager.GetItemForDrop(itemName));
-        }
 
-        return drops;
+            var gameObject = new GameObject("DroppedItem" + i);
+            DroppedItem drop = gameObject.AddComponent<DroppedItem>();
+            drop.ItemDropped = ivItemManager.GetItemForDrop(itemName);
+        }
     }
 }

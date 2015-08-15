@@ -78,10 +78,9 @@ namespace TheSuperTrueRealCV.EnemyAI
 
         private void HandleDeath()
         {
-            var drops = GetComponent<ItemDropper>().GetDroppedItems();
+            GetComponent<ItemDropper>().DropItems();
             Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
-            player.GiveLoot(drops);
             player.RewardExp(ExpReward);
 
             Destroy(gameObject);

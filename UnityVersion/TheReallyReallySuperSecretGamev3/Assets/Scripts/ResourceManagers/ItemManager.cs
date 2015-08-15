@@ -9,7 +9,7 @@ public class ItemManager : MonoBehaviour
     public List<Item> AllItems;
     public List<LootTable> AllLootTables { get; set; }
 
-    void Start()
+    void Awake()
     {
         AllItems = new List<Item>();
         AllLootTables = new List<LootTable>();

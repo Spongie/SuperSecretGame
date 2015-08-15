@@ -52,6 +52,7 @@ namespace Assets.Scripts.Utility
         public Item(Item original) :base()
         {
             ivName = original.Name;
+            ivDefense = original.Defense;
             ivMagicDefense = original.MagicDefense;
             ivResistance = original.Resistance;
             ivDamage = original.Damage;
@@ -59,6 +60,10 @@ namespace Assets.Scripts.Utility
             ivLuck = original.Luck;
             ivSlot = original.Slot;
             ivIconName = original.IconName;
+            EffectDuration = original.EffectDuration;
+            EffectName = original.EffectName;
+            EffectTicks = original.EffectTicks;
+            EffectValue = original.EffectValue;
             GenerateID();
         }
 
