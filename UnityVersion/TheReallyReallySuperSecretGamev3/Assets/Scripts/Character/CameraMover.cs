@@ -32,10 +32,10 @@ namespace Assets.Scripts.Character
                 transform.Translate(new Vector2(CameraSpeed, 0));
 
             if (ivTopArea.Contains(playerPos))
-                transform.Translate(new Vector2(0, CameraSpeed));
+                transform.Translate(new Vector2(0, -CameraSpeed));
 
             if(ivBottomArea.Contains(playerPos))
-                transform.Translate(new Vector2(0, -CameraSpeed));
+                transform.Translate(new Vector2(0, CameraSpeed));
         }
     }
 }

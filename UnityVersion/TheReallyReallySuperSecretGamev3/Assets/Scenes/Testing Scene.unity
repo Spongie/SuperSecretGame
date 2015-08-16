@@ -566,33 +566,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 576173802}
---- !u!1 &595738407
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 595738408}
-  m_Layer: 0
-  m_Name: LootCenter
-  m_TagString: Untagged
-  m_Icon: {fileID: -1089502233064743932, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &595738408
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 595738407}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: .449999988, z: -3.8203125}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 753615433}
-  m_RootOrder: 0
 --- !u!1 &710773178
 GameObject:
   m_ObjectHideFlags: 0
@@ -729,12 +702,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 5866560, guid: 8ad8c65a4f9134448b740cb5d4ea2962, type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6148998, guid: 8ad8c65a4f9134448b740cb5d4ea2962, type: 2}
-      propertyPath: m_Enabled
+    - target: {fileID: 11446910, guid: 8ad8c65a4f9134448b740cb5d4ea2962, type: 2}
+      propertyPath: OriginalLayer.m_Bits
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

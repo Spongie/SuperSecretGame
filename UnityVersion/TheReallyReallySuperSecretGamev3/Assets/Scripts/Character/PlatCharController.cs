@@ -60,6 +60,7 @@ public class PlatCharController : MonoBehaviour
     ManualTimer dashTimer = new ManualTimer(0);
     ManualTimer boostReactionTimer = new ManualTimer(0);
     ManualTimer jumpStartTimer = new ManualTimer(0);
+    ManualTimer ignoreTimer = new ManualTimer(0);
 
     private GameObject ivLastSlop;
     public bool ivMovedLastFrame;
@@ -71,6 +72,9 @@ public class PlatCharController : MonoBehaviour
     public PhysicsMaterial2D WallMaterial;
 
     private CircleCollider2D ivFeetCollider;
+
+    public LayerMask OriginalLayer;
+    public LayerMask IgnoringLayer;
 
     // Use this for initialization
     void Start()
@@ -227,6 +231,7 @@ public class PlatCharController : MonoBehaviour
         dashTimer.Update(Time.deltaTime);
         boostReactionTimer.Update(Time.deltaTime);
         jumpStartTimer.Update(Time.deltaTime);
+        ignoreTimer.Update(Time.deltaTime);
 
         if (CanMove() && canTriggerJump)
             CheckJump();
@@ -266,10 +271,21 @@ public class PlatCharController : MonoBehaviour
 
     private void CheckJump()
     {
+        if (!ignoreTimer.Done)
+            return;
+
         if (Input.GetButton(JumpButton) && !ButtonLock.Instance.IsButtonLocked(JumpButton))
         {
-            if (IsGrounded() || canDoublejump)
+            bool grounded = IsGrounded();
+            if (grounded || canDoublejump)
             {
+                if(Input.GetAxisRaw("Vertical") < 0 && grounded)
+                {
+                    gameObject.layer = LayerMask.NameToLayer("IgnoreGround");
+                    ignoreTimer.Restart(0.5f);
+                    return;
+                }
+
                 if (!isJumpControlling)
                     jumpControlTimer.Restart(0.3f);
 
@@ -282,6 +298,7 @@ public class PlatCharController : MonoBehaviour
             }
 
             jumping = true;
+            gameObject.layer = LayerMask.NameToLayer("IgnoreGround");
         }
         else
         {
@@ -458,6 +475,9 @@ public class PlatCharController : MonoBehaviour
                 xVel,
                 yVel
             );
+
+        if (ivRigidbody.velocity.y < 0 && ignoreTimer.Done)
+            gameObject.layer = LayerMask.NameToLayer("Default");
 
         if (CanMove())
         {
