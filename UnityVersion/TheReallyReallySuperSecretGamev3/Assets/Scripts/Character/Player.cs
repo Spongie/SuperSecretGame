@@ -38,12 +38,9 @@ namespace Assets.Scripts.Character
             ivBaseStats.Level = 1;
         }
 
-        public void GiveLoot(List<Item> piDrops)
+        public void GiveLoot(Item piDrop)
         {
-            foreach (Item item in piDrops)
-            {
-                ivInventory.AddItem(item);
-            }
+            ivInventory.AddItem(piDrop);
         }
 
         public void RewardExp(int piAmount)

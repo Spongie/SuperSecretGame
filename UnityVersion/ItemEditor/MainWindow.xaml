@@ -28,6 +28,10 @@
                             <TextBox Height="50" TextWrapping="Wrap" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontSize="30"/>
                             <Label Content="Slot"/>
                             <ComboBox ItemsSource="{Binding Path=ItemSlots}" SelectedItem="{Binding Path=Slot}"/>
+                            <Label Content="ID"/>
+                            <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=ID}" FontSize="18"/>
+                            <Label Content="Maximun StackSize"/>
+                            <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=MaxStackSize}" FontSize="18"/>
                             <Label Content="Damage"/>
                             <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=Damage}" FontSize="18"/>
                             <Label Content="Defense"/>

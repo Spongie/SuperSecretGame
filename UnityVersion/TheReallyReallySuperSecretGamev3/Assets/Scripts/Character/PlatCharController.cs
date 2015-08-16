@@ -5,7 +5,9 @@ public class PlatCharController : MonoBehaviour
 {
     public string JumpButton = "A";
     public string DashButton = "RB";
-    
+
+    public bool DiveKickingRight;
+
     public float IgnoreGravityTime;
     // Horizontal speed
     public float maxSpeed = 8f;
@@ -89,13 +91,18 @@ public class PlatCharController : MonoBehaviour
             movingPlatform = mp;
         }
 
-        if(col.gameObject.tag == "Boost" && diveKicking)
+        if(col.gameObject.tag.Contains("Boost") && diveKicking)
         {
             if (col.collider.transform.position.y <= ivFeetCollider.bounds.center.y - ivFeetCollider.radius)
-            {
-              boostReactionTimer.Restart(2);
-              stop = true;
-              Logger.Log("Landed on boost");
+            {             
+                bool landedOnRightBoost = col.gameObject.tag == "BoostRight";
+
+                if(landedOnRightBoost == DiveKickingRight)
+                {
+                    boostReactionTimer.Restart(2);
+                    stop = true;
+                    Logger.Log("Landed on boost");
+                }
             }
         }
     }
@@ -246,6 +253,8 @@ public class PlatCharController : MonoBehaviour
                 else
                 {
                     diveKicking = true;
+
+                    DiveKickingRight = transform.localScale.x < 0 ? false : true;
                 }
             }
 

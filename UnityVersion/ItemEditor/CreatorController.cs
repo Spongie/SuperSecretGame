@@ -174,6 +174,79 @@ namespace ItemEditor
             LootTables.Add(lootTable);
         }
 
+        public bool CanSave()
+        {
+            var itemErrors = CheckForItemErrors();
+
+            if (itemErrors)
+                return false;
+
+            var lootTableErrors = CheckForLootTableErrors();
+
+            if (lootTableErrors)
+                return false;
+
+            return true;
+        }
+
+        private bool CheckForLootTableErrors()
+        {
+            var duplicateIds = LootTables.GroupBy(table => table.Name).SelectMany(grp => grp.Skip(1)).Distinct();
+
+            if (duplicateIds.Any())
+            {
+                var errorMsg = string.Empty;
+
+                foreach (var item in duplicateIds)
+                {
+                    errorMsg += string.Format("{0} Has a duplicate Name {1}", item.Name, Environment.NewLine);
+                }
+
+                MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK);
+
+                return true;
+            }
+
+            var wrongDropChance = LootTables.Where(table => table.SumDropChance() != 100 && table.SumDropChance() > 0);
+
+            if(wrongDropChance.Any())
+            {
+                var errorMsg = string.Empty;
+
+                foreach (var table in wrongDropChance)
+                {
+                    errorMsg += string.Format("{0} Has an invalid total dropchance {1}", table.Name, Environment.NewLine);
+                }
+
+                MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK);
+
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool CheckForItemErrors()
+        {
+            var duplicateIds = Items.GroupBy(item => item.ID).SelectMany(grp => grp.Skip(1)).Distinct();
+
+            if (duplicateIds.Any())
+            {
+                var errorMsg = string.Empty;
+
+                foreach (var item in duplicateIds)
+                {
+                    errorMsg += string.Format("{0} Has a duplicate ID {1}", item.Name, Environment.NewLine);
+                }
+
+                MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK);
+
+                return true;
+            }
+
+            return false;
+        }
+
         public void SaveItems()
         {
             ivOriginalItemFiles.AddRange(ivOriginalLootTableFiles);

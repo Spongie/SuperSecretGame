@@ -566,6 +566,33 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 576173802}
+--- !u!1 &595738407
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 595738408}
+  m_Layer: 0
+  m_Name: LootCenter
+  m_TagString: Untagged
+  m_Icon: {fileID: -1089502233064743932, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &595738408
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 595738407}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: .449999988, z: -3.8203125}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 753615433}
+  m_RootOrder: 0
 --- !u!1 &710773178
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,10 +850,6 @@ Prefab:
     - target: {fileID: 467036, guid: e5875406ff6e40443b50c15d107e0fc4, type: 2}
       propertyPath: m_RootOrder
       value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 11447338, guid: e5875406ff6e40443b50c15d107e0fc4, type: 2}
-      propertyPath: MaxItemDrops
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e5875406ff6e40443b50c15d107e0fc4, type: 2}
@@ -1276,11 +1299,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 476328, guid: ee133a95fc2964047b1b11e097dd6acf, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -3.18000007
+      value: -3.24900007
       objectReference: {fileID: 0}
     - target: {fileID: 476328, guid: ee133a95fc2964047b1b11e097dd6acf, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -.409999996
+      value: -.456999987
       objectReference: {fileID: 0}
     - target: {fileID: 476328, guid: ee133a95fc2964047b1b11e097dd6acf, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1304,15 +1327,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 476328, guid: ee133a95fc2964047b1b11e097dd6acf, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 110208, guid: ee133a95fc2964047b1b11e097dd6acf, type: 2}
       propertyPath: m_Name
       value: CastleFloor 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 476328, guid: ee133a95fc2964047b1b11e097dd6acf, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee133a95fc2964047b1b11e097dd6acf, type: 2}

@@ -59,7 +59,8 @@ namespace ItemEditor
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
-            ivController.SaveItems();
+            if(ivController.CanSave())
+                ivController.SaveItems();
         }
 
         private void ButtonClear_Click(object sender, RoutedEventArgs e)

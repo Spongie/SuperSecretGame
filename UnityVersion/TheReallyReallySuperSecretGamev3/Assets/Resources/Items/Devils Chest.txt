@@ -1,1 +1,1 @@
-{"ID":null,"EffectName":"DamageOverTimeDebuff","EffectValue":4.0,"EffectDuration":11.0,"EffectTicks":11,"IconName":"Armor11","Slot":1,"Name":"Devils Chest","Damage":3.0,"Defense":101.0,"MagicDamage":2.0,"MagicDefense":102.0,"Luck":1.0,"Resistance":103.0}
+{"ID":"DV1","StackSize":0,"MaxStackSize":0,"EffectName":"DamageOverTimeDebuff","EffectValue":4.0,"EffectDuration":11.0,"EffectTicks":11,"IconName":"Armor11","Slot":1,"Name":"Devils Chest","Damage":3.0,"Defense":101.0,"MagicDamage":2.0,"MagicDefense":102.0,"Luck":1.0,"Resistance":103.0}

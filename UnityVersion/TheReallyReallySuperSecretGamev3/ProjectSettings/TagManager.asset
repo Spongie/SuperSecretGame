@@ -6,9 +6,11 @@ TagManager:
   tags:
   - Monster
   - Ground
-  - Boost
+  - BoostRight
   - FadeImage
   - Manager
+  - BoostLeft
+  - Boost
   layers:
   - Default
   - TransparentFX

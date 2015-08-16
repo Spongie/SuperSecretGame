@@ -39,6 +39,8 @@ namespace Assets.Scripts.Utility
         private float ivEffectValue;
         private float ivEffectDuration;
         private int ivTicks;
+        private int ivMaxStackSize;
+
 
         [NonSerialized]
         private AttackEffectLoader ivEffectLoader;
@@ -64,10 +66,38 @@ namespace Assets.Scripts.Utility
             EffectName = original.EffectName;
             EffectTicks = original.EffectTicks;
             EffectValue = original.EffectValue;
-            GenerateID();
+            StackSize = 1;
+
+            if (string.IsNullOrEmpty(original.ID))
+                GenerateID();
+            else
+                ID = original.ID;
         }
 
-        public string ID { get; set; }
+        private string ivID;
+
+        public string ID
+        {
+            get { return ivID; }
+            set
+            {
+                ivID = value;
+                FirePropertyChanged("ID");
+            }
+        }
+
+        public short StackSize { get; set; }
+
+        public int MaxStackSize
+        {
+            get { return ivMaxStackSize; }
+            set
+            {
+                ivMaxStackSize = value;
+                FirePropertyChanged("MaxStackSize");
+            }
+        }
+
 
         public string EffectName
         {
@@ -225,7 +255,7 @@ namespace Assets.Scripts.Utility
         public void GenerateID()
         {
             var id = DateTime.Now.Ticks.ToString();
-            id += new Random().Next(100000, 999999);
+            id += new Random().Next(1, 999999);
 
             ID = id;
         }

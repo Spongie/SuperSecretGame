@@ -68,7 +68,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LootTableName: Test
-  MaxItemDrops: 6
+  MaxItemDrops: 10
+  ChanceForDrop: 0
 --- !u!212 &21294378
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -94,7 +95,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1c4d52ab4ee8d744aa7bb0564f20ab56, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

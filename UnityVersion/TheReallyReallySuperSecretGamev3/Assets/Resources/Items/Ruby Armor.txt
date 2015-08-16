@@ -1,1 +1,1 @@
-{"ID":null,"EffectName":"None","EffectValue":0.0,"EffectDuration":0.0,"EffectTicks":0,"IconName":"Armor10","Slot":1,"Name":"Ruby Armor","Damage":0.0,"Defense":19.0,"MagicDamage":0.0,"MagicDefense":55.0,"Luck":0.0,"Resistance":55.0}
+{"ID":"RA1","StackSize":0,"MaxStackSize":0,"EffectName":"None","EffectValue":0.0,"EffectDuration":0.0,"EffectTicks":0,"IconName":"Armor10","Slot":1,"Name":"Ruby Armor","Damage":0.0,"Defense":19.0,"MagicDamage":0.0,"MagicDefense":55.0,"Luck":0.0,"Resistance":55.0}

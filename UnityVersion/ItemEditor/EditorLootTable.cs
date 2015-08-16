@@ -36,6 +36,11 @@ namespace ItemEditor
             get { return TotalDropchanceOfTable(); }
         }
 
+        public int SumDropChance()
+        {
+            return LootItems.Sum(item => item.DropChance);
+        }
+
         private string TotalDropchanceOfTable()
         {
             return string.Format("{0} % ", LootItems.Sum(item => item.DropChance));

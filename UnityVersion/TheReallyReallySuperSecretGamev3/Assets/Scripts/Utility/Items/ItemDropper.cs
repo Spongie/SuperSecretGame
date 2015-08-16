@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using Assets.Scripts.Utility;
 using Assets.Scripts.Utility.Items;
+using CVCommon.Utility;
+using Assets.Scripts.Character;
 
 public class ItemDropper : MonoBehaviour
 {
@@ -8,6 +10,9 @@ public class ItemDropper : MonoBehaviour
 
     [Range(1, 50)]
     public int MaxItemDrops;
+
+    [Range(0, 100)]
+    public int ChanceForDrop;
 
     private ItemManager ivItemManager;
     private LootTable ivLootTable;
@@ -20,6 +25,12 @@ public class ItemDropper : MonoBehaviour
 
     public void DropItems()
     {
+        float totalChance = ChanceForDrop + (GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().GetTrueStats().Luck / 10f);
+        float roll = Random.Range(0, 100);
+
+        if (roll < totalChance)
+            return;
+
         int nrOfDrops = Random.Range(1, MaxItemDrops);
 
         for (int i = 1; i <= nrOfDrops; i++)

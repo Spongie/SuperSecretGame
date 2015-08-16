@@ -40,7 +40,10 @@ namespace Assets.Scripts.ResourceManagers
 
         public void AddItem(Item item)
         {
-            ivItems.Add(item.ID, item);
+            if (!ivItems.ContainsKey(item.ID))
+                ivItems.Add(item.ID, item);
+            else if (ivItems.ContainsKey(item.ID) && ivItems[item.ID].StackSize < ivItems[item.ID].MaxStackSize)
+                ivItems[item.ID].StackSize++;
         }
 
         public void DeleteItem(string id)
