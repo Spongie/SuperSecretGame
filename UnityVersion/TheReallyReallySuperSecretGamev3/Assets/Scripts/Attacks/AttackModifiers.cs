@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts.Buffs;
-using Assets.Scripts.Utility;
+using Assets.Scripts.Character.Stat;
 using System.Reflection;
-using TheSuperTrueRealCV.Utilities;
 using UnityEngine;
 
 namespace Assets.Scripts.Attacks

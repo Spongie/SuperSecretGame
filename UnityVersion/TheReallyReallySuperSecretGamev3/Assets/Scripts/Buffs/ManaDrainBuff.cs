@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Utility;
+﻿using Assets.Scripts.Character.Stat;
 using System;
 
 namespace Assets.Scripts.Buffs
@@ -12,6 +12,9 @@ namespace Assets.Scripts.Buffs
 
         public override void Tick(CStats piTarget)
         {
+            if (piTarget.Resist())
+                return;
+
             piTarget.DrainMana((int)DamagePerTick);
             ShouldTick = false;
             ivTickTimer.Restart();

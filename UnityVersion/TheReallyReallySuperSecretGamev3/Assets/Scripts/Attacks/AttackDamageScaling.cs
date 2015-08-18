@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
-namespace TheSuperTrueRealCV.Utilities
+
+namespace Assets.Scripts.Attacks
 {
     public class AttackDamageScaling : MonoBehaviour
     {

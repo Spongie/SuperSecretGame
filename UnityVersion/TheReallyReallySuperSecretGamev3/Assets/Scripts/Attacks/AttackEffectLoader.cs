@@ -1,9 +1,8 @@
-﻿using Assets.Scripts.Attacks;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace Assets.Scripts.Utility
+namespace Assets.Scripts.Attacks
 {
     public class AttackEffectLoader
     {

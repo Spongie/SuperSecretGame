@@ -1,9 +1,7 @@
 ﻿using System;
-using CVCommon;
-using CVCommon.Utility;
 using UnityEngine;
 
-namespace TheSuperTrueRealCV.EnemyAI
+namespace Assets.Scripts.Character.Monsters
 {
     class Bat : Monster
     {

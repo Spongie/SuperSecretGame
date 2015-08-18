@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Utility;
+﻿using Assets.Scripts.Character.Stat;
+using Assets.Scripts.Utility;
 using System.Collections.Generic;
 using UnityEngine;
 

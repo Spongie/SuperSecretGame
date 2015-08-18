@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Assets.Scripts.ResourceManagers
+namespace Assets.Scripts.Items
 {
     public class Inventory
     {
@@ -12,6 +12,7 @@ namespace Assets.Scripts.ResourceManagers
         public Inventory()
         {
             ivItems = new Dictionary<string, Item>();
+            ivEquippedItems = new Dictionary<ItemSlot, Item>();
         }
 
         public List<Item> GetEqippedItems()

@@ -1,7 +1,8 @@
-﻿using Assets.Scripts.Utility;
+﻿using Assets.Scripts.Character.Stat;
+using Assets.Scripts.Utility;
 using System;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.Buffs
 {
     [Serializable]
     public class Buff
@@ -33,7 +34,9 @@ namespace Assets.Scripts
         public virtual void Update(float piDeltaTime)
         {
             if (ivTimer == null)
+            {
                 ivTimer = new ManualTimer(Duration);
+            }
 
             ivTimer.Update(piDeltaTime);
         }

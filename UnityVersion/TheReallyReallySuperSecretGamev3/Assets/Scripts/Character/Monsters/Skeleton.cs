@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Attacks;
+using UnityEngine;
 
-namespace TheSuperTrueRealCV.EnemyAI
+namespace Assets.Scripts.Character.Monsters
 {
     class Skeleton : Monster
     {

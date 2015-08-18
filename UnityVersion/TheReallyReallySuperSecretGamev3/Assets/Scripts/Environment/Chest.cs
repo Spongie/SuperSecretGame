@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Utility;
+﻿using Assets.Scripts.Items;
+using Assets.Scripts.Utility;
 using UnityEngine;
 
 namespace Assets.Scripts.Environment

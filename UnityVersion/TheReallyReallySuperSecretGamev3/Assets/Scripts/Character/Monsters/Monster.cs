@@ -1,12 +1,12 @@
 ﻿using Assets.Scripts.Buffs;
-using Assets.Scripts.Character;
-using Assets.Scripts.Character.Monsters;
+using Assets.Scripts.Character.Stat;
+using Assets.Scripts.Items;
 using Assets.Scripts.Utility;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace TheSuperTrueRealCV.EnemyAI
+namespace Assets.Scripts.Character.Monsters
 {
     [RequireComponent(typeof(BuffContainer))]
     [RequireComponent(typeof(Timer))]

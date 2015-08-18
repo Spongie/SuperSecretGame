@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using CVCommon;
-using CVCommon.Utility;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace TheSuperTrueRealCV.EnemyAI
+namespace Assets.Scripts.Character.Monsters
 {
     class Skeletonmusician : Monster
     {

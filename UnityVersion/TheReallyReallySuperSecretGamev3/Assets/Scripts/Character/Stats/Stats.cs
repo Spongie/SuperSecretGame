@@ -1,9 +1,8 @@
-﻿using Assets.Scripts.Utility;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace CVCommon.Utility
+namespace Assets.Scripts.Character.Stat
 {
-	public class Stats : MonoBehaviour
+    public class Stats : MonoBehaviour
 	{
         public CStats stats;
 

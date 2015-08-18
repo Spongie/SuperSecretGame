@@ -1,8 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
-using CVCommon.Utility;
+﻿using Assets.Scripts.Character.Stat;
+using UnityEngine;
 using UnityEngine.UI;
-using Assets.Scripts.Utility;
 
 public class PlayerHealthTracker : MonoBehaviour
 {

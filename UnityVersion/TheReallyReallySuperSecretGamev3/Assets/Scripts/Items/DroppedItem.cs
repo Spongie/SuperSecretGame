@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Linq;
 using Assets.Scripts.Character;
+using Assets.Scripts.Environment.ResourceManagers;
+using Assets.Scripts.Utility;
 
-namespace Assets.Scripts.Utility.Items
+namespace Assets.Scripts.Items
 {
     public class DroppedItem : MonoBehaviour
     {

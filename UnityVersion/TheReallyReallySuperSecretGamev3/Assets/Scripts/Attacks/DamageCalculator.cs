@@ -1,12 +1,12 @@
-﻿using Assets.Scripts.Attacks;
-using Assets.Scripts.Character;
-using Assets.Scripts.Utility;
+﻿using Assets.Scripts.Character;
 using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
-using TheSuperTrueRealCV.EnemyAI;
+using Assets.Scripts.Character.Monsters;
+using Assets.Scripts.Character.Stat;
+using Assets.Scripts.Utility;
 
-namespace TheSuperTrueRealCV.Utilities
+namespace Assets.Scripts.Attacks
 {
     public static class DamageCalculator
     {
@@ -30,6 +30,8 @@ namespace TheSuperTrueRealCV.Utilities
 
             float realDamage = baseDamage - physicalDefense - magicDefense;
 
+            Logger.Log(realDamage);
+
             targetStats.DealDamage(realDamage);
         }
 
@@ -37,7 +39,7 @@ namespace TheSuperTrueRealCV.Utilities
         {
             Player player = piAttacker.GetComponent<Player>();
 
-            if (player != null)
+            if (player == null)
                 return Enumerable.Empty<AttackEffect>();
 
             return player.GetAttackEffectsFromEquippedItems();

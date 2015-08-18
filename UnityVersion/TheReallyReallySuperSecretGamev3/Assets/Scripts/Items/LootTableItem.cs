@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace Assets.Scripts.Utility
+namespace Assets.Scripts.Items
 {
     public class LootTableItem : INotifyPropertyChanged
     {

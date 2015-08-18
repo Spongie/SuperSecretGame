@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Utility;
+﻿using Assets.Scripts.Character.Stat;
+using Assets.Scripts.Utility;
 using System;
 
 namespace Assets.Scripts.Buffs
@@ -30,8 +31,12 @@ namespace Assets.Scripts.Buffs
         {
             if(ivTickTimer == null)
             {
+                if(ivTimer != null)
+                    ivTimer.Restart(Duration);
+
                 ivTickTimer = new ManualTimer(Duration / AmountOfTicks);
             }
+
             base.Update(piDeltaTime);
             ivTickTimer.Update(piDeltaTime);
 
@@ -41,7 +46,10 @@ namespace Assets.Scripts.Buffs
 
         public virtual void Tick(CStats piTarget)
         {
-            piTarget.CurrentHealth -= (int)DamagePerTick;
+            if (piTarget.Resist())
+                return;
+
+            piTarget.DealDamage(DamagePerTick);
             ShouldTick = false;
             ivTickTimer.Restart();
         }

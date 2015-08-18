@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Assets.Scripts.Utility;
+using System;
 
-namespace Assets.Scripts.Utility
+namespace Assets.Scripts.Character.Stat
 {
     [Serializable]
     public class CStats
@@ -85,6 +86,13 @@ namespace Assets.Scripts.Utility
             }
             else
                 CurrentExp += amount;
+        }
+
+        public bool Resist()
+        {
+            var roll = UnityEngine.Random.Range(0, 100);
+            Logger.Log(string.Format("Rolled a {0} ", roll));
+            return roll < (int)Resistance;
         }
 
         public static CStats operator +(CStats piFirst, CStats piOther)

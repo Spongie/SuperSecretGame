@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Assets.Scripts.Utility;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.Buffs
@@ -17,9 +18,9 @@ namespace Assets.Scripts.Buffs
         {
             if (ivGameObjectsInside.Contains(other.gameObject.GetInstanceID()))
                 return;
-
+            
             var buffContainer = other.gameObject.GetComponent<BuffContainer>();
-
+            
             if (buffContainer != null)
                 buffContainer.ApplyBuff(buff);
 

@@ -1,8 +1,7 @@
 ﻿using Assets.Scripts.Attacks;
 using Assets.Scripts.Buffs;
-using Assets.Scripts.ResourceManagers;
-using Assets.Scripts.Utility;
-using CVCommon.Utility;
+using Assets.Scripts.Character.Stat;
+using Assets.Scripts.Items;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -59,6 +58,9 @@ namespace Assets.Scripts.Character
 
         public IEnumerable<AttackEffect> GetAttackEffectsFromEquippedItems()
         {
+            if (!ivInventory.GetEqippedItems().Any())
+                return Enumerable.Empty<AttackEffect>();
+
             return ivInventory.GetEqippedItems().Where(item => item.EffectName != "None").Select(item => new AttackEffect() { Name = item.EffectName, Power = item.EffectValue, Duration = item.EffectDuration, Ticks = item.EffectTicks });
         }
 

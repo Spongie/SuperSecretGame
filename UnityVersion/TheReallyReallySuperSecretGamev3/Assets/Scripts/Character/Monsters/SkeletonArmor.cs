@@ -1,10 +1,7 @@
 ﻿using System;
-using CVCommon;
-using TheSuperTrueRealCV.Utilities;
-using CVCommon.Utility;
 using UnityEngine;
 
-namespace TheSuperTrueRealCV.EnemyAI
+namespace Assets.Scripts.Character.Monsters
 {
     class SkeletonArmor : Monster
     {

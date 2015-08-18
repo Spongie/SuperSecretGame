@@ -3,8 +3,9 @@ using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Newtonsoft.Json;
+using Assets.Scripts.Attacks;
 
-namespace Assets.Scripts.Utility
+namespace Assets.Scripts.Items
 {
     public enum ItemSlot
     {
