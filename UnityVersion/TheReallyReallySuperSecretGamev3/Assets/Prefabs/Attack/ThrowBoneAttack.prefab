@@ -63,6 +63,7 @@ Transform:
   m_RootOrder: 0
 --- !u!50 &5059776
 Rigidbody2D:
+  serializedVersion: 2
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -71,11 +72,11 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
   m_GravityScale: 1
-  m_FixedAngle: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &6193438
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -100,7 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 815feb8866d70cf4283feb910e492fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToRun: 2.5
+  TimeToRun: 0
+  TimeRunning: 0
 --- !u!114 &11480896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -112,11 +114,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a642845c916b8eb41963fa21e88bb1fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondsToLive: 0
+  IsMeleeAttack: 0
+  IsRotating: 0
+  ApplyGravity: 1
+  secondsToLive: 6
   secondsHitReset: 1
   lifeTimer: {fileID: 0}
-  ApplyGravity: 1
   Owner: {fileID: 0}
+  Saker: []
   Bouncing: 1
   BouncesLeft: 3
   DiesOnCollision: 0
@@ -128,10 +133,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 181118}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d896093dcfba1d14f8b80dc8384bc995, type: 3}
+  m_Script: {fileID: 11500000, guid: f5efee40e73366f4cbfbdf0ce79238e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 1
+  Damage: 6
   Magic: 0
 --- !u!212 &21231884
 SpriteRenderer:
@@ -165,7 +170,31 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: Bouncing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: BouncesLeft
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: secondsToLive
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: secondsHitReset
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: IsRotating
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Damage
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 181118}

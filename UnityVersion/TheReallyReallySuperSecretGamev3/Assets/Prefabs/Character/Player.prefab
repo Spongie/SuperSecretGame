@@ -225,23 +225,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 154116}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a37ee77ace6d7bc4fb844e2c760a045d, type: 3}
+  m_Script: {fileID: 11500000, guid: a2512cdac6f657945a72ada52323d682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    MaximumHealth: 0
+    MaximumHealth: 100
     CurrentExp: 0
-    MaximumExp: 0
-    Level: 0
-    CurrentHealth: 0
-    MaximumMana: 0
-    CurrentMana: 0
+    MaximumExp: 55
+    Level: 1
+    CurrentHealth: 100
+    MaximumMana: 100
+    CurrentMana: 100
     Damage: 0
     Defense: 0
     MagicDamage: 0
     MagicDefense: 0
     Luck: 0
-    Resistance: 0
+    Resistance: 50
     BaseCurseResist: 0
     BaseMpDrainResist: 0
     BaseLifeLeechResist: 0
