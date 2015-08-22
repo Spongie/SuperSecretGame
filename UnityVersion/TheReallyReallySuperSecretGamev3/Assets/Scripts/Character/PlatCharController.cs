@@ -118,10 +118,19 @@ namespace Assets.Scripts.Character
         {
             if (other.tag == "Ground")
             {
-                Logger.Log("Hit ground with head");
-                isJumpControlling = false;
-                jumping = false;
-                canTriggerJump = false;
+                if (other.isTrigger && ignoreTimer.Done)
+                {
+                    Logger.Log("Hit Ignore trigger");
+                    gameObject.layer = LayerMask.NameToLayer("IgnoreGround");
+                    ignoreTimer.Restart(0.1f);
+                }
+                else
+                {
+                    Logger.Log("Hit ground with head");
+                    isJumpControlling = false;
+                    jumping = false;
+                    canTriggerJump = false;
+                }
             }
         }
 
@@ -301,7 +310,7 @@ namespace Assets.Scripts.Character
                 }
 
                 jumping = true;
-                gameObject.layer = LayerMask.NameToLayer("IgnoreGround");
+                //gameObject.layer = LayerMask.NameToLayer("IgnoreGround");
             }
             else
             {

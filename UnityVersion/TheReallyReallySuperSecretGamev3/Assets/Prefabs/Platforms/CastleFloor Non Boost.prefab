@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 486982}
   - 212: {fileID: 21219198}
   - 61: {fileID: 6107676}
+  - 61: {fileID: 6150738}
   m_Layer: 8
   m_Name: CastleFloor Non Boost
   m_TagString: Ground
@@ -42,6 +43,19 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 1.91999996, y: .319999993}
+--- !u!61 &6150738
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 142326}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: -.0599999987}
+  serializedVersion: 2
+  m_Size: {x: 1.98000002, y: .280000001}
 --- !u!212 &21219198
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -74,7 +88,19 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Offset.y
+      value: -.0599999987
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Size.x
+      value: 1.98000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Size.y
+      value: .280000001
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 142326}
