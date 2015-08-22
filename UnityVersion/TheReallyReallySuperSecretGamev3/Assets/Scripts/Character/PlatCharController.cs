@@ -285,7 +285,7 @@ namespace Assets.Scripts.Character
                     if (Input.GetAxisRaw("Vertical") < 0 && grounded)
                     {
                         gameObject.layer = LayerMask.NameToLayer("IgnoreGround");
-                        ignoreTimer.Restart(0.3f);
+                        ignoreTimer.Restart(0.4f);
                         return;
                     }
 
