@@ -1,9 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Assets.Scripts.Utility
 {
+    public delegate void TimerCompleted();
+
     public class Timer : MonoBehaviour
     {
+        public event TimerCompleted OnTimerDone;
 
         public float TimeToRun;
         public float TimeRunning;
@@ -27,6 +31,9 @@ namespace Assets.Scripts.Utility
         void Update()
         {
             TimeRunning += Time.deltaTime;
+
+            if (Done && OnTimerDone != null)
+                OnTimerDone();
         }
     }
 }

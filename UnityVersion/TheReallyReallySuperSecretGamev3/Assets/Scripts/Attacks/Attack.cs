@@ -112,7 +112,7 @@ namespace Assets.Scripts.Attacks
             if (CanHitEntity(coll.gameObject))
             {
                 AddEntityToHit(coll.gameObject);
-                DamageCalculator.DealDamage(Owner, coll.gameObject, Scaling, GetAttackEffects());
+                DamageController.DealDamage(Owner, coll.gameObject, Scaling, GetAttackEffects());
             }
         }
 

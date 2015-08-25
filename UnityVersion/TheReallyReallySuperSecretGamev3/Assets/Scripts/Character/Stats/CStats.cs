@@ -3,9 +3,13 @@ using System;
 
 namespace Assets.Scripts.Character.Stat
 {
+    public delegate void DamageTakenDelegate(int amount);
+
     [Serializable]
     public class CStats
     {
+        public event DamageTakenDelegate OnDamageTaken;
+
         public CStats() : this(0) { }
 
         public CStats(int piValue)
@@ -63,8 +67,12 @@ namespace Assets.Scripts.Character.Stat
         public void DealDamage(float amount)
         {
             CurrentHealth -= (int)amount;
+
             if (CurrentHealth < 0)
                 CurrentHealth = 0;
+
+            if (OnDamageTaken != null)
+                OnDamageTaken((int)amount);
         }
 
         public void DrainMana(int amount)

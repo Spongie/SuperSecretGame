@@ -8,7 +8,7 @@ using Assets.Scripts.Utility;
 
 namespace Assets.Scripts.Attacks
 {
-    public static class DamageCalculator
+    public static class DamageController
     {
         private static AttackModifiers attackModifiers = new AttackModifiers();
 

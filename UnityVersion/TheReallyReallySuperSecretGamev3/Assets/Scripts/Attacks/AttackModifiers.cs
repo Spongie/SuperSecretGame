@@ -21,7 +21,7 @@ namespace Assets.Scripts.Attacks
 
         private float Lifesteal(GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piEffectPower, float piEffectDuration, int piEffectTicks, float piCurrentDamage)
         {
-            CStats attackerStats = DamageCalculator.GetGameObjectsStats(piAttacker);
+            CStats attackerStats = DamageController.GetGameObjectsStats(piAttacker);
 
             attackerStats.CurrentHealth += (int)(piCurrentDamage * piEffectPower);
 
@@ -30,8 +30,8 @@ namespace Assets.Scripts.Attacks
 
         private float Manasteal(GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piEffectPower, float piEffectDuration, int piEffectTicks, float piCurrentDamage)
         {
-            CStats attackerStats = DamageCalculator.GetGameObjectsStats(piAttacker);
-            CStats targetStats = DamageCalculator.GetGameObjectsStats(piTarget);
+            CStats attackerStats = DamageController.GetGameObjectsStats(piAttacker);
+            CStats targetStats = DamageController.GetGameObjectsStats(piTarget);
 
             int amount = (int)(piCurrentDamage * piEffectPower);
 

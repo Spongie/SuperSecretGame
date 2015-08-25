@@ -1,5 +1,20 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &155654
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 499146}
+  m_Layer: 0
+  m_Name: DamageDisplayPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &158140
 GameObject:
   m_ObjectHideFlags: 0
@@ -33,6 +48,7 @@ GameObject:
   - 114: {fileID: 11462086}
   - 114: {fileID: 11437536}
   - 114: {fileID: 11494016}
+  - 114: {fileID: 11476492}
   m_Layer: 0
   m_Name: Skeleton
   m_TagString: Monster
@@ -59,12 +75,25 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 192656}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .779999971, y: -.769999981, z: 0}
+  m_LocalPosition: {x: 1.2127893, y: .458821297, z: 0}
   m_LocalScale: {x: .200000003, y: .200000003, z: 1}
   m_Children:
   - {fileID: 410142}
+  - {fileID: 499146}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!4 &499146
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155654}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 469802}
+  m_RootOrder: 1
 --- !u!50 &5093966
 Rigidbody2D:
   serializedVersion: 2
@@ -206,6 +235,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeToRun: 0
   TimeRunning: 0
+--- !u!114 &11476492
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 192656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8438e6b8540acce4e8a99bb2fade15b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpawnPosition: {fileID: 499146}
+  DamagePrefab: {fileID: 140684, guid: 05106f529d6307e4b8575ec1bf365a9a, type: 2}
+  HealingPrefab: {fileID: 134200, guid: c0dcb44ef40ae7b4da5877423d8fee9b, type: 2}
 --- !u!114 &11494016
 MonoBehaviour:
   m_ObjectHideFlags: 1
