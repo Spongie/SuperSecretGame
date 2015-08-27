@@ -16,6 +16,11 @@
             timeRunning = 0;
         }
 
+        public void Cancel()
+        {
+            Restart(0);
+        }
+
         public bool Done
         {
             get { return timeToRun < timeRunning; }

@@ -79,6 +79,8 @@ namespace Assets.Scripts.Character
         public LayerMask OriginalLayer;
         public LayerMask IgnoringLayer;
 
+        private bool boostingRight = false;
+
         // Use this for initialization
         void Start()
         {
@@ -109,6 +111,7 @@ namespace Assets.Scripts.Character
                         boostReactionTimer.Restart(2);
                         stop = true;
                         Logger.Log("Landed on boost");
+                        boostingRight = landedOnRightBoost;
                     }
                 }
             }
@@ -249,7 +252,7 @@ namespace Assets.Scripts.Character
                 CheckJump();
 
             if (!boostReactionTimer.Done && Mathf.Abs(ivRigidbody.velocity.y) > 0.3f)
-                boostReactionTimer.Restart(0);
+                boostReactionTimer.Cancel();
 
             if (Input.GetButtonDown(DashButton) && !dashing && !diveKicking && !ButtonLock.Instance.IsButtonLocked(DashButton))
             {
@@ -258,7 +261,7 @@ namespace Assets.Scripts.Character
                     Logger.Log("Activated boost");
                     maxSpeed = 10;
                     ivRigidbody.velocity = new Vector2(SetDashSpeed(maxSpeed), 4);
-                    boostReactionTimer.Restart(0);
+                    boostReactionTimer.Cancel();
                 }
                 else
                 {
@@ -392,6 +395,17 @@ namespace Assets.Scripts.Character
             {
                 if (CanMove())
                     xVel = Input.GetAxisRaw("Horizontal") * maxSpeed;
+
+                var xMove = Input.GetAxisRaw("Horizontal");
+
+                if(!boostReactionTimer.Done && Mathf.Abs(xMove) > 0)
+                {
+                    Logger.Log(string.Format("Trying to cancel boost, BoostingRight: {0}        xVel: {1}", boostingRight, xMove));
+                    if (xMove < 0 && boostingRight)
+                        boostReactionTimer.Cancel();
+                    else if (xMove > 0 && !boostingRight)
+                        boostReactionTimer.Cancel();
+                }
 
                 xVel += PlatformVelocity().x;
                 if (ivLastSlop != null)
