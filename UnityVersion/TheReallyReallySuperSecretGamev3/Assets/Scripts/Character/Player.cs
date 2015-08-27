@@ -3,48 +3,29 @@ using Assets.Scripts.Buffs;
 using Assets.Scripts.Character.Stat;
 using Assets.Scripts.Items;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.Character
 {
     [RequireComponent(typeof(Stats))]
     [RequireComponent(typeof(BuffContainer))]
-    public class Player : MonoBehaviour
+    public class Player : MonoBehaviour, IPlayer
     {
-        private BuffContainer Buffs;
-        private CStats ivBaseStats;
-        private Inventory ivInventory;
+        public PlayerController ivController;
 
         void Start()
         {
-            ivBaseStats = GetComponent<Stats>().stats;
-            ivInventory = new Inventory();
-            Buffs = GetComponent<BuffContainer>();
-            Buffs.Stats = ivBaseStats;
-
-            if(!LoadPlayer())
-                SetBaseStats();
-        }
-
-        private void SetBaseStats()
-        {
-            ivBaseStats.MaximumHealth = 100;
-            ivBaseStats.CurrentHealth = 100;
-            ivBaseStats.MaximumMana = 50;
-            ivBaseStats.CurrentMana = 50;
-            ivBaseStats.MaximumExp = 100;
-            ivBaseStats.Level = 1;
+            ivController = new PlayerController(GetComponent<BuffContainer>(), GetComponent<Stats>().stats);
         }
 
         public void GiveLoot(Item piDrop)
         {
-            ivInventory.AddItem(piDrop);
+            ivController.GiveLoot(piDrop);
         }
 
         public void RewardExp(int piAmount)
         {
-            ivBaseStats.RewardExperience(piAmount);
+            ivController.RewardExp(piAmount);
         }
 
         /// <summary>
@@ -53,18 +34,15 @@ namespace Assets.Scripts.Character
         /// <returns></returns>
         public CStats GetTrueStats()
         {
-            return ivBaseStats + Buffs.GetBuffStats();
+            return ivController.GetTrueStats();
         }
 
         public IEnumerable<AttackEffect> GetAttackEffectsFromEquippedItems()
         {
-            if (!ivInventory.GetEqippedItems().Any())
-                return Enumerable.Empty<AttackEffect>();
-
-            return ivInventory.GetEqippedItems().Where(item => item.EffectName != "None").Select(item => new AttackEffect() { Name = item.EffectName, Power = item.EffectValue, Duration = item.EffectDuration, Ticks = item.EffectTicks });
+            return ivController.GetAttackEffectsFromEquippedItems();
         }
 
-        private bool LoadPlayer()
+        public bool LoadPlayer()
         {
             return false;
         }

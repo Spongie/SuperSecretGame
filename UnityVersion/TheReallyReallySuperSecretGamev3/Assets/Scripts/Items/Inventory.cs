@@ -7,11 +7,11 @@ namespace Assets.Scripts.Items
     public class Inventory
     {
         private Dictionary<ItemSlot, Item> ivEquippedItems { get; set; }
-        private Dictionary<string, Item> ivItems;
+        public Dictionary<string, Item> Items;
 
         public Inventory()
         {
-            ivItems = new Dictionary<string, Item>();
+            Items = new Dictionary<string, Item>();
             ivEquippedItems = new Dictionary<ItemSlot, Item>();
         }
 
@@ -26,30 +26,36 @@ namespace Assets.Scripts.Items
         /// <param name="ItemId"></param>
         public void EquipItem(string ItemId)
         {
-            var item = ivItems[ItemId];
+            var item = Items[ItemId];
 
             if (ivEquippedItems.ContainsKey(item.Slot))
             {
                 var equipped = ivEquippedItems[item.Slot];
                 ivEquippedItems.Remove(item.Slot);
-                ivItems.Add(equipped.ID, equipped);
+                AddItem(equipped);
             }
 
-            ivItems.Remove(ItemId);
+            DeleteItem(ItemId);
             ivEquippedItems.Add(item.Slot, item);
         }
 
         public void AddItem(Item item)
         {
-            if (!ivItems.ContainsKey(item.ID))
-                ivItems.Add(item.ID, item);
-            else if (ivItems.ContainsKey(item.ID) && ivItems[item.ID].StackSize < ivItems[item.ID].MaxStackSize)
-                ivItems[item.ID].StackSize++;
+            if (!Items.ContainsKey(item.ID))
+                Items.Add(item.ID, item);
+            else if (Items.ContainsKey(item.ID) && Items[item.ID].StackSize < Items[item.ID].MaxStackSize)
+                Items[item.ID].StackSize++;
         }
 
         public void DeleteItem(string id)
         {
-            ivItems.Remove(id);
+            if (Items.ContainsKey(id))
+            {
+                if (Items[id].StackSize > 1)
+                    Items[id].StackSize--;
+                else
+                    Items.Remove(id);
+            }
         }
     }
 }

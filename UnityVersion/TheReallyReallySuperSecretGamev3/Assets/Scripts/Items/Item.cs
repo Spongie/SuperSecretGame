@@ -50,6 +50,7 @@ namespace Assets.Scripts.Items
         {
             ivEffectLoader = new AttackEffectLoader();
             EffectName = "None";
+            StackSize = 1;
         }
 
         public Item(Item original) :base()
@@ -67,7 +68,6 @@ namespace Assets.Scripts.Items
             EffectName = original.EffectName;
             EffectTicks = original.EffectTicks;
             EffectValue = original.EffectValue;
-            StackSize = 1;
 
             if (string.IsNullOrEmpty(original.ID))
                 GenerateID();

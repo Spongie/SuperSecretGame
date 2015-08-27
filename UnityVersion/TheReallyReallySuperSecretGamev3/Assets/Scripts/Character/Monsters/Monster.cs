@@ -38,7 +38,7 @@ namespace Assets.Scripts.Character.Monsters
             Activate();
 
             Buffs = GetComponent<BuffContainer>();
-            Buffs.Stats = CurrentStats.stats;
+            Buffs.SetStats(CurrentStats.stats);
         }
 
         public void Activate()

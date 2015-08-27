@@ -1,28 +1,24 @@
 ﻿using Assets.Scripts.Character.Stat;
-using Assets.Scripts.Utility;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.Buffs
 {
-    public class BuffContainer : MonoBehaviour
+    public class BuffContainer : MonoBehaviour, IBuffContainer
     {
-        public CStats Stats;
-        public int NrOfBuffs;
-
+        public BuffContainerController BuffController;
+             
         void Start()
         {
-            Buffs = new List<Buff>();
+            BuffController = new BuffContainerController();
         }
-
-        public List<Buff> Buffs { get; private set; }
 
         void Update()
         {
             var expiredDebuffs = new List<Buff>();
-            NrOfBuffs = Buffs.Count;
+            BuffController.NrOfBuffs = BuffController.Buffs.Count;
 
-            foreach (var buff in Buffs)
+            foreach (var buff in BuffController.Buffs)
             {
                 buff.Update(Time.deltaTime);
 
@@ -30,7 +26,7 @@ namespace Assets.Scripts.Buffs
                 {
                     var debuff = (PoisonDebuff)buff;
                     if (debuff.ShouldTick)
-                        debuff.Tick(Stats);
+                        debuff.Tick(BuffController.Stats);
                 }
 
                 if (buff.Expired)
@@ -39,30 +35,28 @@ namespace Assets.Scripts.Buffs
 
             foreach (var buff in expiredDebuffs)
             {
-                Buffs.Remove(buff);
+                BuffController.Buffs.Remove(buff);
             }
         }
 
         public void ApplyBuff(Buff piBuff)
         {
-            Buffs.Add(piBuff);
+            BuffController.ApplyBuff(piBuff);
         }
 
         public void ClearBuff(Buff piBuff)
         {
-            Buffs.Remove(piBuff);
+            BuffController.ClearBuff(piBuff);
         }
 
         public CStats GetBuffStats()
         {
-            var stats = new CStats();
+            return BuffController.GetBuffStats();
+        }
 
-            foreach (var buff in Buffs)
-            {
-                stats = stats + buff.StatChanges;
-            }
-
-            return stats;
+        public void SetStats(CStats piStats)
+        {
+            BuffController.SetStats(piStats);
         }
     }
 }

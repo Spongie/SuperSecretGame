@@ -1,12 +1,12 @@
 ﻿using System.Windows.Forms;
 using System.IO;
 using Newtonsoft.Json;
-using Assets.Scripts.Utility;
 using System;
 using System.Linq;
 using System.Windows.Media.Imaging;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using Assets.Scripts.Items;
 
 namespace ItemEditor
 {

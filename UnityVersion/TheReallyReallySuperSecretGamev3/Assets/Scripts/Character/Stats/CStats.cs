@@ -21,6 +21,11 @@ namespace Assets.Scripts.Character.Stat
             Luck = piValue;
             MaximumHealth = piValue;
             MaximumMana = piValue;
+            CurrentHealth = piValue;
+            CurrentMana = piValue;
+            Level = 1;
+            CurrentExp = 0;
+            MaximumExp = 100;
         }
 
         public int MaximumHealth;
@@ -78,6 +83,9 @@ namespace Assets.Scripts.Character.Stat
         public void DrainMana(int amount)
         {
             CurrentMana -= amount;
+
+            if (CurrentMana < 0)
+                CurrentMana = 0;
         }
 
         public void RewardExperience(int amount)
@@ -105,6 +113,9 @@ namespace Assets.Scripts.Character.Stat
 
         public static CStats operator +(CStats piFirst, CStats piOther)
         {
+            float oldHpPercent = piFirst.HealthPercentage;
+            float oldMpPercent = piFirst.ManaPercentage;
+
             var newStats = new CStats()
             {
                 MaximumHealth = piFirst.MaximumHealth + piOther.MaximumHealth,
@@ -117,8 +128,8 @@ namespace Assets.Scripts.Character.Stat
                 Resistance = piFirst.Resistance + piOther.Resistance
             };
 
-            newStats.CurrentHealth = (piFirst.CurrentHealth > piOther.CurrentHealth) ? piFirst.CurrentHealth : piOther.CurrentHealth;
-            newStats.CurrentMana = (piFirst.CurrentMana > piOther.CurrentMana) ? piFirst.CurrentMana : piOther.CurrentMana;
+            newStats.CurrentHealth = (int)(newStats.MaximumHealth * oldHpPercent);
+            newStats.CurrentMana = (int)(newStats.MaximumMana * oldMpPercent);
 
             return newStats;
         }
