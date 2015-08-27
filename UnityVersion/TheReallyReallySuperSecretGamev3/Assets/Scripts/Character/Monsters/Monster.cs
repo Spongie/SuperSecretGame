@@ -90,6 +90,16 @@ namespace Assets.Scripts.Character.Monsters
         {
         }
 
+        public void StartWaitingForAnimation()
+        {
+            waitingForAnimation = true;
+        }
+
+        public void StopWaitingForAnimation()
+        {
+            waitingForAnimation = false;
+        }
+
         public void Disable()
         {
             AiList.Clear();

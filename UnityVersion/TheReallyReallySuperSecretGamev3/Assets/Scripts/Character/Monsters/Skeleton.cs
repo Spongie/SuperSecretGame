@@ -11,13 +11,6 @@ namespace Assets.Scripts.Character.Monsters
         public override void Start()
         {
             base.Start();
-
-            CurrentStats.stats.MaximumHealth = 100;
-            CurrentStats.stats.MaximumMana = 0;
-            CurrentStats.stats.Damage = 10;
-            CurrentStats.stats.Defense = 2;
-            CurrentStats.stats.MagicDamage = 0;
-            CurrentStats.stats.MagicDefense = 3;
             ivFacingRight = true;
             AiTimer.Restart(0);
         }

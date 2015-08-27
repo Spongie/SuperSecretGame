@@ -29,7 +29,6 @@ namespace Assets.Scripts.Attacks
             EntitiesHit = new Dictionary<GameObject, ManualTimer>();
             Scaling = GetComponent<AttackDamageScaling>();
             lifeTimer = GetComponent<Timer>();
-            Scaling = GetComponent<AttackDamageScaling>();
 
             EntitiesHit = new Dictionary<GameObject, ManualTimer>();
 
@@ -116,6 +115,15 @@ namespace Assets.Scripts.Attacks
             }
         }
 
+        public void StartMeleeAttack()
+        {
+            gameObject.SetActive(true);
+        }
+
+        public void StopMeleeAttack()
+        {
+            gameObject.SetActive(false);
+        }
 
         public IEnumerable<AttackEffect> GetAttackEffects()
         {

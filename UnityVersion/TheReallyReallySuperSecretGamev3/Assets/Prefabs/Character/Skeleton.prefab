@@ -164,30 +164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3d6fab95c7d1964898716a4f513f0bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Stats:
-    MaximumHealth: 0
-    CurrentExp: 0
-    MaximumExp: 0
-    Level: 0
-    CurrentHealth: 0
-    MaximumMana: 0
-    CurrentMana: 0
-    Damage: 0
-    Defense: 0
-    MagicDamage: 0
-    MagicDefense: 0
-    Luck: 0
-    Resistance: 0
-    BaseCurseResist: 0
-    BaseMpDrainResist: 0
-    BaseLifeLeechResist: 0
-    BaseInstaKillResist: 0
-    BaseSlowResist: 0
-    BaseStatsLossResist: 0
-    BaseTimeStopResist: 0
-    BaseFreezeResist: 0
-    BaseFearResist: 0
-  NrOfBuffs: 0
+  BuffController:
+    NrOfBuffs: 0
 --- !u!114 &11462086
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -203,8 +181,8 @@ MonoBehaviour:
     MaximumHealth: 199
     CurrentExp: 0
     MaximumExp: 0
-    Level: 0
-    CurrentHealth: 100
+    Level: 1
+    CurrentHealth: 199
     MaximumMana: 0
     CurrentMana: 0
     Damage: 5
@@ -333,7 +311,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: stats.CurrentHealth
-      value: 100
+      value: 199
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: stats.Damage
@@ -358,6 +336,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: stats.Resistance
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: stats.Level
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

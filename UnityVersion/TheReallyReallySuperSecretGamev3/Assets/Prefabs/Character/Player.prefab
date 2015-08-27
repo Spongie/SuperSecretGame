@@ -56,6 +56,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &198446
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 461094}
+  - 50: {fileID: 5007472}
+  - 114: {fileID: 11405564}
+  - 114: {fileID: 11434538}
+  - 114: {fileID: 11497222}
+  - 61: {fileID: 6182052}
+  m_Layer: 0
+  m_Name: PlayerBasic1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!4 &412654
 Transform:
   m_ObjectHideFlags: 1
@@ -80,6 +100,7 @@ Transform:
   m_Children:
   - {fileID: 441356}
   - {fileID: 412654}
+  - {fileID: 461094}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &441356
@@ -94,6 +115,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 420276}
   m_RootOrder: 0
+--- !u!4 &461094
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 198446}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .400000006, y: .819999993, z: -3.8203125}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 420276}
+  m_RootOrder: 2
 --- !u!50 &5007068
 Rigidbody2D:
   serializedVersion: 2
@@ -110,6 +143,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!50 &5007472
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 198446}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!58 &5866560
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -149,6 +198,32 @@ BoxCollider2D:
   m_Offset: {x: 0, y: .529999971}
   serializedVersion: 2
   m_Size: {x: .330000013, y: .579999983}
+--- !u!61 &6182052
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 198446}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: .209999993, y: .649999976}
+--- !u!114 &11405564
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 198446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5efee40e73366f4cbfbdf0ce79238e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: .300000012
+  Magic: 0
 --- !u!114 &11427526
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -160,30 +235,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3d6fab95c7d1964898716a4f513f0bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Stats:
-    MaximumHealth: 0
-    CurrentExp: 0
-    MaximumExp: 0
-    Level: 0
-    CurrentHealth: 0
-    MaximumMana: 0
-    CurrentMana: 0
-    Damage: 0
-    Defense: 0
-    MagicDamage: 0
-    MagicDefense: 0
-    Luck: 0
-    Resistance: 0
-    BaseCurseResist: 0
-    BaseMpDrainResist: 0
-    BaseLifeLeechResist: 0
-    BaseInstaKillResist: 0
-    BaseSlowResist: 0
-    BaseStatsLossResist: 0
-    BaseTimeStopResist: 0
-    BaseFreezeResist: 0
-    BaseFearResist: 0
-  NrOfBuffs: 0
+  BuffController:
+    NrOfBuffs: 0
+--- !u!114 &11434538
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 198446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 815feb8866d70cf4283feb910e492fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeToRun: 0
+  TimeRunning: 0
 --- !u!114 &11446910
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -294,6 +360,28 @@ MonoBehaviour:
   SpawnPosition: {fileID: 412654}
   DamagePrefab: {fileID: 140684, guid: 05106f529d6307e4b8575ec1bf365a9a, type: 2}
   HealingPrefab: {fileID: 134200, guid: c0dcb44ef40ae7b4da5877423d8fee9b, type: 2}
+--- !u!114 &11497222
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 198446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a642845c916b8eb41963fa21e88bb1fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsMeleeAttack: 1
+  IsRotating: 0
+  ApplyGravity: 0
+  secondsToLive: 0
+  secondsHitReset: 0
+  lifeTimer: {fileID: 0}
+  Owner: {fileID: 0}
+  Saker: []
+  Bouncing: 0
+  BouncesLeft: 0
+  DiesOnCollision: 0
 --- !u!212 &21282234
 SpriteRenderer:
   m_ObjectHideFlags: 1
