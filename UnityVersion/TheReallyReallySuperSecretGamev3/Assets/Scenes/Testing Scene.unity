@@ -308,7 +308,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 464510, guid: 3ec06aa1887e19441a42314622aafbb9, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 464510, guid: 3ec06aa1887e19441a42314622aafbb9, type: 2}
       propertyPath: m_LocalScale.x
@@ -917,7 +917,7 @@ Transform:
   m_LocalScale: {x: .469999999, y: 12.7600002, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
 --- !u!1 &990700065
 GameObject:
   m_ObjectHideFlags: 0
@@ -1402,7 +1402,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 476328, guid: ee133a95fc2964047b1b11e097dd6acf, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 110208, guid: ee133a95fc2964047b1b11e097dd6acf, type: 2}
       propertyPath: m_Name
