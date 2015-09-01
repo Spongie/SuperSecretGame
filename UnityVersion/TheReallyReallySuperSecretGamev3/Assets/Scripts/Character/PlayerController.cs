@@ -55,5 +55,10 @@ namespace Assets.Scripts.Character
         {
             ivBaseStats.RewardExperience(piAmount);
         }
+
+        public IBuffContainer GetBuffContainer()
+        {
+            return Buffs;
+        }
     }
 }

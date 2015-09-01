@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Assets.Scripts.Utility;
 using Assets.Scripts.Environment;
+using Assets.Scripts.Attacks;
 
 namespace Assets.Scripts.Character
 {
@@ -65,6 +66,9 @@ namespace Assets.Scripts.Character
         ManualTimer jumpStartTimer = new ManualTimer(0);
         ManualTimer ignoreTimer = new ManualTimer(0);
 
+        private bool stunnedLastFrame = false;
+        private Attack disabledAttackOnStun;
+
         private GameObject ivLastSlop;
         public bool ivMovedLastFrame;
 
@@ -80,6 +84,8 @@ namespace Assets.Scripts.Character
         public LayerMask IgnoringLayer;
 
         private bool boostingRight = false;
+        private Player ivPlayer;
+        private Animator ivAnimator;
 
         // Use this for initialization
         void Start()
@@ -88,6 +94,8 @@ namespace Assets.Scripts.Character
             ivGravityTimer = new ManualTimer(0);
             originalMaxSpeed = maxSpeed;
             ivFeetCollider = GetComponent<CircleCollider2D>();
+            ivPlayer = GetComponent<Player>();
+            //ivAnimator = GetComponent<Animator>();
         }
 
         void OnCollisionEnter2D(Collision2D col)
@@ -240,8 +248,45 @@ namespace Assets.Scripts.Character
                 Physics2D.OverlapCircle(this.transform.position + new Vector3(grabPoint.x * this.transform.localScale.x, grabPoint.y, 0), 0.2f, wallGrabMask);
         }
 
+        private void OnStunExpired()
+        {
+            //ivAnimator.enabled = true;
+            disabledAttackOnStun.StartMeleeAttack();
+            disabledAttackOnStun = null;
+        }
+
+        private void OnStunned()
+        {
+            if (stunnedLastFrame == false)
+            {
+                foreach (Attack meleeAttack in GetComponentsInChildren<Attack>())
+                {
+                    if (meleeAttack.enabled)
+                    {
+                        meleeAttack.StopMeleeAttack();
+                        disabledAttackOnStun = meleeAttack;
+                        break;
+                    }
+                }
+
+                //ivAnimator.enabled = false;
+            }
+            stunnedLastFrame = true;
+        }
+
         void Update()
         {
+            if(ivPlayer.ivController.GetBuffContainer().IsStunned())
+            {
+                OnStunned();
+                return;
+            }
+
+            if (stunnedLastFrame)
+                OnStunExpired();
+
+            stunnedLastFrame = false;
+
             jumpControlTimer.Update(Time.deltaTime);
             dashTimer.Update(Time.deltaTime);
             boostReactionTimer.Update(Time.deltaTime);
@@ -495,6 +540,9 @@ namespace Assets.Scripts.Character
             }
             else
                 ivMovedLastFrame = false;
+
+            if(ivPlayer.ivController.GetBuffContainer().IsChilled())
+                xVel /= 2;
 
             // Apply the calculate velocity to our rigidbody
             ivRigidbody.velocity = new Vector2(
