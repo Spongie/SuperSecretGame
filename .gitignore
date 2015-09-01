@@ -42,7 +42,6 @@ Assembly-UnityScript.unityProj
 # ===================================== #
 [Ee]xported[Oo]bj/
 /*.userprefs
-/*.csproj
 /*.pidb
 /*.suo
 /*.sln*
