@@ -31,7 +31,10 @@ Assembly-UnityScript-firstpass.unityproj
 Assembly-UnityScript-vs.unityproj
 Assembly-UnityScript.pidb
 Assembly-UnityScript.unityProj
- 
+TheReallyReallySuperSecretGamev3.sln
+TheReallyReallySuperSecretGamev3-csharp.sln
+UnityVS.TheReallyReallySuperSecretGamev3.sln
+
 *.svd
 *.userprefs
 *.suo
@@ -44,7 +47,6 @@ Assembly-UnityScript.unityProj
 /*.userprefs
 /*.pidb
 /*.suo
-/*.sln*
 /*.user
 /*.unityproj
 /*.booproj
