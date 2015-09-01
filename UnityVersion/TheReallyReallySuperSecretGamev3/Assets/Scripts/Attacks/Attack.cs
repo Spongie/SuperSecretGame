@@ -11,6 +11,8 @@ namespace Assets.Scripts.Attacks
     public class Attack : MonoBehaviour
     {
         public bool IsMeleeAttack = false;
+        public bool IsCurseAreaAttack = false;
+        public bool CurseSpawnOnCast = true;
         public bool IsRotating = false;
         public bool ApplyGravity = false;
         public float secondsToLive;
@@ -18,6 +20,9 @@ namespace Assets.Scripts.Attacks
         public Timer lifeTimer;
         public GameObject Owner;
         public AttackEffect[] Saker;
+        public GameObject CursedArea;
+        public Vector2 Speed = Vector2.zero;
+        public bool ThrewToRight = false;
         private Rigidbody2D ivRigidBody;
         private List<string> ivGroundTags;
 
@@ -39,6 +44,23 @@ namespace Assets.Scripts.Attacks
             ivGroundTags.Add("boost");
             ivGroundTags.Add("boostright");
             ivGroundTags.Add("boostleft");
+
+            if (CurseSpawnOnCast)
+                SpawnCurseAttack();
+
+            if (Speed != Vector2.zero)
+            {
+                var xModifier = ThrewToRight ? 1 : -1;
+
+                var realSpeed = new Vector2(xModifier * Speed.x, Speed.y);
+                ivRigidBody.velocity = realSpeed;
+            }
+        }
+
+        private void SpawnCurseAttack()
+        {
+            Instantiate(CursedArea);
+            gameObject.SetActive(false);
         }
 
         //this is a nice comment
@@ -105,14 +127,19 @@ namespace Assets.Scripts.Attacks
 
         void OnCollisionEnter2D(Collision2D coll)
         {
-            if (DiesOnCollision)
-                Destroy(gameObject);
-
             if (CanHitEntity(coll.gameObject))
             {
-                AddEntityToHit(coll.gameObject);
-                DamageController.DealDamage(Owner, coll.gameObject, Scaling, GetAttackEffects());
+                if (IsCurseAreaAttack)
+                    SpawnCurseAttack();
+                else
+                {
+                    AddEntityToHit(coll.gameObject);
+                    DamageController.DealDamage(Owner, coll.gameObject, Scaling, GetAttackEffects());
+                }
             }
+
+            if (DiesOnCollision)
+                Destroy(gameObject);
         }
 
         public void StartMeleeAttack()

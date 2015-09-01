@@ -21,7 +21,8 @@ namespace Assets.Scripts.Items
         MinorGem1,
         MinorGem2,
         MinorGem3,
-        MajorGem
+        MajorGem,
+        Consumable
     }
 
     [Serializable]
