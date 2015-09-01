@@ -74,9 +74,11 @@ Ankh.NoLoad
 .Trashes
 ehthumbs.db
 [Tt]humbs.db
-*.csproj
-*.csproj
-*.sln
 UnityVersion/TheReallyReallySuperSecretGamev3/Library/assetDatabase3
 UnityVersion/TheReallyReallySuperSecretGamev3/Library/guidmapper
 *.dwlt
+UnityVersion/TheReallyReallySuperSecretGamev3/UnityVS.TheReallyReallySuperSecretGamev3.CSharp.csproj
+UnityVersion/TheReallyReallySuperSecretGamev3/UnityVS.TheReallyReallySuperSecretGamev3.CSharp.Editor.csproj
+UnityVersion/TheReallyReallySuperSecretGamev3/UnityVS.TheReallyReallySuperSecretGamev3.CSharp.Editor.Plugins.csproj
+UnityVersion/TheReallyReallySuperSecretGamev3/UnityVS.TheReallyReallySuperSecretGamev3.CSharp.Plugins.csproj
+TheSuperTrueRealCV/TheSuperTrueRealCV/TheSuperTrueRealCV (Konfliktkopia för Tim Tuvestam 2015-01-04).csproj
