@@ -45,7 +45,7 @@ namespace Assets.Scripts.Attacks
             ivGroundTags.Add("boostright");
             ivGroundTags.Add("boostleft");
 
-            if (CurseSpawnOnCast)
+            if (CurseSpawnOnCast && IsCurseAreaAttack)
                 SpawnCurseAttack();
 
             if (Speed != Vector2.zero)
