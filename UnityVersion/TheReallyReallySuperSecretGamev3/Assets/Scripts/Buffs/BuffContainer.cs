@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Character.Stat;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace Assets.Scripts.Buffs
 {
@@ -57,6 +58,21 @@ namespace Assets.Scripts.Buffs
         public void SetStats(CStats piStats)
         {
             BuffController.SetStats(piStats);
+        }
+
+        public bool IsStunned()
+        {
+            return BuffController.IsStunned();
+        }
+
+        public bool IsChilled()
+        {
+            return BuffController.IsChilled();
+        }
+
+        public bool IsFeared()
+        {
+            return BuffController.IsFeared();
         }
     }
 }

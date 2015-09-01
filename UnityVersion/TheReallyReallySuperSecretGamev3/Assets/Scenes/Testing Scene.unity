@@ -724,6 +724,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeToRun: 0
   TimeRunning: 0
+  Paused: 0
 --- !u!61 &710773182
 BoxCollider2D:
   m_ObjectHideFlags: 0

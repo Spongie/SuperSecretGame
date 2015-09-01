@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.Character.Stat;
 using System;
+using System.Linq;
 
 namespace Assets.Scripts.Buffs
 {
@@ -42,6 +43,21 @@ namespace Assets.Scripts.Buffs
         public void SetStats(CStats piStats)
         {
             Stats = piStats;
+        }
+
+        public bool IsStunned()
+        {
+            return Buffs.Any(buff => buff.GetType() == typeof(StunBuff));
+        }
+
+        public bool IsChilled()
+        {
+            return Buffs.Any(buff => buff.GetType() == typeof(ChilledBuff));
+        }
+
+        public bool IsFeared()
+        {
+            return Buffs.Any(buff => buff.GetType() == typeof(FearBuff));
         }
     }
 }

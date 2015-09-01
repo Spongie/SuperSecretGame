@@ -81,5 +81,41 @@ namespace Assets.Scripts.Attacks
 
             return piCurrentDamage;
         }
+
+        private float Stun(GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piEffectPower, float piEffectDuration, int piEffectTicks, float piCurrentDamage)
+        {
+            var buff = new StunBuff(new CStats((int)piEffectPower), piEffectDuration);
+
+            var buffContainer = piTarget.GetComponent<BuffContainer>();
+
+            if (buffContainer != null)
+                buffContainer.ApplyBuff(buff);
+
+            return piCurrentDamage;
+        }
+
+        private float Freeze(GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piEffectPower, float piEffectDuration, int piEffectTicks, float piCurrentDamage)
+        {
+            var buff = new ChilledBuff(new CStats((int)piEffectPower), piEffectDuration);
+
+            var buffContainer = piTarget.GetComponent<BuffContainer>();
+
+            if (buffContainer != null)
+                buffContainer.ApplyBuff(buff);
+
+            return piCurrentDamage;
+        }
+
+        private float Fear(GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piEffectPower, float piEffectDuration, int piEffectTicks, float piCurrentDamage)
+        {
+            var buff = new FearBuff(new CStats((int)piEffectPower), piEffectDuration);
+
+            var buffContainer = piTarget.GetComponent<BuffContainer>();
+
+            if (buffContainer != null)
+                buffContainer.ApplyBuff(buff);
+
+            return piCurrentDamage;
+        }
     }
 }

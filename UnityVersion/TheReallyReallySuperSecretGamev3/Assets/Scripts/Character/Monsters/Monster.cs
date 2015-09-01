@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Buffs;
+﻿using Assets.Scripts.Attacks;
+using Assets.Scripts.Buffs;
 using Assets.Scripts.Character.Stat;
 using Assets.Scripts.Items;
 using Assets.Scripts.Utility;
@@ -23,6 +24,8 @@ namespace Assets.Scripts.Character.Monsters
         protected bool waitingForAnimation = false;
         public MonsterTypes MonsterType = MonsterTypes.Humanoid;
         private BuffContainer Buffs;
+        private bool stunnedLastFrame = false;
+        private Attack disabledAttackOnStun;
 
         public override void Start()
         {
@@ -60,8 +63,14 @@ namespace Assets.Scripts.Character.Monsters
 
         public virtual void Update()
         {
-            if (waitingForAnimation)
+            if (waitingForAnimation || Buffs.IsStunned())
+            {
+                OnStunned();
                 return;
+            }
+
+            if (stunnedLastFrame)
+                OnStunExpired();
 
             ivRigidbody.velocity = new Vector2(0, ivRigidbody.velocity.y);
 
@@ -74,6 +83,35 @@ namespace Assets.Scripts.Character.Monsters
             
             if(CurrentStats.IsDead())
                 HandleDeath();
+
+            stunnedLastFrame = false;
+        }
+
+        private void OnStunExpired()
+        {
+            AiTimer.Paused = false;
+            ivAnimator.enabled = true;
+            disabledAttackOnStun.StartMeleeAttack();
+            disabledAttackOnStun = null;
+        }
+
+        private void OnStunned()
+        {
+            if (stunnedLastFrame == false)
+            {
+                foreach (Attack meleeAttack in GetComponentsInChildren<Attack>())
+                {
+                    if (meleeAttack.enabled)
+                    {
+                        meleeAttack.StopMeleeAttack();
+                        disabledAttackOnStun = meleeAttack;
+                        break;
+                    }
+                }
+                AiTimer.Paused = true;
+                ivAnimator.enabled = false;
+            }
+            stunnedLastFrame = true;
         }
 
         private void HandleDeath()

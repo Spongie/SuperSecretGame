@@ -11,6 +11,7 @@ namespace Assets.Scripts.Utility
 
         public float TimeToRun;
         public float TimeRunning;
+        public bool Paused = false;
 
         public void Restart()
         {
@@ -30,6 +31,9 @@ namespace Assets.Scripts.Utility
 
         void Update()
         {
+            if (Paused)
+                return;
+
             TimeRunning += Time.deltaTime;
 
             if (Done && OnTimerDone != null)

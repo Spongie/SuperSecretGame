@@ -8,5 +8,8 @@ namespace Assets.Scripts.Buffs
         void ClearBuff(Buff piBuff);
         void SetStats(CStats piStats);
         CStats GetBuffStats();
+        bool IsStunned();
+        bool IsChilled();
+        bool IsFeared();
     }
 }
