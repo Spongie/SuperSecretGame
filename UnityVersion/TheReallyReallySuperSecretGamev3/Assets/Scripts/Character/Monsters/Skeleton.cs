@@ -109,6 +109,8 @@ namespace Assets.Scripts.Character.Monsters
 
         public override void UpdateGoForward()
         {
+            Vector2 realSpeed = GetRealSpeed();
+
             if (AiTimer.Done && Newtimer == false)
             {
                 float timer = random.Next(1000, 1600) / 1000;
@@ -119,12 +121,12 @@ namespace Assets.Scripts.Character.Monsters
             //avgör vilken riktning som den ska gå
             if (ivFacingRight == true)
             {
-                ivRigidbody.velocity = new Vector2(3, ivRigidbody.velocity.y);
+                ivRigidbody.velocity = new Vector2(realSpeed.x, realSpeed.y);
                 ivAnimator.SetFloat("Speed", Mathf.Abs(ivRigidbody.velocity.x));
             }
             else if (ivFacingRight == false)
             {
-                ivRigidbody.velocity = new Vector2(-3, ivRigidbody.velocity.y);
+                ivRigidbody.velocity = new Vector2(-realSpeed.x, realSpeed.y);
                 ivAnimator.SetFloat("Speed", Mathf.Abs(ivRigidbody.velocity.x));
             }
             //ska röra sig i 1/4 ivRigidbody.velocity av spelaren
@@ -136,11 +138,13 @@ namespace Assets.Scripts.Character.Monsters
                 AiList.Add(() => UpdateAttack());
                 AiList.RemoveAt(0);
             }
-            
+
         }
 
         public void UpdateGoBack()
         {
+            var realSpeed = GetRealSpeed();
+
             if (AiTimer.Done && Newtimer == false)
             {
                 float timer = random.Next(700, 1400) / 1000;
@@ -151,13 +155,13 @@ namespace Assets.Scripts.Character.Monsters
             //avgör vilken riktning som den ska gå
             if (ivFacingRight == true)
             {
-                ivRigidbody.velocity = new Vector2(-3, ivRigidbody.velocity.y);
+                ivRigidbody.velocity = new Vector2(-realSpeed.x, realSpeed.y);
                 ivAnimator.SetFloat("Speed", Mathf.Abs(ivRigidbody.velocity.x));
 
             }
             else if (ivFacingRight == false)
             {
-                ivRigidbody.velocity = new Vector2(3, ivRigidbody.velocity.y);
+                ivRigidbody.velocity = new Vector2(realSpeed.x, realSpeed.y);
                 ivAnimator.SetFloat("Speed", Mathf.Abs(ivRigidbody.velocity.x));
             }
             //ska röra sig i 1/4 ivRigidbody.velocity av spelaren

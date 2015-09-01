@@ -23,9 +23,9 @@ namespace Assets.Scripts.Character.Monsters
         protected int newState;
         protected bool waitingForAnimation = false;
         public MonsterTypes MonsterType = MonsterTypes.Humanoid;
-        private BuffContainer Buffs;
-        private bool stunnedLastFrame = false;
-        private Attack disabledAttackOnStun;
+        protected BuffContainer Buffs;
+        protected bool stunnedLastFrame = false;
+        protected Attack disabledAttackOnStun;
 
         public override void Start()
         {
@@ -59,6 +59,16 @@ namespace Assets.Scripts.Character.Monsters
         public CStats GetTrueStats()
         {
             return CurrentStats.stats + Buffs.GetBuffStats();
+        }
+
+        protected Vector2 GetRealSpeed()
+        {
+            var realSpeed = new Vector2(Speed, ivRigidbody.velocity.y);
+
+            if (Buffs.IsChilled())
+                realSpeed = new Vector2(0.5f * realSpeed.x, realSpeed.y);
+
+            return realSpeed;
         }
 
         public virtual void Update()
