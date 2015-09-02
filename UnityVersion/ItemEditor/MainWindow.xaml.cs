@@ -68,9 +68,17 @@ namespace ItemEditor
 
         private void EffectName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ivTextboxEffectvalue.IsEnabled = e.AddedItems[0].ToString() != "None";
-            ivTextboxEffectDuration.IsEnabled = e.AddedItems[0].ToString() != "None";
-            ivTextboxEffectTicks.IsEnabled = e.AddedItems[0].ToString() != "None";
+            bool enabled = e.AddedItems[0].ToString() != "None";
+
+            ivTextboxEffectvalue.IsEnabled = enabled;
+            ivTextboxEffectDuration.IsEnabled = enabled;
+            ivTextboxEffectTicks.IsEnabled = enabled;
+            ivTextboxEffectStatsDamage.IsEnabled = enabled;
+            ivTextboxEffectStatsDefense.IsEnabled = enabled;
+            ivTextboxEffectStatsLuck.IsEnabled = enabled;
+            ivTextboxEffectStatsMagicDamage.IsEnabled = enabled;
+            ivTextboxEffectStatsMagicDefense.IsEnabled = enabled;
+            ivTextboxEffectStatsResistance.IsEnabled = enabled;
         }
 
         private void ivListboxItemsTable_SelectionChanged(object sender, SelectionChangedEventArgs e)

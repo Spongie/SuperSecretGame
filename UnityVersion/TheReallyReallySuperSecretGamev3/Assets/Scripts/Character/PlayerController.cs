@@ -29,7 +29,8 @@ namespace Assets.Scripts.Character
             if (!ivInventory.GetEqippedItems().Any())
                 return Enumerable.Empty<AttackEffect>();
 
-            return ivInventory.GetEqippedItems().Where(item => item.EffectName != "None").Select(item => new AttackEffect() { Name = item.EffectName, Power = item.EffectValue, Duration = item.EffectDuration, Ticks = item.EffectTicks });
+            return ivInventory.GetEqippedItems().Where(item => item.EffectName != "None").Select(item => new AttackEffect()
+                    { Name = item.EffectName, Power = item.EffectValue, Duration = item.EffectDuration, Ticks = item.EffectTicks, Stats = item.EffectStats });
         }
 
         /// <summary>

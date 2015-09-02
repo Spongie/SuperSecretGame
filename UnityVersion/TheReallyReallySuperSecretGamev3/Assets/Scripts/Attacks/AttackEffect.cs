@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Character.Stat;
+using System;
 
 namespace Assets.Scripts.Attacks
 {
@@ -9,5 +10,6 @@ namespace Assets.Scripts.Attacks
         public float Power = 0.0f;
         public float Duration = 0.0f;
         public int Ticks = 0;
+        public CStats Stats;
     }
 }

@@ -53,7 +53,7 @@
   <ItemGroup>
     <Compile Include="Buffs\BuffContainerControllerTests.cs" />
     <Compile Include="Buffs\BuffTests.cs" />
-    <Compile Include="Character\DummyBuffContainer.cs" />
+    <Compile Include="Buffs\DummyBuffContainer.cs" />
     <Compile Include="Character\PlayerControllerTests.cs" />
     <Compile Include="Character\Stats\CStatsTests.cs" />
     <Compile Include="Items\InventoryTests.cs" />

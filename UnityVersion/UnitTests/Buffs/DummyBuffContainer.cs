@@ -2,7 +2,7 @@
 using System;
 using Assets.Scripts.Character.Stat;
 
-namespace UnitTests.Character
+namespace UnitTests.Buffs
 {
     class DummyBuffContainer : IBuffContainer
     {
@@ -22,6 +22,21 @@ namespace UnitTests.Character
             stats.Damage = 10;
 
             return stats;
+        }
+
+        public bool IsChilled()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsFeared()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsStunned()
+        {
+            throw new NotImplementedException();
         }
 
         public void SetStats(CStats piStats)

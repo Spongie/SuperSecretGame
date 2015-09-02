@@ -111,6 +111,18 @@ namespace Assets.Scripts.Character.Stat
             return roll < (int)Resistance;
         }
 
+        public bool IsZero()
+        {
+            return MaximumHealth == 0 &&
+                MaximumMana == 0 &&
+                Damage == 0 &&
+                Defense == 0 &&
+                MagicDamage == 0 &&
+                MagicDefense == 0 &&
+                Luck == 0 &&
+                Resistance == 0;
+        }
+
         public static CStats operator +(CStats piFirst, CStats piOther)
         {
             float oldHpPercent = piFirst.HealthPercentage;

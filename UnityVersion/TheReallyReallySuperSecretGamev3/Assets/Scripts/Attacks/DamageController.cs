@@ -25,7 +25,7 @@ namespace Assets.Scripts.Attacks
 
             foreach (var effect in piEffectsFromAttack.Concat(GetAttackEffectsFromAttackersEquippedItems(piAttacker)))
             {
-                baseDamage = attackModifiers.ApplyAttackEffect(effect.Name, piAttacker, piTarget, piAttackScaling, effect.Power, effect.Duration, effect.Ticks, baseDamage);
+                baseDamage = attackModifiers.ApplyAttackEffect(effect.Name, piAttacker, piTarget, piAttackScaling, effect.Power, effect.Duration, effect.Ticks, effect.Stats, baseDamage);
             }
 
             float realDamage = baseDamage - physicalDefense - magicDefense;

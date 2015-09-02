@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Character;
 using Assets.Scripts.Character.Stat;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using UnitTests.Buffs;
 
 namespace UnitTests.Character
 {

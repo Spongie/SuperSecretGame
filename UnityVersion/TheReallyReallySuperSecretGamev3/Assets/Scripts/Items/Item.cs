@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Newtonsoft.Json;
 using Assets.Scripts.Attacks;
+using Assets.Scripts.Character.Stat;
 
 namespace Assets.Scripts.Items
 {
@@ -42,7 +43,14 @@ namespace Assets.Scripts.Items
         private float ivEffectDuration;
         private int ivTicks;
         private int ivMaxStackSize;
+        private string ivID;
 
+        private float ivEffectMagicDefense;
+        private float ivEffectResistance;
+        private float ivEffectDamage;
+        private float ivEffectMagicDamage;
+        private float ivEffectDefense;
+        private float ivEffectLuck;
 
         [NonSerialized]
         private AttackEffectLoader ivEffectLoader;
@@ -75,8 +83,6 @@ namespace Assets.Scripts.Items
             else
                 ID = original.ID;
         }
-
-        private string ivID;
 
         public string ID
         {
@@ -138,6 +144,84 @@ namespace Assets.Scripts.Items
             {
                 ivTicks = value;
                 FirePropertyChanged("Ticks");
+            }
+        }
+
+        public CStats EffectStats
+        {
+            get
+            {
+                var stats = new CStats()
+                {
+                    Damage = EffectDamage,
+                    MagicDamage = EffectMagicDamage,
+                    MagicDefense = EffectMagicDamage,
+                    Defense = EffectDefense,
+                    Luck = EffectLuck,
+                    Resistance = EffectResistance
+                };
+
+                return stats;
+            }
+        }
+
+        public float EffectDamage
+        {
+            get { return ivEffectDamage; }
+            set
+            {
+                ivEffectDamage = value;
+                FirePropertyChanged("EffectDamage");
+            }
+        }
+
+        public float EffectDefense
+        {
+            get { return ivEffectDefense; }
+            set
+            {
+                ivEffectDefense = value;
+                FirePropertyChanged("EffectDefense");
+            }
+        }
+
+        public float EffectMagicDamage
+        {
+            get { return ivEffectMagicDamage; }
+            set
+            {
+                ivMagicDamage = value;
+                FirePropertyChanged("EffectMagicDamage");
+            }
+        }
+
+        public float EffectMagicDefense
+        {
+            get { return ivEffectMagicDefense; }
+            set
+            {
+                ivMagicDefense = value;
+                FirePropertyChanged("EffectMagicDefense");
+            }
+        }
+
+        public float EffectLuck
+        {
+            get { return ivEffectLuck; }
+            set
+            {
+                ivLuck = value;
+                FirePropertyChanged("Luck");
+            }
+        }
+
+        public float EffectResistance
+        {
+            get { return ivEffectResistance; }
+            set
+            {
+                ivResistance = value;
+                FirePropertyChanged("Resistance");
             }
         }
 

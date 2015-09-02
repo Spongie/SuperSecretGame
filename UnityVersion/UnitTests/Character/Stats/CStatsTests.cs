@@ -158,5 +158,26 @@ namespace UnitTests.Character.Stats
 
             Assert.AreEqual(0.5f, newStats.ManaPercentage);
         }
+
+        [TestMethod]
+        public void IsZero_Everything0_True()
+        {
+            var stats = new CStats(0);
+
+            Assert.IsTrue(stats.IsZero());
+        }
+
+        [TestMethod]
+        public void IsZero_OneStatNot0_False()
+        {
+            var stats = new CStats(1);
+            Assert.IsFalse(stats.IsZero());
+
+            stats = new CStats() { Damage = 2 };
+            Assert.IsFalse(stats.IsZero());
+
+            stats = new CStats() { MaximumHealth = 2 };
+            Assert.IsFalse(stats.IsZero());
+        }
     }
 }
