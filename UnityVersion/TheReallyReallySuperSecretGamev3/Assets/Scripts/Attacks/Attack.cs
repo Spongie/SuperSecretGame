@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Assets.Scripts.Attacks
 {
-    [RequireComponent(typeof(Rigidbody2D))]
+    //[RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(Timer))]
     [RequireComponent(typeof(AttackDamageScaling))]
     public class Attack : MonoBehaviour
@@ -29,7 +29,9 @@ namespace Assets.Scripts.Attacks
         void OnEnable()
         {
             ivRigidBody = GetComponent<Rigidbody2D>();
-            ivRigidBody.gravityScale = ApplyGravity ? 1 : 0;
+
+            if(ivRigidBody != null)
+                ivRigidBody.gravityScale = ApplyGravity ? 1 : 0;
 
             EntitiesHit = new Dictionary<GameObject, ManualTimer>();
             Scaling = GetComponent<AttackDamageScaling>();
@@ -48,12 +50,13 @@ namespace Assets.Scripts.Attacks
             if (CurseSpawnOnCast && IsCurseAreaAttack)
                 SpawnCurseAttack();
 
-            if (Speed != Vector2.zero)
+            if (Speed != Vector2.zero && ivRigidBody != null)
             {
                 var xModifier = ThrewToRight ? 1 : -1;
 
                 var realSpeed = new Vector2(xModifier * Speed.x, Speed.y);
-                ivRigidBody.velocity = realSpeed;
+                Speed = realSpeed;
+                ivRigidBody.velocity = Speed;
             }
         }
 
@@ -74,7 +77,7 @@ namespace Assets.Scripts.Attacks
 
         public bool DiesOnCollision;
 
-        public AttackTarget TargetType { get; set; }
+        public AttackTarget TargetType;
 
         public bool CanHitEntity(GameObject piEntity)
         {
@@ -100,6 +103,9 @@ namespace Assets.Scripts.Attacks
 
         void Update()
         {
+            if (Speed != Vector2.zero && ivRigidBody != null)
+                ivRigidBody.velocity = Speed;
+
             if (lifeTimer.Done && !IsMeleeAttack)
                 Destroy(gameObject);
 
@@ -125,16 +131,28 @@ namespace Assets.Scripts.Attacks
                 EntitiesHit.Add(piEntity, new ManualTimer(secondsHitReset));
         }
 
+        void OnTriggerEnter2D(Collider2D coll)
+        {
+            HandleCollision(coll.gameObject);
+        }
+
         void OnCollisionEnter2D(Collision2D coll)
         {
-            if (CanHitEntity(coll.gameObject))
+            HandleCollision(coll.gameObject);
+        }
+
+        private void HandleCollision(GameObject otherGameObject)
+        {
+            Logger.Log(string.Format("Hit gameobject {0} ", otherGameObject.name));
+
+            if (CanHitEntity(otherGameObject))
             {
                 if (IsCurseAreaAttack)
                     SpawnCurseAttack();
                 else
                 {
-                    AddEntityToHit(coll.gameObject);
-                    DamageController.DealDamage(Owner, coll.gameObject, Scaling, GetAttackEffects());
+                    AddEntityToHit(otherGameObject);
+                    DamageController.DealDamage(Owner, otherGameObject, Scaling, GetAttackEffects());
                 }
             }
 

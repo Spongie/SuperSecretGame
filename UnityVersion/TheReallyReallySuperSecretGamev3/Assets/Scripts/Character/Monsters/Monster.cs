@@ -75,7 +75,9 @@ namespace Assets.Scripts.Character.Monsters
         {
             if (waitingForAnimation || Buffs.IsStunned())
             {
-                OnStunned();
+                if(Buffs.IsStunned())
+                    OnStunned();
+
                 return;
             }
 
@@ -126,6 +128,8 @@ namespace Assets.Scripts.Character.Monsters
 
         private void HandleDeath()
         {
+            Logger.Log(string.Format("Gameobject {0} died", gameObject.name));
+
             GetComponent<ItemDropper>().DropItems();
             Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 

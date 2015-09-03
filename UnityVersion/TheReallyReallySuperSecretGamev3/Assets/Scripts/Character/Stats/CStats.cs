@@ -75,6 +75,8 @@ namespace Assets.Scripts.Character.Stat
 
             if (CurrentHealth < 0)
                 CurrentHealth = 0;
+            else if (CurrentHealth > MaximumHealth)
+                CurrentHealth = MaximumHealth;
 
             if (OnDamageTaken != null)
                 OnDamageTaken((int)amount);
@@ -86,6 +88,8 @@ namespace Assets.Scripts.Character.Stat
 
             if (CurrentMana < 0)
                 CurrentMana = 0;
+            else if (CurrentMana > MaximumMana)
+                CurrentMana = MaximumMana;
         }
 
         public void RewardExperience(int amount)

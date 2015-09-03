@@ -32,7 +32,7 @@ namespace Assets.Scripts.Attacks
 
             Logger.Log(realDamage);
 
-            targetStats.DealDamage(realDamage);
+            DealDamageToGameObject(piTarget, realDamage);
         }
 
         private static IEnumerable<AttackEffect> GetAttackEffectsFromAttackersEquippedItems(GameObject piAttacker)
@@ -43,6 +43,26 @@ namespace Assets.Scripts.Attacks
                 return Enumerable.Empty<AttackEffect>();
 
             return player.GetAttackEffectsFromEquippedItems();
+        }
+
+        public static void DealDamageToGameObject(GameObject piObject, float piDamage)
+        {
+            Player player = piObject.GetComponent<Player>();
+
+            if (player != null)
+                player.DealDamage(piDamage);
+
+            piObject.GetComponent<Monster>().CurrentStats.stats.DealDamage(piDamage);
+        }
+
+        public static void DrainManaFromGameObject(GameObject piFrom, float piDamage)
+        {
+            Player player = piFrom.GetComponent<Player>();
+
+            if (player != null)
+                player.DrainMana(piDamage);
+
+            piFrom.GetComponent<Monster>().CurrentStats.stats.DrainMana((int)piDamage);
         }
 
         public static CStats GetGameObjectsStats(GameObject piObject)

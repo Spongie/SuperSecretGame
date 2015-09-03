@@ -21,9 +21,7 @@ namespace Assets.Scripts.Attacks
 
         private float Lifesteal(GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piEffectPower, float piEffectDuration, int piEffectTicks, CStats piStats, float piCurrentDamage)
         {
-            CStats attackerStats = DamageController.GetGameObjectsStats(piAttacker);
-
-            attackerStats.CurrentHealth += (int)(piCurrentDamage * piEffectPower);
+            DamageController.DealDamageToGameObject(piAttacker, -(int)(piCurrentDamage * piEffectPower));
 
             return piCurrentDamage;
         }
@@ -38,8 +36,8 @@ namespace Assets.Scripts.Attacks
             if (amount > targetStats.CurrentMana)
                 amount = targetStats.CurrentMana;
 
-            attackerStats.CurrentMana += amount;
-            targetStats.CurrentMana -= amount;
+            DamageController.DrainManaFromGameObject(piTarget, amount);
+            DamageController.DrainManaFromGameObject(piAttacker, -amount);
 
             return piCurrentDamage;
         }

@@ -37,6 +37,16 @@ namespace Assets.Scripts.Character
             return ivController.GetTrueStats();
         }
 
+        public void DealDamage(float amount)
+        {
+            ivController.DealDamage(amount);
+        }
+
+        public void DrainMana(float amount)
+        {
+            ivController.DrainMana(amount);
+        }
+
         public IEnumerable<AttackEffect> GetAttackEffectsFromEquippedItems()
         {
             return ivController.GetAttackEffectsFromEquippedItems();

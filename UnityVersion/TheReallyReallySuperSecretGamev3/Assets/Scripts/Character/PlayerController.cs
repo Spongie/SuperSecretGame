@@ -61,5 +61,15 @@ namespace Assets.Scripts.Character
         {
             return Buffs;
         }
+
+        public void DealDamage(float amount)
+        {
+            ivBaseStats.DealDamage(amount);
+        }
+
+        public void DrainMana(float amount)
+        {
+            ivBaseStats.DrainMana((int)amount);
+        }
     }
 }

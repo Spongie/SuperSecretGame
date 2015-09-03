@@ -11,6 +11,8 @@ TagManager:
   - Manager
   - BoostLeft
   - Boost
+  - Attack
+  - Door
   layers:
   - Default
   - TransparentFX

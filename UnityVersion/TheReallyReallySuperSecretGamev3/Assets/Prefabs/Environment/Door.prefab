@@ -14,7 +14,7 @@ GameObject:
   - 114: {fileID: 11492450}
   m_Layer: 0
   m_Name: Door
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 131650}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.44000006, y: -1.70000005, z: .0500000007}
+  m_LocalPosition: {x: -4.44000006, y: -1.61000001, z: .0500000007}
   m_LocalScale: {x: 2, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -57,6 +57,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeToRun: 0
   TimeRunning: 0
+  Paused: 0
 --- !u!114 &11492450
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -70,6 +71,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
   OpenLockTimer: {fileID: 0}
+  ActivationButton: Y
 --- !u!212 &21294330
 SpriteRenderer:
   m_ObjectHideFlags: 1
