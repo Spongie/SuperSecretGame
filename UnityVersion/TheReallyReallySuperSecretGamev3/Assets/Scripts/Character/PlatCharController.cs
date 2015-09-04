@@ -134,13 +134,6 @@ namespace Assets.Scripts.Character
                     gameObject.layer = LayerMask.NameToLayer("IgnoreGround");
                     ignoreTimer.Restart(0.1f);
                 }
-                else
-                {
-                    Logger.Log("Hit ground with head");
-                    isJumpControlling = false;
-                    jumping = false;
-                    canTriggerJump = false;
-                }
             }
         }
 
@@ -184,6 +177,7 @@ namespace Assets.Scripts.Character
                 if (Debug.isDebugBuild)
                     Debug.DrawRay(from, new Vector3(0, -0.23f, 0), Color.green);
 
+
                 var hits = Physics2D.RaycastAll(from, new Vector2(0, -1), 0.23f);
 
                 foreach (var hit in hits)
@@ -226,6 +220,7 @@ namespace Assets.Scripts.Character
 
         private void setGrounded()
         {
+            Logger.Log("Setting grounded");
             usedDoubleJump = false;
             canDoublejump = true;
             diveKicking = false;

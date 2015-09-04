@@ -92,5 +92,62 @@ namespace UnitTests.Buffs
             Assert.AreEqual(46, RealStats.Defense);
             Assert.AreEqual(46, RealStats.MagicDamage);
         }
+
+        [TestMethod]
+        public void IsStunned_NoBuff_False()
+        {
+            var buff = new StunBuff(new CStats(0));
+
+
+            Assert.IsFalse(ivController.IsStunned());
+        }
+
+        [TestMethod]
+        public void IsStunned_StunBuff_True()
+        {
+            var buff = new StunBuff(new CStats(0));
+
+            ivController.ApplyBuff(buff);
+
+            Assert.IsTrue(ivController.IsStunned());
+        }
+
+        [TestMethod]
+        public void IsFeared_NoBuff_False()
+        {
+            var buff = new FearBuff(new CStats(0));
+
+
+            Assert.IsFalse(ivController.IsFeared());
+        }
+
+        [TestMethod]
+        public void IsFeared_StunBuff_True()
+        {
+            var buff = new FearBuff(new CStats(0));
+
+            ivController.ApplyBuff(buff);
+
+            Assert.IsTrue(ivController.IsFeared());
+        }
+
+        [TestMethod]
+        public void IsChilled_NoBuff_False()
+        {
+            var buff = new ChilledBuff(new CStats(0));
+
+
+            Assert.IsFalse(ivController.IsChilled());
+        }
+
+        [TestMethod]
+        public void IsChilled_StunBuff_True()
+        {
+            var buff = new ChilledBuff(new CStats(0));
+
+            ivController.ApplyBuff(buff);
+
+            Assert.IsTrue(ivController.IsChilled());
+        }
     }
 }
