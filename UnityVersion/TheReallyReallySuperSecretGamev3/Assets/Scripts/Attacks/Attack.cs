@@ -19,7 +19,7 @@ namespace Assets.Scripts.Attacks
         public float secondsHitReset;
         public Timer lifeTimer;
         public GameObject Owner;
-        public AttackEffect[] Saker;
+        public AttackEffect[] AttackEffects;
         public GameObject CursedArea;
         public Vector2 Speed = Vector2.zero;
         public bool ThrewToRight = false;
@@ -173,7 +173,7 @@ namespace Assets.Scripts.Attacks
 
         public IEnumerable<AttackEffect> GetAttackEffects()
         {
-            return Saker.Where(effect => effect.Name != "None");
+            return AttackEffects.Where(effect => effect.Name != "None");
         }
     }
 }
