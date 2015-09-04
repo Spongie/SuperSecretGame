@@ -104,7 +104,6 @@ namespace Assets.Scripts.Character
             MovingPlatform mp = col.transform.root.GetComponent<MovingPlatform>();
             if (mp != null)
             {
-                Logger.Log("movingPlatform: " + mp.gameObject.name);
                 movingPlatform = mp;
             }
 

@@ -153,7 +153,7 @@ namespace Assets.Scripts.Attacks
                 else
                 {
                     AddEntityToHit(otherGameObject);
-                    DamageController.DealDamage(Owner, otherGameObject, Scaling, GetAttackEffects());
+                    DamageController.DoAttack(Owner, otherGameObject, Scaling, GetAttackEffects());
                 }
             }
 

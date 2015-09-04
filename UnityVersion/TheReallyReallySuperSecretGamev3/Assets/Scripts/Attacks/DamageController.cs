@@ -12,7 +12,7 @@ namespace Assets.Scripts.Attacks
     {
         private static AttackModifiers attackModifiers = new AttackModifiers();
 
-        public static void DealDamage(GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, IEnumerable<AttackEffect> piEffectsFromAttack)
+        public static void DoAttack(GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, IEnumerable<AttackEffect> piEffectsFromAttack)
         {
             CStats attackerStats = GetGameObjectsStats(piAttacker);
             CStats targetStats = GetGameObjectsStats(piTarget);
@@ -30,7 +30,7 @@ namespace Assets.Scripts.Attacks
 
             float realDamage = baseDamage - physicalDefense - magicDefense;
 
-            Logger.Log(realDamage);
+            Logger.Log(string.Format("Dealing {0} damage to {1}", realDamage, piTarget.name));
 
             DealDamageToGameObject(piTarget, realDamage);
         }

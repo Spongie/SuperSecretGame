@@ -52,7 +52,6 @@ namespace Assets.Scripts.Items
 
         private void SetSprite(string piIconName)
         {
-            Logger.Log(piIconName);
             ivRenderer.sprite = GameObject.FindGameObjectWithTag("Manager").GetComponent<IconManager>().Icons[piIconName];
             ivCollider.size = ivRenderer.sprite.rect.size / 100;
         }

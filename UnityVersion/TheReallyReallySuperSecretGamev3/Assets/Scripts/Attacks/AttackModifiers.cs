@@ -28,7 +28,6 @@ namespace Assets.Scripts.Attacks
 
         private float Manasteal(GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piEffectPower, float piEffectDuration, int piEffectTicks, CStats piStats, float piCurrentDamage)
         {
-            CStats attackerStats = DamageController.GetGameObjectsStats(piAttacker);
             CStats targetStats = DamageController.GetGameObjectsStats(piTarget);
 
             int amount = (int)(piCurrentDamage * piEffectPower);
