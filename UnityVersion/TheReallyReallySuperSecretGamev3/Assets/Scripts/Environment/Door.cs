@@ -35,6 +35,8 @@ namespace Assets.Scripts.Environment
 
         IEnumerator DoorTransition()
         {
+            ButtonLock.Instance.AddLock("RB");
+
             float alpha = 0f;
             Logger.Log("Fading Screen");
             while (alpha < 255)
@@ -45,7 +47,10 @@ namespace Assets.Scripts.Environment
             }
 
             Logger.Log("Moving player");
+
             GameObject.FindGameObjectWithTag("Player").transform.position = Target.position;
+
+            Logger.Log("UnFading Screen");
 
             while (alpha > 0)
             {
@@ -53,7 +58,8 @@ namespace Assets.Scripts.Environment
                 ivFadeImage.color = new Color(ivFadeImage.color.r, ivFadeImage.color.g, ivFadeImage.color.b, alpha / 255);
                 yield return new WaitForSeconds(0.025f);
             }
-            Logger.Log("UnFading Screen");
+            
+            ButtonLock.Instance.ClearLock("RB");
         }
 
         void OnTriggerEnter2D(Collider2D coll)
