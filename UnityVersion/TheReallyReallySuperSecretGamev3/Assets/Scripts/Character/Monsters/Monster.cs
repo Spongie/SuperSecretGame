@@ -99,7 +99,7 @@ namespace Assets.Scripts.Character.Monsters
             stunnedLastFrame = false;
         }
 
-        private void OnStunExpired()
+        protected void OnStunExpired()
         {
             AiTimer.Paused = false;
             ivAnimator.enabled = true;
@@ -107,7 +107,7 @@ namespace Assets.Scripts.Character.Monsters
             disabledAttackOnStun = null;
         }
 
-        private void OnStunned()
+        protected void OnStunned()
         {
             if (stunnedLastFrame == false)
             {
@@ -126,7 +126,7 @@ namespace Assets.Scripts.Character.Monsters
             stunnedLastFrame = true;
         }
 
-        private void HandleDeath()
+        protected void HandleDeath()
         {
             Logger.Log(string.Format("Gameobject {0} died", gameObject.name));
 

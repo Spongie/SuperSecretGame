@@ -46,6 +46,7 @@ namespace Assets.Scripts.Attacks
             ivGroundTags.Add("boost");
             ivGroundTags.Add("boostright");
             ivGroundTags.Add("boostleft");
+            ivGroundTags.Add("door");
 
             if (CurseSpawnOnCast && IsCurseAreaAttack)
                 SpawnCurseAttack();
