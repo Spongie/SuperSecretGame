@@ -190,7 +190,7 @@ namespace Assets.Scripts.Items
             get { return ivEffectMagicDamage; }
             set
             {
-                ivMagicDamage = value;
+                ivEffectMagicDamage = value;
                 FirePropertyChanged("EffectMagicDamage");
             }
         }
@@ -200,7 +200,7 @@ namespace Assets.Scripts.Items
             get { return ivEffectMagicDefense; }
             set
             {
-                ivMagicDefense = value;
+                ivEffectMagicDefense = value;
                 FirePropertyChanged("EffectMagicDefense");
             }
         }
@@ -210,7 +210,7 @@ namespace Assets.Scripts.Items
             get { return ivEffectLuck; }
             set
             {
-                ivLuck = value;
+                ivEffectLuck = value;
                 FirePropertyChanged("Luck");
             }
         }
@@ -220,7 +220,7 @@ namespace Assets.Scripts.Items
             get { return ivEffectResistance; }
             set
             {
-                ivResistance = value;
+                ivEffectResistance = value;
                 FirePropertyChanged("Resistance");
             }
         }
