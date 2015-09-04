@@ -1,1 +1,1 @@
-{"Items":[],"Name":"Chest2"}
+{"Items":[{"ItemName":"Golden Armor","DropChance":100}],"Name":"Chest2"}
