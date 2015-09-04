@@ -42,6 +42,7 @@ namespace Assets.Scripts.Character.Monsters
 
             Buffs = GetComponent<BuffContainer>();
             Buffs.SetStats(CurrentStats.stats);
+            ivFacingRight = true;
         }
 
         public void Activate()
@@ -166,6 +167,14 @@ namespace Assets.Scripts.Character.Monsters
         {
             get;
             set;
+        }
+
+        protected void GoToState(Action state, bool clearstate = true)
+        {
+            if(clearstate)
+                AiList.RemoveAt(0);
+            AiList.Add(state);
+
         }
 
         public abstract void TurnAroundCheck();

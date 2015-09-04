@@ -11,8 +11,6 @@ namespace Assets.Scripts.Character.Monsters
         public override void Start()
         {
             base.Start();
-            ivFacingRight = true;
-            AiTimer.Restart(0);
         }
 
         public override void Update()
@@ -43,24 +41,23 @@ namespace Assets.Scripts.Character.Monsters
 
                 if (newState == 1 || newState == 2)
                 {
-                    AiList.Add(() => UpdateGoBack());
+                    GoToState(UpdateGoBack);
                 }
 
                 else if (newState == 3 || newState == 4)
                 {
-                    AiList.Add(() => UpdateGoForward());
+                    GoToState(UpdateGoForward);
                 }
 
                 else if (newState == 0)
                 {
-                    AiList.Add(() => UpdateIdle());
+                    GoToState(UpdateIdle);
                 }
 
                 else if (newState == 5)
                 {
-                    AiList.Add(() => UpdateAttack());
+                    GoToState(UpdateAttack);
                 }
-                AiList.RemoveAt(0);
             }
         }
 
@@ -79,7 +76,6 @@ namespace Assets.Scripts.Character.Monsters
 
                 ivAnimator.SetTrigger("Throw");
                 waitingForAnimation = true;
-                //ObjectManager.RegisterAttack(AttackCreator.CreateSkeletonAttack(WorldPosition, this, new Vector2(speed , -300)), this);
             }
 
             if (AiTimer.Done)
@@ -93,17 +89,16 @@ namespace Assets.Scripts.Character.Monsters
 
                 if (newState == 1 || newState == 2)
                 {
-                    AiList.Add(() => UpdateGoBack());
+                    GoToState(UpdateGoBack);
                 }
                 else if (newState == 3 || newState == 4)
                 {
-                    AiList.Add(() => UpdateGoForward());
+                    GoToState(UpdateGoForward);
                 }
                 else if (newState == 0)
                 {
-                    AiList.Add(() => UpdateIdle());
+                    GoToState(UpdateIdle);
                 }
-                AiList.RemoveAt(0);
             }
         }
 
@@ -135,8 +130,7 @@ namespace Assets.Scripts.Character.Monsters
             {
                 Newtimer = false;
                 TurnAroundCheck();
-                AiList.Add(() => UpdateAttack());
-                AiList.RemoveAt(0);
+                GoToState(UpdateAttack);
             }
 
         }
@@ -170,8 +164,7 @@ namespace Assets.Scripts.Character.Monsters
             {
                 Newtimer = false;
                 TurnAroundCheck();
-                AiList.Add(() => UpdateAttack());
-                AiList.RemoveAt(0);
+                GoToState(UpdateAttack);
             }
 
         }
@@ -198,11 +191,11 @@ namespace Assets.Scripts.Character.Monsters
         {
             if (target.transform.position.x < transform.position.x && ivFacingRight == true)
             {
-                AiList.Add(() => UpdateTurnAround());
+                GoToState(UpdateTurnAround, false);
             }
             else if (target.transform.position.x > transform.position.x && ivFacingRight == false)
             {
-                AiList.Add(() => UpdateTurnAround());
+                GoToState(UpdateTurnAround, false);
             }
         }
 
