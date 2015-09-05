@@ -1,0 +1,755 @@
+fileFormatVersion: 2
+guid: 45bdf9532f9f085469ecf3d1dfa91fda
+timeCreated: 1441441401
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Hero_Idle_0
+    21300002: Hero_Idle_1
+    21300004: Hero_Idle_2
+    21300006: Hero_Idle_3
+    21300008: Hero_Idle_4
+    21300010: Hero_Idle_5
+    21300012: Hero_Idle_6
+    21300014: Hero_Idle_7
+    21300016: Hero_Idle_8
+    21300018: Hero_Idle_9
+    21300020: Hero_Idle_10
+    21300022: Hero_Idle_11
+    21300024: Hero_Idle_12
+    21300026: Hero_Idle_13
+    21300028: Hero_Idle_14
+    21300030: Hero_Idle_15
+    21300032: Hero_Idle_16
+    21300034: Hero_Idle_17
+    21300036: Hero_Idle_18
+    21300038: Hero_Idle_19
+    21300040: Hero_Idle_20
+    21300042: Hero_Idle_21
+    21300044: Hero_Idle_22
+    21300046: Hero_Idle_23
+    21300048: Hero_Idle_24
+    21300050: Hero_Idle_25
+    21300052: Hero_Idle_26
+    21300054: Hero_Idle_27
+    21300056: Hero_Idle_28
+    21300058: Hero_Idle_29
+    21300060: Hero_Idle_30
+    21300062: Hero_Idle_31
+    21300064: Hero_Idle_32
+    21300066: Hero_Idle_33
+    21300068: Hero_Idle_34
+    21300070: Hero_Idle_35
+    21300072: Hero_Idle_36
+    21300074: Hero_Idle_37
+    21300076: Hero_Idle_38
+    21300078: Hero_Idle_39
+    21300080: Hero_Idle_40
+    21300082: Hero_Idle_41
+    21300084: Hero_Idle_42
+    21300086: Hero_Idle_43
+    21300088: Hero_Idle_44
+    21300090: Hero_Idle_45
+    21300092: Hero_Idle_46
+    21300094: Hero_Idle_47
+    21300096: Hero_Idle_48
+    21300098: Hero_Idle_49
+    21300100: Hero_Idle_50
+    21300102: Hero_Idle_51
+    21300104: Hero_Idle_52
+    21300106: Hero_Idle_53
+    21300108: Hero_Idle_54
+    21300110: Hero_Idle_55
+    21300112: Hero_Idle_56
+    21300114: Hero_Idle_57
+    21300116: Hero_Idle_58
+    21300118: Hero_Idle_59
+    21300120: Hero_Idle_60
+    21300122: Hero_Idle_61
+    21300124: Hero_Idle_62
+    21300126: Hero_Idle_63
+    21300128: Hero_Idle_64
+    21300130: Hero_Idle_65
+    21300132: Hero_Idle_66
+    21300134: Hero_Idle_67
+    21300136: Hero_Idle_68
+    21300138: Hero_Idle_69
+    21300140: Hero_Idle_70
+    21300142: Hero_Idle_71
+    21300144: Hero_Idle_72
+    21300146: Hero_Idle_73
+    21300148: Hero_Idle_74
+    21300150: Hero_Idle_75
+    21300152: Hero_Idle_76
+    21300154: Hero_Idle_77
+    21300156: Hero_Idle_78
+    21300158: Hero_Idle_79
+    21300160: Hero_Idle_80
+    21300162: Hero_Idle_81
+    21300164: Hero_Idle_82
+    21300166: Hero_Idle_83
+    21300168: Hero_Idle_84
+    21300170: Hero_Idle_85
+    21300172: Hero_Idle_86
+    21300174: Hero_Idle_87
+    21300176: Hero_Idle_88
+    21300178: Hero_Idle_89
+    21300180: Hero_Idle_90
+    21300182: Hero_Idle_91
+    21300184: Hero_Idle_92
+    21300186: Hero_Idle_93
+    21300188: Hero_Idle_94
+    21300190: Hero_Idle_95
+    21300192: Hero_Idle_96
+    21300194: Hero_Idle_97
+    21300196: Hero_Idle_98
+    21300198: Hero_Idle_99
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 8192
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Hero_Idle_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5600
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_1
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 5600
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_2
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 5600
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_3
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 5600
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_4
+      rect:
+        serializedVersion: 2
+        x: 4000
+        y: 5600
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_5
+      rect:
+        serializedVersion: 2
+        x: 5000
+        y: 5600
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_6
+      rect:
+        serializedVersion: 2
+        x: 6000
+        y: 5600
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_7
+      rect:
+        serializedVersion: 2
+        x: 7000
+        y: 5600
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4800
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_9
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 4800
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_10
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 4800
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_11
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 4800
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_12
+      rect:
+        serializedVersion: 2
+        x: 4000
+        y: 4800
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_13
+      rect:
+        serializedVersion: 2
+        x: 5000
+        y: 4800
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_14
+      rect:
+        serializedVersion: 2
+        x: 6000
+        y: 4800
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_15
+      rect:
+        serializedVersion: 2
+        x: 7000
+        y: 4800
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4000
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_17
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 4000
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_18
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 4000
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_19
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 4000
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_20
+      rect:
+        serializedVersion: 2
+        x: 4000
+        y: 4000
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_21
+      rect:
+        serializedVersion: 2
+        x: 5000
+        y: 4000
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_22
+      rect:
+        serializedVersion: 2
+        x: 6000
+        y: 4000
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_23
+      rect:
+        serializedVersion: 2
+        x: 7000
+        y: 4000
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3200
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_25
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 3200
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_26
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 3200
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_27
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 3200
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_28
+      rect:
+        serializedVersion: 2
+        x: 4000
+        y: 3200
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_29
+      rect:
+        serializedVersion: 2
+        x: 5000
+        y: 3200
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_30
+      rect:
+        serializedVersion: 2
+        x: 6000
+        y: 3200
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_31
+      rect:
+        serializedVersion: 2
+        x: 7000
+        y: 3200
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2400
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_33
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 2400
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_34
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 2400
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_35
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 2400
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_36
+      rect:
+        serializedVersion: 2
+        x: 4000
+        y: 2400
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_37
+      rect:
+        serializedVersion: 2
+        x: 5000
+        y: 2400
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_38
+      rect:
+        serializedVersion: 2
+        x: 6000
+        y: 2400
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_39
+      rect:
+        serializedVersion: 2
+        x: 7000
+        y: 2400
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1600
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_41
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 1600
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_42
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 1600
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_43
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 1600
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_44
+      rect:
+        serializedVersion: 2
+        x: 4000
+        y: 1600
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_45
+      rect:
+        serializedVersion: 2
+        x: 5000
+        y: 1600
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_46
+      rect:
+        serializedVersion: 2
+        x: 6000
+        y: 1600
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_47
+      rect:
+        serializedVersion: 2
+        x: 7000
+        y: 1600
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 800
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_49
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 800
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_50
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 800
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_51
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 800
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_52
+      rect:
+        serializedVersion: 2
+        x: 4000
+        y: 800
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_53
+      rect:
+        serializedVersion: 2
+        x: 5000
+        y: 800
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_54
+      rect:
+        serializedVersion: 2
+        x: 6000
+        y: 800
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_55
+      rect:
+        serializedVersion: 2
+        x: 7000
+        y: 800
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_56
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_57
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 0
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_58
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 0
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Idle_59
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 0
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

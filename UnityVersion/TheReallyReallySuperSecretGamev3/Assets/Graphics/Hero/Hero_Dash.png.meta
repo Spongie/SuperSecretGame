@@ -1,0 +1,594 @@
+fileFormatVersion: 2
+guid: 029491dfeccdf6147bf981e3b92cf345
+timeCreated: 1441441306
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Hero_Dash_0
+    21300002: Hero_Dash_1
+    21300004: Hero_Dash_2
+    21300006: Hero_Dash_3
+    21300008: Hero_Dash_4
+    21300010: Hero_Dash_5
+    21300012: Hero_Dash_6
+    21300014: Hero_Dash_7
+    21300016: Hero_Dash_8
+    21300018: Hero_Dash_9
+    21300020: Hero_Dash_10
+    21300022: Hero_Dash_11
+    21300024: Hero_Dash_12
+    21300026: Hero_Dash_13
+    21300028: Hero_Dash_14
+    21300030: Hero_Dash_15
+    21300032: Hero_Dash_16
+    21300034: Hero_Dash_17
+    21300036: Hero_Dash_18
+    21300038: Hero_Dash_19
+    21300040: Hero_Dash_20
+    21300042: Hero_Dash_21
+    21300044: Hero_Dash_22
+    21300046: Hero_Dash_23
+    21300048: Hero_Dash_24
+    21300050: Hero_Dash_25
+    21300052: Hero_Dash_26
+    21300054: Hero_Dash_27
+    21300056: Hero_Dash_28
+    21300058: Hero_Dash_29
+    21300060: Hero_Dash_30
+    21300062: Hero_Dash_31
+    21300064: Hero_Dash_32
+    21300066: Hero_Dash_33
+    21300068: Hero_Dash_34
+    21300070: Hero_Dash_35
+    21300072: Hero_Dash_36
+    21300074: Hero_Dash_37
+    21300076: Hero_Dash_38
+    21300078: Hero_Dash_39
+    21300080: Hero_Dash_40
+    21300082: Hero_Dash_41
+    21300084: Hero_Dash_42
+    21300086: Hero_Dash_43
+    21300088: Hero_Dash_44
+    21300090: Hero_Dash_45
+    21300092: Hero_Dash_46
+    21300094: Hero_Dash_47
+    21300096: Hero_Dash_48
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 8192
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Hero_Dash_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4800
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_1
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 4800
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_2
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 4800
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_3
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 4800
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_4
+      rect:
+        serializedVersion: 2
+        x: 4000
+        y: 4800
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_5
+      rect:
+        serializedVersion: 2
+        x: 5000
+        y: 4800
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_6
+      rect:
+        serializedVersion: 2
+        x: 6000
+        y: 4800
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4000
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_8
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 4000
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_9
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 4000
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_10
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 4000
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_11
+      rect:
+        serializedVersion: 2
+        x: 4000
+        y: 4000
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_12
+      rect:
+        serializedVersion: 2
+        x: 5000
+        y: 4000
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_13
+      rect:
+        serializedVersion: 2
+        x: 6000
+        y: 4000
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3200
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_15
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 3200
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_16
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 3200
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_17
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 3200
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_18
+      rect:
+        serializedVersion: 2
+        x: 4000
+        y: 3200
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_19
+      rect:
+        serializedVersion: 2
+        x: 5000
+        y: 3200
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_20
+      rect:
+        serializedVersion: 2
+        x: 6000
+        y: 3200
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2400
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_22
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 2400
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_23
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 2400
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_24
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 2400
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_25
+      rect:
+        serializedVersion: 2
+        x: 4000
+        y: 2400
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_26
+      rect:
+        serializedVersion: 2
+        x: 5000
+        y: 2400
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_27
+      rect:
+        serializedVersion: 2
+        x: 6000
+        y: 2400
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1600
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_29
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 1600
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_30
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 1600
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_31
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 1600
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_32
+      rect:
+        serializedVersion: 2
+        x: 4000
+        y: 1600
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_33
+      rect:
+        serializedVersion: 2
+        x: 5000
+        y: 1600
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_34
+      rect:
+        serializedVersion: 2
+        x: 6000
+        y: 1600
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 800
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_36
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 800
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_37
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 800
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_38
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 800
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_39
+      rect:
+        serializedVersion: 2
+        x: 4000
+        y: 800
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_40
+      rect:
+        serializedVersion: 2
+        x: 5000
+        y: 800
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_41
+      rect:
+        serializedVersion: 2
+        x: 6000
+        y: 800
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_42
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_43
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 0
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_44
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 0
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_45
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 0
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_46
+      rect:
+        serializedVersion: 2
+        x: 4000
+        y: 0
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_47
+      rect:
+        serializedVersion: 2
+        x: 5000
+        y: 0
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Hero_Dash_48
+      rect:
+        serializedVersion: 2
+        x: 6000
+        y: 0
+        width: 1000
+        height: 800
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
