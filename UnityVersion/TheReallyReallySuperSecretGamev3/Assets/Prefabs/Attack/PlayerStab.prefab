@@ -14,7 +14,7 @@ GameObject:
   - 114: {fileID: 11402364}
   - 61: {fileID: 6166678}
   m_Layer: 0
-  m_Name: PlayerBasic1
+  m_Name: PlayerStab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,16 +73,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsMeleeAttack: 1
+  IsCurseAreaAttack: 0
+  CurseSpawnOnCast: 1
   IsRotating: 0
   ApplyGravity: 0
   secondsToLive: 0
   secondsHitReset: 0
   lifeTimer: {fileID: 0}
   Owner: {fileID: 0}
-  Saker: []
+  AttackEffects: []
+  CursedArea: {fileID: 0}
+  Speed: {x: 0, y: 0}
+  ThrewToRight: 0
   Bouncing: 0
   BouncesLeft: 0
   DiesOnCollision: 0
+  TargetType: 0
 --- !u!114 &11434830
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -109,6 +115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeToRun: 0
   TimeRunning: 0
+  Paused: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -69,6 +69,7 @@ namespace Assets.Scripts.Character
 
         private bool stunnedLastFrame = false;
         private Attack disabledAttackOnStun;
+        private bool ivWaitingForAnimation = false;
 
         private GameObject ivLastSlop;
         public bool ivMovedLastFrame;
@@ -110,7 +111,7 @@ namespace Assets.Scripts.Character
 
             if (col.gameObject.tag.Contains("Boost") && diveKicking)
             {
-                if (col.collider.transform.position.y <= ivFeetCollider.bounds.center.y - ivFeetCollider.radius)
+                if (col.collider.transform.position.y <= ivFeetCollider.bounds.center.y) //ivFeetCollider.bounds.center.y - ivFeetCollider.radius)
                 {
                     bool landedOnRightBoost = col.gameObject.tag == "BoostRight";
 
@@ -238,6 +239,9 @@ namespace Assets.Scripts.Character
 
         private void LandCancel()
         {
+            if (!boostReactionTimer.Done)
+                return;
+
             Logger.Log("Doing a Land-Cancel");
             foreach (Attack attack in GetComponentsInChildren<Attack>())
             {
@@ -276,6 +280,19 @@ namespace Assets.Scripts.Character
             disabledAttackOnStun = null;
         }
 
+        public void CancelActiveAttack()
+        {
+            foreach (Attack meleeAttack in GetComponentsInChildren<Attack>())
+            {
+                if (meleeAttack.enabled)
+                {
+                    meleeAttack.StopMeleeAttack();
+                }
+            }
+
+            ivWaitingForAnimation = false;
+        }
+
         private void OnStunned()
         {
             if (stunnedLastFrame == false)
@@ -297,6 +314,9 @@ namespace Assets.Scripts.Character
 
         void Update()
         {
+            if (ivWaitingForAnimation)
+                return;
+
             if(ivPlayer.ivController.GetBuffContainer().IsStunned())
             {
                 OnStunned();
@@ -314,6 +334,16 @@ namespace Assets.Scripts.Character
             jumpStartTimer.Update(Time.deltaTime);
             ignoreTimer.Update(Time.deltaTime);
 
+            if(Input.GetButtonDown("X"))
+            {
+                if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0)
+                    ivAnimator.SetTrigger("Stab");
+                else
+                    ivAnimator.SetTrigger("Smash");
+
+                ivWaitingForAnimation = true;
+            }
+
             if (CanMove() && canTriggerJump)
                 CheckJump();
 
@@ -330,7 +360,8 @@ namespace Assets.Scripts.Character
                     maxSpeed = 10;
                     ivRigidbody.velocity = new Vector2(SetDashSpeed(maxSpeed), 4);
                     boostReactionTimer.Cancel();
-                    ivAnimator.SetTrigger("BoostJump");
+                    ivAnimator.SetBool("BoostLand", false);
+                    ivAnimator.SetBool("BoostJump", true);
                 }
                 else
                 {
@@ -422,6 +453,9 @@ namespace Assets.Scripts.Character
         // Update is called once per physics loop
         void FixedUpdate()
         {
+            if (ivWaitingForAnimation)
+                return;
+
             ivGravityTimer.Update(Time.deltaTime);
 
             bool isGrounded = IsGrounded();
@@ -472,9 +506,15 @@ namespace Assets.Scripts.Character
                 {
                     Logger.Log(string.Format("Trying to cancel boost, BoostingRight: {0}        xVel: {1}", boostingRight, xMove));
                     if (xMove < 0 && boostingRight)
+                    {
                         boostReactionTimer.Cancel();
+                        ivAnimator.SetBool("BoostLand", false);
+                    }
                     else if (xMove > 0 && !boostingRight)
+                    {
                         boostReactionTimer.Cancel();
+                        ivAnimator.SetBool("BoostLand", false);
+                    }
                 }
 
                 xVel += PlatformVelocity().x;
@@ -586,6 +626,8 @@ namespace Assets.Scripts.Character
             if (yVel < -0.02f)
             {
                 ivAnimator.SetBool("Jump", false);
+                ivAnimator.SetBool("Running", false);
+                ivAnimator.SetBool("BoostJump", false);
                 ivAnimator.SetBool("Falling", true);
             }
             else
@@ -596,6 +638,9 @@ namespace Assets.Scripts.Character
                 ivAnimator.SetBool("Idle", true);
                 ivAnimator.SetBool("Falling", false);
                 ivAnimator.SetBool("Running", false);
+
+                if(boostReactionTimer.Done)
+                    ivAnimator.SetBool("BoostLand", false);
             }
             else
                 ivAnimator.SetBool("Idle", false);
@@ -632,7 +677,7 @@ namespace Assets.Scripts.Character
         {
             xVel = maxSpeed * 2;
 
-            if (transform.localScale.x == -0.5f)
+            if (transform.localScale.x == -0.3f)
                 xVel *= -1;
             return xVel;
         }
