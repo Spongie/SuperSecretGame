@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 55beebfa392e28541ab34ca6813040cd
-timeCreated: 1441441343
+timeCreated: 1441481209
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -59,7 +59,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: .25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   grayScaleToAlpha: 0
   generateCubemap: 0
   cubemapConvolution: 0
@@ -96,8 +96,8 @@ TextureImporter:
         y: 4800
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_1
       rect:
@@ -106,8 +106,8 @@ TextureImporter:
         y: 4800
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_2
       rect:
@@ -116,8 +116,8 @@ TextureImporter:
         y: 4800
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_3
       rect:
@@ -126,8 +126,8 @@ TextureImporter:
         y: 4800
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_4
       rect:
@@ -136,8 +136,8 @@ TextureImporter:
         y: 4800
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_5
       rect:
@@ -146,8 +146,8 @@ TextureImporter:
         y: 4800
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_6
       rect:
@@ -156,8 +156,8 @@ TextureImporter:
         y: 4000
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_7
       rect:
@@ -166,8 +166,8 @@ TextureImporter:
         y: 4000
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_8
       rect:
@@ -176,8 +176,8 @@ TextureImporter:
         y: 4000
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_9
       rect:
@@ -186,8 +186,8 @@ TextureImporter:
         y: 4000
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_10
       rect:
@@ -196,8 +196,8 @@ TextureImporter:
         y: 4000
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_11
       rect:
@@ -206,8 +206,8 @@ TextureImporter:
         y: 4000
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_12
       rect:
@@ -216,8 +216,8 @@ TextureImporter:
         y: 3200
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_13
       rect:
@@ -226,8 +226,8 @@ TextureImporter:
         y: 3200
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_14
       rect:
@@ -236,8 +236,8 @@ TextureImporter:
         y: 3200
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_15
       rect:
@@ -246,8 +246,8 @@ TextureImporter:
         y: 3200
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_16
       rect:
@@ -256,8 +256,8 @@ TextureImporter:
         y: 3200
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_17
       rect:
@@ -266,8 +266,8 @@ TextureImporter:
         y: 3200
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_18
       rect:
@@ -276,8 +276,8 @@ TextureImporter:
         y: 2400
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_19
       rect:
@@ -286,8 +286,8 @@ TextureImporter:
         y: 2400
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_20
       rect:
@@ -296,8 +296,8 @@ TextureImporter:
         y: 2400
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_21
       rect:
@@ -306,8 +306,8 @@ TextureImporter:
         y: 2400
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_22
       rect:
@@ -316,8 +316,8 @@ TextureImporter:
         y: 2400
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_23
       rect:
@@ -326,8 +326,8 @@ TextureImporter:
         y: 2400
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_24
       rect:
@@ -336,8 +336,8 @@ TextureImporter:
         y: 1600
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_25
       rect:
@@ -346,8 +346,8 @@ TextureImporter:
         y: 1600
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_26
       rect:
@@ -356,8 +356,8 @@ TextureImporter:
         y: 1600
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_27
       rect:
@@ -366,8 +366,8 @@ TextureImporter:
         y: 1600
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_28
       rect:
@@ -376,8 +376,8 @@ TextureImporter:
         y: 1600
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_29
       rect:
@@ -386,8 +386,8 @@ TextureImporter:
         y: 1600
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_30
       rect:
@@ -396,8 +396,8 @@ TextureImporter:
         y: 800
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_31
       rect:
@@ -406,8 +406,8 @@ TextureImporter:
         y: 800
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_32
       rect:
@@ -416,8 +416,8 @@ TextureImporter:
         y: 800
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_33
       rect:
@@ -426,8 +426,8 @@ TextureImporter:
         y: 800
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_34
       rect:
@@ -436,8 +436,8 @@ TextureImporter:
         y: 800
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_35
       rect:
@@ -446,8 +446,8 @@ TextureImporter:
         y: 800
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_36
       rect:
@@ -456,8 +456,8 @@ TextureImporter:
         y: 0
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_37
       rect:
@@ -466,8 +466,8 @@ TextureImporter:
         y: 0
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_38
       rect:
@@ -476,8 +476,8 @@ TextureImporter:
         y: 0
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Falling_39
       rect:
@@ -486,8 +486,8 @@ TextureImporter:
         y: 0
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

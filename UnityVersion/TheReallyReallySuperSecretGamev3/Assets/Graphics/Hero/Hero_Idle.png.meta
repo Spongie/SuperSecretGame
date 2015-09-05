@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 45bdf9532f9f085469ecf3d1dfa91fda
-timeCreated: 1441441401
+timeCreated: 1441481187
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -119,7 +119,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: .25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   grayScaleToAlpha: 0
   generateCubemap: 0
   cubemapConvolution: 0
@@ -156,8 +156,8 @@ TextureImporter:
         y: 5600
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_1
       rect:
@@ -166,8 +166,8 @@ TextureImporter:
         y: 5600
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_2
       rect:
@@ -176,8 +176,8 @@ TextureImporter:
         y: 5600
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_3
       rect:
@@ -186,8 +186,8 @@ TextureImporter:
         y: 5600
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_4
       rect:
@@ -196,8 +196,8 @@ TextureImporter:
         y: 5600
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_5
       rect:
@@ -206,8 +206,8 @@ TextureImporter:
         y: 5600
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_6
       rect:
@@ -216,8 +216,8 @@ TextureImporter:
         y: 5600
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_7
       rect:
@@ -226,8 +226,8 @@ TextureImporter:
         y: 5600
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_8
       rect:
@@ -236,8 +236,8 @@ TextureImporter:
         y: 4800
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_9
       rect:
@@ -246,8 +246,8 @@ TextureImporter:
         y: 4800
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_10
       rect:
@@ -256,8 +256,8 @@ TextureImporter:
         y: 4800
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_11
       rect:
@@ -266,8 +266,8 @@ TextureImporter:
         y: 4800
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_12
       rect:
@@ -276,8 +276,8 @@ TextureImporter:
         y: 4800
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_13
       rect:
@@ -286,8 +286,8 @@ TextureImporter:
         y: 4800
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_14
       rect:
@@ -296,8 +296,8 @@ TextureImporter:
         y: 4800
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_15
       rect:
@@ -306,8 +306,8 @@ TextureImporter:
         y: 4800
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_16
       rect:
@@ -316,8 +316,8 @@ TextureImporter:
         y: 4000
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_17
       rect:
@@ -326,8 +326,8 @@ TextureImporter:
         y: 4000
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_18
       rect:
@@ -336,8 +336,8 @@ TextureImporter:
         y: 4000
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_19
       rect:
@@ -346,8 +346,8 @@ TextureImporter:
         y: 4000
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_20
       rect:
@@ -356,8 +356,8 @@ TextureImporter:
         y: 4000
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_21
       rect:
@@ -366,8 +366,8 @@ TextureImporter:
         y: 4000
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_22
       rect:
@@ -376,8 +376,8 @@ TextureImporter:
         y: 4000
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_23
       rect:
@@ -386,8 +386,8 @@ TextureImporter:
         y: 4000
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_24
       rect:
@@ -396,8 +396,8 @@ TextureImporter:
         y: 3200
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_25
       rect:
@@ -406,8 +406,8 @@ TextureImporter:
         y: 3200
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_26
       rect:
@@ -416,8 +416,8 @@ TextureImporter:
         y: 3200
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_27
       rect:
@@ -426,8 +426,8 @@ TextureImporter:
         y: 3200
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_28
       rect:
@@ -436,8 +436,8 @@ TextureImporter:
         y: 3200
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_29
       rect:
@@ -446,8 +446,8 @@ TextureImporter:
         y: 3200
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_30
       rect:
@@ -456,8 +456,8 @@ TextureImporter:
         y: 3200
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_31
       rect:
@@ -466,8 +466,8 @@ TextureImporter:
         y: 3200
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_32
       rect:
@@ -476,8 +476,8 @@ TextureImporter:
         y: 2400
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_33
       rect:
@@ -486,8 +486,8 @@ TextureImporter:
         y: 2400
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_34
       rect:
@@ -496,8 +496,8 @@ TextureImporter:
         y: 2400
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_35
       rect:
@@ -506,8 +506,8 @@ TextureImporter:
         y: 2400
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_36
       rect:
@@ -516,8 +516,8 @@ TextureImporter:
         y: 2400
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_37
       rect:
@@ -526,8 +526,8 @@ TextureImporter:
         y: 2400
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_38
       rect:
@@ -536,8 +536,8 @@ TextureImporter:
         y: 2400
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_39
       rect:
@@ -546,8 +546,8 @@ TextureImporter:
         y: 2400
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_40
       rect:
@@ -556,8 +556,8 @@ TextureImporter:
         y: 1600
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_41
       rect:
@@ -566,8 +566,8 @@ TextureImporter:
         y: 1600
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_42
       rect:
@@ -576,8 +576,8 @@ TextureImporter:
         y: 1600
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_43
       rect:
@@ -586,8 +586,8 @@ TextureImporter:
         y: 1600
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_44
       rect:
@@ -596,8 +596,8 @@ TextureImporter:
         y: 1600
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_45
       rect:
@@ -606,8 +606,8 @@ TextureImporter:
         y: 1600
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_46
       rect:
@@ -616,8 +616,8 @@ TextureImporter:
         y: 1600
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_47
       rect:
@@ -626,8 +626,8 @@ TextureImporter:
         y: 1600
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_48
       rect:
@@ -636,8 +636,8 @@ TextureImporter:
         y: 800
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_49
       rect:
@@ -646,8 +646,8 @@ TextureImporter:
         y: 800
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_50
       rect:
@@ -656,8 +656,8 @@ TextureImporter:
         y: 800
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_51
       rect:
@@ -666,8 +666,8 @@ TextureImporter:
         y: 800
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_52
       rect:
@@ -676,8 +676,8 @@ TextureImporter:
         y: 800
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_53
       rect:
@@ -686,8 +686,8 @@ TextureImporter:
         y: 800
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_54
       rect:
@@ -696,8 +696,8 @@ TextureImporter:
         y: 800
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_55
       rect:
@@ -706,8 +706,8 @@ TextureImporter:
         y: 800
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_56
       rect:
@@ -716,8 +716,8 @@ TextureImporter:
         y: 0
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_57
       rect:
@@ -726,8 +726,8 @@ TextureImporter:
         y: 0
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_58
       rect:
@@ -736,8 +736,8 @@ TextureImporter:
         y: 0
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_Idle_59
       rect:
@@ -746,8 +746,8 @@ TextureImporter:
         y: 0
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

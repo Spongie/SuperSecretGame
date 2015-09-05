@@ -96,7 +96,7 @@ namespace Assets.Scripts.Character
             originalMaxSpeed = maxSpeed;
             ivFeetCollider = GetComponent<CircleCollider2D>();
             ivPlayer = GetComponent<Player>();
-            //ivAnimator = GetComponent<Animator>();
+            ivAnimator = GetComponent<Animator>();
         }
 
         void OnCollisionEnter2D(Collision2D col)
@@ -177,10 +177,10 @@ namespace Assets.Scripts.Character
                 var from = GetComponent<CircleCollider2D>().bounds.center;
 
                 if (Debug.isDebugBuild)
-                    Debug.DrawRay(from, new Vector3(0, -0.23f, 0), Color.green);
+                    Debug.DrawRay(from, new Vector3(0, -0.35f, 0), Color.green);
 
 
-                var hits = Physics2D.RaycastAll(from, new Vector2(0, -1), 0.23f);
+                var hits = Physics2D.RaycastAll(from, new Vector2(0, -1), 0.35f);
 
                 foreach (var hit in hits)
                 {
@@ -191,6 +191,7 @@ namespace Assets.Scripts.Character
 
                         if (hit.transform.rotation.z != 0)
                         {
+                            Logger.Log("Im moving");
                             ivLastSlop = hit.collider.gameObject;
                             transform.position = new Vector2(transform.position.x, hit.point.y);
                             if (groundedLastFrame)
@@ -237,6 +238,7 @@ namespace Assets.Scripts.Character
 
         private void LandCancel()
         {
+            Logger.Log("Doing a Land-Cancel");
             foreach (Attack attack in GetComponentsInChildren<Attack>())
             {
                 attack.StopMeleeAttack();
@@ -381,7 +383,7 @@ namespace Assets.Scripts.Character
                 }
 
                 jumping = true;
-                ivAnimator.SetTrigger("Jump");
+                ivAnimator.SetBool("Jump", true);
             }
             else
             {
@@ -567,24 +569,34 @@ namespace Assets.Scripts.Character
             if(ivPlayer.ivController.GetBuffContainer().IsChilled())
                 xVel /= 2;
 
+            if (yVel > 8)
+                yVel = 8;
+
             // Apply the calculate velocity to our rigidbody
             ivRigidbody.velocity = new Vector2(
                     xVel,
                     yVel
                 );
 
-            if (Mathf.Abs(xVel) > 9)
+            if (Mathf.Abs(xVel) > 0.1 && !dashing && !diveKicking)
                 ivAnimator.SetBool("Running", true);
             else
                 ivAnimator.SetBool("Running", false);
 
-            if (yVel < 0)
+            if (yVel < -0.02f)
+            {
+                ivAnimator.SetBool("Jump", false);
                 ivAnimator.SetBool("Falling", true);
+            }
             else
                 ivAnimator.SetBool("Falling", false);
 
-            if (xVel == 0 && yVel == 0)
+            if (xVel >= -0.01f && xVel <= 0.01f && yVel >= -0.01f && yVel <= 0.01f)
+            {
                 ivAnimator.SetBool("Idle", true);
+                ivAnimator.SetBool("Falling", false);
+                ivAnimator.SetBool("Running", false);
+            }
             else
                 ivAnimator.SetBool("Idle", false);
 
@@ -597,12 +609,12 @@ namespace Assets.Scripts.Character
                 Vector3 scale = this.transform.localScale;
                 if (scale.x < 0 && Input.GetAxis("Horizontal") > 0)
                 {
-                    scale.x = 1;
+                    scale.x = 0.3f;
                     maxSpeed = originalMaxSpeed;
                 }
                 else if (scale.x > 0 && Input.GetAxis("Horizontal") < 0)
                 {
-                    scale.x = -1;
+                    scale.x = -0.3f;
                     maxSpeed = originalMaxSpeed;
                 }
                 this.transform.localScale = scale;
@@ -620,7 +632,7 @@ namespace Assets.Scripts.Character
         {
             xVel = maxSpeed * 2;
 
-            if (transform.localScale.x == -1)
+            if (transform.localScale.x == -0.5f)
                 xVel *= -1;
             return xVel;
         }

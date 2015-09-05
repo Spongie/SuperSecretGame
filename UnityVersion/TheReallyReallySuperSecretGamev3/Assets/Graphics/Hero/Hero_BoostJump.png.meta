@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: f40d6fc87a0b8f640921b53f3f1e4fcf
-timeCreated: 1441441242
+timeCreated: 1441480460
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -27,7 +27,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: .25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   grayScaleToAlpha: 0
   generateCubemap: 0
   cubemapConvolution: 0
@@ -64,8 +64,8 @@ TextureImporter:
         y: 1600
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_BoostJump_1
       rect:
@@ -74,8 +74,8 @@ TextureImporter:
         y: 1600
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_BoostJump_2
       rect:
@@ -84,8 +84,8 @@ TextureImporter:
         y: 1600
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_BoostJump_3
       rect:
@@ -94,8 +94,8 @@ TextureImporter:
         y: 800
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_BoostJump_4
       rect:
@@ -104,8 +104,8 @@ TextureImporter:
         y: 800
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_BoostJump_5
       rect:
@@ -114,8 +114,8 @@ TextureImporter:
         y: 800
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_BoostJump_6
       rect:
@@ -124,8 +124,8 @@ TextureImporter:
         y: 0
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_BoostJump_7
       rect:
@@ -134,8 +134,8 @@ TextureImporter:
         y: 0
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

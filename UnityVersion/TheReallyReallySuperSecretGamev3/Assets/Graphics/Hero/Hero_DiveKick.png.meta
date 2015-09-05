@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: d2da49ae4620faf4195858b9551a04ff
-timeCreated: 1441442750
+timeCreated: 1441481310
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -31,7 +31,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: .25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   grayScaleToAlpha: 0
   generateCubemap: 0
   cubemapConvolution: 0
@@ -68,8 +68,8 @@ TextureImporter:
         y: 1600
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_DiveKick_1
       rect:
@@ -78,8 +78,8 @@ TextureImporter:
         y: 1600
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_DiveKick_2
       rect:
@@ -88,8 +88,8 @@ TextureImporter:
         y: 1600
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_DiveKick_3
       rect:
@@ -98,8 +98,8 @@ TextureImporter:
         y: 1600
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_DiveKick_4
       rect:
@@ -108,8 +108,8 @@ TextureImporter:
         y: 800
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_DiveKick_5
       rect:
@@ -118,8 +118,8 @@ TextureImporter:
         y: 800
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_DiveKick_6
       rect:
@@ -128,8 +128,8 @@ TextureImporter:
         y: 800
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_DiveKick_7
       rect:
@@ -138,8 +138,8 @@ TextureImporter:
         y: 800
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_DiveKick_8
       rect:
@@ -148,8 +148,8 @@ TextureImporter:
         y: 0
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_DiveKick_9
       rect:
@@ -158,8 +158,8 @@ TextureImporter:
         y: 0
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_DiveKick_10
       rect:
@@ -168,8 +168,8 @@ TextureImporter:
         y: 0
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Hero_DiveKick_11
       rect:
@@ -178,8 +178,8 @@ TextureImporter:
         y: 0
         width: 1000
         height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .5, y: .0299999993}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
