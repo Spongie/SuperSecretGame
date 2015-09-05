@@ -10,6 +10,7 @@ namespace Assets.Scripts.Character
         public string JumpButton = "A";
         public string DashButton = "RB";
 
+        public bool TrulyGrounded = false;
         public bool DiveKickingRight;
 
         public float IgnoreGravityTime;
@@ -119,6 +120,7 @@ namespace Assets.Scripts.Character
                         stop = true;
                         Logger.Log("Landed on boost");
                         boostingRight = landedOnRightBoost;
+                        ivAnimator.SetBool("BoostLand", true);
                     }
                 }
             }
@@ -207,6 +209,7 @@ namespace Assets.Scripts.Character
                 }
 
                 groundedLastFrame = false;
+                TrulyGrounded = false;
             }
 
             return false;
@@ -220,11 +223,33 @@ namespace Assets.Scripts.Character
 
         private void setGrounded()
         {
+            if (TrulyGrounded)
+                return;
+
             Logger.Log("Setting grounded");
             usedDoubleJump = false;
             canDoublejump = true;
             diveKicking = false;
             maxSpeed = originalMaxSpeed;
+            TrulyGrounded = true;
+            LandCancel();
+        }
+
+        private void LandCancel()
+        {
+            foreach (Attack attack in GetComponentsInChildren<Attack>())
+            {
+                attack.StopMeleeAttack();
+            }
+
+            ResetAnimation();
+        }
+
+        private void ResetAnimation()
+        {
+            ivAnimator.SetBool("Idle", true);
+            ivAnimator.SetBool("Running", false);
+            ivAnimator.SetBool("Falling", false);
         }
 
         /// <summary>
@@ -291,8 +316,10 @@ namespace Assets.Scripts.Character
                 CheckJump();
 
             if (!boostReactionTimer.Done && Mathf.Abs(ivRigidbody.velocity.y) > 0.3f)
+            {
                 boostReactionTimer.Cancel();
-
+                ivAnimator.SetBool("Running", true);
+            }
             if (Input.GetButtonDown(DashButton) && !dashing && !diveKicking && !ButtonLock.Instance.IsButtonLocked(DashButton))
             {
                 if (!boostReactionTimer.Done)
@@ -301,6 +328,7 @@ namespace Assets.Scripts.Character
                     maxSpeed = 10;
                     ivRigidbody.velocity = new Vector2(SetDashSpeed(maxSpeed), 4);
                     boostReactionTimer.Cancel();
+                    ivAnimator.SetTrigger("BoostJump");
                 }
                 else
                 {
@@ -308,11 +336,12 @@ namespace Assets.Scripts.Character
                     {
                         dashTimer.Restart(0.15f);
                         dashing = true;
+                        ivAnimator.SetTrigger("Dash");
                     }
                     else
                     {
                         diveKicking = true;
-
+                        ivAnimator.SetTrigger("DiveKick");
                         DiveKickingRight = transform.localScale.x < 0 ? false : true;
                     }
                 }
@@ -352,7 +381,7 @@ namespace Assets.Scripts.Character
                 }
 
                 jumping = true;
-                //gameObject.layer = LayerMask.NameToLayer("IgnoreGround");
+                ivAnimator.SetTrigger("Jump");
             }
             else
             {
@@ -543,6 +572,21 @@ namespace Assets.Scripts.Character
                     xVel,
                     yVel
                 );
+
+            if (Mathf.Abs(xVel) > 9)
+                ivAnimator.SetBool("Running", true);
+            else
+                ivAnimator.SetBool("Running", false);
+
+            if (yVel < 0)
+                ivAnimator.SetBool("Falling", true);
+            else
+                ivAnimator.SetBool("Falling", false);
+
+            if (xVel == 0 && yVel == 0)
+                ivAnimator.SetBool("Idle", true);
+            else
+                ivAnimator.SetBool("Idle", false);
 
             if (ivRigidbody.velocity.y < 0 && ignoreTimer.Done)
                 gameObject.layer = LayerMask.NameToLayer("Default");
