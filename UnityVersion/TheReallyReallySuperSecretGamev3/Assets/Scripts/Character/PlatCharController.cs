@@ -2,6 +2,7 @@
 using Assets.Scripts.Utility;
 using Assets.Scripts.Environment;
 using Assets.Scripts.Attacks;
+using UnityEditor;
 
 namespace Assets.Scripts.Character
 {
@@ -67,7 +68,7 @@ namespace Assets.Scripts.Character
         // Bookkeeping Variables
         MovingPlatform movingPlatform;      // The moving platform we are touching
         bool groundedLastFrame = false;     // Were we grounded last frame? Used by IsGrounded to eliminate top-of-arc issues.
-        bool jumping = false;               // Is the player commanding us to jump?
+        public bool jumping = false;               // Is the player commanding us to jump?
         public bool isJumpControlling = false;
         public bool canDoublejump = false;
         public bool usedDoubleJump = false;
@@ -261,10 +262,7 @@ namespace Assets.Scripts.Character
                 return;
 
             Logger.Log("Doing a Land-Cancel");
-            foreach (Attack attack in GetComponentsInChildren<Attack>())
-            {
-                attack.StopMeleeAttack();
-            }
+            CancelActiveAttack();
 
             ResetAnimation();
         }
@@ -275,6 +273,8 @@ namespace Assets.Scripts.Character
             ivAnimator.SetBool(ivHashIDs.Idle, true);
             ivAnimator.SetBool(ivHashIDs.Running, false);
             ivAnimator.SetBool(ivHashIDs.Falling, false);
+            ivWaitingForAnimation = false;
+            ivAnimator.SetBool(ivHashIDs.LandCancel, true);
         }
 
         /// <summary>
@@ -355,6 +355,9 @@ namespace Assets.Scripts.Character
 
             if(Input.GetButtonDown("X"))
             {
+                ivAnimator.SetBool(ivHashIDs.LandCancel, false);
+                ivAnimator.SetBool(ivHashIDs.Jump, false);
+                jumping = false;
                 if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0)
                 {
                     CurrentAnimationState = AnimationState.Stab;
@@ -365,8 +368,13 @@ namespace Assets.Scripts.Character
                     CurrentAnimationState = AnimationState.Smash;
                     ivAnimator.SetTrigger(ivHashIDs.Smash);
                 }
-
+                //EditorApplication.isPaused = true;
+                isJumpControlling = false;
+                canDoublejump = false;
+                jumpControlTimer.Cancel();
+                
                 ivWaitingForAnimation = true;
+                return;
             }
 
             if (CanMove() && canTriggerJump)
@@ -442,9 +450,13 @@ namespace Assets.Scripts.Character
                     isJumpControlling = true;
                 }
 
-                jumping = true;
-                ivAnimator.SetBool(ivHashIDs.Jump, true);
-                CurrentAnimationState = AnimationState.Jump;
+                if (CurrentAnimationState != AnimationState.Stab && CurrentAnimationState != AnimationState.Smash)
+                {
+                    Logger.Log("Starting a jump");
+                    jumping = true;
+                    ivAnimator.SetBool(ivHashIDs.Jump, true);
+                    CurrentAnimationState = AnimationState.Jump;
+                }
             }
             else
             {
@@ -483,13 +495,13 @@ namespace Assets.Scripts.Character
         // Update is called once per physics loop
         void FixedUpdate()
         {
-            if (ivWaitingForAnimation)
-                return;
-
             ivGravityTimer.Update(Time.deltaTime);
 
             bool isGrounded = IsGrounded();
             bool isGrabbing = !isGrounded && wallJumpControlDelayLeft <= 0 && IsGrabbing();
+
+            if (ivWaitingForAnimation)
+                return;
 
             if (movingPlatform != null && !groundedLastFrame && !isGrabbing && !isGrounded)
             {
@@ -652,6 +664,7 @@ namespace Assets.Scripts.Character
             {
                 CurrentAnimationState = AnimationState.Running;
                 ivAnimator.SetBool(ivHashIDs.Running, true);
+                ivAnimator.SetBool(ivHashIDs.LandCancel, false);
             }
             else
                 ivAnimator.SetBool(ivHashIDs.Running, false);
@@ -665,6 +678,7 @@ namespace Assets.Scripts.Character
                     ivAnimator.SetBool(ivHashIDs.Running, false);
                     ivAnimator.SetBool(ivHashIDs.BoostJump, false);
                     ivAnimator.SetBool(ivHashIDs.Falling, true);
+                    ivAnimator.SetBool(ivHashIDs.LandCancel, false);
                 }
             }
             else
@@ -678,6 +692,7 @@ namespace Assets.Scripts.Character
                     ivAnimator.SetBool(ivHashIDs.Idle, true);
                     ivAnimator.SetBool(ivHashIDs.Falling, false);
                     ivAnimator.SetBool(ivHashIDs.Running, false);
+                    ivAnimator.SetBool(ivHashIDs.LandCancel, false);
 
                     if (boostReactionTimer.Done)
                         ivAnimator.SetBool(ivHashIDs.BoostLand, false);
