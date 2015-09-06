@@ -20,5 +20,23 @@ namespace UnitTests.Items
         {
             throw new NotImplementedException();
         }
+
+        [TestMethod]
+        public void GetStats_EmptyStats_ZeroStatsObject()
+        {
+            var stats = new Item().GetStats();
+
+            Assert.IsTrue(stats.IsZero());
+        }
+
+        [TestMethod]
+        public void GetStats_DamageSet_StatsWithDamage()
+        {
+            var item = new Item() { Damage = 10 };
+            var stats = item.GetStats();
+
+            Assert.IsTrue(!stats.IsZero());
+            Assert.AreEqual(10, stats.Damage);
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Utility;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace Assets.Scripts.Items
 {
@@ -56,6 +57,12 @@ namespace Assets.Scripts.Items
                 else
                     Items.Remove(id);
             }
+        }
+
+        public Item GetEqippedItemAtSlot(ItemSlot piSlot)
+        {
+            var item = new Item() { Slot = piSlot };
+            return item;
         }
     }
 }

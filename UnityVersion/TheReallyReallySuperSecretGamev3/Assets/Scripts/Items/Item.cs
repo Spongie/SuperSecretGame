@@ -34,6 +34,22 @@ namespace Assets.Scripts.Items
         private float ivResistance;
         private float ivDamage;
         private float ivMagicDamage;
+
+        public CStats GetStats()
+        {
+            var stats = new CStats()
+            {
+                Damage = ivDamage,
+                Defense = ivDefense,
+                MagicDamage = ivMagicDamage,
+                MagicDefense = ivMagicDefense,
+                Luck = ivLuck,
+                Resistance = ivResistance
+            };
+
+            return stats;
+        }
+
         private float ivDefense;
         private float ivLuck;
         private ItemSlot ivSlot;
@@ -77,6 +93,8 @@ namespace Assets.Scripts.Items
             EffectName = original.EffectName;
             EffectTicks = original.EffectTicks;
             EffectValue = original.EffectValue;
+            StackSize = original.StackSize;
+            MaxStackSize = original.MaxStackSize;
 
             if (string.IsNullOrEmpty(original.ID))
                 GenerateID();
@@ -344,6 +362,11 @@ namespace Assets.Scripts.Items
             id += new Random().Next(1, 999999);
 
             ID = id;
+        }
+
+        public string GetListString()
+        {
+            return string.Format("{0} - {1}/{2}", Name, StackSize, MaxStackSize);
         }
 
         public override string ToString()

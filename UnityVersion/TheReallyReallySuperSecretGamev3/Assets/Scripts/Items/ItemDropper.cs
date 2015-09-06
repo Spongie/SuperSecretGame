@@ -28,14 +28,14 @@ namespace Assets.Scripts.Items
             float totalChance = ChanceForDrop + (GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().GetTrueStats().Luck / 10f);
             float roll = Random.Range(0, 100);
 
-            if (roll < totalChance)
+            if (roll > totalChance)
                 return;
 
             int nrOfDrops = Random.Range(1, MaxItemDrops);
 
             for (int i = 1; i <= nrOfDrops; i++)
             {
-                string itemName = ivLootTable.GetRollingList()[Random.Range(0, 99)];
+                string itemName = ivLootTable.GetRollingList()[Random.Range(0, 100)];
 
                 var gameObject = new GameObject("DroppedItem" + i);
                 DroppedItem drop = gameObject.AddComponent<DroppedItem>();

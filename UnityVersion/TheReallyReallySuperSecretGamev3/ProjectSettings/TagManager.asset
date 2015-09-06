@@ -13,6 +13,8 @@ TagManager:
   - Boost
   - Attack
   - Door
+  - GameMenu
+  - ItemList
   layers:
   - Default
   - TransparentFX

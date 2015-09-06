@@ -12,6 +12,8 @@ namespace Assets.Scripts.Character
     public class Player : MonoBehaviour, IPlayer
     {
         public PlayerController ivController;
+        public GameObject MenuController;
+        public int InventoryItems;
 
         void Start()
         {
@@ -26,6 +28,17 @@ namespace Assets.Scripts.Character
         public void RewardExp(int piAmount)
         {
             ivController.RewardExp(piAmount);
+        }
+
+        void Update()
+        {
+            InventoryItems = ivController.PlayerInventory.Items.Count;
+
+            if(Input.GetKeyDown(KeyCode.O))
+            {
+                Time.timeScale = 0;
+                MenuController.SetActive(true);
+            }
         }
 
         /// <summary>

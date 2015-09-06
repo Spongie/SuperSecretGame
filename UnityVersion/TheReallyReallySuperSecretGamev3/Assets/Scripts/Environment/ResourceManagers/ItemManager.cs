@@ -49,6 +49,7 @@ namespace Assets.Scripts.Environment.ResourceManagers
         public Item GetItemForDrop(string name)
         {
             Item original = AllItems.First(item => item.Name == name);
+            original.StackSize = 1;
 
             return new Item(original);
         }

@@ -71,5 +71,10 @@ namespace Assets.Scripts.Character
         {
             ivBaseStats.DrainMana((int)amount);
         }
+
+        public Inventory PlayerInventory
+        {
+            get { return ivInventory; }
+        }
     }
 }

@@ -180,5 +180,29 @@ namespace UnitTests.Items
 
             Assert.AreEqual(2, ivInventory.Items.Values.First().StackSize);
         }
+
+        [TestMethod]
+        public void GetEquippedItemAtSlot_NeverNull()
+        {
+            var item = ivInventory.GetEqippedItemAtSlot(ItemSlot.Chest);
+
+            Assert.IsTrue(item != null);
+        }
+
+        [TestMethod]
+        public void GetEquippedItemAtSlot_NoItem_EmptyItemSameSlot()
+        {
+            var item = ivInventory.GetEqippedItemAtSlot(ItemSlot.Chest);
+
+            Assert.IsTrue(item.Slot == ItemSlot.Chest);
+        }
+
+        [TestMethod]
+        public void GetEquippedItemAtSlot_NoItem_NoStats()
+        {
+            var item = ivInventory.GetEqippedItemAtSlot(ItemSlot.Chest);
+
+            Assert.IsTrue(item.GetStats().IsZero());
+        }
     }
 }
