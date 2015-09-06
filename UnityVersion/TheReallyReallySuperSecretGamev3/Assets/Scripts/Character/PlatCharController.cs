@@ -5,8 +5,23 @@ using Assets.Scripts.Attacks;
 
 namespace Assets.Scripts.Character
 {
+    public enum AnimationState
+    {
+        Idle,
+        Running,
+        Falling,
+        BoostLand,
+        Stab,
+        Smash,
+        BoostJump,
+        Jump,
+        Dash,
+        DiveKick
+    }
+
     public class PlatCharController : MonoBehaviour
     {
+        public AnimationState CurrentAnimationState = AnimationState.Idle;
         public string JumpButton = "A";
         public string DashButton = "RB";
 
@@ -122,6 +137,7 @@ namespace Assets.Scripts.Character
                         Logger.Log("Landed on boost");
                         boostingRight = landedOnRightBoost;
                         ivAnimator.SetBool("BoostLand", true);
+                        CurrentAnimationState = AnimationState.BoostLand;
                     }
                 }
             }
@@ -253,6 +269,7 @@ namespace Assets.Scripts.Character
 
         private void ResetAnimation()
         {
+            CurrentAnimationState = AnimationState.Idle;
             ivAnimator.SetBool("Idle", true);
             ivAnimator.SetBool("Running", false);
             ivAnimator.SetBool("Falling", false);
@@ -337,9 +354,15 @@ namespace Assets.Scripts.Character
             if(Input.GetButtonDown("X"))
             {
                 if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0)
+                {
+                    CurrentAnimationState = AnimationState.Stab;
                     ivAnimator.SetTrigger("Stab");
+                }
                 else
+                {
+                    CurrentAnimationState = AnimationState.Smash;
                     ivAnimator.SetTrigger("Smash");
+                }
 
                 ivWaitingForAnimation = true;
             }
@@ -351,6 +374,7 @@ namespace Assets.Scripts.Character
             {
                 boostReactionTimer.Cancel();
                 ivAnimator.SetBool("Running", true);
+                CurrentAnimationState = AnimationState.Running;
             }
             if (Input.GetButtonDown(DashButton) && !dashing && !diveKicking && !ButtonLock.Instance.IsButtonLocked(DashButton))
             {
@@ -360,6 +384,7 @@ namespace Assets.Scripts.Character
                     maxSpeed = 10;
                     ivRigidbody.velocity = new Vector2(SetDashSpeed(maxSpeed), 4);
                     boostReactionTimer.Cancel();
+                    CurrentAnimationState = AnimationState.BoostJump;
                     ivAnimator.SetBool("BoostLand", false);
                     ivAnimator.SetBool("BoostJump", true);
                 }
@@ -370,11 +395,13 @@ namespace Assets.Scripts.Character
                         dashTimer.Restart(0.15f);
                         dashing = true;
                         ivAnimator.SetTrigger("Dash");
+                        CurrentAnimationState = AnimationState.Dash;
                     }
                     else
                     {
                         diveKicking = true;
                         ivAnimator.SetTrigger("DiveKick");
+                        CurrentAnimationState = AnimationState.DiveKick;
                         DiveKickingRight = transform.localScale.x < 0 ? false : true;
                     }
                 }
@@ -415,6 +442,7 @@ namespace Assets.Scripts.Character
 
                 jumping = true;
                 ivAnimator.SetBool("Jump", true);
+                CurrentAnimationState = AnimationState.Jump;
             }
             else
             {
@@ -619,28 +647,39 @@ namespace Assets.Scripts.Character
                 );
 
             if (Mathf.Abs(xVel) > 0.1 && !dashing && !diveKicking)
+            {
+                CurrentAnimationState = AnimationState.Running;
                 ivAnimator.SetBool("Running", true);
+            }
             else
                 ivAnimator.SetBool("Running", false);
 
             if (yVel < -0.02f)
             {
-                ivAnimator.SetBool("Jump", false);
-                ivAnimator.SetBool("Running", false);
-                ivAnimator.SetBool("BoostJump", false);
-                ivAnimator.SetBool("Falling", true);
+                if (CurrentAnimationState != AnimationState.Falling)
+                {
+                    CurrentAnimationState = AnimationState.Falling;
+                    ivAnimator.SetBool("Jump", false);
+                    ivAnimator.SetBool("Running", false);
+                    ivAnimator.SetBool("BoostJump", false);
+                    ivAnimator.SetBool("Falling", true);
+                }
             }
             else
                 ivAnimator.SetBool("Falling", false);
 
             if (xVel >= -0.01f && xVel <= 0.01f && yVel >= -0.01f && yVel <= 0.01f)
             {
-                ivAnimator.SetBool("Idle", true);
-                ivAnimator.SetBool("Falling", false);
-                ivAnimator.SetBool("Running", false);
+                if (CurrentAnimationState != AnimationState.Idle)
+                {
+                    CurrentAnimationState = AnimationState.Idle;
+                    ivAnimator.SetBool("Idle", true);
+                    ivAnimator.SetBool("Falling", false);
+                    ivAnimator.SetBool("Running", false);
 
-                if(boostReactionTimer.Done)
-                    ivAnimator.SetBool("BoostLand", false);
+                    if (boostReactionTimer.Done)
+                        ivAnimator.SetBool("BoostLand", false);
+                }
             }
             else
                 ivAnimator.SetBool("Idle", false);
