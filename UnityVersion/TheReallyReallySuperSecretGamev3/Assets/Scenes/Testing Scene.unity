@@ -1525,6 +1525,10 @@ Prefab:
       propertyPath: MaxItemDrops
       value: 24
       objectReference: {fileID: 0}
+    - target: {fileID: 111446, guid: e5875406ff6e40443b50c15d107e0fc4, type: 2}
+      propertyPath: m_TagString
+      value: Environment
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e5875406ff6e40443b50c15d107e0fc4, type: 2}
   m_IsPrefabParent: 0

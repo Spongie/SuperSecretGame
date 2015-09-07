@@ -15,6 +15,7 @@ TagManager:
   - Door
   - GameMenu
   - ItemList
+  - Environment
   layers:
   - Default
   - TransparentFX
