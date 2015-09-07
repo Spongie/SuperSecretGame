@@ -6,10 +6,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
+using System;
+using System.Collections.Generic;
 
 namespace Assets.Scripts.UI
 {
-    public class MenuController : MonoBehaviour
+    public class MenuController : MonoBehaviour, ISelectHandler
     {
         public Player Player;
         public GameObject ItemButton;
@@ -23,22 +26,109 @@ namespace Assets.Scripts.UI
 
         public void Show()
         {
+            int index = 0;
             bool first = true;
-            foreach (Item item in Player.ivController.PlayerInventory.Items.Values)
+            foreach (Item item in Player.Controller.PlayerInventory.Items.Values)
             {
-                var itemButton = Instantiate(ItemButton);
-                itemButton.name = item.ID;
-                itemButton.transform.SetParent(ParentTransfrom);
-                Sprite icon = ItemIconManager.Icons[item.IconName];
+                GameObject itemButton = AddItemButton(item, index);
 
-                SetIcon(itemButton, icon);
-                SetText(item, itemButton);
-
-                if(first)
+                if (first)
                 {
                     EventSystem.current.SetSelectedGameObject(itemButton.GetComponentInChildren<Button>().gameObject);
                     first = false;
                 }
+
+                index++;
+            }
+        }
+
+        public void OnSelectedChanged()
+        {
+            Logger.Log("SelectedItem Changed");
+        }
+
+        private GameObject AddItemButton(Item item, int index)
+        {
+            var itemButton = Instantiate(ItemButton);
+            itemButton.name = item.ID;
+            itemButton.transform.SetParent(ParentTransfrom);
+            Sprite icon = ItemIconManager.Icons[item.IconName];
+
+            itemButton.GetComponentInChildren<Button>().onClick.AddListener(() => EquipSelectedItem(itemButton.name));
+            itemButton.GetComponentInChildren<ButtonSelectedHandler>().Index = index;
+
+            SetIcon(itemButton, icon);
+            SetText(item, itemButton);
+            return itemButton;
+        }
+
+        public void EquipSelectedItem(string piItemID)
+        {
+            Logger.Log(string.Format("Equpping item with id {0}", piItemID));
+            var buttonList = new List<GameObject>();
+            Player.Controller.PlayerInventory.EquipItem(piItemID);
+            var button = GameObject.Find(piItemID);
+            int buttonIndex = button.GetComponentInChildren<ButtonSelectedHandler>().Index;
+
+            GameObject buttonBefore = null;
+            GameObject buttonAfter = null;
+            GameObject fallbackButton = null;
+
+            bool found = false;
+            bool first = true;
+            foreach (Item item in Player.Controller.PlayerInventory.Items.Values)
+            {
+                var itemButton = GameObject.Find(item.ID);
+
+                if (itemButton == null)
+                {
+                    var newItemButton = AddItemButton(item, buttonIndex);
+                    buttonList.Add(newItemButton);
+                }
+                else if (item.StackSize > 0)
+                {
+                    SetText(item, itemButton);
+
+                    if (item.ID == piItemID)
+                        found = true;
+
+                    if (itemButton.GetComponentInChildren<ButtonSelectedHandler>().Index == buttonIndex - 1)
+                        buttonBefore = itemButton;
+                    else if (itemButton.GetComponentInChildren<ButtonSelectedHandler>().Index == buttonIndex + 1)
+                        buttonAfter = itemButton;
+
+                    if(first)
+                    {
+                        fallbackButton = itemButton;
+                        first = false;
+                    }
+
+                    buttonList.Add(itemButton);
+                }
+            }
+
+            if (!found)
+            {
+                if (buttonBefore != null)
+                    EventSystem.current.SetSelectedGameObject(buttonBefore.GetComponentInChildren<Button>().gameObject);
+                else if (buttonAfter != null)
+                    EventSystem.current.SetSelectedGameObject(buttonAfter.GetComponentInChildren<Button>().gameObject);
+                else
+                    EventSystem.current.SetSelectedGameObject(fallbackButton.GetComponentInChildren<Button>().gameObject);
+
+                Destroy(button);
+            }
+
+            NormalizeIndexes(buttonList);
+        }
+
+        private static void NormalizeIndexes(List<GameObject> buttonList)
+        {
+            int index = 0;
+            foreach (var itemButton in buttonList)
+            {
+                itemButton.GetComponentInChildren<ButtonSelectedHandler>().Index = index;
+                index++;
             }
         }
 
@@ -58,6 +148,11 @@ namespace Assets.Scripts.UI
                 if (image.name == "ItemIconImage")
                     image.sprite = icon;
             }
+        }
+
+        public void OnSelect(BaseEventData eventData)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -336,7 +336,7 @@ namespace Assets.Scripts.Character
             if (ivWaitingForAnimation)
                 return;
 
-            if(ivPlayer.ivController.GetBuffContainer().IsStunned())
+            if(ivPlayer.Controller.GetBuffContainer().IsStunned())
             {
                 OnStunned();
                 return;
@@ -648,7 +648,7 @@ namespace Assets.Scripts.Character
             else
                 ivMovedLastFrame = false;
 
-            if(ivPlayer.ivController.GetBuffContainer().IsChilled())
+            if(ivPlayer.Controller.GetBuffContainer().IsChilled())
                 xVel /= 2;
 
             if (yVel > 8)

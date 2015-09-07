@@ -204,5 +204,29 @@ namespace UnitTests.Items
 
             Assert.IsTrue(item.GetStats().IsZero());
         }
+
+        [TestMethod]
+        public void GetEquippedItemAtSlot_ItemEquipped_Returned()
+        {
+            var item = new Item() { Slot = ItemSlot.Chest, ID = "Test" };
+
+            ivInventory.AddItem(item);
+            ivInventory.EquipItem(item.ID);
+
+            Assert.AreEqual(item, ivInventory.GetEqippedItemAtSlot(ItemSlot.Chest));
+        }
+
+        [TestMethod]
+        public void UnEquipItemAtSlot_ItemAddedToInventory()
+        {
+            var item = new Item() { Slot = ItemSlot.Chest, ID="Test" };
+
+            ivInventory.AddItem(item);
+            ivInventory.EquipItem(item.ID);
+            ivInventory.UnEquipItemAtSlot(ItemSlot.Chest);
+
+            Assert.AreEqual(1, ivInventory.Items.Count);
+            Assert.IsTrue(ivInventory.GetEqippedItemAtSlot(ItemSlot.Chest).GetStats().IsZero());
+        }
     }
 }

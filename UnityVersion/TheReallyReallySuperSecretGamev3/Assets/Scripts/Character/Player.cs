@@ -11,28 +11,29 @@ namespace Assets.Scripts.Character
     [RequireComponent(typeof(BuffContainer))]
     public class Player : MonoBehaviour, IPlayer
     {
-        public PlayerController ivController;
         public GameObject MenuController;
         public int InventoryItems;
 
+        public PlayerController Controller { get; private set; }
+
         void Start()
         {
-            ivController = new PlayerController(GetComponent<BuffContainer>(), GetComponent<Stats>().stats);
+            Controller = new PlayerController(GetComponent<BuffContainer>(), GetComponent<Stats>().stats);
         }
 
         public void GiveLoot(Item piDrop)
         {
-            ivController.GiveLoot(piDrop);
+            Controller.GiveLoot(piDrop);
         }
 
         public void RewardExp(int piAmount)
         {
-            ivController.RewardExp(piAmount);
+            Controller.RewardExp(piAmount);
         }
 
         void Update()
         {
-            InventoryItems = ivController.PlayerInventory.Items.Count;
+            InventoryItems = Controller.PlayerInventory.Items.Count;
 
             if(Input.GetKeyDown(KeyCode.O))
             {
@@ -47,22 +48,22 @@ namespace Assets.Scripts.Character
         /// <returns></returns>
         public CStats GetTrueStats()
         {
-            return ivController.GetTrueStats();
+            return Controller.GetTrueStats();
         }
 
         public void DealDamage(float amount)
         {
-            ivController.DealDamage(amount);
+            Controller.DealDamage(amount);
         }
 
         public void DrainMana(float amount)
         {
-            ivController.DrainMana(amount);
+            Controller.DrainMana(amount);
         }
 
         public IEnumerable<AttackEffect> GetAttackEffectsFromEquippedItems()
         {
-            return ivController.GetAttackEffectsFromEquippedItems();
+            return Controller.GetAttackEffectsFromEquippedItems();
         }
 
         public bool LoadPlayer()

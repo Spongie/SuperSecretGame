@@ -61,8 +61,24 @@ namespace Assets.Scripts.Items
 
         public Item GetEqippedItemAtSlot(ItemSlot piSlot)
         {
+            if(ivEquippedItems.ContainsKey(piSlot))
+            {
+                return ivEquippedItems[piSlot];
+            }
+
             var item = new Item() { Slot = piSlot };
             return item;
+        }
+
+        public void UnEquipItemAtSlot(ItemSlot piSlot)
+        {
+            if(ivEquippedItems.ContainsKey(piSlot))
+            {
+                var item = GetEqippedItemAtSlot(piSlot);
+                ivEquippedItems.Remove(piSlot);
+
+                AddItem(item);
+            }
         }
     }
 }
