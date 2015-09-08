@@ -12,9 +12,10 @@ GameObject:
   - 114: {fileID: 11457248}
   - 114: {fileID: 11423116}
   - 61: {fileID: 6154892}
+  - 50: {fileID: 5046456}
   m_Layer: 0
   m_Name: PlayerStab
-  m_TagString: Untagged
+  m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,9 +75,10 @@ GameObject:
   - 114: {fileID: 11472842}
   - 114: {fileID: 11466352}
   - 61: {fileID: 6179022}
+  - 50: {fileID: 5040052}
   m_Layer: 0
   m_Name: PlayerSmash
-  m_TagString: Untagged
+  m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,7 +129,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110236}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.5, y: -7.88000011, z: 0}
+  m_LocalPosition: {x: -3.0999999, y: -1.71000004, z: 0}
   m_LocalScale: {x: .300000012, y: .300000012, z: 1}
   m_Children:
   - {fileID: 424856}
@@ -160,6 +162,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 456066}
   m_RootOrder: 2
+--- !u!50 &5040052
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157604}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!50 &5043318
 Rigidbody2D:
   serializedVersion: 2
@@ -176,6 +194,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!50 &5046456
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100174}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!58 &5879310
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -214,7 +248,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: .810000002, y: 4.42000008}
+  m_Size: {x: .400000006, y: 2.45000005}
 --- !u!61 &6161876
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -240,7 +274,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: .189999998, y: .400000006}
+  m_Size: {x: .129999995, y: .699999988}
 --- !u!95 &9503040
 Animator:
   serializedVersion: 3
@@ -286,6 +320,7 @@ MonoBehaviour:
     m_Bits: 0
   wallJumpControlDelay: .150000006
   grabPoint: {x: .449999988, y: 0}
+  jumping: 0
   isJumpControlling: 0
   canDoublejump: 0
   usedDoubleJump: 0
@@ -388,6 +423,7 @@ MonoBehaviour:
   Smash: 0
   Jump: 0
   BoostJump: 0
+  LandCancel: 0
 --- !u!114 &11464888
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -515,6 +551,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04c81cd9533c5404184218758286e298, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MenuController: {fileID: 0}
+  InventoryItems: 0
 --- !u!212 &21242440
 SpriteRenderer:
   m_ObjectHideFlags: 1

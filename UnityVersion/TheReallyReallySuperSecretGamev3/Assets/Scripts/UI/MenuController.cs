@@ -42,11 +42,6 @@ namespace Assets.Scripts.UI
             }
         }
 
-        public void OnSelectedChanged()
-        {
-            Logger.Log("SelectedItem Changed");
-        }
-
         private GameObject AddItemButton(Item item, int index)
         {
             var itemButton = Instantiate(ItemButton);

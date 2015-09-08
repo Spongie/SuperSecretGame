@@ -212,7 +212,7 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: 150
   m_MinHeight: 32
-  m_PreferredWidth: -1
+  m_PreferredWidth: 200
   m_PreferredHeight: 32
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
@@ -227,6 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a282b0188883b4e81346188de64b5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Index: 0
 --- !u!114 &11494420
 MonoBehaviour:
   m_ObjectHideFlags: 1

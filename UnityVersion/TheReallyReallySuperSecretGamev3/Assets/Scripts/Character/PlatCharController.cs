@@ -150,13 +150,13 @@ namespace Assets.Scripts.Character
         {
             if (other.tag == "Ground")
             {
-                if (other.isTrigger && ignoreTimer.Done)
+                if (other.isTrigger && ignoreTimer.Done && !ivWaitingForAnimation)
                 {
                     Logger.Log("Hit Ignore trigger");
                     gameObject.layer = LayerMask.NameToLayer("IgnoreGround");
                     ignoreTimer.Restart(0.1f);
                 }
-            }
+            }           
         }
 
         void OnTriggerExit2D(Collider2D other)
@@ -497,6 +497,14 @@ namespace Assets.Scripts.Character
         {
             ivGravityTimer.Update(Time.deltaTime);
 
+            if(CurrentAnimationState == AnimationState.BoostLand)
+            {
+                if (boostReactionTimer.Done)
+                {
+                    ivAnimator.SetBool(ivHashIDs.BoostLand, false);
+                }
+            }
+
             bool isGrounded = IsGrounded();
             bool isGrabbing = !isGrounded && wallJumpControlDelayLeft <= 0 && IsGrabbing();
 
@@ -686,16 +694,13 @@ namespace Assets.Scripts.Character
 
             if (xVel >= -0.01f && xVel <= 0.01f && yVel >= -0.01f && yVel <= 0.01f)
             {
-                if (CurrentAnimationState != AnimationState.Idle)
+                if (CurrentAnimationState != AnimationState.Idle && boostReactionTimer.Done)
                 {
                     CurrentAnimationState = AnimationState.Idle;
                     ivAnimator.SetBool(ivHashIDs.Idle, true);
                     ivAnimator.SetBool(ivHashIDs.Falling, false);
                     ivAnimator.SetBool(ivHashIDs.Running, false);
-                    ivAnimator.SetBool(ivHashIDs.LandCancel, false);
-
-                    if (boostReactionTimer.Done)
-                        ivAnimator.SetBool(ivHashIDs.BoostLand, false);
+                    ivAnimator.SetBool(ivHashIDs.LandCancel, false);                  
                 }
             }
             else

@@ -15,6 +15,7 @@ namespace Assets.Scripts.Character
         public int Jump;
         public int BoostJump;
         public int LandCancel;
+        public int BoostEnd;
 
         void Awake()
         {
@@ -29,6 +30,7 @@ namespace Assets.Scripts.Character
             Jump = Animator.StringToHash("Jump");
             BoostJump = Animator.StringToHash("BoostJump");
             LandCancel = Animator.StringToHash("LandCancel");
+            BoostEnd = Animator.StringToHash("BoostEnd");
         }
     }
 }
