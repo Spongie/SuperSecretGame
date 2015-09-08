@@ -12,12 +12,20 @@ using System.Collections.Generic;
 
 namespace Assets.Scripts.UI
 {
+    public enum CurrentPanel
+    {
+        Items,
+        Equipped
+    }
+
     public class MenuController : MonoBehaviour, ISelectHandler
     {
         public Player Player;
         public GameObject ItemButton;
         public Transform ParentTransfrom;
         public IconManager ItemIconManager;
+        public GameObject firstItemButton;
+        private CurrentPanel currentPanel;
 
         void Awake()
         {
@@ -34,11 +42,30 @@ namespace Assets.Scripts.UI
 
                 if (first)
                 {
+                    firstItemButton = itemButton.GetComponentInChildren<Button>().gameObject;
                     EventSystem.current.SetSelectedGameObject(itemButton.GetComponentInChildren<Button>().gameObject);
                     first = false;
                 }
 
                 index++;
+            }
+
+            currentPanel = CurrentPanel.Items;
+        }
+
+        void Update()
+        {
+            if(Input.GetButtonDown("RB"))
+            {
+
+            }
+            else if(Input.GetButtonDown("LB") && currentPanel != CurrentPanel.Items)
+            {
+                if (firstItemButton != null)
+                {
+                    EventSystem.current.SetSelectedGameObject(firstItemButton);
+                    currentPanel = CurrentPanel.Equipped;
+                }
             }
         }
 
