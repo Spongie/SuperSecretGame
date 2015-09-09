@@ -72,20 +72,18 @@ namespace Assets.Scripts.Character.Monsters
                 Newtimer = true;
             }
 
-            if (Math.Abs(transform.position.x - target.transform.position.x) <= 150)
-            {
-                AiTimer.Restart(0);
-                Newtimer = false;
-                GoToState(UpdateAttack);
-            }
-
             if (AiTimer.Done)
             {
                 TurnAroundCheck();
                 Newtimer = false;
             }
 
-
+            if (RangeFromPlayerX() <= 15)
+            {
+                AiTimer.Restart(0);
+                Newtimer = false;
+                GoToState(UpdateAttack);
+            }
         }
 
         public override void UpdateAttack()
@@ -98,8 +96,6 @@ namespace Assets.Scripts.Character.Monsters
             if (AiTimer.Done && HaveAttacked == false)
             {
                 HaveAttacked = true;
-                //ObjectManager.RegisterAttack(AttackCreator.CreateTestAttack(WorldPosition + new Vector2(100, 0), new Vector2(100, 100), this),this);
-
                 AiTimer.Restart(1);
             }
 

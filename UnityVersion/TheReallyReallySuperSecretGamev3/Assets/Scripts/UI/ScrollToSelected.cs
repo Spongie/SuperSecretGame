@@ -43,30 +43,7 @@ namespace Assets.Scripts.UI
 
             m_SelectedRectTransform = selected.GetComponent<RectTransform>();
 
-            // math stuff
-            Vector3 selectedDifference = m_RectTransform.localPosition - m_SelectedRectTransform.localPosition;
-            float contentHeightDifference = (m_ContentRectTransform.rect.height - m_RectTransform.rect.height);
-
-            float selectedPosition = (m_ContentRectTransform.rect.height - selectedDifference.y);
-            float currentScrollRectPosition = m_ScrollRect.normalizedPosition.y * contentHeightDifference;
-            float above = currentScrollRectPosition - (m_SelectedRectTransform.rect.height / 2) + m_RectTransform.rect.height;
-            float below = currentScrollRectPosition + (m_SelectedRectTransform.rect.height / 2);
-
-            // check if selected is out of bounds
-            if (selectedPosition > above)
-            {
-                float step = selectedPosition - above;
-                float newY = currentScrollRectPosition + step;
-                float newNormalizedY = newY / contentHeightDifference;
-                m_ScrollRect.normalizedPosition = Vector2.Lerp(m_ScrollRect.normalizedPosition, new Vector2(0, newNormalizedY), scrollSpeed * Time.deltaTime);
-            }
-            else if (selectedPosition < below)
-            {
-                float step = selectedPosition - below;
-                float newY = currentScrollRectPosition + step;
-                float newNormalizedY = newY / contentHeightDifference;
-                m_ScrollRect.normalizedPosition = Vector2.Lerp(m_ScrollRect.normalizedPosition, new Vector2(0, newNormalizedY), scrollSpeed * Time.deltaTime);
-            }
+            
 
         }
 
