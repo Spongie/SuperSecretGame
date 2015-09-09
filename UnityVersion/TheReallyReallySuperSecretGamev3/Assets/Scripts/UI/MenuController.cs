@@ -29,7 +29,7 @@ namespace Assets.Scripts.UI
 
         void Awake()
         {
-            Show();
+            //Show();
         }
 
         public void Show()
@@ -42,8 +42,8 @@ namespace Assets.Scripts.UI
 
                 if (first)
                 {
-                    firstItemButton = itemButton.GetComponentInChildren<Button>().gameObject;
-                    EventSystem.current.SetSelectedGameObject(itemButton.GetComponentInChildren<Button>().gameObject);
+                    firstItemButton = itemButton;
+                    EventSystem.current.SetSelectedGameObject(itemButton);
                     first = false;
                 }
 
@@ -76,8 +76,8 @@ namespace Assets.Scripts.UI
             itemButton.transform.SetParent(ParentTransfrom);
             Sprite icon = ItemIconManager.Icons[item.IconName];
 
-            itemButton.GetComponentInChildren<Button>().onClick.AddListener(() => EquipSelectedItem(itemButton.name));
-            itemButton.GetComponentInChildren<ButtonSelectedHandler>().Index = index;
+            itemButton.GetComponent<Button>().onClick.AddListener(() => EquipSelectedItem(itemButton.name));
+            itemButton.GetComponent<ButtonSelectedHandler>().Index = index;
 
             SetIcon(itemButton, icon);
             SetText(item, itemButton);
@@ -90,7 +90,7 @@ namespace Assets.Scripts.UI
             var buttonList = new List<GameObject>();
             Player.Controller.PlayerInventory.EquipItem(piItemID);
             var button = GameObject.Find(piItemID);
-            int buttonIndex = button.GetComponentInChildren<ButtonSelectedHandler>().Index;
+            int buttonIndex = button.GetComponent<ButtonSelectedHandler>().Index;
 
             GameObject buttonBefore = null;
             GameObject buttonAfter = null;
@@ -114,9 +114,9 @@ namespace Assets.Scripts.UI
                     if (item.ID == piItemID)
                         found = true;
 
-                    if (itemButton.GetComponentInChildren<ButtonSelectedHandler>().Index == buttonIndex - 1)
+                    if (itemButton.GetComponent<ButtonSelectedHandler>().Index == buttonIndex - 1)
                         buttonBefore = itemButton;
-                    else if (itemButton.GetComponentInChildren<ButtonSelectedHandler>().Index == buttonIndex + 1)
+                    else if (itemButton.GetComponent<ButtonSelectedHandler>().Index == buttonIndex + 1)
                         buttonAfter = itemButton;
 
                     if(first)
@@ -132,11 +132,11 @@ namespace Assets.Scripts.UI
             if (!found)
             {
                 if (buttonBefore != null)
-                    EventSystem.current.SetSelectedGameObject(buttonBefore.GetComponentInChildren<Button>().gameObject);
+                    EventSystem.current.SetSelectedGameObject(buttonBefore);
                 else if (buttonAfter != null)
-                    EventSystem.current.SetSelectedGameObject(buttonAfter.GetComponentInChildren<Button>().gameObject);
+                    EventSystem.current.SetSelectedGameObject(buttonAfter);
                 else
-                    EventSystem.current.SetSelectedGameObject(fallbackButton.GetComponentInChildren<Button>().gameObject);
+                    EventSystem.current.SetSelectedGameObject(fallbackButton);
 
                 Destroy(button);
             }
@@ -149,7 +149,7 @@ namespace Assets.Scripts.UI
             int index = 0;
             foreach (var itemButton in buttonList)
             {
-                itemButton.GetComponentInChildren<ButtonSelectedHandler>().Index = index;
+                itemButton.GetComponent<ButtonSelectedHandler>().Index = index;
                 index++;
             }
         }

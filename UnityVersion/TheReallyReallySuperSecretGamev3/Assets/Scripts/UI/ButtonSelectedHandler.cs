@@ -14,7 +14,7 @@ namespace Assets.Scripts.UI
 
         public void OnSelect(BaseEventData eventData)
         {
-            Logger.Log(string.Format("Select {0} from the list", gameObject.transform.parent.name));
+            Logger.Log(string.Format("Select {0} from the list", gameObject.name));
         }
     }
 }

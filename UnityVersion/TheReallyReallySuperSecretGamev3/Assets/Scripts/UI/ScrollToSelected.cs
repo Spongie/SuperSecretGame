@@ -18,7 +18,7 @@ namespace Assets.Scripts.UI
         {
             m_ScrollRect = GetComponent<ScrollRect>();
             m_RectTransform = GetComponent<RectTransform>();
-            m_ContentRectTransform = m_ScrollRect.content;
+            m_ContentRectTransform =  m_ScrollRect.content;
         }
 
         void Update()
@@ -30,7 +30,7 @@ namespace Assets.Scripts.UI
         {
 
             // grab the current selected from the eventsystem
-            GameObject selected = EventSystem.current.currentSelectedGameObject.transform.parent.gameObject;
+            GameObject selected = EventSystem.current.currentSelectedGameObject;
 
             if (selected == null)
             {
