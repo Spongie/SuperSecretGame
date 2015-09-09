@@ -24,24 +24,50 @@ namespace Assets.Scripts.Character.Monsters
             base.FixedUpdate();
         }
 
-        public override void TurnAroundCheck()
-        {
-        }
-
         public override void UpdateTurnAround()
         {
+            if (AiTimer.Done && Newtimer == false)
+            {
+                AiTimer.Restart(1);
+                Newtimer = true;
+            }
+            if (AiTimer.Done)
+            {
+                Newtimer = false;
+
+                Flip();
+
+                AiList.RemoveAt(0);
+            }
+
+        }
+
+        public override void TurnAroundCheck()
+        {
+            if (target.transform.position.x < transform.position.x && ivFacingRight == true)
+            {
+                GoToState(UpdateTurnAround, false);
+            }
+            else if (target.transform.position.x > transform.position.x && ivFacingRight == false)
+            {
+                GoToState(UpdateTurnAround, false);
+            }
         }
 
         public override void UpdateGoForward()
         {
-            if (ivFacingRight && Math.Abs(transform.position.x - target.transform.position.x) <= 400)
+            if (ivFacingRight)
             {
-                ivRigidbody.velocity = new Vector2(3, ivRigidbody.velocity.y);
+                ivRigidbody.velocity = GetRealSpeed();
             }
-            else if (!ivFacingRight && Math.Abs(transform.position.x - target.transform.position.x) <= 400)
+            else
             {
-                ivRigidbody.velocity = new Vector2(-3, ivRigidbody.velocity.y);
+                ivRigidbody.velocity = ivRigidbody.velocity = new Vector2(-GetRealSpeed().x, GetRealSpeed().y);
             }
+
+            if (RangeFromPlayerX() > 10)
+                GoToState(UpdateIdle);
+
         }
 
         public override void UpdateAttack()
@@ -50,7 +76,11 @@ namespace Assets.Scripts.Character.Monsters
 
         public override void UpdateIdle()
         {
-            GoToState(UpdateGoForward);
+            if(RangeFromPlayerX() <10)
+            {
+                TurnAroundCheck();
+                GoToState(UpdateGoForward);
+            }
         }
     }
 }

@@ -100,6 +100,21 @@ namespace Assets.Scripts.Character.Monsters
             stunnedLastFrame = false;
         }
 
+        protected float RangeFromPlayer()
+        {
+            return Vector2.Distance(transform.position, target.transform.position);
+        }
+
+        protected float RangeFromPlayerX()
+        {
+            return Math.Abs(transform.position.x - target.transform.position.x);
+        }
+
+        protected float RangeFromPlayerY()
+        {
+            return Math.Abs(transform.position.y - target.transform.position.y);
+        }
+
         protected void OnStunExpired()
         {
             AiTimer.Paused = false;
@@ -125,6 +140,15 @@ namespace Assets.Scripts.Character.Monsters
                 ivAnimator.enabled = false;
             }
             stunnedLastFrame = true;
+        }
+
+        protected void Flip()
+        {
+            ivFacingRight = !ivFacingRight;
+
+            Vector3 theScale = transform.localScale;
+            theScale.x *= -1;
+            transform.localScale = theScale;
         }
 
         protected void HandleDeath()

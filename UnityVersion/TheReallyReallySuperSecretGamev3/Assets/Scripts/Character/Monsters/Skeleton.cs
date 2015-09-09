@@ -173,7 +173,7 @@ namespace Assets.Scripts.Character.Monsters
         {
             if (AiTimer.Done && Newtimer == false)
             {
-                AiTimer.Restart(4);
+                AiTimer.Restart(1);
                 Newtimer = true;
             }
             if (AiTimer.Done)
@@ -208,13 +208,5 @@ namespace Assets.Scripts.Character.Monsters
             attack.GetComponent<Rigidbody2D>().AddForce(new Vector2(xForce, 200));
         }
 
-        private void Flip()
-        {
-            ivFacingRight = !ivFacingRight;
-
-            Vector3 theScale = transform.localScale;
-            theScale.x *= -1;
-            transform.localScale = theScale;
-        }
     }
 }
