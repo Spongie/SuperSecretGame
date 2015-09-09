@@ -8,13 +8,6 @@ namespace Assets.Scripts.Character.Monsters
         public override void Start()
         {
             base.Start();
-
-            CurrentStats.stats.MaximumHealth = 100;
-            CurrentStats.stats.MaximumMana = 0;
-            CurrentStats.stats.Damage = 10;
-            CurrentStats.stats.Defense = 2;
-            CurrentStats.stats.MagicDamage = 0;
-            CurrentStats.stats.MagicDefense = 3;
         }
 
         public override void FixedUpdate()
@@ -49,14 +42,9 @@ namespace Assets.Scripts.Character.Monsters
             if (AiTimer.Done)
             {
                 Newtimer = false;
-                if (ivFacingRight)
-                {
-                    ivFacingRight = false;
-                }
-                else
-                {
-                    ivFacingRight = true;
-                }
+
+                Flip();
+
                 AiList.RemoveAt(0);
             }
 
@@ -64,19 +52,18 @@ namespace Assets.Scripts.Character.Monsters
 
         public override void UpdateIdle()
         {
-            AiList.Add(() => UpdateGoForward());
-            AiList.RemoveAt(0);
+            GoToState(UpdateGoForward);
         }
 
         public override void UpdateGoForward()
         {
             if (ivFacingRight)
             {
-                ivRigidbody.velocity = new Vector2(3, ivRigidbody.velocity.y);
+                ivRigidbody.velocity = GetRealSpeed();
             }
-            else if (!ivFacingRight)
+            else
             {
-                ivRigidbody.velocity = new Vector2(-3, ivRigidbody.velocity.y);
+                ivRigidbody.velocity = ivRigidbody.velocity = new Vector2(-GetRealSpeed().x, GetRealSpeed().y);
             }
 
             if (AiTimer.Done && Newtimer == false)
@@ -89,8 +76,7 @@ namespace Assets.Scripts.Character.Monsters
             {
                 AiTimer.Restart(0);
                 Newtimer = false;
-                AiList.Add(() => UpdateAttack());
-                AiList.RemoveAt(0);
+                GoToState(UpdateAttack);
             }
 
             if (AiTimer.Done)
@@ -124,8 +110,8 @@ namespace Assets.Scripts.Character.Monsters
 
                 TurnAroundCheck();
 
-                AiList.Add(() => UpdateGoForward());
-                AiList.RemoveAt(0);
+                GoToState(UpdateGoForward);
+
             }
 
         }
