@@ -9,14 +9,6 @@ namespace Assets.Scripts.Character.Monsters
         public override void Start()
         {
             base.Start();
-            CurrentStats.stats.MaximumHealth = 100;
-            CurrentStats.stats.MaximumMana = 0;
-            CurrentStats.stats.Damage = 10;
-            CurrentStats.stats.Defense = 2;
-            CurrentStats.stats.MagicDamage = 0;
-            CurrentStats.stats.MagicDefense = 3;
-
-            AiTimer.Restart(0);
         }
 
         public override void FixedUpdate()
@@ -31,13 +23,13 @@ namespace Assets.Scripts.Character.Monsters
 
         public override void TurnAroundCheck()
         {
-            if (target.transform.position.x < transform.position.x && ivFacingRight == true)
+            if (target.transform.position.x < transform.position.x && ivFacingRight)
             {
-                AiList.Add(() => UpdateTurnAround());
+                GoToState(UpdateTurnAround, false);
             }
-            else if (target.transform.position.x > transform.position.x && ivFacingRight == false)
+            else if (target.transform.position.x > transform.position.x && !ivFacingRight)
             {
-                AiList.Add(() => UpdateTurnAround());
+                GoToState(UpdateTurnAround, false);
             }
         }
 
@@ -51,17 +43,11 @@ namespace Assets.Scripts.Character.Monsters
             if (AiTimer.Done)
             {
                 Newtimer = false;
-                if (ivFacingRight == true)
-                {
-                    ivFacingRight = false;
-                }
-                else
-                {
-                    ivFacingRight = true;
-                }
+
+                Flip();
+
                 AiList.RemoveAt(0);
             }
-
         }
 
         public override void UpdateIdle()
@@ -69,8 +55,7 @@ namespace Assets.Scripts.Character.Monsters
             if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.stats.HealthPercentage <= 40)
             {
                 Newtimer = false;
-                AiList.Add(() => UpdateDeepGrave());
-                AiList.RemoveAt(0);
+                GoToState(UpdateDeepGrave);
             }
             //är idle så den gör inget
             if (AiTimer.Done && Newtimer == false)
@@ -88,33 +73,32 @@ namespace Assets.Scripts.Character.Monsters
 
                 if (newState == 0)
                 {
-                    AiList.Add(() => UpdateMagicAttack1());
+                    GoToState(UpdateMagicAttack1);
                 }
                 else if (newState == 1)
                 {
-                    AiList.Add(() => UpdateAttack());
+                    GoToState(UpdateAttack);
                 }
                 else if (newState == 2)
                 {
-                    AiList.Add(() => UpdateAttack2());
+                    GoToState(UpdateAttack2);
                 }
                 else if (newState == 3)
                 {
-                    AiList.Add(() => UpdateMoveBack());
+                    GoToState(UpdateMoveBack);
                 }
                 else if (newState == 4)
                 {
-                    AiList.Add(() => UpdateGoForward());
+                    GoToState(UpdateGoForward);
                 }
                 else if (newState == 5)
                 {
-                    AiList.Add(() => UpdateJumpBack());
+                    GoToState(UpdateJumpBack);
                 }
                 else if (newState == 6)
                 {
-                    AiList.Add(() => UpdateJumpForward());
+                    GoToState(UpdateJumpForward);
                 }
-                AiList.RemoveAt(0);
             }
         }
 
@@ -122,6 +106,7 @@ namespace Assets.Scripts.Character.Monsters
         {
             if (AiTimer.Done && Newtimer == false)
             {
+                //fråga philip hur man gör !
                 //bossen säger något coolt
                 AiTimer.Restart(1);
                 Newtimer = true;
@@ -141,8 +126,7 @@ namespace Assets.Scripts.Character.Monsters
                 TurnAroundCheck();
                 HaveAttacked = false;
                 Newtimer = false;
-                AiList.Add(() => UpdateExhausted());
-                AiList.RemoveAt(0);
+                GoToState(UpdateExhausted);
             }
         }
 
@@ -151,8 +135,7 @@ namespace Assets.Scripts.Character.Monsters
             if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.stats.HealthPercentage <= 40)
             {
                 Newtimer = false;
-                AiList.Add(() => UpdateDeepGrave());
-                AiList.RemoveAt(0);
+                GoToState(UpdateDeepGrave);
             }
             if (AiTimer.Done && HaveAttacked == false)
             {
@@ -166,8 +149,7 @@ namespace Assets.Scripts.Character.Monsters
                 TurnAroundCheck();
                 Newtimer = false;
                 HaveAttacked = false;
-                AiList.Add(() => UpdateIdle());
-                AiList.RemoveAt(0);
+                GoToState(UpdateIdle);
             }
 
         }
@@ -177,8 +159,7 @@ namespace Assets.Scripts.Character.Monsters
             if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.stats.HealthPercentage <= 40)
             {
                 Newtimer = false;
-                AiList.Add(() => UpdateDeepGrave());
-                AiList.RemoveAt(0);
+                GoToState(UpdateDeepGrave);
             }
             if (AiTimer.Done && Newtimer == false)
             {
@@ -196,8 +177,7 @@ namespace Assets.Scripts.Character.Monsters
                 TurnAroundCheck();
                 Newtimer = false;
                 HaveAttacked = false;
-                AiList.Add(() => UpdateIdle());
-                AiList.RemoveAt(0);
+                GoToState(UpdateIdle);
             }
 
         }
@@ -207,8 +187,7 @@ namespace Assets.Scripts.Character.Monsters
             if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.stats.HealthPercentage <= 40)
             {
                 Newtimer = false;
-                AiList.Add(() => UpdateDeepGrave());
-                AiList.RemoveAt(0);
+                GoToState(UpdateDeepGrave);
             }
             if (AiTimer.Done && Newtimer == false)
             {
@@ -227,8 +206,7 @@ namespace Assets.Scripts.Character.Monsters
                 TurnAroundCheck();
                 Newtimer = false;
                 HaveAttacked = false;
-                AiList.Add(() => UpdateIdle());
-                AiList.RemoveAt(0);
+                GoToState(UpdateIdle);
             }
         }
 
@@ -237,8 +215,7 @@ namespace Assets.Scripts.Character.Monsters
             if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.stats.HealthPercentage <= 40)
             {
                 Newtimer = false;
-                AiList.Add(() => UpdateDeepGrave());
-                AiList.RemoveAt(0);
+                GoToState(UpdateDeepGrave);
             }
             if (AiTimer.Done && Newtimer == false)
             {
@@ -264,30 +241,28 @@ namespace Assets.Scripts.Character.Monsters
 
                 if (newState == 0)
                 {
-                    AiList.Add(() => UpdateIdle());
+                    GoToState(UpdateIdle);
                 }
                 else if (newState == 1)
                 {
-                    AiList.Add(() => UpdateJumpBack());
+                    GoToState(UpdateJumpBack);
                 }
                 else if (newState == 2)
                 {
-                    AiList.Add(() => UpdateJumpForward());
+                    GoToState(UpdateJumpForward);
                 }
                 else if (newState == 3)
                 {
-                    AiList.Add(() => UpdateMagicAttack1());
+                    GoToState(UpdateMagicAttack1);
                 }
                 else if (newState == 4)
                 {
-                    AiList.Add(() => UpdateAttack());
+                    GoToState(UpdateAttack);
                 }
                 else if (newState == 5)
                 {
-                    AiList.Add(() => UpdateAttack2());
+                    GoToState(UpdateAttack2);
                 }
-                AiList.RemoveAt(0);
-
             }
         }
 
@@ -296,8 +271,7 @@ namespace Assets.Scripts.Character.Monsters
             if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.stats.HealthPercentage <= 40)
             {
                 Newtimer = false;
-                AiList.Add(() => UpdateDeepGrave());
-                AiList.RemoveAt(0);
+                GoToState(UpdateDeepGrave);
             }
             if (AiTimer.Done && Newtimer == false)
             {
@@ -323,30 +297,28 @@ namespace Assets.Scripts.Character.Monsters
 
                 if (newState == 0)
                 {
-                    AiList.Add(() => UpdateIdle());
+                    GoToState(UpdateIdle);
                 }
                 else if (newState == 1)
                 {
-                    AiList.Add(() => UpdateJumpBack());
+                    GoToState(UpdateJumpBack);
                 }
                 else if (newState == 2)
                 {
-                    AiList.Add(() => UpdateJumpForward());
+                    GoToState(UpdateJumpForward);
                 }
                 else if (newState == 3)
                 {
-                    AiList.Add(() => UpdateMagicAttack1());
+                    GoToState(UpdateMagicAttack1);
                 }
                 else if (newState == 4)
                 {
-                    AiList.Add(() => UpdateAttack());
+                    GoToState(UpdateAttack);
                 }
                 else if (newState == 5)
                 {
-                    AiList.Add(() => UpdateAttack2());
+                    GoToState(UpdateAttack2);
                 }
-                AiList.RemoveAt(0);
-
             }
         }
 
@@ -355,8 +327,7 @@ namespace Assets.Scripts.Character.Monsters
             if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.stats.HealthPercentage <= 40)
             {
                 Newtimer = false;
-                AiList.Add(() => UpdateDeepGrave());
-                AiList.RemoveAt(0);
+                GoToState(UpdateDeepGrave);
             }
             if (AiTimer.Done && Newtimer == false)
             {
@@ -378,8 +349,7 @@ namespace Assets.Scripts.Character.Monsters
             {
                 Newtimer = false;
                 TurnAroundCheck();
-                AiList.Add(() => UpdateAttack());
-                AiList.RemoveAt(0);
+                GoToState(UpdateAttack);
             }
         }
 
@@ -388,8 +358,7 @@ namespace Assets.Scripts.Character.Monsters
             if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.stats.HealthPercentage <= 40)
             {
                 Newtimer = false;
-                AiList.Add(() => UpdateDeepGrave());
-                AiList.RemoveAt(0);
+                GoToState(UpdateDeepGrave);
             }
             if (AiTimer.Done && Newtimer == false)
             {
@@ -411,8 +380,7 @@ namespace Assets.Scripts.Character.Monsters
             {
                 Newtimer = false;
                 TurnAroundCheck();
-                AiList.Add(() => UpdateAttack2());
-                AiList.RemoveAt(0);
+                GoToState(UpdateAttack2);
             }
         }
 
@@ -432,19 +400,17 @@ namespace Assets.Scripts.Character.Monsters
 
                 if (newState == 0)
                 {
-                    AiList.Add(() => UpdateAttack());
+                    GoToState(UpdateAttack);
                 }
                 else if (newState == 1)
                 {
-                    AiList.Add(() => UpdateAttack2());
+                    GoToState(UpdateAttack2);
                 }
                 else if (newState == 2)
                 {
-                    AiList.Add(() => UpdateMagicAttack1());
+                    GoToState(UpdateMagicAttack1);
                 }
-                AiList.RemoveAt(0);
             }
- 
         }
     }
 }

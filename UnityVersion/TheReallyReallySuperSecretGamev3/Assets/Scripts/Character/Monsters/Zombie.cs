@@ -44,11 +44,11 @@ namespace Assets.Scripts.Character.Monsters
 
         public override void TurnAroundCheck()
         {
-            if (target.transform.position.x < transform.position.x && ivFacingRight == true)
+            if (target.transform.position.x < transform.position.x && ivFacingRight)
             {
                 GoToState(UpdateTurnAround, false);
             }
-            else if (target.transform.position.x > transform.position.x && ivFacingRight == false)
+            else if (target.transform.position.x > transform.position.x && !ivFacingRight)
             {
                 GoToState(UpdateTurnAround, false);
             }

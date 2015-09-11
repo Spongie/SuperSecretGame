@@ -8,14 +8,6 @@ namespace Assets.Scripts.Character.Monsters
         public override void Start()
         {
             base.Start();
-
-            CurrentStats.stats.MaximumHealth = 100;
-            CurrentStats.stats.MaximumMana = 0;
-            CurrentStats.stats.Damage = 10;
-            CurrentStats.stats.Defense = 2;
-            CurrentStats.stats.MagicDamage = 0;
-            CurrentStats.stats.MagicDefense = 3;
-
         }
 
         public override void FixedUpdate()
@@ -33,15 +25,13 @@ namespace Assets.Scripts.Character.Monsters
             ivRigidbody.gravityScale = 0f;
             if (Vector2.Distance(transform.position, target.transform.position) <= 200 && target.transform.position.x <= transform.position.x)
             {
-                AiList.Add(() => UpdateDiveLeft());
+                GoToState(UpdateDiveLeft);
                 ivFacingRight = false;
-                AiList.RemoveAt(0);
             }
             else if (Vector2.Distance(transform.position, target.transform.position) <= 200 && target.transform.position.x >= transform.position.x)
             {
-                AiList.Add(() => UpdateDiveRight());
+                GoToState(UpdateDiveRight);
                 ivFacingRight = true;
-                AiList.RemoveAt(0);
             }
         }
 
@@ -60,8 +50,7 @@ namespace Assets.Scripts.Character.Monsters
             {
                 AiTimer.Restart(0);
                 Newtimer = false;
-                AiList.Add(() => UpdateRiseLeft());
-                AiList.RemoveAt(0);
+                GoToState(UpdateRiseLeft);
             }
         }
 
@@ -80,8 +69,7 @@ namespace Assets.Scripts.Character.Monsters
             if (AiTimer.Done)
             {
                 Newtimer = false;
-                AiList.Add(() => UpdateRiseLeft());
-                AiList.RemoveAt(0);
+                GoToState(UpdateRiseLeft);
             }
         }
 
@@ -99,8 +87,7 @@ namespace Assets.Scripts.Character.Monsters
             if (AiTimer.Done)
             {
                 Newtimer = false;
-                AiList.Add(() => UpdateChillLeft());
-                AiList.RemoveAt(0);
+                GoToState(UpdateChillLeft);
             }
         }
 
@@ -117,8 +104,7 @@ namespace Assets.Scripts.Character.Monsters
             {
                 AiTimer.Restart(0);
                 Newtimer = false;
-                AiList.Add(() => UpdateRiseRight());
-                AiList.RemoveAt(0);
+                GoToState(UpdateRiseRight);
             }
         }
 
@@ -135,8 +121,7 @@ namespace Assets.Scripts.Character.Monsters
             if (AiTimer.Done)
             {
                 Newtimer = false;
-                AiList.Add(() => UpdateRiseRight());
-                AiList.RemoveAt(0);
+                GoToState(UpdateRiseRight);
             }
         }
 
@@ -153,8 +138,7 @@ namespace Assets.Scripts.Character.Monsters
             if (AiTimer.Done)
             {
                 Newtimer = false;
-                AiList.Add(() => UpdateChillRight());
-                AiList.RemoveAt(0);
+                GoToState(UpdateChillRight);
             }
         }
 

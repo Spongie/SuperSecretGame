@@ -24,11 +24,11 @@ namespace Assets.Scripts.Character.Monsters
         {
             if (target.transform.position.x < transform.position.x && ivFacingRight)
             {
-                AiList.Add(() => UpdateTurnAround());
+                GoToState(UpdateTurnAround, false);
             }
             else if (target.transform.position.x > transform.position.x && !ivFacingRight)
             {
-                AiList.Add(() => UpdateTurnAround());
+                GoToState(UpdateTurnAround, false);
             }
         }
 
