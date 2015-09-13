@@ -4,10 +4,7 @@ using Assets.Scripts.Items;
 using Assets.Scripts.Utility;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
 using UnityEngine.EventSystems;
-using UnityEngine.Events;
-using System;
 using System.Collections.Generic;
 
 namespace Assets.Scripts.UI
@@ -18,7 +15,7 @@ namespace Assets.Scripts.UI
         Equipped
     }
 
-    public class MenuController : MonoBehaviour, ISelectHandler
+    public class MenuController : MonoBehaviour
     {
         public Player Player;
         public GameObject ItemButton;
@@ -44,6 +41,7 @@ namespace Assets.Scripts.UI
                 {
                     firstItemButton = itemButton;
                     EventSystem.current.SetSelectedGameObject(itemButton);
+                    itemButton.GetComponent<Button>();
                     first = false;
                 }
 
@@ -170,11 +168,6 @@ namespace Assets.Scripts.UI
                 if (image.name == "ItemIconImage")
                     image.sprite = icon;
             }
-        }
-
-        public void OnSelect(BaseEventData eventData)
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -1,20 +1,22 @@
-﻿using Assets.Scripts.Utility;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.UI
 {
-    public class ButtonSelectedHandler : MonoBehaviour, ISelectHandler
+    public class ButtonSelectedHandler : MonoBehaviour, ISelectHandler, IDeselectHandler
     {
+        public Sprite SelectedSprite;
         public int Index;
 
         public void OnSelect(BaseEventData eventData)
         {
-            Logger.Log(string.Format("Select {0} from the list", gameObject.name));
+            GetComponent<Button>().image.overrideSprite = SelectedSprite;
+        }
+
+        public void OnDeselect(BaseEventData eventData)
+        {
+            GetComponent<Button>().image.overrideSprite = null;
         }
     }
 }
