@@ -152,7 +152,6 @@ namespace Assets.Scripts.Character
             {
                 if (other.isTrigger && ignoreTimer.Done && !ivWaitingForAnimation)
                 {
-                    Logger.Log("Hit Ignore trigger");
                     gameObject.layer = LayerMask.NameToLayer("IgnoreGround");
                     ignoreTimer.Restart(0.1f);
                 }
@@ -163,7 +162,6 @@ namespace Assets.Scripts.Character
         {
             if (other.tag == "Ground")
             {
-                Logger.Log("Head not touching roof");
                 canTriggerJump = true;
             }
         }
@@ -211,7 +209,6 @@ namespace Assets.Scripts.Character
 
                         if (hit.transform.rotation.z != 0)
                         {
-                            Logger.Log("Im moving");
                             ivLastSlop = hit.collider.gameObject;
                             transform.position = new Vector2(transform.position.x, hit.point.y);
                             if (groundedLastFrame)
@@ -452,7 +449,6 @@ namespace Assets.Scripts.Character
 
                 if (CurrentAnimationState != AnimationState.Stab && CurrentAnimationState != AnimationState.Smash)
                 {
-                    Logger.Log("Starting a jump");
                     jumping = true;
                     ivAnimator.SetBool(ivHashIDs.Jump, true);
                     CurrentAnimationState = AnimationState.Jump;
@@ -554,7 +550,6 @@ namespace Assets.Scripts.Character
 
                 if(!boostReactionTimer.Done && Mathf.Abs(xMove) > 0)
                 {
-                    Logger.Log(string.Format("Trying to cancel boost, BoostingRight: {0}        xVel: {1}", boostingRight, xMove));
                     if (xMove < 0 && boostingRight)
                     {
                         boostReactionTimer.Cancel();

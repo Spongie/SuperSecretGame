@@ -64,9 +64,9 @@
     <Compile Include="Utility\ButtonLockTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TheReallyReallySuperSecretGamev3\Assembly-CSharp.csproj">
-      <Project>{9f17d0ee-ddea-f057-fcae-be96c2fc59f5}</Project>
-      <Name>Assembly-CSharp</Name>
+    <ProjectReference Include="..\TheReallyReallySuperSecretGamev3\TheReallyReallySuperSecretGamev3.CSharp.csproj">
+      <Project>{cd8823cb-4bf3-1700-2d50-8c11f0b8ba48}</Project>
+      <Name>TheReallyReallySuperSecretGamev3.CSharp</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

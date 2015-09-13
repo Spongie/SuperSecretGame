@@ -111,7 +111,6 @@ namespace Assets.Scripts.Character.Stat
         public bool Resist()
         {
             var roll = UnityEngine.Random.Range(0, 100);
-            Logger.Log(string.Format("Rolled a {0} ", roll));
             return roll < (int)Resistance;
         }
 

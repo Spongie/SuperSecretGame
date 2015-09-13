@@ -29,8 +29,6 @@ namespace Assets.Scripts.Items
             transform.position = new Vector3(transform.position.x, transform.position.y, 0);
             SetSprite(ItemDropped.IconName);
 
-            Logger.Log(string.Format("Dropping item {0} - {1}", ItemDropped.IconName, ItemDropped.Name));
-
             rigidB.velocity = new Vector2(Random.Range(-0.6f, 0.6f), 9);
         }
 

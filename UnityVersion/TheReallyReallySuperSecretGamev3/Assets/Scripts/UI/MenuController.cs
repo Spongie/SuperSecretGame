@@ -29,7 +29,7 @@ namespace Assets.Scripts.UI
 
         void Awake()
         {
-            //Show();
+            Show();
         }
 
         public void Show()
