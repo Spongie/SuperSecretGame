@@ -26,7 +26,7 @@ namespace Assets.Scripts.UI
 
         void Awake()
         {
-            Show();
+            //Show();
         }
 
         public void Show()
@@ -41,7 +41,6 @@ namespace Assets.Scripts.UI
                 {
                     firstItemButton = itemButton;
                     EventSystem.current.SetSelectedGameObject(itemButton);
-                    itemButton.GetComponent<Button>();
                     first = false;
                 }
 

@@ -34,22 +34,6 @@ namespace Assets.Scripts.Items
         private float ivResistance;
         private float ivDamage;
         private float ivMagicDamage;
-
-        public CStats GetStats()
-        {
-            var stats = new CStats()
-            {
-                Damage = ivDamage,
-                Defense = ivDefense,
-                MagicDamage = ivMagicDamage,
-                MagicDefense = ivMagicDefense,
-                Luck = ivLuck,
-                Resistance = ivResistance
-            };
-
-            return stats;
-        }
-
         private float ivDefense;
         private float ivLuck;
         private ItemSlot ivSlot;
@@ -60,6 +44,7 @@ namespace Assets.Scripts.Items
         private int ivTicks;
         private int ivMaxStackSize;
         private string ivID;
+        private string ivDescription;
 
         private float ivEffectMagicDefense;
         private float ivEffectResistance;
@@ -348,12 +333,41 @@ namespace Assets.Scripts.Items
             }
         }
 
+        public string Description
+        {
+            get
+            {
+                return ivDescription;
+            }
+
+            set
+            {
+                ivDescription = value;
+                FirePropertyChanged("Description");
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void FirePropertyChanged(string property)
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(property));
+        }
+
+        public CStats GetStats()
+        {
+            var stats = new CStats()
+            {
+                Damage = ivDamage,
+                Defense = ivDefense,
+                MagicDamage = ivMagicDamage,
+                MagicDefense = ivMagicDefense,
+                Luck = ivLuck,
+                Resistance = ivResistance
+            };
+
+            return stats;
         }
 
         public void GenerateID()

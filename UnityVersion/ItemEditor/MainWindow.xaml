@@ -46,6 +46,8 @@
                             <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=Resistance}" FontSize="18"/>
                             <Label Content="IconName"/>
                             <TextBlock Height="30" TextWrapping="Wrap" Text="{Binding Path=IconName}" FontSize="18"/>
+                            <Label Content="Description"/>
+                            <TextBox Height="60" TextWrapping="WrapWithOverflow" Text="{Binding Path=Description}" FontSize="14"/>
                             <Label Content="On Attack Effect" />
                             <ComboBox ItemsSource="{Binding Path=AttackModifiers}" SelectedItem="{Binding Path=EffectName}" SelectionChanged="EffectName_SelectionChanged"/>
                             <Label Content="Effectvalue" />
