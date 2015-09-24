@@ -63,6 +63,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &123154
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 493854}
+  - 61: {fileID: 6152456}
+  - 114: {fileID: 11431130}
+  m_Layer: 0
+  m_Name: FuckingHead
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &157604
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,7 +114,7 @@ GameObject:
   m_Icon: {fileID: 4892941663561143343, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &424856
 Transform:
   m_ObjectHideFlags: 1
@@ -109,7 +126,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 456066}
-  m_RootOrder: 0
+  m_RootOrder: 2
 --- !u!4 &430122
 Transform:
   m_ObjectHideFlags: 1
@@ -121,7 +138,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 456066}
-  m_RootOrder: 1
+  m_RootOrder: 3
 --- !u!4 &456066
 Transform:
   m_ObjectHideFlags: 1
@@ -132,10 +149,11 @@ Transform:
   m_LocalPosition: {x: -3.3599999, y: -2.04999995, z: 0}
   m_LocalScale: {x: .300000012, y: .300000012, z: 1}
   m_Children:
+  - {fileID: 493854}
+  - {fileID: 456164}
   - {fileID: 424856}
   - {fileID: 430122}
   - {fileID: 490486}
-  - {fileID: 456164}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &456164
@@ -149,7 +167,7 @@ Transform:
   m_LocalScale: {x: 3.33333325, y: 3.33333325, z: 1}
   m_Children: []
   m_Father: {fileID: 456066}
-  m_RootOrder: 3
+  m_RootOrder: 1
 --- !u!4 &490486
 Transform:
   m_ObjectHideFlags: 1
@@ -161,7 +179,19 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 456066}
-  m_RootOrder: 2
+  m_RootOrder: 4
+--- !u!4 &493854
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 123154}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .0299999993, y: 4.84100008, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 456066}
+  m_RootOrder: 0
 --- !u!50 &5040052
 Rigidbody2D:
   serializedVersion: 2
@@ -229,11 +259,24 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110236}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: .0299999993, y: 4.82999992}
+  serializedVersion: 2
+  m_Size: {x: .75, y: .180000007}
+--- !u!61 &6152456
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 123154}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: .75, y: .180000007}
 --- !u!61 &6154892
@@ -333,6 +376,7 @@ MonoBehaviour:
   IgnoringLayer:
     serializedVersion: 2
     m_Bits: 1024
+  YYYYYYYYYYYYYYY: 0
 --- !u!114 &11416868
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -357,6 +401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a642845c916b8eb41963fa21e88bb1fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsSelfCasted: 0
   IsMeleeAttack: 1
   IsCurseAreaAttack: 0
   CurseSpawnOnCast: 1
@@ -367,6 +412,7 @@ MonoBehaviour:
   lifeTimer: {fileID: 0}
   Owner: {fileID: 110236}
   AttackEffects: []
+  OnHitGraphics: {fileID: 0}
   CursedArea: {fileID: 0}
   Speed: {x: 0, y: 0}
   ThrewToRight: 0
@@ -388,6 +434,17 @@ MonoBehaviour:
   TimeToRun: 0
   TimeRunning: 0
   Paused: 0
+--- !u!114 &11431130
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 123154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a99fd79f3f41274f943325b1d20f7f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11457248
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -450,6 +507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a642845c916b8eb41963fa21e88bb1fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsSelfCasted: 0
   IsMeleeAttack: 1
   IsCurseAreaAttack: 0
   CurseSpawnOnCast: 1
@@ -460,6 +518,7 @@ MonoBehaviour:
   lifeTimer: {fileID: 0}
   Owner: {fileID: 110236}
   AttackEffects: []
+  OnHitGraphics: {fileID: 0}
   CursedArea: {fileID: 0}
   Speed: {x: 0, y: 0}
   ThrewToRight: 0

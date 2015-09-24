@@ -9,7 +9,6 @@ namespace Assets.Scripts.Utility
 
         void Start()
         {
-
         }
 
         IEnumerator Copy()

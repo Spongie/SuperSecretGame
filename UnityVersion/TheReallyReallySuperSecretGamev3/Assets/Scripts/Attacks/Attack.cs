@@ -21,6 +21,7 @@ namespace Assets.Scripts.Attacks
         public Timer lifeTimer;
         public GameObject Owner;
         public AttackEffect[] AttackEffects;
+        public GameObject OnHitGraphics;
         public GameObject CursedArea;
         public Vector2 Speed = Vector2.zero;
         public bool ThrewToRight = false;
@@ -152,7 +153,7 @@ namespace Assets.Scripts.Attacks
             HandleCollision(coll.gameObject);
         }
 
-        private void HandleCollision(GameObject otherGameObject)
+        private void HandleCollision(GameObject otherGameObject)//, Vector3 piGraphialSpawnPoint)
         {
             Logger.Log(string.Format("Hit gameobject {0} ", otherGameObject.name));
 
@@ -164,6 +165,9 @@ namespace Assets.Scripts.Attacks
                 {
                     AddEntityToHit(otherGameObject);
                     DamageController.DoAttack(Owner, otherGameObject, Scaling, GetAttackEffects());
+
+                    //if (OnHitGraphics != null)
+                    //    Instantiate(OnHitGraphics, piGraphialSpawnPoint, Quaternion.identity);
                 }
             }
 
