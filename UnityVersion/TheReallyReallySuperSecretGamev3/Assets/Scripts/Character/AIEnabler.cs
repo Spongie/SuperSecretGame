@@ -18,7 +18,7 @@ namespace Assets.Scripts.Character
 
             if (monster != null)
             {
-                other.gameObject.SetActive(true);
+                monster.Activate();
             }
         }
 
@@ -28,7 +28,7 @@ namespace Assets.Scripts.Character
 
             if (monster != null)
             {
-                other.gameObject.SetActive(false);
+                monster.Deactivate();
             }
         }
     }

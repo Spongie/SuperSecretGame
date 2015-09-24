@@ -10,6 +10,7 @@ namespace Assets.Scripts.Attacks
     [RequireComponent(typeof(AttackDamageScaling))]
     public class Attack : MonoBehaviour
     {
+        public bool IsSelfCasted = false;
         public bool IsMeleeAttack = false;
         public bool IsCurseAreaAttack = false;
         public bool CurseSpawnOnCast = true;
@@ -38,6 +39,14 @@ namespace Assets.Scripts.Attacks
             lifeTimer = GetComponent<Timer>();
 
             EntitiesHit = new Dictionary<GameObject, ManualTimer>();
+
+            if(IsSelfCasted)
+            {
+                TargetType = AttackTarget.Everything;
+                DiesOnCollision = true;
+                HandleCollision(Owner);
+                return;
+            }
 
             lifeTimer.Restart(secondsToLive);
 
@@ -159,7 +168,13 @@ namespace Assets.Scripts.Attacks
             }
 
             if (DiesOnCollision)
-                Destroy(gameObject);
+                DestroyAttack();
+        }
+
+        private void DestroyAttack()
+        {
+            EntitiesHit.Clear();
+            Destroy(gameObject);
         }
 
         public void StartMeleeAttack()

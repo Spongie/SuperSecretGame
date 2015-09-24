@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Assets.Scripts.Attacks;
+using UnityEngine;
 
 namespace Assets.Scripts.Character
 {
@@ -15,6 +16,8 @@ namespace Assets.Scripts.Character
         private IBuffContainer Buffs;
         private CStats ivBaseStats;
         private Inventory ivInventory;
+        private List<string> UnlockedSpells;
+        private List<GameObject> Spells;
 
         public PlayerController(IBuffContainer piBuff, CStats piStats)
         {
@@ -70,6 +73,11 @@ namespace Assets.Scripts.Character
         public void DrainMana(float amount)
         {
             ivBaseStats.DrainMana((int)amount);
+        }
+
+        public List<GameObject> GetAvailableSpells()
+        {
+            return Spells.Where(spell => UnlockedSpells.Contains(spell.name)).ToList();
         }
 
         public Inventory PlayerInventory

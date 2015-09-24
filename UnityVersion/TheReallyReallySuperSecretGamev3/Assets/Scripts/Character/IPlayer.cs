@@ -2,6 +2,7 @@
 using Assets.Scripts.Character.Stat;
 using Assets.Scripts.Items;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Assets.Scripts.Character
 {
@@ -14,7 +15,7 @@ namespace Assets.Scripts.Character
         CStats GetTrueStats();
 
         IEnumerable<AttackEffect> GetAttackEffectsFromEquippedItems();
-
+        List<GameObject> GetAvailableSpells();
         bool LoadPlayer();
     }
 }

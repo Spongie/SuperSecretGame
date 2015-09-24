@@ -3,6 +3,7 @@ using Assets.Scripts.Utility;
 using Assets.Scripts.Environment;
 using Assets.Scripts.Attacks;
 using UnityEditor;
+using System;
 
 namespace Assets.Scripts.Character
 {
@@ -105,6 +106,7 @@ namespace Assets.Scripts.Character
         private bool boostingRight = false;
         private Player ivPlayer;
         private Animator ivAnimator;
+        public float YYYYYYYYYYYYYYY;
 
         // Use this for initialization
         void Start()
@@ -144,6 +146,11 @@ namespace Assets.Scripts.Character
                     }
                 }
             }
+        }
+
+        public void TriggerEnterFromHead(Collider2D other)
+        {
+            OnTriggerEnter2D(other);
         }
 
         void OnTriggerEnter2D(Collider2D other)
@@ -330,6 +337,7 @@ namespace Assets.Scripts.Character
 
         void Update()
         {
+            YYYYYYYYYYYYYYY = ivRigidbody.velocity.y;
             if (ivWaitingForAnimation)
                 return;
 
@@ -365,7 +373,7 @@ namespace Assets.Scripts.Character
                     CurrentAnimationState = AnimationState.Smash;
                     ivAnimator.SetTrigger(ivHashIDs.Smash);
                 }
-                //EditorApplication.isPaused = true;
+
                 isJumpControlling = false;
                 canDoublejump = false;
                 jumpControlTimer.Cancel();
@@ -490,10 +498,16 @@ namespace Assets.Scripts.Character
 
         // Update is called once per physics loop
         void FixedUpdate()
-        {
+        {           
             ivGravityTimer.Update(Time.deltaTime);
 
-            if(CurrentAnimationState == AnimationState.BoostLand)
+            //if(ivRigidbody.velocity.y < -5f && IsAttacking())
+            //    gameObject.layer = LayerMask.NameToLayer("Default");
+            //
+            if (ivRigidbody.velocity.y < 0 && ignoreTimer.Done)
+                gameObject.layer = LayerMask.NameToLayer("Default");
+
+            if (CurrentAnimationState == AnimationState.BoostLand)
             {
                 if (boostReactionTimer.Done)
                 {
@@ -701,8 +715,7 @@ namespace Assets.Scripts.Character
             else
                 ivAnimator.SetBool(ivHashIDs.Idle, false);
 
-            if (ivRigidbody.velocity.y < 0 && ignoreTimer.Done)
-                gameObject.layer = LayerMask.NameToLayer("Default");
+            
 
             if (CanMove())
             {
@@ -720,6 +733,11 @@ namespace Assets.Scripts.Character
                 }
                 this.transform.localScale = scale;
             }
+        }
+
+        private bool IsAttacking()
+        {
+            return CurrentAnimationState == AnimationState.Smash || CurrentAnimationState == AnimationState.Stab;
         }
 
         private void setLastSlopePhysicsMaterial(PhysicsMaterial2D piMaterial)

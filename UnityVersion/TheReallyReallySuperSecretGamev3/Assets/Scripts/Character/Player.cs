@@ -70,5 +70,10 @@ namespace Assets.Scripts.Character
         {
             return false;
         }
+
+        public List<GameObject> GetAvailableSpells()
+        {
+            return Controller.GetAvailableSpells();
+        }
     }
 }

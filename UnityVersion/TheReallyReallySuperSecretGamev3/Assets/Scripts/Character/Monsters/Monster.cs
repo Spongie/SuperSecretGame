@@ -45,6 +45,12 @@ namespace Assets.Scripts.Character.Monsters
             ivFacingRight = true;
         }
 
+        public void Deactivate()
+        {
+            AiList.Clear();
+            target = null;
+        }
+
         public void Activate()
         {
             this.target = GameObject.FindGameObjectWithTag("Player");
