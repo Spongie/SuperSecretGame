@@ -77,6 +77,8 @@ namespace Assets.Scripts.Character
         bool stop = false;
         bool dashing = false;
         bool diveKicking = false;
+        bool releasedJumpSinceLand = false;
+        bool hasJumpedEver = false;
 
         ManualTimer jumpControlTimer = new ManualTimer(0);
         ManualTimer dashTimer = new ManualTimer(0);
@@ -251,6 +253,9 @@ namespace Assets.Scripts.Character
             if (TrulyGrounded)
                 return;
 
+            if(hasJumpedEver)
+                releasedJumpSinceLand = true;
+
             Logger.Log("Setting grounded");
             usedDoubleJump = false;
             canDoublejump = true;
@@ -275,6 +280,7 @@ namespace Assets.Scripts.Character
         {
             CurrentAnimationState = AnimationState.Idle;
             ivAnimator.SetBool(ivHashIDs.Idle, true);
+            ivAnimator.SetBool(ivHashIDs.Jump, false);
             ivAnimator.SetBool(ivHashIDs.Running, false);
             ivAnimator.SetBool(ivHashIDs.Falling, false);
             ivWaitingForAnimation = false;
@@ -425,6 +431,9 @@ namespace Assets.Scripts.Character
 
             if (Input.GetAxisRaw("Horizontal") == 0)
                 maxSpeed = originalMaxSpeed;
+
+            if (releasedJumpSinceLand && !Input.GetButton(JumpButton))
+                releasedJumpSinceLand = false;
         }
 
         private bool CanAttack()
@@ -437,8 +446,9 @@ namespace Assets.Scripts.Character
             if (!ignoreTimer.Done)
                 return;
 
-            if (Input.GetButton(JumpButton) && !ButtonLock.Instance.IsButtonLocked(JumpButton))
+            if (Input.GetButton(JumpButton) && !ButtonLock.Instance.IsButtonLocked(JumpButton) && !releasedJumpSinceLand)
             {
+                hasJumpedEver = true;
                 bool grounded = IsGrounded();
                 if (grounded || canDoublejump)
                 {
@@ -460,7 +470,7 @@ namespace Assets.Scripts.Character
                     isJumpControlling = true;
                 }
 
-                if (CurrentAnimationState != AnimationState.Stab && CurrentAnimationState != AnimationState.Smash)
+                if (CurrentAnimationState != AnimationState.Stab && CurrentAnimationState != AnimationState.Smash && CurrentAnimationState != AnimationState.Falling)
                 {
                     jumping = true;
                     ivAnimator.SetBool(ivHashIDs.Jump, true);
