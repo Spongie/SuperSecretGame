@@ -26,7 +26,7 @@ namespace Assets.Scripts.Character
         public AnimationState CurrentAnimationState = AnimationState.Idle;
         public string JumpButton = "A";
         public string DashButton = "RB";
-
+        bool isGrounded = false;
         public bool TrulyGrounded = false;
         public bool DiveKickingRight;
 
@@ -373,6 +373,9 @@ namespace Assets.Scripts.Character
                 {
                     CurrentAnimationState = AnimationState.Stab;
                     ivAnimator.SetTrigger(ivHashIDs.Stab);
+
+                    if(isGrounded)
+                        ivRigidbody.velocity = new Vector2(0, ivRigidbody.velocity.y);
                 }
                 else
                 {
@@ -411,7 +414,7 @@ namespace Assets.Scripts.Character
                 }
                 else
                 {
-                    if (IsGrounded())
+                    if (isGrounded)
                     {
                         dashTimer.Restart(0.15f);
                         dashing = true;
@@ -449,10 +452,9 @@ namespace Assets.Scripts.Character
             if (Input.GetButton(JumpButton) && !ButtonLock.Instance.IsButtonLocked(JumpButton) && !releasedJumpSinceLand)
             {
                 hasJumpedEver = true;
-                bool grounded = IsGrounded();
-                if (grounded || canDoublejump)
+                if (isGrounded || canDoublejump)
                 {
-                    if (Input.GetAxisRaw("Vertical") < 0 && grounded)
+                    if (Input.GetAxisRaw("Vertical") < 0 && isGrounded)
                     {
                         gameObject.layer = LayerMask.NameToLayer("IgnoreGround");
                         ignoreTimer.Restart(0.4f);
@@ -462,7 +464,7 @@ namespace Assets.Scripts.Character
                     if (!isJumpControlling)
                         jumpControlTimer.Restart(0.3f);
 
-                    if (!IsGrounded() && !isJumpControlling)
+                    if (!isGrounded && !isJumpControlling)
                     {
                         usedDoubleJump = true;
                         canDoublejump = false;
@@ -521,9 +523,7 @@ namespace Assets.Scripts.Character
             //if(ivRigidbody.velocity.y < -5f && IsAttacking())
             //    gameObject.layer = LayerMask.NameToLayer("Default");
             //
-            if (ivRigidbody.velocity.y < 0 && ignoreTimer.Done)
-                gameObject.layer = LayerMask.NameToLayer("Default");
-
+            
             if (CurrentAnimationState == AnimationState.BoostLand)
             {
                 if (boostReactionTimer.Done)
@@ -532,17 +532,20 @@ namespace Assets.Scripts.Character
                 }
             }
 
-            bool isGrounded = IsGrounded();
+            isGrounded = IsGrounded();
             bool isGrabbing = !isGrounded && wallJumpControlDelayLeft <= 0 && IsGrabbing();
+
+            if (ivWaitingForAnimation)
+                return;
+
+            if (ivRigidbody.velocity.y < 0 && ignoreTimer.Done)
+                gameObject.layer = LayerMask.NameToLayer("Default");
 
             if (isGrounded && diveKicking)
             {
                 LandCancel();
                 return;
             }
-
-            if (ivWaitingForAnimation)
-                return;
 
             if (movingPlatform != null && !groundedLastFrame && !isGrabbing && !isGrounded)
             {
