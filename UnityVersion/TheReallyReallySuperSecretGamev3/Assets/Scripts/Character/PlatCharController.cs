@@ -489,6 +489,9 @@ namespace Assets.Scripts.Character
             }
             else
                 canDoublejump = false;
+
+            if (ButtonLock.Instance.IsButtonLocked(JumpButton))
+                releasedJumpSinceLand = true;
         }
 
         /// <summary>
