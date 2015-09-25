@@ -266,8 +266,8 @@ namespace Assets.Scripts.Character
                 return;
 
             Logger.Log("Doing a Land-Cancel");
+            diveKicking = false;
             CancelActiveAttack();
-
             ResetAnimation();
         }
 
@@ -358,7 +358,7 @@ namespace Assets.Scripts.Character
             jumpStartTimer.Update(Time.deltaTime);
             ignoreTimer.Update(Time.deltaTime);
 
-            if(Input.GetButtonDown("X"))
+            if(Input.GetButtonDown("X") && CanAttack())
             {
                 ivAnimator.SetBool(ivHashIDs.LandCancel, false);
                 ivAnimator.SetBool(ivHashIDs.Jump, false);
@@ -425,6 +425,11 @@ namespace Assets.Scripts.Character
 
             if (Input.GetAxisRaw("Horizontal") == 0)
                 maxSpeed = originalMaxSpeed;
+        }
+
+        private bool CanAttack()
+        {
+            return !dashing && !diveKicking;
         }
 
         private void CheckJump()
@@ -498,7 +503,9 @@ namespace Assets.Scripts.Character
 
         // Update is called once per physics loop
         void FixedUpdate()
-        {           
+        {
+            FixBadAnimations();
+
             ivGravityTimer.Update(Time.deltaTime);
 
             //if(ivRigidbody.velocity.y < -5f && IsAttacking())
@@ -517,6 +524,12 @@ namespace Assets.Scripts.Character
 
             bool isGrounded = IsGrounded();
             bool isGrabbing = !isGrounded && wallJumpControlDelayLeft <= 0 && IsGrabbing();
+
+            if (isGrounded && diveKicking)
+            {
+                LandCancel();
+                return;
+            }
 
             if (ivWaitingForAnimation)
                 return;
@@ -562,7 +575,7 @@ namespace Assets.Scripts.Character
 
                 var xMove = Input.GetAxisRaw("Horizontal");
 
-                if(!boostReactionTimer.Done && Mathf.Abs(xMove) > 0)
+                if (!boostReactionTimer.Done && Mathf.Abs(xMove) > 0)
                 {
                     if (xMove < 0 && boostingRight)
                     {
@@ -579,6 +592,8 @@ namespace Assets.Scripts.Character
                 xVel += PlatformVelocity().x;
                 if (ivLastSlop != null)
                     Debug.Log(string.Format("XVel:{0}     Slope:{1}", xVel, ivLastSlop.name));
+
+                //setGrounded();
 
                 if (xVel == 0 && ivMovedLastFrame)
                 {
@@ -665,7 +680,7 @@ namespace Assets.Scripts.Character
             else
                 ivMovedLastFrame = false;
 
-            if(ivPlayer.Controller.GetBuffContainer().IsChilled())
+            if (ivPlayer.Controller.GetBuffContainer().IsChilled())
                 xVel /= 2;
 
             if (yVel > 8)
@@ -709,13 +724,13 @@ namespace Assets.Scripts.Character
                     ivAnimator.SetBool(ivHashIDs.Idle, true);
                     ivAnimator.SetBool(ivHashIDs.Falling, false);
                     ivAnimator.SetBool(ivHashIDs.Running, false);
-                    ivAnimator.SetBool(ivHashIDs.LandCancel, false);                  
+                    ivAnimator.SetBool(ivHashIDs.LandCancel, false);
                 }
             }
             else
                 ivAnimator.SetBool(ivHashIDs.Idle, false);
 
-            
+
 
             if (CanMove())
             {
@@ -733,6 +748,15 @@ namespace Assets.Scripts.Character
                 }
                 this.transform.localScale = scale;
             }
+        }
+
+        private void FixBadAnimations()
+        {
+            if (ivAnimator.GetBool(ivHashIDs.LandCancel))
+                ivAnimator.SetBool(ivHashIDs.LandCancel, false);
+
+            if (ivAnimator.GetBool(ivHashIDs.BoostLand) && ivRigidbody.velocity.y < 0f)
+                ivAnimator.SetBool(ivHashIDs.BoostLand, false);
         }
 
         private bool IsAttacking()
