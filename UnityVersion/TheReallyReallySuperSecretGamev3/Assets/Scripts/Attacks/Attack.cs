@@ -45,7 +45,7 @@ namespace Assets.Scripts.Attacks
             {
                 TargetType = AttackTarget.Everything;
                 DiesOnCollision = true;
-                HandleCollision(Owner, Owner.transform);
+                HandleCollision(Owner, Owner.transform.position);
                 return;
             }
 
