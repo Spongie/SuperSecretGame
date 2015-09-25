@@ -145,15 +145,15 @@ namespace Assets.Scripts.Attacks
 
         void OnTriggerEnter2D(Collider2D coll)
         {
-            HandleCollision(coll.gameObject);
+            HandleCollision(coll.gameObject, transform.position);
         }
 
         void OnCollisionEnter2D(Collision2D coll)
         {
-            HandleCollision(coll.gameObject);
+            HandleCollision(coll.gameObject, coll.contacts.First().point);
         }
 
-        private void HandleCollision(GameObject otherGameObject)//, Vector3 piGraphialSpawnPoint)
+        private void HandleCollision(GameObject otherGameObject, Vector3 piGraphialSpawnPoint)
         {
             Logger.Log(string.Format("Hit gameobject {0} ", otherGameObject.name));
 
@@ -166,8 +166,8 @@ namespace Assets.Scripts.Attacks
                     AddEntityToHit(otherGameObject);
                     DamageController.DoAttack(Owner, otherGameObject, Scaling, GetAttackEffects());
 
-                    //if (OnHitGraphics != null)
-                    //    Instantiate(OnHitGraphics, piGraphialSpawnPoint, Quaternion.identity);
+                    if (OnHitGraphics != null)
+                        Instantiate(OnHitGraphics, piGraphialSpawnPoint, Quaternion.identity);
                 }
             }
 
