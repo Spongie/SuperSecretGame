@@ -37,6 +37,7 @@ namespace Assets.Scripts.Character
 
         // What we sent the Y velocity to during a jump
         public float jumpSpeed = 12f;
+        public float MaxFallSpeed = 12f;
 
         // Whether our platform will add to jump
         public bool platformRelativeJump = false;
@@ -108,7 +109,6 @@ namespace Assets.Scripts.Character
         private bool boostingRight = false;
         private Player ivPlayer;
         private Animator ivAnimator;
-        public float YYYYYYYYYYYYYYY;
 
         // Use this for initialization
         void Start()
@@ -159,7 +159,7 @@ namespace Assets.Scripts.Character
         {
             if (other.tag == "Ground")
             {
-                if (other.isTrigger && ignoreTimer.Done && !ivWaitingForAnimation)
+                if (other.isTrigger && ignoreTimer.Done && !ivWaitingForAnimation && ivRigidbody.velocity.y >= 0f)
                 {
                     gameObject.layer = LayerMask.NameToLayer("IgnoreGround");
                     ignoreTimer.Restart(0.1f);
@@ -343,7 +343,6 @@ namespace Assets.Scripts.Character
 
         void Update()
         {
-            YYYYYYYYYYYYYYY = ivRigidbody.velocity.y;
             if (ivWaitingForAnimation)
                 return;
 
@@ -698,6 +697,9 @@ namespace Assets.Scripts.Character
 
             if (yVel > 8)
                 yVel = 8;
+
+            if (yVel < (MaxFallSpeed * -1))
+                yVel = -MaxFallSpeed;
 
             // Apply the calculate velocity to our rigidbody
             ivRigidbody.velocity = new Vector2(

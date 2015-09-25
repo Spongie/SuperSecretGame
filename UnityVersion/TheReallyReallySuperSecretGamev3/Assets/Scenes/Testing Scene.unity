@@ -3276,14 +3276,6 @@ Prefab:
       propertyPath: m_Name
       value: CastleFloor 4 (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 476328, guid: ee133a95fc2964047b1b11e097dd6acf, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1.30760539
-      objectReference: {fileID: 0}
-    - target: {fileID: 476328, guid: ee133a95fc2964047b1b11e097dd6acf, type: 2}
-      propertyPath: m_LocalScale.y
-      value: .846197486
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee133a95fc2964047b1b11e097dd6acf, type: 2}
   m_IsPrefabParent: 0

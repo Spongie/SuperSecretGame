@@ -354,9 +354,10 @@ MonoBehaviour:
   IgnoreGravityTime: .150000006
   maxSpeed: 4.5
   jumpSpeed: 5
-  platformRelativeJump: 1
-  allowWallGrab: 0
-  allowWallJump: 0
+  MaxFallSpeed: 10
+  platformRelativeJump: 0
+  allowWallGrab: 1
+  allowWallJump: 1
   disableGravityDuringWallGrab: 0
   wallGrabMask:
     serializedVersion: 2
@@ -376,7 +377,6 @@ MonoBehaviour:
   IgnoringLayer:
     serializedVersion: 2
     m_Bits: 1024
-  YYYYYYYYYYYYYYY: 0
 --- !u!114 &11416868
 MonoBehaviour:
   m_ObjectHideFlags: 1
