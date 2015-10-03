@@ -11,6 +11,8 @@ GameObject:
   - 212: {fileID: 21216992}
   - 61: {fileID: 6132284}
   - 61: {fileID: 6174328}
+  - 61: {fileID: 6123032}
+  - 61: {fileID: 6193338}
   m_Layer: 8
   m_Name: BrownFloor
   m_TagString: Ground
@@ -69,7 +71,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 129384}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.699526191, y: 1.45576799, z: 0}
+  m_LocalPosition: {x: -2.70466375, y: .828996778, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 457640}
@@ -101,6 +103,19 @@ BoxCollider2D:
   m_Offset: {x: 1.92999995, y: 0}
   serializedVersion: 2
   m_Size: {x: .600000024, y: .889999986}
+--- !u!61 &6123032
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129384}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 1.45000005, y: -.0799999982}
+  serializedVersion: 2
+  m_Size: {x: .119999997, y: .800000012}
 --- !u!61 &6132284
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -137,9 +152,22 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: -.0799999982}
+  m_Offset: {x: -1.45000005, y: -.0799999982}
   serializedVersion: 2
-  m_Size: {x: 3.01999998, y: .800000012}
+  m_Size: {x: .119999997, y: .800000012}
+--- !u!61 &6193338
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129384}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: -.289999992}
+  serializedVersion: 2
+  m_Size: {x: 2.76999998, y: .389999986}
 --- !u!212 &21216992
 SpriteRenderer:
   m_ObjectHideFlags: 1

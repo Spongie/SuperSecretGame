@@ -19,9 +19,11 @@ namespace Assets.Scripts.UI
     {
         public Player Player;
         public GameObject ItemButton;
+        public GameObject SpellButton;
         public Transform ParentTransfrom;
         public IconManager ItemIconManager;
         public GameObject firstItemButton;
+        public GameObject firstSpellButton;
         private CurrentPanel currentPanel;
 
         void Awake()
@@ -54,7 +56,10 @@ namespace Assets.Scripts.UI
         {
             if(Input.GetButtonDown("RB"))
             {
-
+                if (IsSpellButtonSelected())
+                {
+                    SelectButton(firstItemButton);
+                }
             }
             else if(Input.GetButtonDown("LB") && currentPanel != CurrentPanel.Items)
             {
@@ -64,6 +69,21 @@ namespace Assets.Scripts.UI
                     currentPanel = CurrentPanel.Equipped;
                 }
             }
+        }
+
+        private void SelectButton(GameObject button)
+        {
+            EventSystem.current.SetSelectedGameObject(button);
+        }
+
+        private static bool IsSpellButtonSelected()
+        {
+            return EventSystem.current.currentSelectedGameObject.GetComponent<SpellButton>() != null;
+        }
+
+        private static bool IsItemButtonSelected()
+        {
+            return EventSystem.current.currentSelectedGameObject.GetComponent<ItemButton>() != null;
         }
 
         private GameObject AddItemButton(Item item, int index)

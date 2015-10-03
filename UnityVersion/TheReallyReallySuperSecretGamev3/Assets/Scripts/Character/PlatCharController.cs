@@ -152,19 +152,27 @@ namespace Assets.Scripts.Character
 
         public void TriggerEnterFromHead(Collider2D other)
         {
-            OnTriggerEnter2D(other);
+            HandleCollision(other, true);
         }
 
         void OnTriggerEnter2D(Collider2D other)
         {
+            HandleCollision(other);
+        }
+
+        private void HandleCollision(Collider2D other, bool fromHead = false)
+        {
             if (other.tag == "Ground")
             {
-                if (other.isTrigger && ignoreTimer.Done && !ivWaitingForAnimation && ivRigidbody.velocity.y >= 0f)
+                if (other.isTrigger && ignoreTimer.Done && !ivWaitingForAnimation)
                 {
+                    if (fromHead && ivRigidbody.velocity.y < 0f)
+                        return;
+
                     gameObject.layer = LayerMask.NameToLayer("IgnoreGround");
                     ignoreTimer.Restart(0.1f);
                 }
-            }           
+            }
         }
 
         void OnTriggerExit2D(Collider2D other)
