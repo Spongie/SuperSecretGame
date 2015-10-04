@@ -16,6 +16,8 @@ namespace Assets.Scripts.Character
         public int BoostJump;
         public int LandCancel;
         public int BoostEnd;
+        public int SpellSelfCast;
+        public int SpellOffensiveCast;
 
         void Awake()
         {
@@ -31,6 +33,8 @@ namespace Assets.Scripts.Character
             BoostJump = Animator.StringToHash("BoostJump");
             LandCancel = Animator.StringToHash("LandCancel");
             BoostEnd = Animator.StringToHash("BoostEnd");
+            SpellSelfCast = Animator.StringToHash("SpellSelfCast");
+            SpellOffensiveCast = Animator.StringToHash("SpellOffensiveCast");
         }
     }
 }

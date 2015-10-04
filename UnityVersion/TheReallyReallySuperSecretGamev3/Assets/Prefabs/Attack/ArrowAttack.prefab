@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &410954
 Transform:
   m_ObjectHideFlags: 1
@@ -87,6 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a642845c916b8eb41963fa21e88bb1fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsSelfCasted: 0
   IsMeleeAttack: 0
   IsCurseAreaAttack: 0
   CurseSpawnOnCast: 1
@@ -94,11 +95,13 @@ MonoBehaviour:
   ApplyGravity: 0
   secondsToLive: 10
   secondsHitReset: 1
+  ManaCost: 0
   lifeTimer: {fileID: 0}
   Owner: {fileID: 0}
   AttackEffects: []
+  OnHitGraphics: {fileID: 0}
   CursedArea: {fileID: 0}
-  Speed: {x: 0, y: 0}
+  Speed: {x: 5, y: 0}
   ThrewToRight: 0
   Bouncing: 0
   BouncesLeft: 3
@@ -168,7 +171,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: IsRotating
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: Damage
@@ -188,6 +191,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: ApplyGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Speed.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

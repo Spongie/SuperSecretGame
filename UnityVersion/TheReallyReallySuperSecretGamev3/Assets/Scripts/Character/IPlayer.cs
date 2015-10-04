@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Attacks;
 using Assets.Scripts.Character.Stat;
 using Assets.Scripts.Items;
+using Assets.Scripts.Spells;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,5 +18,6 @@ namespace Assets.Scripts.Character
         IEnumerable<AttackEffect> GetAttackEffectsFromEquippedItems();
         List<GameObject> GetAvailableSpells();
         bool LoadPlayer();
+        bool CanCastSpell(SpellSlot piSpellSlot);
     }
 }

@@ -4,9 +4,9 @@ using Assets.Scripts.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Assets.Scripts.Attacks;
 using UnityEngine;
+using Assets.Scripts.Spells;
 
 namespace Assets.Scripts.Character
 {
@@ -16,15 +16,15 @@ namespace Assets.Scripts.Character
         private IBuffContainer Buffs;
         private CStats ivBaseStats;
         private Inventory ivInventory;
-        private List<string> UnlockedSpells;
-        private List<GameObject> Spells;
+        public SpellManager SpellController;
 
-        public PlayerController(IBuffContainer piBuff, CStats piStats)
+        public PlayerController(IBuffContainer piBuff, CStats piStats, SpellManager piSpellmanager)
         {
             ivBaseStats = piStats;
             Buffs = piBuff;
             Buffs.SetStats(ivBaseStats);
             ivInventory = new Inventory();
+            SpellController = piSpellmanager;
         }
 
         public IEnumerable<AttackEffect> GetAttackEffectsFromEquippedItems()
@@ -77,7 +77,12 @@ namespace Assets.Scripts.Character
 
         public List<GameObject> GetAvailableSpells()
         {
-            return Spells.Where(spell => UnlockedSpells.Contains(spell.name)).ToList();
+            return SpellController.GetAvailableSpells();
+        }
+
+        public bool CanCastSpell(SpellSlot piSpellSlot)
+        {
+            return SpellController.CanCastSpell(piSpellSlot, GetTrueStats().CurrentMana);
         }
 
         public Inventory PlayerInventory

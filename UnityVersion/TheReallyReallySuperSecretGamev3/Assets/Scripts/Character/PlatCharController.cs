@@ -4,6 +4,7 @@ using Assets.Scripts.Environment;
 using Assets.Scripts.Attacks;
 using UnityEditor;
 using System;
+using Assets.Scripts.Spells;
 
 namespace Assets.Scripts.Character
 {
@@ -330,6 +331,16 @@ namespace Assets.Scripts.Character
             ivWaitingForAnimation = false;
         }
 
+        public void OnSelfCastSpellCastComplete()
+        {
+            ivWaitingForAnimation = false;
+        }
+
+        public void OnOffensiveSpellCastComplete()
+        {
+            ivWaitingForAnimation = false;
+        }
+
         private void OnStunned()
         {
             if (stunnedLastFrame == false)
@@ -370,6 +381,29 @@ namespace Assets.Scripts.Character
             boostReactionTimer.Update(Time.deltaTime);
             jumpStartTimer.Update(Time.deltaTime);
             ignoreTimer.Update(Time.deltaTime);
+
+            if(Input.GetButtonDown("B") && CanAttack())
+            {
+                var inputX = Input.GetAxisRaw("Horizontal");
+                var inputY = Input.GetAxisRaw("Vertical");
+
+                if(Mathf.Abs(inputX) > 0.01f && ivPlayer.CanCastSpell(SpellSlot.Forward))
+                {
+                    CastSpell(SpellSlot.Forward);
+                }
+                else if(inputY < 0f && ivPlayer.CanCastSpell(SpellSlot.Down))
+                {
+                    CastSpell(SpellSlot.Down);
+                }
+                else if(inputY > 0f && ivPlayer.CanCastSpell(SpellSlot.Up))
+                {
+                    CastSpell(SpellSlot.Up);
+                }
+                else if(ivPlayer.CanCastSpell(SpellSlot.Normal))
+                {
+                    CastSpell(SpellSlot.Normal);
+                }
+            }
 
             if(Input.GetButtonDown("X") && CanAttack())
             {
@@ -444,6 +478,33 @@ namespace Assets.Scripts.Character
 
             if (releasedJumpSinceLand && !Input.GetButton(JumpButton))
                 releasedJumpSinceLand = false;
+        }
+
+        private void CastSpell(SpellSlot piSlot)
+        {
+            var spell = ivPlayer.Controller.SpellController.GetEquippedSpellAtSlot(piSlot);
+            StartSpellAnimation(spell.GetComponent<Attack>());
+            var castedSpell = (GameObject)Instantiate(spell, transform.position, Quaternion.identity);
+            var attackOfSpell = castedSpell.GetComponent<Attack>();
+            attackOfSpell.Owner = gameObject;
+            attackOfSpell.TargetType = AttackTarget.Monsters;
+            attackOfSpell.ThrewToRight = true;
+            castedSpell.SetActive(true);
+            EditorApplication.isPaused = true;
+        }
+
+        private void StartSpellAnimation(Attack spell)
+        {
+            if (spell.IsSelfCasted)
+                ivAnimator.SetTrigger(ivHashIDs.SpellSelfCast);
+            else
+                ivAnimator.SetTrigger(ivHashIDs.SpellOffensiveCast);
+
+            ivWaitingForAnimation = true;
+            jumping = false;
+            isJumpControlling = false;
+            canDoublejump = false;
+            jumpControlTimer.Cancel();
         }
 
         private bool CanAttack()

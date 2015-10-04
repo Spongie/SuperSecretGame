@@ -21,7 +21,7 @@ namespace UnitTests.Character
                 Defense = 10
             };
 
-            ivController = new PlayerController(new DummyBuffContainer(), stats);
+            ivController = new PlayerController(new DummyBuffContainer(), stats, null);
         }
 
         [TestCleanup]

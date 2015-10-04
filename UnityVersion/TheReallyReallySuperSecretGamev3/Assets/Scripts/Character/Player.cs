@@ -2,6 +2,7 @@
 using Assets.Scripts.Buffs;
 using Assets.Scripts.Character.Stat;
 using Assets.Scripts.Items;
+using Assets.Scripts.Spells;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,7 +19,7 @@ namespace Assets.Scripts.Character
 
         void Start()
         {
-            Controller = new PlayerController(GetComponent<BuffContainer>(), GetComponent<Stats>().stats);
+            Controller = new PlayerController(GetComponent<BuffContainer>(), GetComponent<Stats>().stats, GetComponent<SpellManager>());
         }
 
         public void GiveLoot(Item piDrop)
@@ -74,6 +75,11 @@ namespace Assets.Scripts.Character
         public List<GameObject> GetAvailableSpells()
         {
             return Controller.GetAvailableSpells();
+        }
+
+        public bool CanCastSpell(SpellSlot piSpellSlot)
+        {
+            return Controller.CanCastSpell(piSpellSlot);
         }
     }
 }

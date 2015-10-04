@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using Assets.Scripts.Utility;
 using System.Linq;
+using Assets.Scripts.Character;
 
 namespace Assets.Scripts.Attacks
 {
-    //[RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(Timer))]
     [RequireComponent(typeof(AttackDamageScaling))]
     public class Attack : MonoBehaviour
@@ -18,6 +18,7 @@ namespace Assets.Scripts.Attacks
         public bool ApplyGravity = false;
         public float secondsToLive;
         public float secondsHitReset;
+        public int ManaCost;
         public Timer lifeTimer;
         public GameObject Owner;
         public AttackEffect[] AttackEffects;
@@ -40,6 +41,8 @@ namespace Assets.Scripts.Attacks
             lifeTimer = GetComponent<Timer>();
 
             EntitiesHit = new Dictionary<GameObject, ManualTimer>();
+
+            Owner.GetComponent<Player>().DrainMana(ManaCost);
 
             if(IsSelfCasted)
             {
@@ -169,10 +172,10 @@ namespace Assets.Scripts.Attacks
                     if (OnHitGraphics != null)
                         Instantiate(OnHitGraphics, piGraphialSpawnPoint, Quaternion.identity);
                 }
-            }
 
-            if (DiesOnCollision)
-                DestroyAttack();
+                if (DiesOnCollision)
+                    DestroyAttack();
+            }
         }
 
         private void DestroyAttack()
