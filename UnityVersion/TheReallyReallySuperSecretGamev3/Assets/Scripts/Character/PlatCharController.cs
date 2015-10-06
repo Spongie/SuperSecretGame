@@ -30,7 +30,7 @@ namespace Assets.Scripts.Character
         bool isGrounded = false;
         public bool TrulyGrounded = false;
         public bool DiveKickingRight;
-
+        public Transform SpellCastPosition;
         public float IgnoreGravityTime;
         // Horizontal speed
         public float maxSpeed = 8f;
@@ -92,6 +92,7 @@ namespace Assets.Scripts.Character
         private Attack disabledAttackOnStun;
         private bool ivWaitingForAnimation = false;
         private HashIDs ivHashIDs;
+        private SpellCastInfo ivSpellCast;
 
         private GameObject ivLastSlop;
         public bool ivMovedLastFrame;
@@ -331,9 +332,21 @@ namespace Assets.Scripts.Character
             ivWaitingForAnimation = false;
         }
 
+        public void OnSelfCastSpellCasting()
+        {
+            CastSpell(ivSpellCast.CastedSpellSlot);
+            ivSpellCast = null;
+        }
+
         public void OnSelfCastSpellCastComplete()
         {
             ivWaitingForAnimation = false;
+        }
+
+        public void OnOffensiveCastSpellCasting()
+        {
+            CastSpell(ivSpellCast.CastedSpellSlot);
+            ivSpellCast = null;
         }
 
         public void OnOffensiveSpellCastComplete()
@@ -389,23 +402,22 @@ namespace Assets.Scripts.Character
 
                 if(Mathf.Abs(inputX) > 0.01f && ivPlayer.CanCastSpell(SpellSlot.Forward))
                 {
-                    CastSpell(SpellSlot.Forward);
+                    StartSpellCast(SpellSlot.Forward);
                 }
                 else if(inputY < 0f && ivPlayer.CanCastSpell(SpellSlot.Down))
                 {
-                    CastSpell(SpellSlot.Down);
+                    StartSpellCast(SpellSlot.Down);
                 }
                 else if(inputY > 0f && ivPlayer.CanCastSpell(SpellSlot.Up))
                 {
-                    CastSpell(SpellSlot.Up);
+                    StartSpellCast(SpellSlot.Up);
                 }
                 else if(ivPlayer.CanCastSpell(SpellSlot.Normal))
                 {
-                    CastSpell(SpellSlot.Normal);
+                    StartSpellCast(SpellSlot.Normal);
                 }
             }
-
-            if(Input.GetButtonDown("X") && CanAttack())
+            else if(Input.GetButtonDown("X") && CanAttack())
             {
                 ivAnimator.SetBool(ivHashIDs.LandCancel, false);
                 ivAnimator.SetBool(ivHashIDs.Jump, false);
@@ -480,17 +492,25 @@ namespace Assets.Scripts.Character
                 releasedJumpSinceLand = false;
         }
 
+        private void StartSpellCast(SpellSlot piSlot)
+        {
+            ivSpellCast = new SpellCastInfo()
+            {
+                CastedSpellSlot = piSlot,
+                ThrewToRight = transform.localScale.x > 0
+            };
+            StartSpellAnimation(ivPlayer.Controller.SpellController.GetEquippedSpellAtSlot(piSlot).GetComponent<Attack>());
+        }
+
         private void CastSpell(SpellSlot piSlot)
         {
             var spell = ivPlayer.Controller.SpellController.GetEquippedSpellAtSlot(piSlot);
-            StartSpellAnimation(spell.GetComponent<Attack>());
-            var castedSpell = (GameObject)Instantiate(spell, transform.position, Quaternion.identity);
+            var castedSpell = (GameObject)Instantiate(spell, SpellCastPosition.position, Quaternion.identity);
             var attackOfSpell = castedSpell.GetComponent<Attack>();
             attackOfSpell.Owner = gameObject;
             attackOfSpell.TargetType = AttackTarget.Monsters;
-            attackOfSpell.ThrewToRight = true;
+            attackOfSpell.ThrewToRight = ivSpellCast.ThrewToRight;
             castedSpell.SetActive(true);
-            EditorApplication.isPaused = true;
         }
 
         private void StartSpellAnimation(Attack spell)

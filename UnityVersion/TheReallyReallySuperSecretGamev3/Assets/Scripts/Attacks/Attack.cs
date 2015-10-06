@@ -160,7 +160,7 @@ namespace Assets.Scripts.Attacks
         {
             Logger.Log(string.Format("Hit gameobject {0} ", otherGameObject.name));
 
-            if (CanHitEntity(otherGameObject))
+            if (IsSelfCasted || CanHitEntity(otherGameObject))
             {
                 if (IsCurseAreaAttack)
                     SpawnCurseAttack();

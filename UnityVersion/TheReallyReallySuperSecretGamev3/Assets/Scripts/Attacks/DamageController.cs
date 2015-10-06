@@ -50,7 +50,10 @@ namespace Assets.Scripts.Attacks
             Player player = piObject.GetComponent<Player>();
 
             if (player != null)
+            {
                 player.DealDamage(piDamage);
+                return;
+            }
 
             piObject.GetComponent<Monster>().CurrentStats.stats.DealDamage(piDamage);
         }
@@ -60,8 +63,10 @@ namespace Assets.Scripts.Attacks
             Player player = piFrom.GetComponent<Player>();
 
             if (player != null)
+            {
                 player.DrainMana(piDamage);
-
+                return;
+            }
             piFrom.GetComponent<Monster>().CurrentStats.stats.DrainMana((int)piDamage);
         }
 
