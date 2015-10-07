@@ -510,6 +510,7 @@ namespace Assets.Scripts.Character
             attackOfSpell.Owner = gameObject;
             attackOfSpell.TargetType = AttackTarget.Monsters;
             attackOfSpell.ThrewToRight = ivSpellCast.ThrewToRight;
+            attackOfSpell.SelfCastHitPosition = SpellCastPosition.position;
             castedSpell.SetActive(true);
         }
 

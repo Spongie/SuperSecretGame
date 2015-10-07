@@ -419,9 +419,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Spells:
-  - {fileID: 181118, guid: a64ef1b90ef35ce4e962f1a6e87beaee, type: 2}
+  - {fileID: 175756, guid: b6709f396602bbe4eac649396f27f69d, type: 2}
   UnlockedSpells:
-  - ArrowAttack
+  - Heal
 --- !u!114 &11416868
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -454,6 +454,7 @@ MonoBehaviour:
   ApplyGravity: 0
   secondsToLive: 0
   secondsHitReset: 0
+  SelfCastHitPosition: {x: 0, y: 0, z: 0}
   ManaCost: 0
   lifeTimer: {fileID: 0}
   Owner: {fileID: 110236}
@@ -563,6 +564,7 @@ MonoBehaviour:
   ApplyGravity: 0
   secondsToLive: 0
   secondsHitReset: 0
+  SelfCastHitPosition: {x: 0, y: 0, z: 0}
   ManaCost: 0
   lifeTimer: {fileID: 0}
   Owner: {fileID: 110236}
@@ -620,9 +622,9 @@ MonoBehaviour:
     CurrentHealth: 100
     MaximumMana: 100
     CurrentMana: 100
-    Damage: 0
+    Damage: 10
     Defense: 0
-    MagicDamage: 0
+    MagicDamage: 10
     MagicDefense: 0
     Luck: 0
     Resistance: 0

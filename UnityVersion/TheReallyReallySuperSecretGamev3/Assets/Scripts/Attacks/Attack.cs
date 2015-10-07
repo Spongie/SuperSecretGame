@@ -18,6 +18,7 @@ namespace Assets.Scripts.Attacks
         public bool ApplyGravity = false;
         public float secondsToLive;
         public float secondsHitReset;
+        public Vector3 SelfCastHitPosition;
         public int ManaCost;
         public Timer lifeTimer;
         public GameObject Owner;
@@ -48,7 +49,8 @@ namespace Assets.Scripts.Attacks
             {
                 TargetType = AttackTarget.Everything;
                 DiesOnCollision = true;
-                HandleCollision(Owner, Owner.transform.position);
+                HandleCollision(Owner, SelfCastHitPosition);
+                
                 return;
             }
 

@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a642845c916b8eb41963fa21e88bb1fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsSelfCasted: 0
+  IsSelfCasted: 1
   IsMeleeAttack: 0
   IsCurseAreaAttack: 0
   CurseSpawnOnCast: 1
@@ -95,6 +95,7 @@ MonoBehaviour:
   ApplyGravity: 0
   secondsToLive: 10
   secondsHitReset: 1
+  SelfCastHitPosition: {x: 0, y: 0, z: 0}
   ManaCost: 0
   lifeTimer: {fileID: 0}
   Owner: {fileID: 0}
@@ -203,11 +204,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: IsSelfCasted
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: IsMeleeAttack
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: OnHitGraphics
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
