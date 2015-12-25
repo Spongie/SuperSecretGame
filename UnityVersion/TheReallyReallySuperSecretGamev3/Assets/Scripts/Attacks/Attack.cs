@@ -63,6 +63,7 @@ namespace Assets.Scripts.Attacks
             ivGroundTags.Add("boostleft");
             ivGroundTags.Add("door");
             ivGroundTags.Add("environment");
+            ivGroundTags.Add("aienabler");
 
             if (CurseSpawnOnCast && IsCurseAreaAttack)
                 SpawnCurseAttack();
@@ -160,7 +161,7 @@ namespace Assets.Scripts.Attacks
 
         private void HandleCollision(GameObject otherGameObject, Vector3 piGraphialSpawnPoint)
         {
-            Logger.Log(string.Format("Hit gameobject {0} ", otherGameObject.name));
+            Utility.Logger.Log(string.Format("Hit gameobject {0} ", otherGameObject.name));
 
             if (IsSelfCasted || CanHitEntity(otherGameObject))
             {

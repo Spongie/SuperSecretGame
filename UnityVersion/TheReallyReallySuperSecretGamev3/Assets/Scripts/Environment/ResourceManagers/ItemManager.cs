@@ -32,8 +32,8 @@ namespace Assets.Scripts.Environment.ResourceManagers
                 AllLootTables.Add(lootTable);
             }
 
-            Logger.Log(string.Format("{0} Items loaded", AllItems.Count()));
-            Logger.Log(string.Format("{0} LootTables loaded", AllLootTables.Count()));
+            Utility.Logger.Log(string.Format("{0} Items loaded", AllItems.Count()));
+            Utility.Logger.Log(string.Format("{0} LootTables loaded", AllLootTables.Count()));
         }
 
         public IEnumerable<Item> AllWeapons

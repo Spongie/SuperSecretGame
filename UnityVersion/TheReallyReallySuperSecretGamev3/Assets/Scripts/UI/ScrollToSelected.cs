@@ -54,12 +54,12 @@ namespace Assets.Scripts.UI
 
             if (positionTop > 0)
             {
-                Logger.Log("Im Above screen");
+                Utility.Logger.Log("Im Above screen");
                 m_ScrollRect.normalizedPosition = new Vector2(0, m_ScrollRect.normalizedPosition.y + offsetPerItem);
             }
             else if (positionBot < -m_RectTransform.rect.height)
             {
-                Logger.Log("Im below the screen");
+                Utility.Logger.Log("Im below the screen");
                 m_ScrollRect.normalizedPosition = new Vector2(0, m_ScrollRect.normalizedPosition.y - offsetPerItem);
             }
 

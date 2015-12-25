@@ -143,7 +143,7 @@ namespace Assets.Scripts.Character
                     {
                         boostReactionTimer.Restart(2);
                         stop = true;
-                        Logger.Log("Landed on boost");
+                        Utility.Logger.Log("Landed on boost");
                         boostingRight = landedOnRightBoost;
                         ivAnimator.SetBool(ivHashIDs.BoostLand, true);
                         CurrentAnimationState = AnimationState.BoostLand;
@@ -172,7 +172,7 @@ namespace Assets.Scripts.Character
                         return;
 
                     gameObject.layer = LayerMask.NameToLayer("IgnoreGround");
-                    ignoreTimer.Restart(0.1f);
+                    ignoreTimer.Restart(0.5f);
                 }
             }
         }
@@ -202,7 +202,7 @@ namespace Assets.Scripts.Character
                     return true;
                 }
 
-                Logger.Log("Grounded first frame");
+                Utility.Logger.Log("Grounded first frame");
 
                 groundedLastFrame = true;
             }
@@ -236,7 +236,7 @@ namespace Assets.Scripts.Character
                                 return true;
                             }
 
-                            Logger.Log("Grounded first frame");
+                            Utility.Logger.Log("Grounded first frame");
                             groundedLastFrame = true;
 
                             return false;
@@ -266,7 +266,7 @@ namespace Assets.Scripts.Character
             if(hasJumpedEver)
                 releasedJumpSinceLand = true;
 
-            Logger.Log("Setting grounded");
+            Utility.Logger.Log("Setting grounded");
             usedDoubleJump = false;
             canDoublejump = true;
             diveKicking = false;
@@ -280,7 +280,7 @@ namespace Assets.Scripts.Character
             if (!boostReactionTimer.Done)
                 return;
 
-            Logger.Log("Doing a Land-Cancel");
+            Utility.Logger.Log("Doing a Land-Cancel");
             diveKicking = false;
             CancelActiveAttack();
             ResetAnimation();
@@ -457,7 +457,7 @@ namespace Assets.Scripts.Character
             {
                 if (!boostReactionTimer.Done)
                 {
-                    Logger.Log("Activated boost");
+                    Utility.Logger.Log("Activated boost");
                     maxSpeed = 10;
                     ivRigidbody.velocity = new Vector2(SetDashSpeed(maxSpeed), 4);
                     boostReactionTimer.Cancel();
@@ -535,19 +535,24 @@ namespace Assets.Scripts.Character
 
         private void CheckJump()
         {
-            if (!ignoreTimer.Done)
-                return;
+            //if (!ignoreTimer.Done)
+            //    return;
 
             if (Input.GetButton(JumpButton) && !ButtonLock.Instance.IsButtonLocked(JumpButton) && !releasedJumpSinceLand)
             {
                 hasJumpedEver = true;
                 if (isGrounded || canDoublejump)
                 {
-                    if (Input.GetAxisRaw("Vertical") < 0 && isGrounded)
+                    if (Input.GetAxisRaw("Vertical") < 0)
                     {
-                        gameObject.layer = LayerMask.NameToLayer("IgnoreGround");
-                        ignoreTimer.Restart(0.4f);
-                        return;
+                        if (isGrounded)
+                        {
+                            gameObject.layer = LayerMask.NameToLayer("IgnoreGround");
+                            ignoreTimer.Restart(0.4f);
+                            return;
+                        }
+                        else
+                            return;
                     }
 
                     if (!isJumpControlling)

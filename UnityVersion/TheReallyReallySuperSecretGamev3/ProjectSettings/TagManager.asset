@@ -16,6 +16,7 @@ TagManager:
   - GameMenu
   - ItemList
   - Environment
+  - AIEnabler
   layers:
   - Default
   - TransparentFX

@@ -103,7 +103,7 @@ namespace Assets.Scripts.UI
 
         public void EquipSelectedItem(string piItemID)
         {
-            Logger.Log(string.Format("Equpping item with id {0}", piItemID));
+            Utility.Logger.Log(string.Format("Equpping item with id {0}", piItemID));
             var buttonList = new List<GameObject>();
             Player.Controller.PlayerInventory.EquipItem(piItemID);
             var button = GameObject.Find(piItemID);

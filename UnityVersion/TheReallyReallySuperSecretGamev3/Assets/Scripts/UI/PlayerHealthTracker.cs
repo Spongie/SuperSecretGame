@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Character.Stat;
-using Assets.Scripts.Utility;
 using System;
 using UnityEngine;
 
@@ -22,8 +21,8 @@ public class PlayerHealthTracker : MonoBehaviour
         }
         catch (Exception e)
         {
-            Logger.Log("Failed to load objects");
-            Logger.Log(e.Message);
+            Assets.Scripts.Utility.Logger.Log("Failed to load objects");
+            Assets.Scripts.Utility.Logger.Log(e.Message);
         }
     }
 

@@ -38,7 +38,7 @@ namespace Assets.Scripts.Environment
             ButtonLock.Instance.AddLock("RB");
 
             float alpha = 0f;
-            Logger.Log("Fading Screen");
+            Utility.Logger.Log("Fading Screen");
             while (alpha < 255)
             {
                 alpha += 20f;
@@ -46,11 +46,11 @@ namespace Assets.Scripts.Environment
                 yield return new WaitForSeconds(0.025f);
             }
 
-            Logger.Log("Moving player");
+            Utility.Logger.Log("Moving player");
 
             GameObject.FindGameObjectWithTag("Player").transform.position = Target.position;
 
-            Logger.Log("UnFading Screen");
+            Utility.Logger.Log("UnFading Screen");
 
             while (alpha > 0)
             {

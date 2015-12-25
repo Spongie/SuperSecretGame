@@ -159,7 +159,7 @@ namespace Assets.Scripts.Character.Monsters
 
         protected void HandleDeath()
         {
-            Logger.Log(string.Format("Gameobject {0} died", gameObject.name));
+            Utility.Logger.Log(string.Format("Gameobject {0} died", gameObject.name));
 
             GetComponent<ItemDropper>().DropItems();
             Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();

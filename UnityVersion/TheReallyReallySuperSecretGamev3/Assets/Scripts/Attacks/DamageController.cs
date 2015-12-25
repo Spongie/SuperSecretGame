@@ -33,7 +33,7 @@ namespace Assets.Scripts.Attacks
             if (piAttackScaling.Damage >= 0 && piAttackScaling.Magic >= 0 && realDamage <= 0)
                 realDamage = 1;
 
-            Logger.Log(string.Format("Dealing {0} damage to {1}", realDamage, piTarget.name));
+            Utility.Logger.Log(string.Format("Dealing {0} damage to {1}", realDamage, piTarget.name));
 
             DealDamageToGameObject(piTarget, realDamage);
         }

@@ -18,7 +18,7 @@ namespace Assets.Scripts.Environment.ResourceManagers
                 Icons.Add(icon.name, icon);
             }
 
-            Logger.Log(string.Format("{0} Icons loaded", Icons.Count()));
+            Utility.Logger.Log(string.Format("{0} Icons loaded", Icons.Count()));
         }
 
         public Dictionary<string, Sprite> Icons;
