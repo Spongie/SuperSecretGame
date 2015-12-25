@@ -2,7 +2,7 @@
 using Assets.Scripts.Items;
 using System.Collections.Generic;
 
-namespace Assets.Scripts.Utility
+namespace Assets.Scripts.Utility.Save
 {
     public class PlayerSaveData
     {
