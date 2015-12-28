@@ -70,6 +70,11 @@ namespace Assets.Scripts.Items
             return item;
         }
 
+        public void EquipItem(Item selectedItem)
+        {
+            EquipItem(selectedItem.ID);
+        }
+
         public void UnEquipItemAtSlot(ItemSlot piSlot)
         {
             if(ivEquippedItems.ContainsKey(piSlot))

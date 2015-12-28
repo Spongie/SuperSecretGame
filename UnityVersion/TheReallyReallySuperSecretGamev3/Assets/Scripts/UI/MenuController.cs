@@ -12,7 +12,8 @@ namespace Assets.Scripts.UI
     public enum CurrentPanel
     {
         Items,
-        Equipped
+        Equipped,
+        Spells
     }
 
     public class MenuController : MonoBehaviour
@@ -25,7 +26,8 @@ namespace Assets.Scripts.UI
         public GameObject firstItemButton;
         public GameObject firstSpellButton;
         private CurrentPanel currentPanel;
-
+        private Item SelectedItem;
+        
         void Awake()
         {
             //Show();
@@ -54,20 +56,22 @@ namespace Assets.Scripts.UI
 
         void Update()
         {
-            if(Input.GetButtonDown("RB"))
+            if (Input.GetButtonDown("RB"))
             {
                 if (IsSpellButtonSelected())
                 {
                     SelectButton(firstItemButton);
+                    currentPanel = CurrentPanel.Items;
+                }
+                else if (IsItemButtonSelected())
+                {
+                    SelectButton(firstSpellButton);
+                    currentPanel = CurrentPanel.Spells;
                 }
             }
-            else if(Input.GetButtonDown("LB") && currentPanel != CurrentPanel.Items)
+            else if (Input.GetButtonDown("A"))
             {
-                if (firstItemButton != null)
-                {
-                    EventSystem.current.SetSelectedGameObject(firstItemButton);
-                    currentPanel = CurrentPanel.Equipped;
-                }
+                Player.Controller.PlayerInventory.EquipItem(SelectedItem);             
             }
         }
 
@@ -94,11 +98,29 @@ namespace Assets.Scripts.UI
             Sprite icon = ItemIconManager.Icons[item.IconName];
 
             itemButton.GetComponent<Button>().onClick.AddListener(() => EquipSelectedItem(itemButton.name));
-            itemButton.GetComponent<ButtonSelectedHandler>().Index = index;
+            setButtonSelectHandler(item, index, itemButton);
 
             SetIcon(itemButton, icon);
             SetText(item, itemButton);
             return itemButton;
+        }
+
+        private void setButtonSelectHandler(Item item, int index, GameObject itemButton)
+        {
+            ButtonSelectedHandler selectHandler = itemButton.GetComponent<ButtonSelectedHandler>();
+            selectHandler.Index = index;
+            selectHandler.SourceObject = item;
+            selectHandler.onButtonSelected += SelectHandler_onButtonSelected;
+        }
+
+        private void SelectHandler_onButtonSelected(object sender, System.EventArgs e)
+        {
+            Item item = sender as Item;
+
+            if(item != null)
+            {
+                SelectedItem = item;
+            }
         }
 
         public void EquipSelectedItem(string piItemID)
