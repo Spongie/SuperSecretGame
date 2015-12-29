@@ -79,7 +79,7 @@ namespace Assets.Scripts.Attacks
             }
 
             if (ThrewToRight && FlipWhenThrewToRight)
-                transform.localScale = new Vector3(-1, transform.localScale.y);
+                transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
         }
 
         private void SpawnCurseAttack()

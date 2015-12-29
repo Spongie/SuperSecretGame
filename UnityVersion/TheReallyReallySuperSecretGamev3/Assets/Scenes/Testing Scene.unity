@@ -4082,7 +4082,7 @@ Transform:
   m_LocalScale: {x: 5.98, y: 1.88, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
 --- !u!1 &1490506131
 GameObject:
   m_ObjectHideFlags: 0
@@ -4965,17 +4965,13 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 11414464, guid: dd0a4b3e8f362654f902df185bebea33, type: 2}
-      propertyPath: Spells.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 456066, guid: dd0a4b3e8f362654f902df185bebea33, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -3.3599999
+      value: -3.36
       objectReference: {fileID: 0}
     - target: {fileID: 456066, guid: dd0a4b3e8f362654f902df185bebea33, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -2.04999995
+      value: -2.05
       objectReference: {fileID: 0}
     - target: {fileID: 456066, guid: dd0a4b3e8f362654f902df185bebea33, type: 2}
       propertyPath: m_LocalPosition.z
@@ -4999,16 +4995,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 456066, guid: dd0a4b3e8f362654f902df185bebea33, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 11494566, guid: dd0a4b3e8f362654f902df185bebea33, type: 2}
       propertyPath: MenuController
       value: 
       objectReference: {fileID: 1655523691}
-    - target: {fileID: 11414464, guid: dd0a4b3e8f362654f902df185bebea33, type: 2}
-      propertyPath: Spells.Array.data[1]
-      value: 
-      objectReference: {fileID: 100402, guid: 948d2ed9759a5ee4eb1cca795fd2b289, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dd0a4b3e8f362654f902df185bebea33, type: 2}
   m_IsPrefabParent: 0

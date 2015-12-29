@@ -512,6 +512,11 @@ namespace Assets.Scripts.Character
             attackOfSpell.ThrewToRight = ivSpellCast.ThrewToRight;
             attackOfSpell.SelfCastHitPosition = SpellCastPosition.position;
             castedSpell.SetActive(true);
+
+            var x = castedSpell.GetComponent<ParticleSystem>();
+
+            if (x != null)
+                x.Play();
         }
 
         private void StartSpellAnimation(Attack spell)
