@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Assets.Scripts.Character.Stat;
+using Assets.Scripts.Character.Stats;
 using System;
 using System.Linq;
 

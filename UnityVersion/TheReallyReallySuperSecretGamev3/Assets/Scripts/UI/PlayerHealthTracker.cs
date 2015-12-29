@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Character.Stat;
+﻿using Assets.Scripts.Character.Stats;
 using System;
 using UnityEngine;
 
@@ -16,7 +16,7 @@ public class PlayerHealthTracker : MonoBehaviour
     {
         try
         {
-            ivPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Stats>().stats;
+            ivPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<EntityStats>().stats;
             ivImage = GetComponent<UnityEngine.UI.Image>();
         }
         catch (Exception e)
@@ -32,6 +32,6 @@ public class PlayerHealthTracker : MonoBehaviour
         if (ivPlayer == null || ivImage == null)
             ReadObjects();
 
-        ivImage.fillAmount = ivPlayer.HealthPercentage;
+        ivImage.fillAmount = ivPlayer.Resources.HealthPercentage;
     }
 }

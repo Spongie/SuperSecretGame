@@ -1,5 +1,5 @@
 ﻿using Assets.Scripts.Buffs;
-using Assets.Scripts.Character.Stat;
+using Assets.Scripts.Character.Stats;
 using Assets.Scripts.Items;
 using System;
 using System.Collections.Generic;
@@ -82,7 +82,7 @@ namespace Assets.Scripts.Character
 
         public bool CanCastSpell(SpellSlot piSpellSlot)
         {
-            return SpellController.CanCastSpell(piSpellSlot, GetTrueStats().CurrentMana);
+            return SpellController.CanCastSpell(piSpellSlot, GetTrueStats().Resources.CurrentMana);
         }
 
         public Inventory PlayerInventory

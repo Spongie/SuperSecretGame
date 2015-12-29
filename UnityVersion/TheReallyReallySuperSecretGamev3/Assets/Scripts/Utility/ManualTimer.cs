@@ -4,9 +4,12 @@
     {
         private float timeToRun;
         private float timeRunning;
+        private bool ivAutoRestart;
+        public event TimerCompleted OnTimerDone;
 
-        public ManualTimer(float secondsToRun)
+        public ManualTimer(float secondsToRun, bool autoRestart = false)
         {
+            ivAutoRestart = autoRestart;
             timeToRun = secondsToRun;
             Restart();
         }
@@ -35,6 +38,12 @@
         public void Update(float piDeltaTime)
         {
             timeRunning += piDeltaTime;
+
+            if (Done && OnTimerDone != null)
+                OnTimerDone();
+
+            if (Done && ivAutoRestart)
+                Restart();
         }
     }
 }

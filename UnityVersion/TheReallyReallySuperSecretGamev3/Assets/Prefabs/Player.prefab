@@ -627,13 +627,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    MaximumHealth: 100
+    Resources:
+      BaseHealth: 100
+      ExtraHealth: 0
+      BaseMana: 100
+      ExtraMana: 0
+      CurrentHealth: 100
+      CurrentMana: 100
+    MaximumHealth: 0
     CurrentExp: 0
     MaximumExp: 100
     Level: 1
-    CurrentHealth: 100
-    MaximumMana: 100
-    CurrentMana: 100
+    MaximumMana: 0
     Damage: 10
     Defense: 0
     MagicDamage: 10
@@ -649,6 +654,8 @@ MonoBehaviour:
     BaseTimeStopResist: 0
     BaseFreezeResist: 0
     BaseFearResist: 0
+    HealthPerSecond: 1
+    ManaPerSecond: 0
 --- !u!114 &11491614
 MonoBehaviour:
   m_ObjectHideFlags: 1

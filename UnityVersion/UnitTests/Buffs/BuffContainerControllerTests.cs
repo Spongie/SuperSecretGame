@@ -1,5 +1,5 @@
 ﻿using Assets.Scripts.Buffs;
-using Assets.Scripts.Character.Stat;
+using Assets.Scripts.Character.Stats;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTests.Buffs

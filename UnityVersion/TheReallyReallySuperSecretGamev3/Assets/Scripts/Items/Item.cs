@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Newtonsoft.Json;
 using Assets.Scripts.Attacks;
-using Assets.Scripts.Character.Stat;
+using Assets.Scripts.Character.Stats;
 
 namespace Assets.Scripts.Items
 {

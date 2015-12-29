@@ -1,5 +1,5 @@
 ﻿using Assets.Scripts.Character;
-using Assets.Scripts.Character.Stat;
+using Assets.Scripts.Character.Stats;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using UnitTests.Buffs;
 
@@ -15,11 +15,12 @@ namespace UnitTests.Character
         {
             var stats = new CStats()
             {
-                MaximumHealth = 100,
-                CurrentHealth = 100,
                 Damage = 20,
                 Defense = 10
             };
+
+            stats.Resources.BaseHealth = 100;
+            stats.Resources.CurrentHealth = 100;
 
             ivController = new PlayerController(new DummyBuffContainer(), stats, null);
         }
@@ -36,7 +37,7 @@ namespace UnitTests.Character
             var result = ivController.GetTrueStats();
 
             Assert.AreEqual(30, result.Damage);
-            Assert.AreEqual(100, result.CurrentHealth);
+            Assert.AreEqual(100, result.Resources.CurrentHealth);
         }
     }
 }

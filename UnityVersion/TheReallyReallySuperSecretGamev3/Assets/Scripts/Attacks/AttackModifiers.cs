@@ -1,5 +1,5 @@
 ﻿using Assets.Scripts.Buffs;
-using Assets.Scripts.Character.Stat;
+using Assets.Scripts.Character.Stats;
 using System.Reflection;
 using UnityEngine;
 
@@ -32,8 +32,8 @@ namespace Assets.Scripts.Attacks
 
             int amount = (int)(piCurrentDamage * piEffectPower);
 
-            if (amount > targetStats.CurrentMana)
-                amount = targetStats.CurrentMana;
+            if (amount > targetStats.Resources.CurrentMana)
+                amount = targetStats.Resources.CurrentMana;
 
             DamageController.DrainManaFromGameObject(piTarget, amount);
             DamageController.DrainManaFromGameObject(piAttacker, -amount);

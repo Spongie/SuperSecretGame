@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Character.Stat;
+﻿using Assets.Scripts.Character.Stats;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,13 +9,13 @@ public class PlayerManaTracker : MonoBehaviour
 
     void Start()
     {
-        ivPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Stats>().stats;
+        ivPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<EntityStats>().stats;
         ivImage = GetComponent<Image>();
     }
 
     void Update()
     {
-        ivImage.fillAmount = ivPlayer.ManaPercentage;
+        ivImage.fillAmount = ivPlayer.Resources.ManaPercentage;
     }
 }
 

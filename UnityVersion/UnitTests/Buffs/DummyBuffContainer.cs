@@ -1,6 +1,6 @@
 ﻿using Assets.Scripts.Buffs;
 using System;
-using Assets.Scripts.Character.Stat;
+using Assets.Scripts.Character.Stats;
 
 namespace UnitTests.Buffs
 {

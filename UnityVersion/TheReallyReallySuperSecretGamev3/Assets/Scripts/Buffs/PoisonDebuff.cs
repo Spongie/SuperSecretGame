@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Character.Stat;
+﻿using Assets.Scripts.Character.Stats;
 using Assets.Scripts.Utility;
 using System;
 

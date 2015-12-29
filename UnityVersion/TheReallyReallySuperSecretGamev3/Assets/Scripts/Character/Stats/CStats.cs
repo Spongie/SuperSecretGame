@@ -1,7 +1,7 @@
 ﻿using Assets.Scripts.Utility;
 using System;
 
-namespace Assets.Scripts.Character.Stat
+namespace Assets.Scripts.Character.Stats
 {
     public delegate void DamageTakenDelegate(int amount);
 
@@ -9,6 +9,9 @@ namespace Assets.Scripts.Character.Stat
     public class CStats
     {
         public event DamageTakenDelegate OnDamageTaken;
+
+        [UnityEngine.SerializeField]
+        public ResourceController Resources;
 
         public CStats() : this(0) { }
 
@@ -21,11 +24,13 @@ namespace Assets.Scripts.Character.Stat
             Luck = piValue;
             MaximumHealth = piValue;
             MaximumMana = piValue;
-            CurrentHealth = piValue;
-            CurrentMana = piValue;
             Level = 1;
             CurrentExp = 0;
             MaximumExp = 100;
+
+            HealthPerSecond = 2;
+            ManaPerSecond = 0.5f;
+            Resources = new ResourceController(piValue, piValue);
         }
 
         public int MaximumHealth;
@@ -33,9 +38,7 @@ namespace Assets.Scripts.Character.Stat
         public int MaximumExp;
         public int Level;
 
-        public int CurrentHealth;
         public int MaximumMana;
-        public int CurrentMana;
         public float Damage;
         public float Defense;
         public float MagicDamage;
@@ -51,18 +54,10 @@ namespace Assets.Scripts.Character.Stat
         public float BaseTimeStopResist;
         public float BaseFreezeResist;
         public float BaseFearResist;
+        public float HealthPerSecond;
+        public float ManaPerSecond;
 
         public int ExpToLevel { get { return MaximumExp - CurrentExp; } }
-
-        public float ManaPercentage
-        {
-            get { return (float)CurrentMana / (float)MaximumMana; }
-        }
-
-        public float HealthPercentage
-        {
-            get { return (float)CurrentHealth / (float)MaximumHealth; }
-        }
 
         public float ExpPercentage
         {
@@ -71,12 +66,7 @@ namespace Assets.Scripts.Character.Stat
 
         public void DealDamage(float amount)
         {
-            CurrentHealth -= (int)amount;
-
-            if (CurrentHealth < 0)
-                CurrentHealth = 0;
-            else if (CurrentHealth > MaximumHealth)
-                CurrentHealth = MaximumHealth;
+            Resources.DealDamage(amount);
 
             if (OnDamageTaken != null)
                 OnDamageTaken((int)amount);
@@ -84,12 +74,34 @@ namespace Assets.Scripts.Character.Stat
 
         public void DrainMana(int amount)
         {
-            CurrentMana -= amount;
+            Resources.DrainMana(amount);
+        }
 
-            if (CurrentMana < 0)
-                CurrentMana = 0;
-            else if (CurrentMana > MaximumMana)
-                CurrentMana = MaximumMana;
+        public void RegenTick()
+        {
+            DealDamage((int)-HealthPerSecond);
+            DrainMana((int)-ManaPerSecond);
+        }
+
+        private void LevelUp()
+        {
+            CurrentExp = 0;
+            Level++;
+
+            MaximumExp = (int)(1.33 * MaximumExp);
+
+            Resources.BaseHealth += 10;
+            Resources.BaseMana += 5;
+
+            Resources.CurrentHealth += 10;
+            Resources.BaseMana += 5;
+
+            Damage++;
+            Defense++;
+            MagicDamage++;
+            MagicDefense++;
+            Luck++;
+            Resistance += 0.05f;
         }
 
         public void RewardExperience(int amount)
@@ -97,11 +109,8 @@ namespace Assets.Scripts.Character.Stat
             if (amount > ExpToLevel)
             {
                 amount -= ExpToLevel;
-                CurrentExp = 0;
-                Level++;
 
-                MaximumExp = (int)(1.33 * MaximumExp);
-
+                LevelUp();
                 RewardExperience(amount);
             }
             else
@@ -128,9 +137,6 @@ namespace Assets.Scripts.Character.Stat
 
         public static CStats operator +(CStats piFirst, CStats piOther)
         {
-            float oldHpPercent = piFirst.HealthPercentage;
-            float oldMpPercent = piFirst.ManaPercentage;
-
             var newStats = new CStats()
             {
                 MaximumHealth = piFirst.MaximumHealth + piOther.MaximumHealth,
@@ -140,11 +146,11 @@ namespace Assets.Scripts.Character.Stat
                 MagicDamage = piFirst.MagicDamage + piOther.MagicDamage,
                 MagicDefense = piFirst.MagicDefense + piOther.MagicDefense,
                 Luck = piFirst.Luck + piOther.Luck,
-                Resistance = piFirst.Resistance + piOther.Resistance
+                Resistance = piFirst.Resistance + piOther.Resistance,
+                ManaPerSecond = piFirst.ManaPerSecond + piOther.ManaPerSecond,
+                HealthPerSecond = piFirst.HealthPerSecond + piOther.HealthPerSecond,
+                Resources = piFirst.Resources
             };
-
-            newStats.CurrentHealth = (int)(newStats.MaximumHealth * oldHpPercent);
-            newStats.CurrentMana = (int)(newStats.MaximumMana * oldMpPercent);
 
             return newStats;
         }

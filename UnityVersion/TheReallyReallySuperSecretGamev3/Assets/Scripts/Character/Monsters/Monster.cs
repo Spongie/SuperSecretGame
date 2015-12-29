@@ -1,6 +1,6 @@
 ﻿using Assets.Scripts.Attacks;
 using Assets.Scripts.Buffs;
-using Assets.Scripts.Character.Stat;
+using Assets.Scripts.Character.Stats;
 using Assets.Scripts.Items;
 using Assets.Scripts.Utility;
 using System;

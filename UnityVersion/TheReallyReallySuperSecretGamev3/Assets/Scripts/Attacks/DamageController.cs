@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
 using Assets.Scripts.Character.Monsters;
-using Assets.Scripts.Character.Stat;
+using Assets.Scripts.Character.Stats;
 using Assets.Scripts.Utility;
 
 namespace Assets.Scripts.Attacks

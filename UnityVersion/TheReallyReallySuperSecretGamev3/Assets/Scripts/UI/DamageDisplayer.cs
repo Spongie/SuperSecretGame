@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Character.Stat;
+﻿using Assets.Scripts.Character.Stats;
 using UnityEngine;
 
 namespace Assets.Scripts.UI
@@ -8,11 +8,11 @@ namespace Assets.Scripts.UI
         public Transform SpawnPosition;
         public GameObject DamagePrefab;
         public GameObject HealingPrefab;
-        private Stats ivStats;
+        private EntityStats ivStats;
 
         void Start()
         {
-            ivStats = GetComponent<Stats>();
+            ivStats = GetComponent<EntityStats>();
             ivStats.stats.OnDamageTaken += Stats_OnDamageTaken;
         }
 
@@ -28,12 +28,18 @@ namespace Assets.Scripts.UI
         {
             var textMesh = ((GameObject)Instantiate(DamagePrefab, SpawnPosition.position, Quaternion.identity)).GetComponent<TextMesh>();
             textMesh.text = amount.ToString();
+
+            if (amount < 15)
+                textMesh.fontSize = (int)(textMesh.fontSize * 0.75f);
         }
 
         private void DisplayHealing(int amount)
         {
             var textMesh = ((GameObject)Instantiate(HealingPrefab, SpawnPosition.position, Quaternion.identity)).GetComponent<TextMesh>();
             textMesh.text = amount.ToString();
+
+            if (amount < 15)
+                textMesh.fontSize = (int)(textMesh.fontSize * 0.75f);
         }
 
         void OnDestroy()

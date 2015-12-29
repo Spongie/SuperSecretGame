@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Character.Stat;
+﻿using Assets.Scripts.Character.Stats;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -29,7 +29,7 @@ namespace UnitTests.Character.Stats
         {
             ivStats.DealDamage(50);
 
-            Assert.AreEqual(50, ivStats.CurrentHealth);
+            Assert.AreEqual(50, ivStats.Resources.CurrentHealth);
         }
 
         [TestMethod]
@@ -37,7 +37,7 @@ namespace UnitTests.Character.Stats
         {
             ivStats.DealDamage(550);
 
-            Assert.AreEqual(0, ivStats.CurrentHealth);
+            Assert.AreEqual(0, ivStats.Resources.CurrentHealth);
         }
 
         [TestMethod]
@@ -45,7 +45,7 @@ namespace UnitTests.Character.Stats
         {
             ivStats.DealDamage(50);
 
-            Assert.AreEqual(0.5f, ivStats.HealthPercentage);
+            Assert.AreEqual(0.5f, ivStats.Resources.HealthPercentage);
         }
 
         [TestMethod]
@@ -53,7 +53,7 @@ namespace UnitTests.Character.Stats
         {
             ivStats.DrainMana(50);
 
-            Assert.AreEqual(50, ivStats.CurrentMana);
+            Assert.AreEqual(50, ivStats.Resources.CurrentMana);
         }
 
         [TestMethod]
@@ -61,7 +61,7 @@ namespace UnitTests.Character.Stats
         {
             ivStats.DrainMana(550);
 
-            Assert.AreEqual(0, ivStats.CurrentMana);
+            Assert.AreEqual(0, ivStats.Resources.CurrentMana);
         }
 
         [TestMethod]
@@ -69,7 +69,7 @@ namespace UnitTests.Character.Stats
         {
             ivStats.DrainMana(50);
 
-            Assert.AreEqual(0.5f, ivStats.ManaPercentage);
+            Assert.AreEqual(0.5f, ivStats.Resources.ManaPercentage);
         }
 
         [TestMethod]
@@ -146,7 +146,7 @@ namespace UnitTests.Character.Stats
 
             var newStats = ivStats + new CStats(20);
 
-            Assert.AreEqual(0.5f, newStats.HealthPercentage);
+            Assert.AreEqual(0.5f, newStats.Resources.HealthPercentage);
         }
 
         [TestMethod]
@@ -156,7 +156,7 @@ namespace UnitTests.Character.Stats
 
             var newStats = ivStats + new CStats(20);
 
-            Assert.AreEqual(0.5f, newStats.ManaPercentage);
+            Assert.AreEqual(0.5f, newStats.Resources.ManaPercentage);
         }
 
         [TestMethod]

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using Assets.Scripts.Utility;
-using Assets.Scripts.Character.Stat;
+using Assets.Scripts.Character.Stats;
 
 namespace Assets.Scripts.Character
 {
@@ -8,7 +8,7 @@ namespace Assets.Scripts.Character
     public class Character_Controller : MonoBehaviour
     {
         public float IgnoreGravityTime;
-        public Stats CurrentStats;
+        public EntityStats CurrentStats;
         public float Speed;
         public float JumpPower;
         public LayerMask GroundLayerMask;
@@ -22,7 +22,7 @@ namespace Assets.Scripts.Character
 
         public virtual void Start()
         {
-            CurrentStats = GetComponent<Stats>();
+            CurrentStats = GetComponent<EntityStats>();
             ivFeetCollider = GetComponent<CircleCollider2D>();
             ivFacingRight = true;
             ivRigidbody = GetComponent<Rigidbody2D>();

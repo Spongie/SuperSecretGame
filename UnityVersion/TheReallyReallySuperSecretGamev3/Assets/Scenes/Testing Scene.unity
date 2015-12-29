@@ -387,13 +387,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ivPlayer:
+    Resources:
+      BaseHealth: 0
+      ExtraHealth: 0
+      BaseMana: 0
+      ExtraMana: 0
+      CurrentHealth: 0
+      CurrentMana: 0
     MaximumHealth: 0
     CurrentExp: 0
     MaximumExp: 100
     Level: 1
-    CurrentHealth: 0
     MaximumMana: 0
-    CurrentMana: 0
     Damage: 0
     Defense: 0
     MagicDamage: 0
@@ -409,6 +414,8 @@ MonoBehaviour:
     BaseTimeStopResist: 0
     BaseFreezeResist: 0
     BaseFearResist: 0
+    HealthPerSecond: 0
+    ManaPerSecond: 0
   ivImage: {fileID: 0}
 --- !u!114 &184592875
 MonoBehaviour:
@@ -4995,12 +5002,20 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 456066, guid: dd0a4b3e8f362654f902df185bebea33, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 11494566, guid: dd0a4b3e8f362654f902df185bebea33, type: 2}
       propertyPath: MenuController
       value: 
       objectReference: {fileID: 1655523691}
+    - target: {fileID: 11490502, guid: dd0a4b3e8f362654f902df185bebea33, type: 2}
+      propertyPath: stats.HealthPerSecond
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11490502, guid: dd0a4b3e8f362654f902df185bebea33, type: 2}
+      propertyPath: stats.ManaPerSecond
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dd0a4b3e8f362654f902df185bebea33, type: 2}
   m_IsPrefabParent: 0

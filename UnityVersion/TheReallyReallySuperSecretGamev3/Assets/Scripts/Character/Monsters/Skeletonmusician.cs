@@ -52,7 +52,7 @@ namespace Assets.Scripts.Character.Monsters
 
         public override void UpdateIdle()
         {
-            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.stats.HealthPercentage <= 40)
+            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.stats.Resources.HealthPercentage <= 40)
             {
                 Newtimer = false;
                 GoToState(UpdateDeepGrave);
@@ -132,7 +132,7 @@ namespace Assets.Scripts.Character.Monsters
 
         public void UpdateMagicAttack1()
         {
-            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.stats.HealthPercentage <= 40)
+            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.stats.Resources.HealthPercentage <= 40)
             {
                 Newtimer = false;
                 GoToState(UpdateDeepGrave);
@@ -156,7 +156,7 @@ namespace Assets.Scripts.Character.Monsters
 
         public override void UpdateAttack()
         {
-            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.stats.HealthPercentage <= 40)
+            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.stats.Resources.HealthPercentage <= 40)
             {
                 Newtimer = false;
                 GoToState(UpdateDeepGrave);
@@ -184,7 +184,7 @@ namespace Assets.Scripts.Character.Monsters
 
         public void UpdateAttack2()
         {
-            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.stats.HealthPercentage <= 40)
+            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.stats.Resources.HealthPercentage <= 40)
             {
                 Newtimer = false;
                 GoToState(UpdateDeepGrave);
@@ -212,7 +212,7 @@ namespace Assets.Scripts.Character.Monsters
 
         public void UpdateMoveBack()
         {
-            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.stats.HealthPercentage <= 40)
+            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.stats.Resources.HealthPercentage <= 40)
             {
                 Newtimer = false;
                 GoToState(UpdateDeepGrave);
@@ -268,7 +268,7 @@ namespace Assets.Scripts.Character.Monsters
 
         public override void UpdateGoForward()
         {
-            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.stats.HealthPercentage <= 40)
+            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.stats.Resources.HealthPercentage <= 40)
             {
                 Newtimer = false;
                 GoToState(UpdateDeepGrave);
@@ -324,7 +324,7 @@ namespace Assets.Scripts.Character.Monsters
 
         public void UpdateJumpBack()
         {
-            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.stats.HealthPercentage <= 40)
+            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.stats.Resources.HealthPercentage <= 40)
             {
                 Newtimer = false;
                 GoToState(UpdateDeepGrave);
@@ -355,7 +355,7 @@ namespace Assets.Scripts.Character.Monsters
 
         public void UpdateJumpForward() 
         {
-            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.stats.HealthPercentage <= 40)
+            if (AiTimer.Done && HaveUsedSuperAttack == false && CurrentStats.stats.Resources.HealthPercentage <= 40)
             {
                 Newtimer = false;
                 GoToState(UpdateDeepGrave);
