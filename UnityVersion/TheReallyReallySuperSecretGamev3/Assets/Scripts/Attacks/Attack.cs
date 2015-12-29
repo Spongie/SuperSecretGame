@@ -29,6 +29,7 @@ namespace Assets.Scripts.Attacks
         public bool ThrewToRight = false;
         private Rigidbody2D ivRigidBody;
         private List<string> ivGroundTags;
+        public bool FlipWhenThrewToRight = false;
 
         void OnEnable()
         {
@@ -76,6 +77,9 @@ namespace Assets.Scripts.Attacks
                 Speed = realSpeed;
                 ivRigidBody.velocity = Speed;
             }
+
+            if (ThrewToRight && FlipWhenThrewToRight)
+                transform.localScale = new Vector3(-1, transform.localScale.y);
         }
 
         private void SpawnCurseAttack()
