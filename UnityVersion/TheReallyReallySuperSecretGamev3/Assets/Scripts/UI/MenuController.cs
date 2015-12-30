@@ -105,7 +105,7 @@ namespace Assets.Scripts.UI
                 spellButtons.Add(spellButton);
             }
 
-            foreach (var equippedSpell in equippedSpells.Values)
+            foreach (var equippedSpell in equippedSpells.OrderBy(spell => (int)spell.Key))
             {
 
             }
