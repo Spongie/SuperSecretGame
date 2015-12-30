@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Assets.Scripts.UI
 {
@@ -22,14 +23,20 @@ namespace Assets.Scripts.UI
         public GameObject ItemButton;
         public GameObject SpellButton;
         public Transform ParentTransfrom;
+        public Transform EquipParentTransform;
+        public Transform SpellParentTransform;
         public IconManager ItemIconManager;
         public GameObject firstItemButton;
         public GameObject firstSpellButton;
         private CurrentPanel currentPanel;
         private Item SelectedItem;
-        
+        private List<GameObject> equipButtons;
+        private List<GameObject> spellButtons;
+
         void Awake()
         {
+            equipButtons = new List<GameObject>();
+            spellButtons = new List<GameObject>();
             //Show();
         }
 
@@ -39,7 +46,7 @@ namespace Assets.Scripts.UI
             bool first = true;
             foreach (Item item in Player.Controller.PlayerInventory.Items.Values)
             {
-                GameObject itemButton = AddItemButton(item, index);
+                GameObject itemButton = AddItemButton(item, index, ParentTransfrom);
 
                 if (first)
                 {
@@ -52,6 +59,70 @@ namespace Assets.Scripts.UI
             }
 
             currentPanel = CurrentPanel.Items;
+
+            AddEquippedItems();
+        }
+
+        private void RefreshEquippedItems()
+        {
+            foreach (GameObject button in equipButtons)
+            {
+                Destroy(button);
+            }
+
+            AddEquippedItems();
+        }
+
+        private void AddEquippedItems()
+        {
+            int index = 0;
+
+            foreach (Item item in Player.Controller.PlayerInventory.GetEqippedItems())
+            {
+                GameObject equipButton = AddItemButton(item, index, EquipParentTransform);
+                index++;
+            }
+        }
+
+        private void AddSpellButtons()
+        {
+            bool first = true;
+            var equippedSpells = Player.Controller.SpellController.GetEquippedSpells();
+
+            foreach (var spell in Player.Controller.SpellController.GetAvailableSpells())
+            {
+                if (equippedSpells.Values.Any(spellName => spellName == spell.name))
+                    continue;
+
+                GameObject spellButton = AddSpellButton(spell);
+
+                if (first)
+                {
+                    firstSpellButton = spellButton;
+                    first = false;
+                }
+
+                spellButtons.Add(spellButton);
+            }
+
+            foreach (var equippedSpell in equippedSpells.Values)
+            {
+
+            }
+        }
+
+        private GameObject AddSpellButton(GameObject spell)
+        {
+            GameObject spellButton = Instantiate(SpellButton);
+            SpellButton.name = spell.name;
+            SpellButton.transform.SetParent(SpellParentTransform);
+            Sprite icon = ItemIconManager.Icons[spell.name];
+
+            spellButton.GetComponent<Button>().onClick.AddListener(() => EquipSelectedItem(spellButton.name));
+
+            SetIcon(spellButton, icon);
+            SetText(spellButton.name, spellButton);
+            return spellButton;
         }
 
         void Update()
@@ -63,15 +134,14 @@ namespace Assets.Scripts.UI
                     SelectButton(firstItemButton);
                     currentPanel = CurrentPanel.Items;
                 }
-                else if (IsItemButtonSelected())
+            }
+            else if (Input.GetButtonDown("LB"))
+            {
+                if (IsItemButtonSelected())
                 {
                     SelectButton(firstSpellButton);
                     currentPanel = CurrentPanel.Spells;
                 }
-            }
-            else if (Input.GetButtonDown("A"))
-            {
-                Player.Controller.PlayerInventory.EquipItem(SelectedItem);             
             }
         }
 
@@ -90,11 +160,11 @@ namespace Assets.Scripts.UI
             return EventSystem.current.currentSelectedGameObject.GetComponent<ItemButton>() != null;
         }
 
-        private GameObject AddItemButton(Item item, int index)
+        private GameObject AddItemButton(Item item, int index, Transform parent)
         {
             var itemButton = Instantiate(ItemButton);
             itemButton.name = item.ID;
-            itemButton.transform.SetParent(ParentTransfrom);
+            itemButton.transform.SetParent(parent);
             Sprite icon = ItemIconManager.Icons[item.IconName];
 
             itemButton.GetComponent<Button>().onClick.AddListener(() => EquipSelectedItem(itemButton.name));
@@ -102,6 +172,7 @@ namespace Assets.Scripts.UI
 
             SetIcon(itemButton, icon);
             SetText(item, itemButton);
+
             return itemButton;
         }
 
@@ -143,7 +214,7 @@ namespace Assets.Scripts.UI
 
                 if (itemButton == null)
                 {
-                    var newItemButton = AddItemButton(item, buttonIndex);
+                    var newItemButton = AddItemButton(item, buttonIndex, ParentTransfrom);
                     buttonList.Add(newItemButton);
                 }
                 else if (item.StackSize > 0)
@@ -180,10 +251,12 @@ namespace Assets.Scripts.UI
                 Destroy(button);
             }
 
-            NormalizeIndexes(buttonList);
+            NormalizeButtonIndexes(buttonList);
+
+            RefreshEquippedItems();
         }
 
-        private static void NormalizeIndexes(List<GameObject> buttonList)
+        private static void NormalizeButtonIndexes(List<GameObject> buttonList)
         {
             int index = 0;
             foreach (var itemButton in buttonList)
@@ -199,6 +272,15 @@ namespace Assets.Scripts.UI
             {
                 if (buttonText.name == "Text")
                     buttonText.text = item.GetListString();
+            }
+        }
+
+        private static void SetText(string Text, GameObject button)
+        {
+            foreach (var buttonText in button.GetComponentsInChildren<Text>())
+            {
+                if (buttonText.name == "Text")
+                    buttonText.text = Text;
             }
         }
 

@@ -4836,6 +4836,8 @@ MonoBehaviour:
   ItemButton: {fileID: 131208, guid: b2c702095e2a9854593df9325271fdd3, type: 2}
   SpellButton: {fileID: 0}
   ParentTransfrom: {fileID: 1591083162}
+  EquipParentTransform: {fileID: 1550379908}
+  SpellParentTransform: {fileID: 855505443}
   ItemIconManager: {fileID: 1289456480}
   firstItemButton: {fileID: 0}
   firstSpellButton: {fileID: 0}

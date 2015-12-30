@@ -30,6 +30,11 @@ namespace Assets.Scripts.Spells
             return Spells.Where(spell => UnlockedSpells.Contains(spell.name)).ToList();
         }
 
+        public Dictionary<SpellSlot, string> GetEquippedSpells()
+        {
+            return ivEquippedSpells;
+        }
+
         public GameObject GetEquippedSpellAtSlot(SpellSlot piSlot)
         {
             if (ivEquippedSpells.ContainsKey(piSlot))
