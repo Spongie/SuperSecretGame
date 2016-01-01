@@ -127,5 +127,13 @@ namespace Assets.Scripts.Attacks
 
             return piCurrentDamage;
         }
+
+        private float OneShot(GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piEffectPower, float piEffectDuration, int piEffectTicks, CStats piStats, float piCurrentDamage)
+        {
+            if (Random.Range(0, 100f) < piEffectPower)
+                return float.MaxValue;
+
+            return piCurrentDamage;
+        }
     }
 }
