@@ -24,6 +24,11 @@ namespace Assets.Scripts.Defense
             return piCurrentDamage / 2;
         }
 
+        private float DoubleDamage(DefenseEffect defenseEffect, GameObject piAttacker, GameObject piDefender, AttackDamageScaling piAttackScaling, float piCurrentDamage)
+        {
+            return piCurrentDamage * 2;
+        }
+
         private float DamageAsDot(DefenseEffect defenseEffect, GameObject piAttacker, GameObject piDefender, AttackDamageScaling piAttackScaling, float piCurrentDamage)
         {
             var buff = new PoisonDebuff(piCurrentDamage / defenseEffect.Ticks, defenseEffect.Ticks, defenseEffect.Duration);
