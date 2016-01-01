@@ -51,7 +51,8 @@
                             <TextBox Height="60" TextWrapping="WrapWithOverflow" Text="{Binding Path=Description}" FontSize="14"/>
                             <Label Content="On Attack Effect" />    
                             <customControls:AttackEffect/>
-                            <Label Content="Extra tjhimgs"/>
+                            <Label Content="On Defense Effect" />
+                            <customControls:DefenseEffect/>
                         </StackPanel>
                     </ScrollViewer>
                     <Button Content="Add Item" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="10,10,0,0" Grid.Row="1" Width="82" Click="ButtonAdd_Click"/>

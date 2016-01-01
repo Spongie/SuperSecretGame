@@ -5,6 +5,8 @@ using Assets.Scripts.Items;
 using Assets.Scripts.Spells;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using Assets.Scripts.Defense;
 
 namespace Assets.Scripts.Character
 {
@@ -90,6 +92,11 @@ namespace Assets.Scripts.Character
         public bool CanCastSpell(SpellSlot piSpellSlot)
         {
             return Controller.CanCastSpell(piSpellSlot);
+        }
+
+        public IEnumerable<DefenseEffect> GetDefenseEffectsFromEquippedItems()
+        {
+            return Controller.GetDefenseEffectsFromEquippedItems();
         }
     }
 }

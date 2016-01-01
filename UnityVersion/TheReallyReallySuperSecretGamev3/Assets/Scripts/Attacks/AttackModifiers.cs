@@ -7,30 +7,30 @@ namespace Assets.Scripts.Attacks
 {
     public class AttackModifiers
     {
-        public float ApplyAttackEffect(string piEffectName, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piEffectPower, float piEffectDuration, int piEffectTicks, CStats piStats, float piCurrentDamage)
+        public float ApplyAttackEffect(AttackEffect attackEffect, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piCurrentDamage)
         {
-            var method = GetType().GetMethod(piEffectName, BindingFlags.NonPublic | BindingFlags.Instance);
+            var method = GetType().GetMethod(attackEffect.Name, BindingFlags.NonPublic | BindingFlags.Instance);
             
             if(method != null)
             {
-                return (float)method.Invoke(this, new object[] { piAttacker, piTarget, piAttackScaling,piEffectPower, piEffectDuration, piEffectTicks, piStats, piCurrentDamage });
+                return (float)method.Invoke(this, new object[] { attackEffect, piAttacker, piTarget, piAttackScaling, piCurrentDamage });
             }
 
             return piCurrentDamage;
         }
 
-        private float Lifesteal(GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piEffectPower, float piEffectDuration, int piEffectTicks, CStats piStats, float piCurrentDamage)
+        private float Lifesteal(AttackEffect attackEffect, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piCurrentDamage)
         {
-            DamageController.DealDamageToGameObject(piAttacker, -(int)(piCurrentDamage * piEffectPower));
+            DamageController.DealDamageToGameObject(piAttacker, -(int)(piCurrentDamage * attackEffect.Power));
 
             return piCurrentDamage;
         }
 
-        private float Manasteal(GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piEffectPower, float piEffectDuration, int piEffectTicks, CStats piStats, float piCurrentDamage)
+        private float Manasteal(AttackEffect attackEffect, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piCurrentDamage)
         {
             CStats targetStats = DamageController.GetGameObjectsStats(piTarget);
 
-            int amount = (int)(piCurrentDamage * piEffectPower);
+            int amount = (int)(piCurrentDamage * attackEffect.Power);
 
             if (amount > targetStats.Resources.CurrentMana)
                 amount = targetStats.Resources.CurrentMana;
@@ -41,9 +41,9 @@ namespace Assets.Scripts.Attacks
             return piCurrentDamage;
         }
 
-        private float ManaDrainDebuff(GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piEffectPower, float piEffectDuration, int piEffectTicks, CStats piStats, float piCurrentDamage)
+        private float ManaDrainDebuff(AttackEffect attackEffect, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piCurrentDamage)
         {
-            var buff = new ManaDrainBuff(piEffectPower, piEffectTicks, piEffectDuration);
+            var buff = new ManaDrainBuff(attackEffect.Power, attackEffect.Ticks, attackEffect.Duration);
 
             var buffContainer = piTarget.GetComponent<BuffContainer>();
 
@@ -54,10 +54,10 @@ namespace Assets.Scripts.Attacks
         }
 
 
-        private float DamageOverTimeDebuff(GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piEffectPower, float piEffectDuration, int piEffectTicks, CStats piStats, float piCurrentDamage)
+        private float DamageOverTimeDebuff(AttackEffect attackEffect, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piCurrentDamage)
         {
-            var buff = new PoisonDebuff(piEffectPower, piEffectTicks, piEffectDuration);
-            buff.StatChanges = piStats;
+            var buff = new PoisonDebuff(attackEffect.Power, attackEffect.Ticks, attackEffect.Duration);
+            buff.StatChanges = attackEffect.Stats;
 
             var buffContainer = piTarget.GetComponent<BuffContainer>();
 
@@ -68,9 +68,9 @@ namespace Assets.Scripts.Attacks
         }
 
 
-        private float MinusAllStats(GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piEffectPower, float piEffectDuration, int piEffectTicks, CStats piStats, float piCurrentDamage)
+        private float MinusAllStats(AttackEffect attackEffect, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piCurrentDamage)
         {
-            var buff = new Buff(new CStats((int)piEffectPower), piEffectDuration);
+            var buff = new Buff(new CStats((int)attackEffect.Power), attackEffect.Duration);
 
             var buffContainer = piTarget.GetComponent<BuffContainer>();
 
@@ -80,9 +80,9 @@ namespace Assets.Scripts.Attacks
             return piCurrentDamage;
         }
 
-        private float MinusStats(GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piEffectPower, float piEffectDuration, int piEffectTicks, CStats piStats, float piCurrentDamage)
+        private float MinusStats(AttackEffect attackEffect, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piCurrentDamage)
         {
-            var buff = new Buff(piStats, piEffectDuration);
+            var buff = new Buff(attackEffect.Stats, attackEffect.Duration);
 
             var buffContainer = piTarget.GetComponent<BuffContainer>();
 
@@ -92,9 +92,9 @@ namespace Assets.Scripts.Attacks
             return piCurrentDamage;
         }
 
-        private float Stun(GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piEffectPower, float piEffectDuration, int piEffectTicks, CStats piStats, float piCurrentDamage)
+        private float Stun(AttackEffect attackEffect, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piCurrentDamage)
         {
-            var buff = new StunBuff(piStats, piEffectDuration);
+            var buff = new StunBuff(attackEffect.Stats, attackEffect.Duration);
 
             var buffContainer = piTarget.GetComponent<BuffContainer>();
 
@@ -104,9 +104,9 @@ namespace Assets.Scripts.Attacks
             return piCurrentDamage;
         }
 
-        private float Freeze(GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piEffectPower, float piEffectDuration, int piEffectTicks, CStats piStats, float piCurrentDamage)
+        private float Freeze(AttackEffect attackEffect, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piCurrentDamage)
         {
-            var buff = new ChilledBuff(piStats, piEffectDuration);
+            var buff = new ChilledBuff(attackEffect.Stats, attackEffect.Duration);
 
             var buffContainer = piTarget.GetComponent<BuffContainer>();
 
@@ -116,9 +116,9 @@ namespace Assets.Scripts.Attacks
             return piCurrentDamage;
         }
 
-        private float Fear(GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piEffectPower, float piEffectDuration, int piEffectTicks, CStats piStats, float piCurrentDamage)
+        private float Fear(AttackEffect attackEffect, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piCurrentDamage)
         {
-            var buff = new FearBuff(piStats, piEffectDuration);
+            var buff = new FearBuff(attackEffect.Stats, attackEffect.Duration);
 
             var buffContainer = piTarget.GetComponent<BuffContainer>();
 
@@ -128,9 +128,9 @@ namespace Assets.Scripts.Attacks
             return piCurrentDamage;
         }
 
-        private float OneShot(GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piEffectPower, float piEffectDuration, int piEffectTicks, CStats piStats, float piCurrentDamage)
+        private float OneShot(AttackEffect attackEffect, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piCurrentDamage)
         {
-            if (Random.Range(0, 100f) < piEffectPower)
+            if (Random.Range(0, 100f) < attackEffect.Power)
                 return float.MaxValue;
 
             return piCurrentDamage;

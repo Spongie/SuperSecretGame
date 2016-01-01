@@ -7,6 +7,7 @@ using System.Linq;
 using Assets.Scripts.Attacks;
 using UnityEngine;
 using Assets.Scripts.Spells;
+using Assets.Scripts.Defense;
 
 namespace Assets.Scripts.Character
 {
@@ -83,6 +84,15 @@ namespace Assets.Scripts.Character
         public bool CanCastSpell(SpellSlot piSpellSlot)
         {
             return SpellController.CanCastSpell(piSpellSlot, GetTrueStats().Resources.CurrentMana);
+        }
+
+        public IEnumerable<DefenseEffect> GetDefenseEffectsFromEquippedItems()
+        {
+            if (!ivInventory.GetEqippedItems().Any())
+                return Enumerable.Empty<DefenseEffect>();
+
+            return ivInventory.GetEqippedItems().Where(item => item.EffectName != "None").Select(item => new DefenseEffect()
+            { Name = item.EffectName, Power = item.EffectValue, Duration = item.EffectDuration, Ticks = item.EffectTicks, Stats = item.EffectStats });
         }
 
         public Inventory PlayerInventory
