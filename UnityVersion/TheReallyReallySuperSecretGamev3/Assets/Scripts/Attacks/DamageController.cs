@@ -21,10 +21,6 @@ namespace Assets.Scripts.Attacks
 
             float baseDamage = (attackerStats.Damage * piAttackScaling.Damage) + (attackerStats.MagicDamage * piAttackScaling.Magic);
 
-            float physicalDefense = piAttackScaling.Damage > 0 ? targetStats.Defense : 0;
-
-            float magicDefense = piAttackScaling.Magic > 0 ? targetStats.MagicDefense : 0;
-
             foreach (var defenseEffect in GetDefenseEffectsFromDefender(piDefender))
             {
                 baseDamage = defenseModifiers.ApplyDefenseEffect(defenseEffect, piAttacker, piDefender, piAttackScaling, baseDamage);
@@ -34,6 +30,14 @@ namespace Assets.Scripts.Attacks
             {
                 baseDamage = attackModifiers.ApplyAttackEffect(effect, piAttacker, piDefender, piAttackScaling, baseDamage);
             }
+
+            //Get stats again if they were changed by modifiers
+            attackerStats = GetGameObjectsStats(piAttacker);
+            targetStats = GetGameObjectsStats(piDefender);
+
+            float physicalDefense = piAttackScaling.Damage > 0 ? targetStats.Defense : 0;
+
+            float magicDefense = piAttackScaling.Magic > 0 ? targetStats.MagicDefense : 0;
 
             float realDamage = baseDamage - physicalDefense - magicDefense;
 
