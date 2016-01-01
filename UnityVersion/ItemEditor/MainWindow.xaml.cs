@@ -66,21 +66,6 @@ namespace ItemEditor
             ivController.ClearConfig();
         }
 
-        private void EffectName_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            bool enabled = e.AddedItems[0].ToString() != "None";
-
-            ivTextboxEffectvalue.IsEnabled = enabled;
-            ivTextboxEffectDuration.IsEnabled = enabled;
-            ivTextboxEffectTicks.IsEnabled = enabled;
-            ivTextboxEffectStatsDamage.IsEnabled = enabled;
-            ivTextboxEffectStatsDefense.IsEnabled = enabled;
-            ivTextboxEffectStatsLuck.IsEnabled = enabled;
-            ivTextboxEffectStatsMagicDamage.IsEnabled = enabled;
-            ivTextboxEffectStatsMagicDefense.IsEnabled = enabled;
-            ivTextboxEffectStatsResistance.IsEnabled = enabled;
-        }
-
         private void ivListboxItemsTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems.Count > 0)

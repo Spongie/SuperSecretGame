@@ -1,6 +1,7 @@
 ﻿<Window x:Class="ItemEditor.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:customControls="clr-namespace:ItemEditor.Controls"
         Title="Item Editor" Height="600" Width="725">
     <Grid>
         <TabControl>
@@ -48,26 +49,9 @@
                             <TextBlock Height="30" TextWrapping="Wrap" Text="{Binding Path=IconName}" FontSize="18"/>
                             <Label Content="Description"/>
                             <TextBox Height="60" TextWrapping="WrapWithOverflow" Text="{Binding Path=Description}" FontSize="14"/>
-                            <Label Content="On Attack Effect" />
-                            <ComboBox ItemsSource="{Binding Path=AttackModifiers}" SelectedItem="{Binding Path=EffectName}" SelectionChanged="EffectName_SelectionChanged"/>
-                            <Label Content="Effectvalue" />
-                            <TextBox x:Name="ivTextboxEffectvalue" Height="30" TextWrapping="Wrap" Text="{Binding Path=EffectValue}" FontSize="18" />
-                            <Label Content="EffectDuration" />
-                            <TextBox x:Name="ivTextboxEffectDuration" Height="30" TextWrapping="Wrap" Text="{Binding Path=EffectDuration}" FontSize="18" />
-                            <Label Content="EffectTicks" />
-                            <TextBox x:Name="ivTextboxEffectTicks" Height="30" TextWrapping="Wrap" Text="{Binding Path=EffectTicks}" FontSize="18" />
-                            <Label Content="EffectStats:Damage" />
-                            <TextBox x:Name="ivTextboxEffectStatsDamage" Height="30" TextWrapping="Wrap" Text="{Binding Path=EffectDamage}" FontSize="18" />
-                            <Label Content="EffectStats:Defense" />
-                            <TextBox x:Name="ivTextboxEffectStatsDefense" Height="30" TextWrapping="Wrap" Text="{Binding Path=EffectDefense}" FontSize="18" />
-                            <Label Content="EffectStats:MagicDamage" />
-                            <TextBox x:Name="ivTextboxEffectStatsMagicDamage" Height="30" TextWrapping="Wrap" Text="{Binding Path=EffectMagicDamage}" FontSize="18" />
-                            <Label Content="EffectStats:MagicDefense" />
-                            <TextBox x:Name="ivTextboxEffectStatsMagicDefense" Height="30" TextWrapping="Wrap" Text="{Binding Path=EffectMagicDefense}" FontSize="18" />
-                            <Label Content="EffectStats:Luck" />
-                            <TextBox x:Name="ivTextboxEffectStatsLuck" Height="30" TextWrapping="Wrap" Text="{Binding Path=EffectLuck}" FontSize="18" />
-                            <Label Content="EffectStats:Resistance" />
-                            <TextBox x:Name="ivTextboxEffectStatsResistance" Height="30" TextWrapping="Wrap" Text="{Binding Path=EffectResistance}" FontSize="18" />
+                            <Label Content="On Attack Effect" />    
+                            <customControls:AttackEffect/>
+                            <Label Content="Extra tjhimgs"/>
                         </StackPanel>
                     </ScrollViewer>
                     <Button Content="Add Item" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="10,10,0,0" Grid.Row="1" Width="82" Click="ButtonAdd_Click"/>
