@@ -11,18 +11,9 @@ namespace Assets.Scripts.Items
 {
     public enum ItemSlot
     {
-        Weapon,
-        Chest,
-        Head,
-        Legs,
-        Feet,
-        Hands,
         Neck,
         Ring,
-        Shoulders,
-        MinorGem1,
-        MinorGem2,
-        MinorGem3,
+        MinorGem,
         MajorGem,
         Consumable
     }
@@ -507,6 +498,11 @@ namespace Assets.Scripts.Items
             };
 
             return stats;
+        }
+
+        public bool IsSingleSlotItem()
+        {
+            return Slot == ItemSlot.Neck || Slot == ItemSlot.MajorGem;
         }
 
         public void GenerateID()

@@ -36,11 +36,6 @@ namespace Assets.Scripts.Environment.ResourceManagers
             Utility.Logger.Log(string.Format("{0} LootTables loaded", AllLootTables.Count()));
         }
 
-        public IEnumerable<Item> AllWeapons
-        {
-            get { return AllItems.Where(item => item.Slot == ItemSlot.Weapon); }
-        }
-
         public LootTable GetLootTable(string name)
         {
             return AllLootTables.First(table => table.Name.ToLower() == name.ToLower());

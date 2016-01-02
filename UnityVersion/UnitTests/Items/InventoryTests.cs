@@ -71,7 +71,7 @@ namespace UnitTests.Items
         [TestMethod]
         public void DeleteItem_NoItem_Nothing()
         {
-            ivInventory.DeleteItem("asd");
+            ivInventory.DeleteItemFromInventory("asd");
 
             Assert.AreEqual(0, ivInventory.Items.Count);
         }
@@ -89,7 +89,7 @@ namespace UnitTests.Items
 
             Assert.AreEqual(1, ivInventory.Items.Count);
 
-            ivInventory.DeleteItem(item.ID);
+            ivInventory.DeleteItemFromInventory(item.ID);
 
             Assert.AreEqual(0, ivInventory.Items.Count);
         }
@@ -108,7 +108,7 @@ namespace UnitTests.Items
 
             Assert.AreEqual(1, ivInventory.Items.Count);
 
-            ivInventory.DeleteItem(item.ID);
+            ivInventory.DeleteItemFromInventory(item.ID);
 
             Assert.AreEqual(1, ivInventory.Items.Count);
             Assert.AreEqual(1, ivInventory.Items.First().Value.StackSize);
@@ -125,7 +125,7 @@ namespace UnitTests.Items
 
             ivInventory.AddItem(item);
 
-            ivInventory.EquipItem(item.ID);
+            ivInventory.EquipItem(item.ID, null);
 
             Assert.AreEqual(1, ivInventory.GetEqippedItems().Count);
         }
@@ -148,8 +148,8 @@ namespace UnitTests.Items
             ivInventory.AddItem(item);
             ivInventory.AddItem(item2);
 
-            ivInventory.EquipItem(item.ID);
-            ivInventory.EquipItem(item2.ID);
+            ivInventory.EquipItem(item.ID, null);
+            ivInventory.EquipItem(item2.ID, null);
 
             Assert.AreEqual(1, ivInventory.GetEqippedItems().Count);
             Assert.AreEqual("Asdasda", ivInventory.Items.First().Value.ID);
@@ -175,8 +175,8 @@ namespace UnitTests.Items
             ivInventory.AddItem(item);
             ivInventory.AddItem(item2);
 
-            ivInventory.EquipItem(item.ID);
-            ivInventory.EquipItem(item2.ID);
+            ivInventory.EquipItem(item.ID, null);
+            ivInventory.EquipItem(item2.ID, null);
 
             Assert.AreEqual(2, ivInventory.Items.Values.First().StackSize);
         }
@@ -184,7 +184,7 @@ namespace UnitTests.Items
         [TestMethod]
         public void GetEquippedItemAtSlot_NeverNull()
         {
-            var item = ivInventory.GetEqippedItemAtSlot(ItemSlot.Chest);
+            var item = ivInventory.GetEqippedItemAtSlot(ItemSlot.Neck);
 
             Assert.IsTrue(item != null);
         }
@@ -192,41 +192,96 @@ namespace UnitTests.Items
         [TestMethod]
         public void GetEquippedItemAtSlot_NoItem_EmptyItemSameSlot()
         {
-            var item = ivInventory.GetEqippedItemAtSlot(ItemSlot.Chest);
+            var item = ivInventory.GetEqippedItemAtSlot(ItemSlot.Neck);
 
-            Assert.IsTrue(item.Slot == ItemSlot.Chest);
+            Assert.IsTrue(item.First().Slot == ItemSlot.Neck);
         }
 
         [TestMethod]
         public void GetEquippedItemAtSlot_NoItem_NoStats()
         {
-            var item = ivInventory.GetEqippedItemAtSlot(ItemSlot.Chest);
+            var item = ivInventory.GetEqippedItemAtSlot(ItemSlot.Neck);
 
-            Assert.IsTrue(item.GetStats().IsZero());
+            Assert.IsTrue(item.First().GetStats().IsZero());
         }
 
         [TestMethod]
         public void GetEquippedItemAtSlot_ItemEquipped_Returned()
         {
-            var item = new Item() { Slot = ItemSlot.Chest, ID = "Test" };
+            var item = new Item() { Slot = ItemSlot.Neck, ID = "Test" };
 
             ivInventory.AddItem(item);
-            ivInventory.EquipItem(item.ID);
+            ivInventory.EquipItem(item.ID, null);
 
-            Assert.AreEqual(item, ivInventory.GetEqippedItemAtSlot(ItemSlot.Chest));
+            Assert.AreEqual(item, ivInventory.GetEqippedItemAtSlot(ItemSlot.Neck).First());
         }
 
         [TestMethod]
         public void UnEquipItemAtSlot_ItemAddedToInventory()
         {
-            var item = new Item() { Slot = ItemSlot.Chest, ID="Test" };
+            var item = new Item() { Slot = ItemSlot.Neck, ID="Test" };
 
             ivInventory.AddItem(item);
-            ivInventory.EquipItem(item.ID);
-            ivInventory.UnEquipItemAtSlot(ItemSlot.Chest);
+            ivInventory.EquipItem(item.ID, null);
+            ivInventory.UnEquipItemAtSlot(ItemSlot.Neck, null);
 
             Assert.AreEqual(1, ivInventory.Items.Count);
-            Assert.IsTrue(ivInventory.GetEqippedItemAtSlot(ItemSlot.Chest).GetStats().IsZero());
+            Assert.IsTrue(ivInventory.GetEqippedItemAtSlot(ItemSlot.Neck).First().GetStats().IsZero());
+        }
+
+        [TestMethod]
+        public void EquipItem_SecondMinorGem_AddedToList()
+        {
+            var item = new Item() { Slot = ItemSlot.MinorGem, ID = "Test" };
+            var item2 = new Item() { Slot = ItemSlot.MinorGem, ID = "Test1" };
+
+            ivInventory.AddItem(item);
+            ivInventory.AddItem(item2);
+
+            ivInventory.EquipItem(item.ID, null);
+            ivInventory.EquipItem(item2.ID, null);
+
+            Assert.AreEqual(0, ivInventory.Items.Count);
+            Assert.AreEqual(2, ivInventory.GetEqippedItemAtSlot(ItemSlot.MinorGem).Count);
+        }
+
+        [TestMethod]
+        public void EquipItem_ThirdMinorGem_AddedToList()
+        {
+            SetThreeGemInventory();
+
+            Assert.AreEqual(0, ivInventory.Items.Count);
+            Assert.AreEqual(3, ivInventory.GetEqippedItemAtSlot(ItemSlot.MinorGem).Count);
+        }
+
+        [TestMethod]
+        public void EquipItem_MinorGem_ReplaceAnotherGem()
+        {
+            SetThreeGemInventory();
+
+            var item = new Item() { Slot = ItemSlot.MinorGem, ID = "Replacer" };
+            ivInventory.AddItem(item);
+
+            ivInventory.EquipItem(item.ID, "Test");
+
+            Assert.AreEqual(1, ivInventory.Items.Count);
+            Assert.AreEqual(3, ivInventory.GetEqippedItemAtSlot(ItemSlot.MinorGem).Count);
+            Assert.AreEqual("Test", ivInventory.Items.First().Value.ID);
+        }
+
+        private void SetThreeGemInventory()
+        {
+            var item = new Item() { Slot = ItemSlot.MinorGem, ID = "Test" };
+            var item2 = new Item() { Slot = ItemSlot.MinorGem, ID = "Test1" };
+            var item3 = new Item() { Slot = ItemSlot.MinorGem, ID = "Test12" };
+
+            ivInventory.AddItem(item);
+            ivInventory.AddItem(item2);
+            ivInventory.AddItem(item3);
+
+            ivInventory.EquipItem(item.ID, null);
+            ivInventory.EquipItem(item2.ID, null);
+            ivInventory.EquipItem(item3.ID, null);
         }
     }
 }

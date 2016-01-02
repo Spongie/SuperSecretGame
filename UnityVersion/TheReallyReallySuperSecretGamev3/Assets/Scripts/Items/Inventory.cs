@@ -7,37 +7,75 @@ namespace Assets.Scripts.Items
 {
     public class Inventory
     {
-        private Dictionary<ItemSlot, Item> ivEquippedItems { get; set; }
+        private Dictionary<ItemSlot, List<Item>> ivEquippedItems { get; set; }
         public Dictionary<string, Item> Items;
 
         public Inventory()
         {
             Items = new Dictionary<string, Item>();
-            ivEquippedItems = new Dictionary<ItemSlot, Item>();
+            ivEquippedItems = new Dictionary<ItemSlot, List<Item>>();
         }
 
         public List<Item> GetEqippedItems()
         {
-            return ivEquippedItems.Values.ToList();
+            var allEquippedItems = new List<Item>();
+
+            foreach (var itemList in ivEquippedItems.OrderBy(slot => (int)slot.Key))
+            {
+                foreach (var item in itemList.Value)
+                {
+                    allEquippedItems.Add(item);
+                }
+            }
+
+            return allEquippedItems;
         }
 
         /// <summary>
         /// Equips an item and puts the equipped item in that slot into the inventory
         /// </summary>
         /// <param name="ItemId"></param>
-        public void EquipItem(string ItemId)
+        public void EquipItem(string ItemId, string ItemIdToReplace)
         {
             var item = Items[ItemId];
+            bool needManuallAdd = true;
 
             if (ivEquippedItems.ContainsKey(item.Slot))
             {
+                int itemMax = GetItemMaxEquipAmount(item);
+
                 var equipped = ivEquippedItems[item.Slot];
-                ivEquippedItems.Remove(item.Slot);
-                AddItem(equipped);
+
+                if (equipped.Count < itemMax)
+                {
+                    equipped.Add(item);
+                    needManuallAdd = false;
+                }
+                else
+                {
+                    UnEquipItemAtSlot(item.Slot, ItemIdToReplace);
+                }
             }
 
-            DeleteItem(ItemId);
-            ivEquippedItems.Add(item.Slot, item);
+            if (needManuallAdd)
+            {
+                if (!ivEquippedItems.ContainsKey(item.Slot))
+                    ivEquippedItems.Add(item.Slot, new List<Item>() { item });
+                else
+                    ivEquippedItems[item.Slot].Add(item);
+            }
+
+            DeleteItemFromInventory(ItemId);
+        }
+
+        private static int GetItemMaxEquipAmount(Item item)
+        {
+            int itemMax = 1;
+            if (item.Slot == ItemSlot.Ring)
+                itemMax = 2;
+            else if (item.Slot == ItemSlot.MinorGem)
+                itemMax = 3;
+            return itemMax;
         }
 
         public void AddItem(Item item)
@@ -48,7 +86,7 @@ namespace Assets.Scripts.Items
                 Items[item.ID].StackSize++;
         }
 
-        public void DeleteItem(string id)
+        public void DeleteItemFromInventory(string id)
         {
             if (Items.ContainsKey(id))
             {
@@ -59,7 +97,7 @@ namespace Assets.Scripts.Items
             }
         }
 
-        public Item GetEqippedItemAtSlot(ItemSlot piSlot)
+        public List<Item> GetEqippedItemAtSlot(ItemSlot piSlot)
         {
             if(ivEquippedItems.ContainsKey(piSlot))
             {
@@ -67,22 +105,33 @@ namespace Assets.Scripts.Items
             }
 
             var item = new Item() { Slot = piSlot };
-            return item;
+            return new List<Item>() { item };
         }
 
-        public void EquipItem(Item selectedItem)
+        public void EquipItem(Item selectedItem, Item replacedItem)
         {
-            EquipItem(selectedItem.ID);
+            EquipItem(selectedItem.ID, replacedItem.ID);
         }
 
-        public void UnEquipItemAtSlot(ItemSlot piSlot)
+        public void UnEquipItemAtSlot(ItemSlot piSlot, string itemId)
         {
+            int itemMax = GetItemMaxEquipAmount(new Item() { Slot = piSlot });
+
             if(ivEquippedItems.ContainsKey(piSlot))
             {
                 var item = GetEqippedItemAtSlot(piSlot);
-                ivEquippedItems.Remove(piSlot);
 
-                AddItem(item);
+                if (!string.IsNullOrEmpty(itemId))
+                {
+                    var itemToRemove = item.First(equip => equip.ID == itemId);
+                    ivEquippedItems[itemToRemove.Slot].Remove(itemToRemove);
+                    AddItem(itemToRemove);
+                }
+                else
+                {
+                    AddItem(item.First());
+                    ivEquippedItems.Remove(piSlot);
+                }
             }
         }
     }

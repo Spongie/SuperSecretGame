@@ -118,7 +118,7 @@ namespace Assets.Scripts.UI
             SpellButton.transform.SetParent(SpellParentTransform);
             Sprite icon = ItemIconManager.Icons[spell.name];
 
-            spellButton.GetComponent<Button>().onClick.AddListener(() => EquipSelectedItem(spellButton.name));
+            //spellButton.GetComponent<Button>().onClick.AddListener(() => EquipSelectedItem(spellButton.name));
 
             SetIcon(spellButton, icon);
             SetText(spellButton.name, spellButton);
@@ -198,7 +198,9 @@ namespace Assets.Scripts.UI
         {
             Utility.Logger.Log(string.Format("Equpping item with id {0}", piItemID));
             var buttonList = new List<GameObject>();
-            Player.Controller.PlayerInventory.EquipItem(piItemID);
+
+            Player.Controller.PlayerInventory.EquipItem(piItemID, null);
+
             var button = GameObject.Find(piItemID);
             int buttonIndex = button.GetComponent<ButtonSelectedHandler>().Index;
 
