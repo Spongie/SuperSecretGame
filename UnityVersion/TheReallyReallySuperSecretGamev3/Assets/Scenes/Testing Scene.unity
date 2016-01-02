@@ -359,7 +359,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 0}
+  m_SizeDelta: {x: 300, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &184592873
 MonoBehaviour:
@@ -3156,7 +3156,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 128, y: 16}
+  m_SizeDelta: {x: 200, y: 16}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &965051674
 MonoBehaviour:
@@ -3308,7 +3308,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 128, y: 16}
+  m_SizeDelta: {x: 200, y: 16}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &990700067
 MonoBehaviour:
@@ -5428,9 +5428,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: -1
+  m_MinWidth: 200
   m_MinHeight: -1
-  m_PreferredWidth: -1
+  m_PreferredWidth: 200
   m_PreferredHeight: 16
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
@@ -6351,9 +6351,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: -1
+  m_MinWidth: 200
   m_MinHeight: -1
-  m_PreferredWidth: -1
+  m_PreferredWidth: 200
   m_PreferredHeight: 16
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
@@ -6574,9 +6574,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 200
+  m_MinWidth: 300
   m_MinHeight: -1
-  m_PreferredWidth: 200
+  m_PreferredWidth: 300
   m_PreferredHeight: 25
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
