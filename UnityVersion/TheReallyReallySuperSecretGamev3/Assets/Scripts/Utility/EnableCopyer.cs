@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.Utility
 {
@@ -9,16 +10,18 @@ namespace Assets.Scripts.Utility
 
         void Start()
         {
+            StartCoroutine(Copy());
         }
 
         IEnumerator Copy()
         {
+            Image image = GetComponent<Image>();
             while (true)
             {
                 bool targetStatus = Target.activeSelf;
 
-                if (targetStatus != gameObject.activeSelf)
-                    gameObject.SetActive(targetStatus);
+                if (targetStatus != image.IsActive())
+                    image.enabled = targetStatus;
 
                 yield return new WaitForEndOfFrame();
             }

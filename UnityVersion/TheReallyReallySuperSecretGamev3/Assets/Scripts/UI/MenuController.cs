@@ -172,6 +172,12 @@ namespace Assets.Scripts.UI
                         currentPanel = CurrentPanel.Spells;
                     }
                 }
+                else if (Input.GetButtonDown("B"))
+                {
+                    Time.timeScale = 1;
+                    gameObject.SetActive(false);
+                    GlobalState.CurrentState = GlobalGameState.Playing;
+                }
             }
         }
 

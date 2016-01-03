@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using Assets.Scripts.Defense;
+using Assets.Scripts.Utility;
 
 namespace Assets.Scripts.Character
 {
@@ -39,11 +40,15 @@ namespace Assets.Scripts.Character
 
         void Update()
         {
+            if (!GlobalState.IsPlaying())
+                return;
+
             InventoryItems = Controller.PlayerInventory.Items.Count;
 
             if(Input.GetKeyDown(KeyCode.O))
             {
                 Time.timeScale = 0;
+                GlobalState.CurrentState = GlobalGameState.Meny;
                 MenuController.SetActive(true);
             }
             if (Input.GetKeyDown(KeyCode.L))

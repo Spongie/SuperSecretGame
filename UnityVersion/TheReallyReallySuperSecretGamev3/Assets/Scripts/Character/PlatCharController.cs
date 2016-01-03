@@ -375,6 +375,9 @@ namespace Assets.Scripts.Character
 
         void Update()
         {
+            if (!GlobalState.IsPlaying())
+                return;
+
             if (ivWaitingForAnimation)
                 return;
 
@@ -618,6 +621,9 @@ namespace Assets.Scripts.Character
         // Update is called once per physics loop
         void FixedUpdate()
         {
+            if (!GlobalState.IsPlaying())
+                return;
+
             FixBadAnimations();
 
             ivGravityTimer.Update(Time.deltaTime);

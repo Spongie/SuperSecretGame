@@ -39,6 +39,7 @@ namespace Assets.Scripts.Items
         {
             var item = Items[ItemId];
             bool needManuallAdd = true;
+            int index = -1;
 
             if (ivEquippedItems.ContainsKey(item.Slot))
             {
@@ -53,7 +54,7 @@ namespace Assets.Scripts.Items
                 }
                 else
                 {
-                    UnEquipItemAtSlot(item.Slot, ItemIdToReplace);
+                    index = UnEquipItemAtSlot(item.Slot, ItemIdToReplace);
                 }
             }
 
@@ -62,7 +63,12 @@ namespace Assets.Scripts.Items
                 if (!ivEquippedItems.ContainsKey(item.Slot))
                     ivEquippedItems.Add(item.Slot, new List<Item>() { item });
                 else
-                    ivEquippedItems[item.Slot].Add(item);
+                {
+                    if (index == -1)
+                        ivEquippedItems[item.Slot].Add(item);
+                    else
+                        ivEquippedItems[item.Slot].Insert(index, item);
+                }
             }
 
             DeleteItemFromInventory(ItemId);
@@ -136,7 +142,7 @@ namespace Assets.Scripts.Items
             EquipItem(selectedItem.ID, replacedItem.ID);
         }
 
-        public void UnEquipItemAtSlot(ItemSlot piSlot, string itemId)
+        public int UnEquipItemAtSlot(ItemSlot piSlot, string itemId)
         {
             int itemMax = GetItemMaxEquipAmount(new Item() { Slot = piSlot });
 
@@ -147,8 +153,11 @@ namespace Assets.Scripts.Items
                 if (!string.IsNullOrEmpty(itemId))
                 {
                     var itemToRemove = item.First(equip => equip.ID == itemId);
+                    int index = ivEquippedItems[itemToRemove.Slot].IndexOf(itemToRemove);
                     ivEquippedItems[itemToRemove.Slot].Remove(itemToRemove);
                     AddItem(itemToRemove);
+
+                    return index;
                 }
                 else
                 {
@@ -156,6 +165,8 @@ namespace Assets.Scripts.Items
                     ivEquippedItems.Remove(piSlot);
                 }
             }
+
+            return -1;
         }
     }
 }
