@@ -269,6 +269,30 @@ namespace UnitTests.Items
             Assert.AreEqual("Test", ivInventory.Items.First().Value.ID);
         }
 
+        [TestMethod]
+        public void HasFreeSlotForItem_NoEquips_True()
+        {
+            Assert.IsTrue(ivInventory.HasFreeSlotForItem(new Item() { Slot = ItemSlot.MajorGem }));
+        }
+
+        [TestMethod]
+        public void HasFreeSlotForItem_OneEquips_True()
+        {
+            var item = new Item() { Slot = ItemSlot.MinorGem, ID = "Test" };
+            ivInventory.AddItem(item);
+            ivInventory.EquipItem(item.ID, null);
+
+            Assert.IsTrue(ivInventory.HasFreeSlotForItem(new Item() { Slot = ItemSlot.MinorGem }));
+        }
+
+        [TestMethod]
+        public void HasFreeSlotForItem_FullEquips_False()
+        {
+            SetThreeGemInventory();
+
+            Assert.IsFalse(ivInventory.HasFreeSlotForItem(new Item() { Slot = ItemSlot.MinorGem }));
+        }
+
         private void SetThreeGemInventory()
         {
             var item = new Item() { Slot = ItemSlot.MinorGem, ID = "Test" };
