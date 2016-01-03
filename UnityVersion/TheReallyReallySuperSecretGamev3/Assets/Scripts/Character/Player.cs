@@ -50,6 +50,10 @@ namespace Assets.Scripts.Character
                 ivStats.stats.DealDamage(20f);
             if (Input.GetKeyDown(KeyCode.I))
                 ivStats.stats.RewardExperience(50);
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                Controller.PlayerInventory.AddDebugItems();
+            }
 
             var trueStats = Controller.GetTrueStats();
             ivStats.stats.Resources.Update(trueStats.MaximumHealth, trueStats.MaximumMana);

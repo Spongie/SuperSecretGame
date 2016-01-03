@@ -11,10 +11,10 @@ namespace Assets.Scripts.Items
 {
     public enum ItemSlot
     {
+        MajorGem,
+        MinorGem,
         Neck,
         Ring,
-        MinorGem,
-        MajorGem,
         Consumable
     }
 

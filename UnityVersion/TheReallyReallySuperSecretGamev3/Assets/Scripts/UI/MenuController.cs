@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using System.Linq;
+using System.Collections;
 
 namespace Assets.Scripts.UI
 {
@@ -30,14 +31,16 @@ namespace Assets.Scripts.UI
         public GameObject firstSpellButton;
         private CurrentPanel currentPanel;
         private Item SelectedItem;
+        private Item SelectedEquip;
         private List<GameObject> equipButtons;
         private List<GameObject> spellButtons;
+        private bool skipFrame = false;
 
         void Awake()
         {
             equipButtons = new List<GameObject>();
             spellButtons = new List<GameObject>();
-            //Show();
+            Show();
         }
 
         public void Show()
@@ -46,7 +49,7 @@ namespace Assets.Scripts.UI
             bool first = true;
             foreach (Item item in Player.Controller.PlayerInventory.Items.Values)
             {
-                GameObject itemButton = AddItemButton(item, index, ParentTransfrom);
+                GameObject itemButton = AddItemButton(item, index, ParentTransfrom, false);
 
                 if (first)
                 {
@@ -70,6 +73,8 @@ namespace Assets.Scripts.UI
                 Destroy(button);
             }
 
+            equipButtons.Clear();
+
             AddEquippedItems();
         }
 
@@ -79,7 +84,8 @@ namespace Assets.Scripts.UI
 
             foreach (Item item in Player.Controller.PlayerInventory.GetEqippedItems())
             {
-                GameObject equipButton = AddItemButton(item, index, EquipParentTransform);
+                GameObject equipButton = AddItemButton(item, index, EquipParentTransform, true);
+                equipButtons.Add(equipButton);
                 index++;
             }
         }
@@ -127,22 +133,53 @@ namespace Assets.Scripts.UI
 
         void Update()
         {
-            if (Input.GetButtonDown("RB"))
+            if(skipFrame)
             {
-                if (IsSpellButtonSelected())
+                skipFrame = false;
+                return;
+            }
+
+            if (currentPanel == CurrentPanel.Equipped)
+            {
+                if (Input.GetButtonDown("A"))
                 {
-                    SelectButton(firstItemButton);
-                    currentPanel = CurrentPanel.Items;
+                    if (SelectedEquip.Slot == SelectedItem.Slot)
+                    {
+                        EquipSelectedItem(SelectedItem.ID, EventSystem.current.currentSelectedGameObject.name);
+                        EndEquip();
+                    }
+                }
+                else if (Input.GetButtonDown("B"))
+                {
+                    EndEquip();
                 }
             }
-            else if (Input.GetButtonDown("LB"))
+            else
             {
-                if (IsItemButtonSelected())
+                if (Input.GetButtonDown("RB"))
                 {
-                    SelectButton(firstSpellButton);
-                    currentPanel = CurrentPanel.Spells;
+                    if (IsSpellButtonSelected())
+                    {
+                        SelectButton(firstItemButton);
+                        currentPanel = CurrentPanel.Items;
+                    }
+                }
+                else if (Input.GetButtonDown("LB"))
+                {
+                    if (IsItemButtonSelected())
+                    {
+                        SelectButton(firstSpellButton);
+                        currentPanel = CurrentPanel.Spells;
+                    }
                 }
             }
+        }
+
+        private void EndEquip()
+        {
+            SelectedEquip = null;
+            currentPanel = CurrentPanel.Items;
+            EventSystem.current.SetSelectedGameObject(firstItemButton);
         }
 
         private void SelectButton(GameObject button)
@@ -160,15 +197,21 @@ namespace Assets.Scripts.UI
             return EventSystem.current.currentSelectedGameObject.GetComponent<ItemButton>() != null;
         }
 
-        private GameObject AddItemButton(Item item, int index, Transform parent)
+        private GameObject AddItemButton(Item item, int index, Transform parent, bool isEquipButton)
         {
             var itemButton = Instantiate(ItemButton);
             itemButton.name = item.ID;
             itemButton.transform.SetParent(parent);
             Sprite icon = ItemIconManager.Icons[item.IconName];
 
-            itemButton.GetComponent<Button>().onClick.AddListener(() => EquipSelectedItem(itemButton.name));
-            setButtonSelectHandler(item, index, itemButton);
+
+            if (isEquipButton)
+                setButtonSelectHandlerEquip(item, index, itemButton);
+            else
+            {
+                itemButton.GetComponent<Button>().onClick.AddListener(() => StartEquippingItem(itemButton.name));
+                setButtonSelectHandler(item, index, itemButton);
+            }
 
             SetIcon(itemButton, icon);
             SetText(item, itemButton);
@@ -184,6 +227,24 @@ namespace Assets.Scripts.UI
             selectHandler.onButtonSelected += SelectHandler_onButtonSelected;
         }
 
+        private void setButtonSelectHandlerEquip(Item item, int index, GameObject itemButton)
+        {
+            ButtonSelectedHandler selectHandler = itemButton.GetComponent<ButtonSelectedHandler>();
+            selectHandler.Index = index;
+            selectHandler.SourceObject = item;
+            selectHandler.onButtonSelected += SelectHandler_onButtonSelectedEquip;
+        }
+
+        private void SelectHandler_onButtonSelectedEquip(object sender, System.EventArgs e)
+        {
+            Item item = sender as Item;
+
+            if (item != null)
+            {
+                SelectedEquip = item;
+            }
+        }
+
         private void SelectHandler_onButtonSelected(object sender, System.EventArgs e)
         {
             Item item = sender as Item;
@@ -194,12 +255,45 @@ namespace Assets.Scripts.UI
             }
         }
 
-        public void EquipSelectedItem(string piItemID)
+        public void StartEquippingItem(string piItemId)
+        {
+            if (SelectedItem.IsSingleSlotItem())
+                EquipSelectedItem(piItemId, null);
+            else
+            {
+                if (Player.Controller.PlayerInventory.HasFreeSlotForItem(SelectedItem))
+                {
+                    EquipSelectedItem(piItemId, null);
+                }
+                else
+                {
+                    Item itemToEquip = Player.Controller.PlayerInventory.Items.Values.First(item => item.ID == piItemId);
+                    Item itemToSelect = Player.Controller.PlayerInventory.GetEqippedItemAtSlot(itemToEquip.Slot).First();
+
+                    EventSystem.current.SetSelectedGameObject(equipButtons.First(button => button.name == itemToSelect.ID));
+                    currentPanel = CurrentPanel.Equipped;
+                    skipFrame = true;
+                }
+            }
+        }
+
+        public void EquipSelectedItem(string piItemID, string piItemIdToReplace)
         {
             Utility.Logger.Log(string.Format("Equpping item with id {0}", piItemID));
-            var buttonList = new List<GameObject>();
 
-            Player.Controller.PlayerInventory.EquipItem(piItemID, null);
+            Player.Controller.PlayerInventory.EquipItem(piItemID, piItemIdToReplace);
+
+            RefreshEquippedItems();
+
+            StartCoroutine(DoEquipItem(piItemID, piItemIdToReplace));
+        }
+
+        IEnumerator DoEquipItem(string piItemID, string piItemIdToReplace)
+        {
+            yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame();
+
+            var buttonList = new List<GameObject>();
 
             var button = GameObject.Find(piItemID);
             int buttonIndex = button.GetComponent<ButtonSelectedHandler>().Index;
@@ -216,7 +310,7 @@ namespace Assets.Scripts.UI
 
                 if (itemButton == null)
                 {
-                    var newItemButton = AddItemButton(item, buttonIndex, ParentTransfrom);
+                    var newItemButton = AddItemButton(item, buttonIndex, ParentTransfrom, false);
                     buttonList.Add(newItemButton);
                 }
                 else if (item.StackSize > 0)
@@ -231,7 +325,7 @@ namespace Assets.Scripts.UI
                     else if (itemButton.GetComponent<ButtonSelectedHandler>().Index == buttonIndex + 1)
                         buttonAfter = itemButton;
 
-                    if(first)
+                    if (first)
                     {
                         fallbackButton = itemButton;
                         first = false;
@@ -254,9 +348,7 @@ namespace Assets.Scripts.UI
             }
 
             NormalizeButtonIndexes(buttonList);
-
-            RefreshEquippedItems();
-        }
+        }       
 
         private static void NormalizeButtonIndexes(List<GameObject> buttonList)
         {
