@@ -42,6 +42,7 @@ namespace Assets.Scripts.UI
         private SpellInfo selectedSpell;
         private bool hadAnyItems = false;
         private string spellToEquip;
+        public GameObject SpellPrompt;
 
         void Awake()
         {
@@ -253,8 +254,11 @@ namespace Assets.Scripts.UI
             SelectedEquip = null;
             currentPanel = CurrentPanel.Items;
 
-            if(equippedSpell)
+            if (equippedSpell)
+            {
                 EventSystem.current.SetSelectedGameObject(firstSpellButton);
+                SpellPrompt.SetActive(false);
+            }
             else
                 EventSystem.current.SetSelectedGameObject(firstItemButton);
         }
@@ -356,6 +360,7 @@ namespace Assets.Scripts.UI
             skipFrame = true;
             spellToEquip = EventSystem.current.currentSelectedGameObject.name;
             EventSystem.current.SetSelectedGameObject(null);
+            SpellPrompt.SetActive(true);
         }
 
         public void StartEquippingItem(string piItemId)
