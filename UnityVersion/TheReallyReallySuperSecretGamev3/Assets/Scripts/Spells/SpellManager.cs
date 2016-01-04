@@ -28,6 +28,11 @@ namespace Assets.Scripts.Spells
                 "Heal"
             };
 
+            SetDefaultSpells();
+        }
+
+        private void SetDefaultSpells()
+        {
             ivEquippedSpells[SpellSlot.Normal] = Spells.First().name;
             ivEquippedSpells[SpellSlot.Forward] = Spells.First().name;
             ivEquippedSpells[SpellSlot.Up] = Spells.First().name;
@@ -37,11 +42,6 @@ namespace Assets.Scripts.Spells
         public List<GameObject> GetAvailableSpells()
         {
             return Spells.Where(spell => UnlockedSpells.Contains(spell.name)).ToList();
-        }
-
-        public void EquipSpell(string spell, SpellSlot slot)
-        {
-            
         }
 
         public Dictionary<SpellSlot, string> GetEquippedSpells()
