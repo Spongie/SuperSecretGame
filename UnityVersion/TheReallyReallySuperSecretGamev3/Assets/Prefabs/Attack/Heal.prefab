@@ -11,6 +11,7 @@ GameObject:
   - 114: {fileID: 11455266}
   - 114: {fileID: 11474034}
   - 114: {fileID: 11418862}
+  - 114: {fileID: 11424144}
   m_Layer: 0
   m_Name: Heal
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 175756}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.90030813, y: -.702650666, z: 0}
+  m_LocalPosition: {x: -1.9003081, y: -0.70265067, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -58,10 +59,23 @@ MonoBehaviour:
   CursedArea: {fileID: 0}
   Speed: {x: 0, y: 0}
   ThrewToRight: 0
+  FlipWhenThrewToRight: 0
   Bouncing: 0
   BouncesLeft: 0
   DiesOnCollision: 0
   TargetType: 0
+--- !u!114 &11424144
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b511662c41b16274cb8c5bd276f25678, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Description: Instantly heals you for 100% of your magic power
 --- !u!114 &11455266
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -88,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 0
-  Magic: -20
+  Magic: -1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -99,6 +113,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Magic
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Description
+      value: Instantly heals you for 100% of your magic power
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

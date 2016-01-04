@@ -104,8 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b511662c41b16274cb8c5bd276f25678, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Description: Shoots a ball of fire dealing % of your magic power in damage
-  attackScaling: {fileID: 11455354}
+  Description: Shoots a ball of fire dealing 100% of your magic power in damage
 --- !u!114 &11471372
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1744,7 +1743,7 @@ Prefab:
       objectReference: {fileID: 11455354}
     - target: {fileID: 0}
       propertyPath: Description
-      value: Shoots a ball of fire dealing % of your magic power in damage
+      value: Shoots a ball of fire dealing 100% of your magic power in damage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
