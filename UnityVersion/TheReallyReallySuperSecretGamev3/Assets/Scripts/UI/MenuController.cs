@@ -468,6 +468,7 @@ namespace Assets.Scripts.UI
 
                     if (first)
                     {
+                        firstItemButton = itemButton;
                         fallbackButton = itemButton;
                         first = false;
                     }
