@@ -31,7 +31,7 @@ GameObject:
   - 114: {fileID: 11453324}
   - 114: {fileID: 11496206}
   - 114: {fileID: 11406548}
-  - 114: {fileID: 11415828}
+  - 114: {fileID: 11413558}
   m_Layer: 5
   m_Name: EquippedItemButton
   m_TagString: Untagged
@@ -69,7 +69,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SelectedSprite: {fileID: 21300000, guid: 2451dfde47bc66042a2abf2446dcda03, type: 3}
   Index: 0
---- !u!114 &11415828
+--- !u!114 &11413558
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -77,7 +77,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 134494}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cecf1688de750fd4ba5ba98b0b9eb6eb, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ae65f611cfbc4f4abcd224ba9b1244a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &11434358

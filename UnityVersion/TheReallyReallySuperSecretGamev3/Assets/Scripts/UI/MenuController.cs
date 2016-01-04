@@ -16,9 +16,10 @@ namespace Assets.Scripts.UI
     public enum CurrentPanel
     {
         Items,
-        Equipped,
+        EquippedSelect,
         Spells,
-        EquippedSpells
+        EquippedSpells,
+        EquippedInspect
     }
 
     public class MenuController : MonoBehaviour
@@ -26,6 +27,7 @@ namespace Assets.Scripts.UI
         public Player Player;
         public GameObject ItemButton;
         public GameObject SpellButton;
+        public GameObject ItemEquipButton;
         public Transform ParentTransfrom;
         public Transform EquipParentTransform;
         public Transform SpellParentTransform;
@@ -175,7 +177,7 @@ namespace Assets.Scripts.UI
                 return;
             }
 
-            if (currentPanel == CurrentPanel.Equipped)
+            if (currentPanel == CurrentPanel.EquippedSelect)
             {
                 if (Input.GetButtonDown("A"))
                 {
@@ -215,30 +217,59 @@ namespace Assets.Scripts.UI
                 }
 
             }
+            else if (currentPanel == CurrentPanel.EquippedInspect)
+            {
+                UpdatePanelSwap(); 
+            }
             else
             {
-                if (Input.GetButtonDown("RB"))
+                UpdatePanelSwap();
+            }
+        }
+
+        private void UpdatePanelSwap()
+        {
+            if (Input.GetButtonDown("RB"))
+            {
+                if (IsSpellButtonSelected())
                 {
-                    if (IsSpellButtonSelected())
-                    {
-                        SelectButton(firstItemButton);
-                        currentPanel = CurrentPanel.Items;
-                    }
+                    SelectButton(firstItemButton);
+                    currentPanel = CurrentPanel.Items;
                 }
-                else if (Input.GetButtonDown("LB"))
+                else if (IsItemButtonSelected())
                 {
-                    if (IsItemButtonSelected())
-                    {
-                        SelectButton(firstSpellButton);
-                        currentPanel = CurrentPanel.Spells;
-                    }
+                    SelectButton(equipButtons.First());
+                    currentPanel = CurrentPanel.EquippedInspect;
                 }
-                else if (Input.GetButtonDown("B"))
+                else
                 {
-                    Time.timeScale = 1;
-                    gameObject.SetActive(false);
-                    GlobalState.CurrentState = GlobalGameState.Playing;
+                    SelectButton(firstSpellButton);
+                    currentPanel = CurrentPanel.Spells;
                 }
+            }
+            else if (Input.GetButtonDown("LB"))
+            {
+                if (IsItemButtonSelected())
+                {
+                    SelectButton(firstSpellButton);
+                    currentPanel = CurrentPanel.Spells;
+                }
+                else if (IsSpellButtonSelected())
+                {
+                    SelectButton(equipButtons.First());
+                    currentPanel = CurrentPanel.EquippedInspect;
+                }
+                else
+                {
+                    SelectButton(firstItemButton);
+                    currentPanel = CurrentPanel.Items;
+                }
+            }
+            else if (Input.GetButtonDown("B"))
+            {
+                Time.timeScale = 1;
+                gameObject.SetActive(false);
+                GlobalState.CurrentState = GlobalGameState.Playing;
             }
         }
 
@@ -280,7 +311,9 @@ namespace Assets.Scripts.UI
 
         private GameObject AddItemButton(Item item, int index, Transform parent, bool isEquipButton)
         {
-            var itemButton = Instantiate(ItemButton);
+            GameObject buttonToSpawn = isEquipButton ? ItemEquipButton : ItemButton;
+
+            var itemButton = Instantiate(buttonToSpawn);
             itemButton.name = item.ID;
             itemButton.transform.SetParent(parent);
             Sprite icon = ItemIconManager.Icons[item.IconName];
@@ -379,7 +412,7 @@ namespace Assets.Scripts.UI
                     Item itemToSelect = Player.Controller.PlayerInventory.GetEqippedItemAtSlot(itemToEquip.Slot).First();
 
                     EventSystem.current.SetSelectedGameObject(equipButtons.First(button => button.name == itemToSelect.ID));
-                    currentPanel = CurrentPanel.Equipped;
+                    currentPanel = CurrentPanel.EquippedSelect;
                     skipFrame = true;
                 }
             }
