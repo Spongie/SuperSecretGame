@@ -8,6 +8,8 @@ using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using System.Linq;
 using System.Collections;
+using Assets.Scripts.Attacks;
+using Assets.Scripts.Spells;
 
 namespace Assets.Scripts.UI
 {
@@ -15,7 +17,8 @@ namespace Assets.Scripts.UI
     {
         Items,
         Equipped,
-        Spells
+        Spells,
+        EquippedSpells
     }
 
     public class MenuController : MonoBehaviour
@@ -26,6 +29,7 @@ namespace Assets.Scripts.UI
         public Transform ParentTransfrom;
         public Transform EquipParentTransform;
         public Transform SpellParentTransform;
+        public Transform SpellEquipParentTransform;
         public IconManager ItemIconManager;
         public GameObject firstItemButton;
         public GameObject firstSpellButton;
@@ -35,6 +39,9 @@ namespace Assets.Scripts.UI
         private List<GameObject> equipButtons;
         private List<GameObject> spellButtons;
         private bool skipFrame = false;
+        private SpellInfo selectedSpell;
+        private bool hadAnyItems = false;
+        private string spellToEquip;
 
         void Awake()
         {
@@ -49,6 +56,7 @@ namespace Assets.Scripts.UI
             bool first = true;
             foreach (Item item in Player.Controller.PlayerInventory.Items.Values)
             {
+                hadAnyItems = true;
                 GameObject itemButton = AddItemButton(item, index, ParentTransfrom, false);
 
                 if (first)
@@ -64,6 +72,7 @@ namespace Assets.Scripts.UI
             currentPanel = CurrentPanel.Items;
 
             AddEquippedItems();
+            AddSpellButtons();
         }
 
         private void RefreshEquippedItems()
@@ -93,38 +102,64 @@ namespace Assets.Scripts.UI
         private void AddSpellButtons()
         {
             bool first = true;
-            var equippedSpells = Player.Controller.SpellController.GetEquippedSpells();
 
             foreach (var spell in Player.Controller.SpellController.GetAvailableSpells())
             {
-                if (equippedSpells.Values.Any(spellName => spellName == spell.name))
-                    continue;
+                GameObject spellButton = AddSpellButton(spell.name, false, SpellParentTransform);
 
-                GameObject spellButton = AddSpellButton(spell);
+                //setSpellButtonSelectHandler(spellButton.GetComponent<SpellInfo>(), 0, spellButton);
 
                 if (first)
                 {
+                    if (!hadAnyItems)
+                        EventSystem.current.SetSelectedGameObject(spellButton);
+
                     firstSpellButton = spellButton;
                     first = false;
                 }
-
-                spellButtons.Add(spellButton);
             }
+
+            AddEquippedSpells();
+        }
+
+        private void AddEquippedSpells()
+        {
+            var equippedSpells = Player.Controller.SpellController.GetEquippedSpells();
+            spellButtons.Clear();
 
             foreach (var equippedSpell in equippedSpells.OrderBy(spell => (int)spell.Key))
             {
-
+                var spellButton = AddSpellButton(equippedSpell.Value, true, SpellEquipParentTransform);
+                spellButtons.Add(spellButton);
             }
         }
 
-        private GameObject AddSpellButton(GameObject spell)
+        private void RefreshEquippedSpellbuttons()
+        {
+            foreach (var button in spellButtons)
+            {
+                Destroy(button);
+            }
+
+            AddEquippedSpells();
+        }
+
+        private GameObject AddSpellButton(string spell, bool isEquip, Transform parentTransform)
         {
             GameObject spellButton = Instantiate(SpellButton);
-            SpellButton.name = spell.name;
-            SpellButton.transform.SetParent(SpellParentTransform);
-            Sprite icon = ItemIconManager.Icons[spell.name];
+            spellButton.name = spell;
+            spellButton.transform.SetParent(parentTransform);
+            Sprite icon = ItemIconManager.Icons[spell];
 
-            //spellButton.GetComponent<Button>().onClick.AddListener(() => EquipSelectedItem(spellButton.name));
+            if(isEquip)
+            {
+                //spellButtons.Add(spellButton);
+            }
+            else
+            {
+                spellButton.GetComponent<Button>().onClick.AddListener(() => StartEquippingSpell(spell));
+            }
+
 
             SetIcon(spellButton, icon);
             SetText(spellButton.name, spellButton);
@@ -146,13 +181,38 @@ namespace Assets.Scripts.UI
                     if (SelectedEquip.Slot == SelectedItem.Slot)
                     {
                         EquipSelectedItem(SelectedItem.ID, EventSystem.current.currentSelectedGameObject.name);
-                        EndEquip();
+                        EndEquip(false);
                     }
                 }
                 else if (Input.GetButtonDown("B"))
                 {
-                    EndEquip();
+                    EndEquip(false);
                 }
+            }
+            else if (currentPanel == CurrentPanel.EquippedSpells)
+            {
+                if(Input.GetButtonDown("A"))
+                {
+                    EquipSpell(SpellSlot.Normal);
+                }
+                var inputY = Input.GetAxisRaw("Vertical");
+
+                if(inputY < 0)
+                {
+                    EquipSpell(SpellSlot.Down);
+                }
+                else if (inputY > 0)
+                {
+                    EquipSpell(SpellSlot.Up);
+                }
+
+                var inputX = Input.GetAxisRaw("Horizontal");
+
+                if( inputX != 0)
+                {
+                    EquipSpell(SpellSlot.Forward);
+                }
+
             }
             else
             {
@@ -181,11 +241,22 @@ namespace Assets.Scripts.UI
             }
         }
 
-        private void EndEquip()
+        private void EquipSpell(SpellSlot slot)
+        {
+            Player.Controller.SpellController.EquipSpell(slot, spellToEquip);
+            EndEquip(true);
+            RefreshEquippedSpellbuttons();
+        }
+
+        private void EndEquip(bool equippedSpell)
         {
             SelectedEquip = null;
             currentPanel = CurrentPanel.Items;
-            EventSystem.current.SetSelectedGameObject(firstItemButton);
+
+            if(equippedSpell)
+                EventSystem.current.SetSelectedGameObject(firstSpellButton);
+            else
+                EventSystem.current.SetSelectedGameObject(firstItemButton);
         }
 
         private void SelectButton(GameObject button)
@@ -233,6 +304,24 @@ namespace Assets.Scripts.UI
             selectHandler.onButtonSelected += SelectHandler_onButtonSelected;
         }
 
+        private void setSpellButtonSelectHandler(SpellInfo spell, int index, GameObject spellButton)
+        {
+            ButtonSelectedHandler selectHandler = spellButton.GetComponent<ButtonSelectedHandler>();
+            selectHandler.Index = index;
+            selectHandler.SourceObject = spell;
+            selectHandler.onButtonSelected += SelectHandler_onSpellButtonSelected;
+        }
+
+        private void SelectHandler_onSpellButtonSelected(object sender, System.EventArgs e)
+        {
+            SpellInfo info = sender as SpellInfo;
+
+            if (info != null)
+            {
+                selectedSpell = info;
+            }
+        }
+
         private void setButtonSelectHandlerEquip(Item item, int index, GameObject itemButton)
         {
             ButtonSelectedHandler selectHandler = itemButton.GetComponent<ButtonSelectedHandler>();
@@ -259,6 +348,14 @@ namespace Assets.Scripts.UI
             {
                 SelectedItem = item;
             }
+        }
+
+        public void StartEquippingSpell(string spell)
+        {
+            currentPanel = CurrentPanel.EquippedSpells;
+            skipFrame = true;
+            spellToEquip = EventSystem.current.currentSelectedGameObject.name;
+            EventSystem.current.SetSelectedGameObject(null);
         }
 
         public void StartEquippingItem(string piItemId)

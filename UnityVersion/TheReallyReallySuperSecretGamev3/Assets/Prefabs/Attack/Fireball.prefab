@@ -15,6 +15,7 @@ GameObject:
   - 114: {fileID: 11471372}
   - 50: {fileID: 5067992}
   - 58: {fileID: 5845898}
+  - 114: {fileID: 11457152}
   m_Layer: 0
   m_Name: Fireball
   m_TagString: Untagged
@@ -92,6 +93,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 0
   Magic: 1
+--- !u!114 &11457152
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b511662c41b16274cb8c5bd276f25678, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Description: Shoots a ball of fire dealing % of your magic power in damage
+  attackScaling: {fileID: 11455354}
 --- !u!114 &11471372
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1723,6 +1737,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: lengthInSec
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: attackScaling
+      value: 
+      objectReference: {fileID: 11455354}
+    - target: {fileID: 0}
+      propertyPath: Description
+      value: Shoots a ball of fire dealing % of your magic power in damage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
