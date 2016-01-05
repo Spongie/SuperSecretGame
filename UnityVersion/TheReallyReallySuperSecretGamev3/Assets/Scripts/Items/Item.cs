@@ -515,6 +515,9 @@ namespace Assets.Scripts.Items
 
         public string GetListString()
         {
+            if (Name == "Empty")
+                return Name;
+
             return string.Format("{0} - {1}/{2}", Name, StackSize, MaxStackSize);
         }
 

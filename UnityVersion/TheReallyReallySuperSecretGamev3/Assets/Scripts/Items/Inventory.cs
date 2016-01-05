@@ -31,6 +31,49 @@ namespace Assets.Scripts.Items
             return allEquippedItems;
         }
 
+        public List<Item> GetEquippedItemsMenu()
+        {
+            var allEquippedItems = new List<Item>();
+
+            foreach (ItemSlot slot in Enum.GetValues(typeof(ItemSlot)))
+            {
+                if (slot == ItemSlot.Consumable)
+                    continue;
+
+                if (ivEquippedItems.ContainsKey(slot))
+                {
+                    foreach (var item in ivEquippedItems[slot])
+                    {
+                        allEquippedItems.Add(item);
+                    }
+
+                    if (ivEquippedItems[slot].Count != GetItemMaxEquipAmount(slot))
+                    {
+                        AddMissingItems(allEquippedItems, slot);
+                    }
+                }
+                else
+                    AddMissingItems(allEquippedItems, slot);
+            }
+
+            return allEquippedItems;
+        }
+
+        private void AddMissingItems(List<Item> allEquippedItems, ItemSlot slot)
+        {
+            int toAdd;
+
+            if (ivEquippedItems.ContainsKey(slot))
+                toAdd = GetItemMaxEquipAmount(slot) - ivEquippedItems[slot].Count;
+            else
+                toAdd = GetItemMaxEquipAmount(slot);
+
+            for (int i = 0; i < toAdd; i++)
+            {
+                allEquippedItems.Add(new Item() { Slot = slot, Name = "Empty", IconName = "Empty" });
+            }
+        }
+
         /// <summary>
         /// Equips an item and puts the equipped item in that slot into the inventory
         /// </summary>
@@ -43,7 +86,7 @@ namespace Assets.Scripts.Items
 
             if (ivEquippedItems.ContainsKey(item.Slot))
             {
-                int itemMax = GetItemMaxEquipAmount(item);
+                int itemMax = GetItemMaxEquipAmount(item.Slot);
 
                 var equipped = ivEquippedItems[item.Slot];
 
@@ -78,7 +121,7 @@ namespace Assets.Scripts.Items
         {
             if (ivEquippedItems.ContainsKey(piItem.Slot))
             {
-                int maxAmount = GetItemMaxEquipAmount(piItem);
+                int maxAmount = GetItemMaxEquipAmount(piItem.Slot);
 
                 return ivEquippedItems[piItem.Slot].Count < maxAmount;
             }
@@ -97,12 +140,12 @@ namespace Assets.Scripts.Items
             Items.Add("7", new Item() { ID = "7", Damage = 20, Name = "Major2", Slot = ItemSlot.MajorGem, Defense = 2, IconName = "Emerald Gem05" });
         }
 
-        private static int GetItemMaxEquipAmount(Item item)
+        private static int GetItemMaxEquipAmount(ItemSlot slot)
         {
             int itemMax = 1;
-            if (item.Slot == ItemSlot.Ring)
+            if (slot == ItemSlot.Ring)
                 itemMax = 2;
-            else if (item.Slot == ItemSlot.MinorGem)
+            else if (slot == ItemSlot.MinorGem)
                 itemMax = 3;
             return itemMax;
         }
@@ -144,7 +187,7 @@ namespace Assets.Scripts.Items
 
         public int UnEquipItemAtSlot(ItemSlot piSlot, string itemId)
         {
-            int itemMax = GetItemMaxEquipAmount(new Item() { Slot = piSlot });
+            int itemMax = GetItemMaxEquipAmount(piSlot);
 
             if(ivEquippedItems.ContainsKey(piSlot))
             {

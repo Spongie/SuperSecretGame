@@ -94,7 +94,7 @@ namespace Assets.Scripts.UI
         {
             int index = 0;
 
-            foreach (Item item in Player.Controller.PlayerInventory.GetEqippedItems())
+            foreach (Item item in Player.Controller.PlayerInventory.GetEquippedItemsMenu())
             {
                 GameObject equipButton = AddItemButton(item, index, EquipParentTransform, true);
                 equipButtons.Add(equipButton);

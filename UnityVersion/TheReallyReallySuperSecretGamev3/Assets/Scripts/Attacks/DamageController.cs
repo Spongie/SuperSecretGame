@@ -21,14 +21,14 @@ namespace Assets.Scripts.Attacks
 
             float baseDamage = (attackerStats.Damage * piAttackScaling.Damage) + (attackerStats.MagicDamage * piAttackScaling.Magic);
 
-            foreach (var defenseEffect in GetDefenseEffectsFromDefender(piDefender))
-            {
-                baseDamage = defenseModifiers.ApplyDefenseEffect(defenseEffect, piAttacker, piDefender, piAttackScaling, baseDamage);
-            }
-
             foreach (var effect in piEffectsFromAttack.Concat(GetAttackEffectsFromAttackersEquippedItems(piAttacker)))
             {
                 baseDamage = attackModifiers.ApplyAttackEffect(effect, piAttacker, piDefender, piAttackScaling, baseDamage);
+            }
+
+            foreach (var defenseEffect in GetDefenseEffectsFromDefender(piDefender))
+            {
+                baseDamage = defenseModifiers.ApplyDefenseEffect(defenseEffect, piAttacker, piDefender, piAttackScaling, baseDamage);
             }
 
             //Get stats again if they were changed by modifiers
