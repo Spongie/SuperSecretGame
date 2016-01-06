@@ -115,6 +115,140 @@ namespace Assets.Scripts.Items
             }
         }
 
+        private float ivManaReg;
+        private float ivHealthReg;
+        private int ivMaxHealth;
+        private int ivMaxMana;
+
+        public float ManaPerSecond
+        {
+            get { return ivManaReg; }
+            set
+            {
+                FirePropertyChanged("ManaPerSecond");
+                ivManaReg = value;
+            }
+        }
+        
+        public float HealthPerSecond
+        {
+            get { return ivHealthReg; }
+            set
+            {
+                FirePropertyChanged("HealthPerSecond");
+                ivHealthReg = value;
+            }
+        }
+
+        public int MaximumHealth
+        {
+            get { return ivMaxHealth; }
+            set
+            {
+                ivMaxHealth = value;
+                FirePropertyChanged("MaximumHealth");
+            }
+        }
+
+        public int MaximumMana
+        {
+            get { return ivMaxMana; }
+            set
+            {
+                ivMaxMana = value;
+                FirePropertyChanged("MaximumMana");
+            }
+        }
+        
+        private float ivEffectManaReg;
+        private float ivEffectHealthReg;
+        private int ivEffectMaxHealth;
+        private int ivEffectMaxMana;
+
+        public float EffectManaPerSecond
+        {
+            get { return ivEffectManaReg; }
+            set
+            {
+                FirePropertyChanged("EffectManaPerSecond");
+                ivEffectManaReg = value;
+            }
+        }
+
+        public float EffectHealthPerSecond
+        {
+            get { return ivEffectHealthReg; }
+            set
+            {
+                FirePropertyChanged("EffectHealthPerSecond");
+                ivEffectHealthReg = value;
+            }
+        }
+
+        public int EffectMaximumHealth
+        {
+            get { return ivEffectMaxHealth; }
+            set
+            {
+                ivEffectMaxHealth = value;
+                FirePropertyChanged("EffectMaximumHealth");
+            }
+        }
+
+        public int EffectMaximumMana
+        {
+            get { return ivEffectMaxMana; }
+            set
+            {
+                ivEffectMaxMana = value;
+                FirePropertyChanged("EffectMaximumMana");
+            }
+        }
+        
+        private float ivDefenseEffectManaReg;
+        private float ivDefenseEffectHealthReg;
+        private int ivDefenseEffectMaxHealth;
+        private int ivDefenseEffectMaxMana;
+
+        public float DefenseEffectManaPerSecond
+        {
+            get { return ivDefenseEffectManaReg; }
+            set
+            {
+                FirePropertyChanged("DefenseEffectManaPerSecond");
+                ivDefenseEffectManaReg = value;
+            }
+        }
+
+        public float DefenseEffectHealthPerSecond
+        {
+            get { return ivDefenseEffectHealthReg; }
+            set
+            {
+                FirePropertyChanged("DefenseEffectHealthPerSecond");
+                ivDefenseEffectHealthReg = value;
+            }
+        }
+
+        public int DefenseEffectMaximumHealth
+        {
+            get { return ivDefenseEffectMaxHealth; }
+            set
+            {
+                ivDefenseEffectMaxHealth = value;
+                FirePropertyChanged("DefenseEffectMaximumHealth");
+            }
+        }
+
+        public int DefenseEffectMaximumMana
+        {
+            get { return ivDefenseEffectMaxMana; }
+            set
+            {
+                ivDefenseEffectMaxMana = value;
+                FirePropertyChanged("DefenseEffectMaximumMana");
+            }
+        }
 
         public string EffectName
         {
@@ -167,7 +301,11 @@ namespace Assets.Scripts.Items
                     MagicDefense = EffectMagicDamage,
                     Defense = EffectDefense,
                     Luck = EffectLuck,
-                    Resistance = EffectResistance
+                    Resistance = EffectResistance,
+                    MaximumMana = ivEffectMaxMana,
+                    MaximumHealth = ivEffectMaxHealth,
+                    ManaPerSecond = ivEffectManaReg,
+                    HealthPerSecond = ivEffectHealthReg
                 };
 
                 return stats;
@@ -285,7 +423,11 @@ namespace Assets.Scripts.Items
                     MagicDefense = DefenseEffectMagicDamage,
                     Defense = DefenseEffectDefense,
                     Luck = DefenseEffectLuck,
-                    Resistance = DefenseEffectResistance
+                    Resistance = DefenseEffectResistance,
+                    MaximumMana = ivDefenseEffectMaxMana,
+                    MaximumHealth = ivDefenseEffectMaxHealth,
+                    ManaPerSecond = ivDefenseEffectManaReg,
+                    HealthPerSecond = ivDefenseEffectHealthReg
                 };
 
                 return stats;
@@ -494,7 +636,11 @@ namespace Assets.Scripts.Items
                 MagicDamage = ivMagicDamage,
                 MagicDefense = ivMagicDefense,
                 Luck = ivLuck,
-                Resistance = ivResistance
+                Resistance = ivResistance,
+                ManaPerSecond = ivManaReg,
+                HealthPerSecond = ivHealthReg,
+                MaximumHealth = ivMaxHealth,
+                MaximumMana = ivMaxMana
             };
 
             return stats;

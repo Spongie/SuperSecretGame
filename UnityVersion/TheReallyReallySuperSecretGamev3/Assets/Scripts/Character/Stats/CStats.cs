@@ -154,5 +154,25 @@ namespace Assets.Scripts.Character.Stats
 
             return newStats;
         }
+
+        public static CStats operator -(CStats piFirst, CStats piOther)
+        {
+            var newStats = new CStats()
+            {
+                MaximumHealth = piFirst.MaximumHealth - piOther.MaximumHealth,
+                MaximumMana = piFirst.MaximumMana - piOther.MaximumMana,
+                Damage = piFirst.Damage - piOther.Damage,
+                Defense = piFirst.Defense - piOther.Defense,
+                MagicDamage = piFirst.MagicDamage - piOther.MagicDamage,
+                MagicDefense = piFirst.MagicDefense - piOther.MagicDefense,
+                Luck = piFirst.Luck - piOther.Luck,
+                Resistance = piFirst.Resistance - piOther.Resistance,
+                ManaPerSecond = piFirst.ManaPerSecond - piOther.ManaPerSecond,
+                HealthPerSecond = piFirst.HealthPerSecond - piOther.HealthPerSecond,
+                Resources = piFirst.Resources
+            };
+
+            return newStats;
+        }
     }
 }

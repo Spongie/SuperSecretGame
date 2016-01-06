@@ -10,6 +10,7 @@ using System.Linq;
 using System.Collections;
 using Assets.Scripts.Attacks;
 using Assets.Scripts.Spells;
+using Assets.Scripts.Character.Stats;
 
 namespace Assets.Scripts.UI
 {
@@ -45,6 +46,17 @@ namespace Assets.Scripts.UI
         private bool hadAnyItems = false;
         private string spellToEquip;
         public GameObject SpellPrompt;
+
+        public Text HpText;
+        public Text MpText;
+        public Text HpRegenText;
+        public Text MpRegenText;
+        public Text DamageText;
+        public Text DefenseText;
+        public Text MDamageText;
+        public Text MDefenseText;
+        public Text LuckText;
+        public Text ResistanceText;
 
         void Awake()
         {
@@ -374,6 +386,9 @@ namespace Assets.Scripts.UI
             if (item != null)
             {
                 SelectedEquip = item;
+
+                var stats = Player.Controller.PlayerInventory.GetEquippedStatsDifferencePreviewReplacement(SelectedEquip.ID, SelectedItem.ID);
+                UpdateStatsPreview(stats);
             }
         }
 
@@ -384,7 +399,48 @@ namespace Assets.Scripts.UI
             if(item != null)
             {
                 SelectedItem = item;
+
+                if (SelectedItem.IsSingleSlotItem() || Player.Controller.PlayerInventory.HasFreeSlotForItem(SelectedItem))
+                {
+                    var equippedItem = Player.Controller.PlayerInventory.GetEqippedItemAtSlot(SelectedItem.Slot).FirstOrDefault();
+                    string equippedID = equippedItem == null ? null : equippedItem.ID;
+
+                    var stats = Player.Controller.PlayerInventory.GetEquippedStatsDifferencePreviewReplacement(equippedID, SelectedItem.ID);
+                    UpdateStatsPreview(stats);
+                }
+                else
+                    UpdateStatsPreview(new CStats());
             }
+        }
+
+        void UpdateStatsPreview(CStats statsDiff)
+        {
+            SetTextField(HpText, statsDiff.Resources.MaximumHealth);
+            SetTextField(MpText, statsDiff.Resources.MaximumMana);
+            SetTextField(HpRegenText, statsDiff.HealthPerSecond);
+            SetTextField(MpRegenText, statsDiff.ManaPerSecond);
+            SetTextField(DamageText, statsDiff.Damage);
+            SetTextField(DefenseText, statsDiff.Defense);
+            SetTextField(MDamageText, statsDiff.MagicDamage);
+            SetTextField(MDefenseText, statsDiff.MagicDefense);
+            SetTextField(LuckText, statsDiff.Luck);
+            SetTextField(ResistanceText, statsDiff.Resistance);
+        }
+
+        private void SetTextField(Text textField, float value)
+        {
+            textField.color = Color.gray;
+            textField.text = value.ToString();
+
+            if (value < 0)
+                textField.color = Color.red;
+            else if (value > 0)
+            {
+                textField.color = Color.green;
+                textField.text = "+" + textField.text;
+            }
+            else
+                textField.text = "-";
         }
 
         public void StartEquippingSpell(string spell)

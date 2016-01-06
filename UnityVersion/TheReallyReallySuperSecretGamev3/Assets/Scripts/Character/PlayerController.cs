@@ -43,7 +43,7 @@ namespace Assets.Scripts.Character
         /// <returns></returns>
         public CStats GetTrueStats()
         {
-            return ivBaseStats + Buffs.GetBuffStats();
+            return ivBaseStats + Buffs.GetBuffStats() + ivInventory.GetEquippedStats();
         }
 
         public void GiveLoot(Item piDrop)

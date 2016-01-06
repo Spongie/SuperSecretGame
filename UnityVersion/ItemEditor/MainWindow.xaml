@@ -33,6 +33,10 @@
                             <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=ID}" FontSize="18"/>
                             <Label Content="Maximun StackSize"/>
                             <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=MaxStackSize}" FontSize="18"/>
+                            <Label Content="Maximum Health"/>
+                            <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=MaximumHealth}" FontSize="18"/>
+                            <Label Content="Maximum Mana"/>
+                            <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=MaximumMana}" FontSize="18"/>
                             <Label Content="Damage"/>
                             <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=Damage}" FontSize="18"/>
                             <Label Content="Defense"/>
@@ -43,6 +47,10 @@
                             <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=MagicDefense}" FontSize="18"/>
                             <Label Content="Luck"/>
                             <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=Luck}" FontSize="18"/>
+                            <Label Content="Health Per Second"/>
+                            <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=HealthPerSecond}" FontSize="18"/>
+                            <Label Content="Mana Per Second"/>
+                            <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=ManaPerSecond}" FontSize="18"/>
                             <Label Content="Resistance"/>
                             <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=Resistance}" FontSize="18"/>
                             <Label Content="IconName"/>
