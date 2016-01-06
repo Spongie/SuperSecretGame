@@ -28,8 +28,8 @@ namespace Assets.Scripts.Character.Stats
             CurrentExp = 0;
             MaximumExp = 100;
 
-            HealthPerSecond = 2;
-            ManaPerSecond = 0.5f;
+            HealthPerSecond = 0;
+            ManaPerSecond = 0;
             Resources = new ResourceController(piValue, piValue);
         }
 
