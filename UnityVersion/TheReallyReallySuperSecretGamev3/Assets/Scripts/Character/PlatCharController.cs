@@ -4,7 +4,9 @@ using Assets.Scripts.Environment;
 using Assets.Scripts.Attacks;
 using UnityEditor;
 using System;
+using System.Linq;
 using Assets.Scripts.Spells;
+using System.Collections.Generic;
 
 namespace Assets.Scripts.Character
 {
@@ -25,6 +27,7 @@ namespace Assets.Scripts.Character
     public class PlatCharController : MonoBehaviour
     {
         public AnimationState CurrentAnimationState = AnimationState.Idle;
+
         public string JumpButton = "A";
         public string DashButton = "RB";
         bool isGrounded = false;
@@ -88,6 +91,8 @@ namespace Assets.Scripts.Character
         ManualTimer jumpStartTimer = new ManualTimer(0);
         ManualTimer ignoreTimer = new ManualTimer(0);
 
+        private Dictionary<ManualTimer, BoxCollider2D> ivCollisionResest;
+
         private bool stunnedLastFrame = false;
         private Attack disabledAttackOnStun;
         private bool ivWaitingForAnimation = false;
@@ -122,6 +127,28 @@ namespace Assets.Scripts.Character
             ivPlayer = GetComponent<Player>();
             ivAnimator = GetComponent<Animator>();
             ivHashIDs = GetComponent<HashIDs>();
+            ivCollisionResest = new Dictionary<ManualTimer, BoxCollider2D>();
+        }
+
+        void OnCollisionStay2D(Collision2D col)
+        {
+            if (!col.contacts.Any(cont => cont.collider.GetType() == typeof(CircleCollider2D) || cont.otherCollider.GetType() == typeof(CircleCollider2D)))
+                return;
+                    
+            PlatformEffector2D effector = col.gameObject.GetComponent<PlatformEffector2D>();
+
+            if (effector != null)
+            {
+                var feetCenter = ivFeetCollider.bounds.center;
+                var effectCollider = col.gameObject.GetComponent<BoxCollider2D>();
+                var effectCenter = effectCollider.bounds.max;
+
+                if (feetCenter.y < effectCenter.y && ivRigidbody.velocity.y < 0.02f)
+                {
+                    effectCollider.enabled = false;
+                    ivCollisionResest.Add(new ManualTimer(0.5f), effectCollider);
+                }
+            }
         }
 
         void OnCollisionEnter2D(Collision2D col)
@@ -147,8 +174,17 @@ namespace Assets.Scripts.Character
                         boostingRight = landedOnRightBoost;
                         ivAnimator.SetBool(ivHashIDs.BoostLand, true);
                         CurrentAnimationState = AnimationState.BoostLand;
+                        diveKicking = false;
                     }
                 }
+            }
+        }
+
+        internal void TriggerExitFromHead(Collider2D other)
+        {
+            if (ivRigidbody.velocity.y < 0.02f)
+            {
+                other.gameObject.GetComponents<BoxCollider2D>().First(col => col.sharedMaterial.name == "Ground").enabled = true;
             }
         }
 
@@ -171,8 +207,8 @@ namespace Assets.Scripts.Character
                     if (fromHead && ivRigidbody.velocity.y < 0f)
                         return;
 
-                    gameObject.layer = LayerMask.NameToLayer("IgnoreGround");
-                    ignoreTimer.Restart(0.5f);
+                    //gameObject.layer = LayerMask.NameToLayer("IgnoreGround");
+                    //ignoreTimer.Restart(0.5f);
                 }
             }
         }
@@ -190,6 +226,9 @@ namespace Assets.Scripts.Character
         /// </summary>
         bool IsGrounded()
         {
+            if (!boostReactionTimer.Done)
+                return false;
+
             if (Mathf.Abs(RelativeVelocity().y) < 0.1f && !isJumpControlling && !jumping)
             {   // Checking floats for exact equality is bad. Also good for platforms that are moving down.
 
@@ -381,6 +420,19 @@ namespace Assets.Scripts.Character
             if (ivWaitingForAnimation)
                 return;
 
+            foreach (ManualTimer timer in ivCollisionResest.Keys)
+            {
+                timer.Update(Time.deltaTime);
+
+                if (timer.Done)
+                    ivCollisionResest[timer].enabled = true;
+            }
+
+            foreach (ManualTimer key in ivCollisionResest.Keys.Where(timer => timer.Done).ToList())
+            {
+                ivCollisionResest.Remove(key);
+            }
+
             if(ivPlayer.Controller.GetBuffContainer().IsStunned())
             {
                 OnStunned();
@@ -450,12 +502,12 @@ namespace Assets.Scripts.Character
             if (CanMove() && canTriggerJump)
                 CheckJump();
 
-            if (!boostReactionTimer.Done && Mathf.Abs(ivRigidbody.velocity.y) > 0.3f)
-            {
-                boostReactionTimer.Cancel();
-                ivAnimator.SetBool(ivHashIDs.Running, true);
-                CurrentAnimationState = AnimationState.Running;
-            }
+            //if (!boostReactionTimer.Done && Mathf.Abs(ivRigidbody.velocity.y) > 0.3f)
+            //{
+            //    boostReactionTimer.Cancel();
+            //    ivAnimator.SetBool(ivHashIDs.Running, true);
+            //    CurrentAnimationState = AnimationState.Running;
+            //}
             if (Input.GetButtonDown(DashButton) && !dashing && !diveKicking && !ButtonLock.Instance.IsButtonLocked(DashButton))
             {
                 if (!boostReactionTimer.Done)
@@ -555,8 +607,8 @@ namespace Assets.Scripts.Character
                     {
                         if (isGrounded)
                         {
-                            gameObject.layer = LayerMask.NameToLayer("IgnoreGround");
-                            ignoreTimer.Restart(0.4f);
+                            //gameObject.layer = LayerMask.NameToLayer("IgnoreGround");
+                            //ignoreTimer.Restart(0.4f);
                             return;
                         }
                         else
@@ -879,8 +931,8 @@ namespace Assets.Scripts.Character
             if (ivAnimator.GetBool(ivHashIDs.LandCancel))
                 ivAnimator.SetBool(ivHashIDs.LandCancel, false);
 
-            if (ivAnimator.GetBool(ivHashIDs.BoostLand) && ivRigidbody.velocity.y < 0f)
-                ivAnimator.SetBool(ivHashIDs.BoostLand, false);
+            //if (ivAnimator.GetBool(ivHashIDs.BoostLand) && ivRigidbody.velocity.y < 0f)
+            //    ivAnimator.SetBool(ivHashIDs.BoostLand, false);
         }
 
         private bool IsAttacking()

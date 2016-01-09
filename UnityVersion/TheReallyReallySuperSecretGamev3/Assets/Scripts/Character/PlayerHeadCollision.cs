@@ -11,10 +11,12 @@ namespace Assets.Scripts.Character
 
         void OnTriggerExit2D(Collider2D other)
         {
-            if (other.tag == "Ground" && transform.parent.gameObject.GetComponent<Rigidbody2D>().velocity.y < 0f)
+            if ((other.tag == "Ground" || other.tag.ToLower().StartsWith("boost")) && transform.parent.gameObject.GetComponent<Rigidbody2D>().velocity.y < 0f)
             {
-                transform.parent.gameObject.layer = LayerMask.NameToLayer("Default");
+                transform.parent.gameObject.GetComponent<PlatCharController>().TriggerExitFromHead(other);
             }
         }
+
+        
     }
 }
