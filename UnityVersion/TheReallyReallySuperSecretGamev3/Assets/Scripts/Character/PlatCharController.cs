@@ -206,9 +206,6 @@ namespace Assets.Scripts.Character
                 {
                     if (fromHead && ivRigidbody.velocity.y < 0f)
                         return;
-
-                    //gameObject.layer = LayerMask.NameToLayer("IgnoreGround");
-                    //ignoreTimer.Restart(0.5f);
                 }
             }
         }
@@ -343,8 +340,6 @@ namespace Assets.Scripts.Character
         {
             if (allowWallGrab == false)
                 return false;
-
-            // FIXME: Is there any chance we want to set movingPlatform here?
 
             // If we're pushing the joystick in the direction of our facing and an OverlapCircle test indicates a grabbable surface at the grabPoint, return true.
             return ((Input.GetAxisRaw("Horizontal") > 0 && this.transform.localScale.x > 0) || (Input.GetAxisRaw("Horizontal") < 0 && this.transform.localScale.x < 0)) &&
@@ -502,12 +497,6 @@ namespace Assets.Scripts.Character
             if (CanMove() && canTriggerJump)
                 CheckJump();
 
-            //if (!boostReactionTimer.Done && Mathf.Abs(ivRigidbody.velocity.y) > 0.3f)
-            //{
-            //    boostReactionTimer.Cancel();
-            //    ivAnimator.SetBool(ivHashIDs.Running, true);
-            //    CurrentAnimationState = AnimationState.Running;
-            //}
             if (Input.GetButtonDown(DashButton) && !dashing && !diveKicking && !ButtonLock.Instance.IsButtonLocked(DashButton))
             {
                 if (!boostReactionTimer.Done)
@@ -595,9 +584,6 @@ namespace Assets.Scripts.Character
 
         private void CheckJump()
         {
-            //if (!ignoreTimer.Done)
-            //    return;
-
             if (Input.GetButton(JumpButton) && !ButtonLock.Instance.IsButtonLocked(JumpButton) && !releasedJumpSinceLand)
             {
                 hasJumpedEver = true;
@@ -605,14 +591,7 @@ namespace Assets.Scripts.Character
                 {
                     if (Input.GetAxisRaw("Vertical") < 0)
                     {
-                        if (isGrounded)
-                        {
-                            //gameObject.layer = LayerMask.NameToLayer("IgnoreGround");
-                            //ignoreTimer.Restart(0.4f);
-                            return;
-                        }
-                        else
-                            return;
+                        return;
                     }
 
                     if (!isJumpControlling)
@@ -680,10 +659,6 @@ namespace Assets.Scripts.Character
 
             ivGravityTimer.Update(Time.deltaTime);
 
-            //if(ivRigidbody.velocity.y < -5f && IsAttacking())
-            //    gameObject.layer = LayerMask.NameToLayer("Default");
-            //
-            
             if (CurrentAnimationState == AnimationState.BoostLand)
             {
                 if (boostReactionTimer.Done)
@@ -709,11 +684,9 @@ namespace Assets.Scripts.Character
 
             if (movingPlatform != null && !groundedLastFrame && !isGrabbing && !isGrounded)
             {
-                // We aren't grounded or grabbing.  Making sure to clear our platform.
                 movingPlatform = null;
             }
 
-            // FIXME: This results in weird drifting with our current colliders
             if (disableGravityDuringWallGrab)
             {
                 if (isGrabbing)
@@ -930,9 +903,6 @@ namespace Assets.Scripts.Character
         {
             if (ivAnimator.GetBool(ivHashIDs.LandCancel))
                 ivAnimator.SetBool(ivHashIDs.LandCancel, false);
-
-            //if (ivAnimator.GetBool(ivHashIDs.BoostLand) && ivRigidbody.velocity.y < 0f)
-            //    ivAnimator.SetBool(ivHashIDs.BoostLand, false);
         }
 
         private bool IsAttacking()
