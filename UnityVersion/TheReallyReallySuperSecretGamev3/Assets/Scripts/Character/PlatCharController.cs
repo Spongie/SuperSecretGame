@@ -43,6 +43,8 @@ namespace Assets.Scripts.Character
         public float jumpSpeed = 12f;
         public float MaxFallSpeed = 12f;
 
+        public bool dropPlatform = false;
+
         // Whether our platform will add to jump
         public bool platformRelativeJump = false;
 
@@ -130,10 +132,29 @@ namespace Assets.Scripts.Character
             ivCollisionResest = new Dictionary<ManualTimer, BoxCollider2D>();
         }
 
+        private GameObject GetTopmostParent(GameObject gameObject)
+        {
+            if (gameObject.transform.parent == null)
+                return gameObject;
+            else
+                return GetTopmostParent(gameObject.transform.parent.gameObject);
+        }
+
         void OnCollisionStay2D(Collision2D col)
         {
             if (!col.contacts.Any(cont => cont.collider.GetType() == typeof(CircleCollider2D) || cont.otherCollider.GetType() == typeof(CircleCollider2D)))
                 return;
+
+            if (dropPlatform)
+            {
+                foreach (var collider in GetTopmostParent(col.gameObject).GetComponentsInChildren<BoxCollider2D>())     
+                {
+                    collider.enabled = false;
+                    ivCollisionResest.Add(new ManualTimer(0.5f), collider);
+                }
+
+                dropPlatform = false;
+            }
                     
             PlatformEffector2D effector = col.gameObject.GetComponent<PlatformEffector2D>();
 
@@ -589,8 +610,10 @@ namespace Assets.Scripts.Character
                 hasJumpedEver = true;
                 if (isGrounded || canDoublejump)
                 {
-                    if (Input.GetAxisRaw("Vertical") < 0)
+                    if (Input.GetAxisRaw("Vertical") < -0.1f)
                     {
+                        //EditorApplication.isPaused = true;
+                        dropPlatform = true;
                         return;
                     }
 
@@ -649,11 +672,13 @@ namespace Assets.Scripts.Character
             return movingPlatform.ivRigidbody.velocity;
         }
 
-        // Update is called once per physics loop
         void FixedUpdate()
         {
             if (!GlobalState.IsPlaying())
                 return;
+
+            if (ivRigidbody.velocity.y < -0.2f)
+                dropPlatform = false;
 
             FixBadAnimations();
 
