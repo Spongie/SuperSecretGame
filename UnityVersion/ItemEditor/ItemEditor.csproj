@@ -66,6 +66,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="EffectWindowDef.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EffectWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -81,7 +89,14 @@
       <DependentUpon>DefenseEffect.xaml</DependentUpon>
     </Compile>
     <Compile Include="CreatorController.cs" />
+    <Compile Include="EditorItem.cs" />
     <Compile Include="EditorLootTable.cs" />
+    <Compile Include="EffectWindowDef.xaml.cs">
+      <DependentUpon>EffectWindowDef.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EffectWindow.xaml.cs">
+      <DependentUpon>EffectWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ItemIcon.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

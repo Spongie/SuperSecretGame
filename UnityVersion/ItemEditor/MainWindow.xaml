@@ -57,8 +57,8 @@
                             <TextBlock Height="30" TextWrapping="Wrap" Text="{Binding Path=IconName}" FontSize="18"/>
                             <Label Content="Description"/>
                             <TextBox Height="60" TextWrapping="WrapWithOverflow" Text="{Binding Path=Description}" FontSize="14"/>
-                            <Label Content="On Attack Effect" />    
-                            <customControls:AttackEffect/>
+                            <Button Content="Attack Effects" Click="Button_AttackEffects_Click"/>
+                            <Button Content="Defense Effects" Click="Button_DefenseEffects_Click"/>
                             <Label Content="On Defense Effect" />
                             <customControls:DefenseEffect/>
                         </StackPanel>

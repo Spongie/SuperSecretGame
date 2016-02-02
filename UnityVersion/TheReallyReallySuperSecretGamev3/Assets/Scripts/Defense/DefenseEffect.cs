@@ -1,15 +1,30 @@
-﻿using Assets.Scripts.Character.Stats;
+﻿using Assets.Scripts.Attacks;
 using System;
+using System.Collections.Generic;
 
 namespace Assets.Scripts.Defense
 {
     [Serializable]
-    public class DefenseEffect
+    public class DefenseEffect : AttackEffect
     {
-        public string Name = "None";
-        public float Power = 0.0f;
-        public float Duration = 0.0f;
-        public int Ticks = 0;
-        public CStats Stats;
+        [NonSerialized]
+        private DefenseEffectLoader ivDefenseEffectLoader;
+
+        public DefenseEffect() : base()
+        {
+            ivDefenseEffectLoader = new DefenseEffectLoader();
+        }
+
+        public List<string> DefenseModifiers
+        {
+            get
+            {
+                if (ivDefenseEffectLoader == null)
+                    ivDefenseEffectLoader = new DefenseEffectLoader();
+
+                return ivDefenseEffectLoader.GetDefenseMethods();
+            }
+        }
+
     }
 }

@@ -66,6 +66,22 @@ namespace ItemEditor
             ivController.ClearConfig();
         }
 
+        private void Button_AttackEffects_Click(object sender, RoutedEventArgs e)
+        {
+            var effectWindow = new EffectWindow();
+            effectWindow.DataContext = ivController.SelectedItem;
+
+            effectWindow.Show();
+        }
+
+        private void Button_DefenseEffects_Click(object sender, RoutedEventArgs e)
+        {
+            var effectWindow = new EffectWindowDef();
+            effectWindow.DataContext = ivController.SelectedItem;
+
+            effectWindow.Show();
+        }
+
         private void ivListboxItemsTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems.Count > 0)

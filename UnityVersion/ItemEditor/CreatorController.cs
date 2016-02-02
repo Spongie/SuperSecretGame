@@ -18,7 +18,7 @@ namespace ItemEditor
         private List<string> ivOriginalItemFiles;
         private List<string> ivOriginalLootTableFiles;
 
-        public ObservableCollection<Item> Items { get; set; }
+        public ObservableCollection<EditorItem> Items { get; set; }
 
         public Item SelectedItem { get; set; }
 
@@ -30,7 +30,7 @@ namespace ItemEditor
 
         public CreatorController()
         {
-            Items = new ObservableCollection<Item>();
+            Items = new ObservableCollection<EditorItem>();
             Images = new ObservableCollection<ItemIcon>();
             LootTables = new ObservableCollection<EditorLootTable>();
             ivOriginalItemFiles = new List<string>();
@@ -82,7 +82,7 @@ namespace ItemEditor
 
                 var jsonItem = File.ReadAllText(path);
                 var item = JsonConvert.DeserializeObject<Item>(jsonItem);
-                Items.Add(item);
+                Items.Add(new EditorItem(item));
 
                 ivOriginalItemFiles.Add(path);
             }
@@ -149,7 +149,7 @@ namespace ItemEditor
                 Slot = 0
             };
 
-            Items.Add(item);
+            Items.Add(new EditorItem(item));
         }
 
         public void AddItemToLootTable(Item piItem)
@@ -256,10 +256,10 @@ namespace ItemEditor
                 File.Delete(file);
             }
 
-            foreach (var item in Items)
+            foreach (var editorItem in Items)
             {
-                var jsonItem = JsonConvert.SerializeObject(item);
-                File.WriteAllText(ivItemsPath + "\\" + item.Name + ".txt", jsonItem);
+                var jsonItem = JsonConvert.SerializeObject(editorItem.GetAsItem());
+                File.WriteAllText(ivItemsPath + "\\" + editorItem.Name + ".txt", jsonItem);
             }
 
             foreach (var lootTable in LootTables)
@@ -281,7 +281,7 @@ namespace ItemEditor
             foreach (var itemFile in Directory.GetFiles(piPath))
             {
                 var item = JsonConvert.DeserializeObject<Item>(itemFile);
-                Items.Add(item);
+                Items.Add(new EditorItem(item));
             }
         }
     }

@@ -6,7 +6,7 @@ namespace Assets.Scripts.Character.Stats
     public delegate void DamageTakenDelegate(int amount);
 
     [Serializable]
-    public class CStats
+    public class CStats : PropertyChanger
     {
         public event DamageTakenDelegate OnDamageTaken;
 
@@ -33,18 +33,18 @@ namespace Assets.Scripts.Character.Stats
             Resources = new ResourceController(piValue, piValue);
         }
 
-        public int MaximumHealth;
+        public int maximumHealth;
         public int CurrentExp;
         public int MaximumExp;
         public int Level;
 
-        public int MaximumMana;
-        public float Damage;
-        public float Defense;
-        public float MagicDamage;
-        public float MagicDefense;
-        public float Luck;
-        public float Resistance;
+        public int maximumMana;
+        public float damage;
+        public float defense;
+        public float magicDamage;
+        public float magicDefense;
+        public float luck;
+        public float resistance;
         public float BaseCurseResist;
         public float BaseMpDrainResist;
         public float BaseLifeLeechResist;
@@ -54,14 +54,154 @@ namespace Assets.Scripts.Character.Stats
         public float BaseTimeStopResist;
         public float BaseFreezeResist;
         public float BaseFearResist;
-        public float HealthPerSecond;
-        public float ManaPerSecond;
+        public float healthPerSecond;
+        public float manaPerSecond;
 
         public int ExpToLevel { get { return MaximumExp - CurrentExp; } }
 
         public float ExpPercentage
         {
             get { return (float)CurrentExp / (float)MaximumExp; }
+        }
+
+        public int MaximumHealth
+        {
+            get
+            {
+                return maximumHealth;
+            }
+
+            set
+            {
+                maximumHealth = value;
+                FirePropertyChanged("MaximumHealth");
+            }
+        }
+
+        public int MaximumMana
+        {
+            get
+            {
+                return maximumMana;
+            }
+
+            set
+            {
+                maximumMana = value;
+                FirePropertyChanged("MaximumMana");
+            }
+        }
+
+        public float Damage
+        {
+            get
+            {
+                return damage;
+            }
+
+            set
+            {
+                damage = value;
+                FirePropertyChanged("Damage");
+            }
+        }
+
+        public float Defense
+        {
+            get
+            {
+                return defense;
+            }
+
+            set
+            {
+                defense = value;
+                FirePropertyChanged("Defense");
+            }
+        }
+
+        public float MagicDamage
+        {
+            get
+            {
+                return magicDamage;
+            }
+
+            set
+            {
+                magicDamage = value;
+                FirePropertyChanged("MagicDamage");
+            }
+        }
+
+        public float MagicDefense
+        {
+            get
+            {
+                return magicDefense;
+            }
+
+            set
+            {
+                magicDefense = value;
+                FirePropertyChanged("MagicDefense");
+            }
+        }
+
+        public float Luck
+        {
+            get
+            {
+                return luck;
+            }
+
+            set
+            {
+                luck = value;
+                FirePropertyChanged("Luck");
+            }
+        }
+
+        public float Resistance
+        {
+            get
+            {
+                return resistance;
+            }
+
+            set
+            {
+                resistance = value;
+                FirePropertyChanged("Resistance");
+            }
+        }
+
+        public float HealthPerSecond
+        {
+            get
+            {
+                return healthPerSecond;
+            }
+
+            set
+            {
+                healthPerSecond = value;
+                FirePropertyChanged("HealthPerSecond");
+            }
+        }
+
+        public float ManaPerSecond
+        {
+            get
+            {
+                return manaPerSecond;
+            }
+
+            set
+            {
+                manaPerSecond = value;
+                FirePropertyChanged("ManaPerSecond");
+            }
         }
 
         public void DealDamage(float amount)

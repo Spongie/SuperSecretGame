@@ -33,8 +33,17 @@ namespace Assets.Scripts.Character
             if (!ivInventory.GetEqippedItems().Any())
                 return Enumerable.Empty<AttackEffect>();
 
-            return ivInventory.GetEqippedItems().Where(item => item.EffectName != "None").Select(item => new AttackEffect()
-                    { Name = item.EffectName, Power = item.EffectValue, Duration = item.EffectDuration, Ticks = item.EffectTicks, Stats = item.EffectStats });
+            var attackEffects = new List<AttackEffect>();
+
+            foreach (var item in ivInventory.GetEqippedItems().Where(item => item.AttackEffects.Any()))
+            {
+                foreach (var attackEffect in item.AttackEffects)
+                {
+                    attackEffects.Add(attackEffect);
+                }
+            }
+
+            return attackEffects;
         }
 
         /// <summary>
@@ -91,8 +100,17 @@ namespace Assets.Scripts.Character
             if (!ivInventory.GetEqippedItems().Any())
                 return Enumerable.Empty<DefenseEffect>();
 
-            return ivInventory.GetEqippedItems().Where(item => item.EffectName != "None").Select(item => new DefenseEffect()
-            { Name = item.EffectName, Power = item.EffectValue, Duration = item.EffectDuration, Ticks = item.EffectTicks, Stats = item.EffectStats });
+            var defenseEffects = new List<DefenseEffect>();
+
+            foreach (var item in ivInventory.GetEqippedItems().Where(item => item.AttackEffects.Any()))
+            {
+                foreach (var defenseEffect in item.DefenseEffects)
+                {
+                    defenseEffects.Add(defenseEffect);
+                }
+            }
+
+            return defenseEffects;
         }
 
         public Inventory PlayerInventory

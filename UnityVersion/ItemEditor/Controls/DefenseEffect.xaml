@@ -7,32 +7,33 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <ComboBox ItemsSource="{Binding Path=DefenseModifiers}" SelectedItem="{Binding Path=DefenseEffectName}" SelectionChanged="EffectName_SelectionChanged"/>
-        <Label Content="Effectvalue" />
-        <TextBox x:Name="ivTextboxEffectvalue" Height="30" TextWrapping="Wrap" Text="{Binding Path=DefenseEffectValue}" FontSize="18" />
+        <Label Content="Effect Name"/>
+        <ComboBox ItemsSource="{Binding Path=DefenseModifiers}" SelectedItem="{Binding Path=Name}" SelectionChanged="EffectName_SelectionChanged"/>
+        <Label Content="EffectPower" />
+        <TextBox x:Name="ivTextboxEffectvalue" Height="30" TextWrapping="Wrap" Text="{Binding Path=Power}" FontSize="18" />
         <Label Content="EffectDuration" />
-        <TextBox x:Name="ivTextboxEffectDuration" Height="30" TextWrapping="Wrap" Text="{Binding Path=DefenseEffectDuration}" FontSize="18" />
+        <TextBox x:Name="ivTextboxEffectDuration" Height="30" TextWrapping="Wrap" Text="{Binding Path=Duration}" FontSize="18" />
         <Label Content="EffectTicks" />
-        <TextBox x:Name="ivTextboxEffectTicks" Height="30" TextWrapping="Wrap" Text="{Binding Path=DefenseEffectTicks}" FontSize="18" />
+        <TextBox x:Name="ivTextboxEffectTicks" Height="30" TextWrapping="Wrap" Text="{Binding Path=Ticks}" FontSize="18" />
         <Label Content="EffectStats:Maximum Health"/>
-        <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=DefenseEffectMaximumHealth}" FontSize="18"/>
+        <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=Stats.MaximumHealth}" FontSize="18"/>
         <Label Content="EffectStats:Maximum Mana"/>
-        <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=DefenseEffectMaximumMana}" FontSize="18"/>
+        <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=Stats.MaximumMana}" FontSize="18"/>
         <Label Content="EffectStats:Health Per Second"/>
-        <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=DefenseEffectHealthPerSecond}" FontSize="18"/>
+        <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=Stats.HealthPerSecond}" FontSize="18"/>
         <Label Content="EffectStats:Mana Per Second"/>
-        <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=DefenseEffectManaPerSecond}" FontSize="18"/>
+        <TextBox Height="30" TextWrapping="Wrap" Text="{Binding Path=Stats.ManaPerSecond}" FontSize="18"/>
         <Label Content="EffectStats:Damage" />
-        <TextBox x:Name="ivTextboxEffectStatsDamage" Height="30" TextWrapping="Wrap" Text="{Binding Path=DefenseEffectDamage}" FontSize="18" />
+        <TextBox x:Name="ivTextboxEffectStatsDamage" Height="30" TextWrapping="Wrap" Text="{Binding Path=Stats.Damage}" FontSize="18" />
         <Label Content="EffectStats:Defense" />
-        <TextBox x:Name="ivTextboxEffectStatsDefense" Height="30" TextWrapping="Wrap" Text="{Binding Path=DefenseEffectDefense}" FontSize="18" />
+        <TextBox x:Name="ivTextboxEffectStatsDefense" Height="30" TextWrapping="Wrap" Text="{Binding Path=Stats.Defense}" FontSize="18" />
         <Label Content="EffectStats:MagicDamage" />
-        <TextBox x:Name="ivTextboxEffectStatsMagicDamage" Height="30" TextWrapping="Wrap" Text="{Binding Path=DefenseEffectMagicDamage}" FontSize="18" />
+        <TextBox x:Name="ivTextboxEffectStatsMagicDamage" Height="30" TextWrapping="Wrap" Text="{Binding Path=Stats.MagicDamage}" FontSize="18" />
         <Label Content="EffectStats:MagicDefense" />
-        <TextBox x:Name="ivTextboxEffectStatsMagicDefense" Height="30" TextWrapping="Wrap" Text="{Binding Path=DefenseEffectMagicDefense}" FontSize="18" />
+        <TextBox x:Name="ivTextboxEffectStatsMagicDefense" Height="30" TextWrapping="Wrap" Text="{Binding Path=Stats.MagicDefense}" FontSize="18" />
         <Label Content="EffectStats:Luck" />
-        <TextBox x:Name="ivTextboxEffectStatsLuck" Height="30" TextWrapping="Wrap" Text="{Binding Path=DefenseEffectLuck}" FontSize="18" />
+        <TextBox x:Name="ivTextboxEffectStatsLuck" Height="30" TextWrapping="Wrap" Text="{Binding Path=Stats.Luck}" FontSize="18" />
         <Label Content="EffectStats:Resistance" />
-        <TextBox x:Name="ivTextboxEffectStatsResistance" Height="30" TextWrapping="Wrap" Text="{Binding Path=DefenseEffectResistance}" FontSize="18" />
+        <TextBox x:Name="ivTextboxEffectStatsResistance" Height="30" TextWrapping="Wrap" Text="{Binding Path=Stats.Resistance}" FontSize="18" />
     </StackPanel>
 </UserControl>
