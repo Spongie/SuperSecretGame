@@ -40,5 +40,17 @@ namespace Assets.Scripts.Defense
 
             return 0;
         }
+
+        private float Lucky(DefenseEffect defenseEffect, GameObject piAttacker, GameObject piDefender, AttackDamageScaling piAttackScaling, float piCurrentDamage)
+        {
+            var stats = DamageController.GetGameObjectsStats(piDefender);
+
+            var success = Random.Range(0, 100) < (defenseEffect.Power + stats.Luck);
+
+            if (!success)
+                return piCurrentDamage;
+
+            return 0;
+        }
     }
 }
