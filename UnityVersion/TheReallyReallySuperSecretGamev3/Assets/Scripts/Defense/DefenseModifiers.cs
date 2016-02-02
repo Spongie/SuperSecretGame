@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Attacks;
 using Assets.Scripts.Buffs;
 using System.Reflection;
+using Assets.Scripts.Utility;
 using UnityEngine;
 
 namespace Assets.Scripts.Defense
@@ -43,9 +44,7 @@ namespace Assets.Scripts.Defense
 
         private float Lucky(DefenseEffect defenseEffect, GameObject piAttacker, GameObject piDefender, AttackDamageScaling piAttackScaling, float piCurrentDamage)
         {
-            var stats = DamageController.GetGameObjectsStats(piDefender);
-
-            var success = Random.Range(0, 100) < (defenseEffect.Power + stats.Luck);
+            var success = Random.Range(0, 100) < (defenseEffect.Power + piDefender.GetGameObjectsStats().Luck);
 
             if (!success)
                 return piCurrentDamage;

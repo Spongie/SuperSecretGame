@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Buffs;
 using Assets.Scripts.Character.Stats;
 using System.Reflection;
+using Assets.Scripts.Utility;
 using UnityEngine;
 
 namespace Assets.Scripts.Attacks
@@ -28,8 +29,8 @@ namespace Assets.Scripts.Attacks
 
         private float Manasteal(AttackEffect attackEffect, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piCurrentDamage)
         {
-            CStats targetStats = DamageController.GetGameObjectsStats(piTarget);
-
+            CStats targetStats = piTarget.GetGameObjectsStats();
+                
             int amount = (int)(piCurrentDamage * attackEffect.Power);
 
             if (amount > targetStats.Resources.CurrentMana)

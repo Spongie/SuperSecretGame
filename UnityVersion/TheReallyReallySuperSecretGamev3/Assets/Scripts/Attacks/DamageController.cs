@@ -16,8 +16,8 @@ namespace Assets.Scripts.Attacks
 
         public static void DoAttack(GameObject piAttacker, GameObject piDefender, AttackDamageScaling piAttackScaling, IEnumerable<AttackEffect> piEffectsFromAttack)
         {
-            CStats attackerStats = GetGameObjectsStats(piAttacker);
-            CStats targetStats = GetGameObjectsStats(piDefender);
+            CStats attackerStats = piAttacker.GetGameObjectsStats();
+            CStats targetStats = piDefender.GetGameObjectsStats();
 
             float baseDamage = (attackerStats.Damage * piAttackScaling.Damage) + (attackerStats.MagicDamage * piAttackScaling.Magic);
 
@@ -32,8 +32,8 @@ namespace Assets.Scripts.Attacks
             }
 
             //Get stats again if they were changed by modifiers
-            attackerStats = GetGameObjectsStats(piAttacker);
-            targetStats = GetGameObjectsStats(piDefender);
+            attackerStats = piAttacker.GetGameObjectsStats();
+            targetStats = piDefender.GetGameObjectsStats();
 
             float physicalDefense = piAttackScaling.Damage > 0 ? targetStats.Defense : 0;
 
@@ -92,16 +92,6 @@ namespace Assets.Scripts.Attacks
                 return;
             }
             piFrom.GetComponent<Monster>().CurrentStats.stats.DrainMana((int)piDamage);
-        }
-
-        public static CStats GetGameObjectsStats(GameObject piObject)
-        {
-            Player player = piObject.GetComponent<Player>();
-
-            if (player != null)
-                return player.GetTrueStats();
-
-            return piObject.GetComponent<Monster>().GetTrueStats();
         }
     }
 }
