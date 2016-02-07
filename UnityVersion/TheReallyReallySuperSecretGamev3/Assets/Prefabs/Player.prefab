@@ -162,7 +162,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110236}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.36, y: -2.05, z: 0}
+  m_LocalPosition: {x: 219.87248, y: 225.48204, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children:
   - {fileID: 493854}
@@ -391,9 +391,10 @@ MonoBehaviour:
   DiveKickingRight: 0
   SpellCastPosition: {fileID: 495254}
   IgnoreGravityTime: 0.15
-  maxSpeed: 4.5
+  maxSpeed: 6
   jumpSpeed: 5
   MaxFallSpeed: 10
+  dropPlatform: 0
   platformRelativeJump: 0
   allowWallGrab: 1
   allowWallJump: 1
@@ -634,17 +635,17 @@ MonoBehaviour:
       ExtraMana: 0
       CurrentHealth: 100
       CurrentMana: 100
-    MaximumHealth: 0
+    maximumHealth: 0
     CurrentExp: 0
     MaximumExp: 100
     Level: 1
-    MaximumMana: 0
-    Damage: 10
-    Defense: 0
-    MagicDamage: 10
-    MagicDefense: 0
-    Luck: 0
-    Resistance: 0
+    maximumMana: 0
+    damage: 0
+    defense: 0
+    magicDamage: 0
+    magicDefense: 0
+    luck: 0
+    resistance: 0
     BaseCurseResist: 0
     BaseMpDrainResist: 0
     BaseLifeLeechResist: 0
@@ -654,8 +655,8 @@ MonoBehaviour:
     BaseTimeStopResist: 0
     BaseFreezeResist: 0
     BaseFearResist: 0
-    HealthPerSecond: 1
-    ManaPerSecond: 0
+    healthPerSecond: 0
+    manaPerSecond: 0
 --- !u!114 &11491614
 MonoBehaviour:
   m_ObjectHideFlags: 1

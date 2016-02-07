@@ -51,5 +51,13 @@ namespace Assets.Scripts.Defense
 
             return 0;
         }
+
+        private float MaxDamageTaken(DefenseEffect defenseEffect, GameObject piAttacker, GameObject piDefender, AttackDamageScaling piAttackScaling, float piCurrentDamage)
+        {
+            if (piCurrentDamage > defenseEffect.power)
+                return defenseEffect.power;
+
+            return piCurrentDamage;
+        }
     }
 }
