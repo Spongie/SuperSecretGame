@@ -174,7 +174,7 @@ namespace Assets.Scripts.Attacks
                 else
                 {
                     AddEntityToHit(otherGameObject);
-                    DamageController.DoAttack(Owner, otherGameObject, Scaling, GetAttackEffects());
+                    DamageController.DoAttack(Owner, otherGameObject, Scaling, GetAttackEffects(), piGraphialSpawnPoint);
 
                     if (OnHitGraphics != null)
                         Instantiate(OnHitGraphics, piGraphialSpawnPoint, Quaternion.identity);

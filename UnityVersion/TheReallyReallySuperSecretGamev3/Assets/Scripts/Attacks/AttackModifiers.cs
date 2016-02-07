@@ -6,9 +6,14 @@ using UnityEngine;
 
 namespace Assets.Scripts.Attacks
 {
-    public class AttackModifiers
+    public class AttackModifiers : Modifiers
     {
-        public float ApplyAttackEffect(AttackEffect attackEffect, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piCurrentDamage)
+        public AttackModifiers() : base()
+        {
+
+        }
+
+        public float ApplyAttackEffect(AttackEffect attackEffect, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piCurrentDamage, Vector3 piHitpoint)
         {
             var method = GetType().GetMethod(attackEffect.Name, BindingFlags.NonPublic | BindingFlags.Instance);
             
@@ -20,14 +25,14 @@ namespace Assets.Scripts.Attacks
             return piCurrentDamage;
         }
 
-        private float Lifesteal(AttackEffect attackEffect, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piCurrentDamage)
+        private float Lifesteal(AttackEffect attackEffect, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piCurrentDamage, Vector3 piHitpoint)
         {
             DamageController.DealDamageToGameObject(piAttacker, -(int)(piCurrentDamage * attackEffect.Power));
 
             return piCurrentDamage;
         }
 
-        private float Manasteal(AttackEffect attackEffect, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piCurrentDamage)
+        private float Manasteal(AttackEffect attackEffect, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piCurrentDamage, Vector3 piHitpoint)
         {
             CStats targetStats = piTarget.GetGameObjectsStats();
                 
@@ -42,7 +47,7 @@ namespace Assets.Scripts.Attacks
             return piCurrentDamage;
         }
 
-        private float ManaDrainDebuff(AttackEffect attackEffect, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piCurrentDamage)
+        private float ManaDrainDebuff(AttackEffect attackEffect, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piCurrentDamage, Vector3 piHitpoint)
         {
             var buff = new ManaDrainBuff(attackEffect.Power, attackEffect.Ticks, attackEffect.Duration);
 
@@ -55,7 +60,7 @@ namespace Assets.Scripts.Attacks
         }
 
 
-        private float DamageOverTimeDebuff(AttackEffect attackEffect, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piCurrentDamage)
+        private float DamageOverTimeDebuff(AttackEffect attackEffect, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piCurrentDamage, Vector3 piHitpoint)
         {
             var buff = new PoisonDebuff(attackEffect.Power, attackEffect.Ticks, attackEffect.Duration);
             buff.StatChanges = attackEffect.Stats;
@@ -69,7 +74,7 @@ namespace Assets.Scripts.Attacks
         }
 
 
-        private float MinusAllStats(AttackEffect attackEffect, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piCurrentDamage)
+        private float MinusAllStats(AttackEffect attackEffect, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piCurrentDamage, Vector3 piHitpoint)
         {
             var buff = new Buff(new CStats((int)attackEffect.Power), attackEffect.Duration);
 
@@ -81,7 +86,7 @@ namespace Assets.Scripts.Attacks
             return piCurrentDamage;
         }
 
-        private float MinusStats(AttackEffect attackEffect, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piCurrentDamage)
+        private float MinusStats(AttackEffect attackEffect, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piCurrentDamage, Vector3 piHitpoint)
         {
             var buff = new Buff(attackEffect.Stats, attackEffect.Duration);
 
@@ -93,7 +98,7 @@ namespace Assets.Scripts.Attacks
             return piCurrentDamage;
         }
 
-        private float Stun(AttackEffect attackEffect, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piCurrentDamage)
+        private float Stun(AttackEffect attackEffect, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piCurrentDamage, Vector3 piHitpoint)
         {
             var buff = new StunBuff(attackEffect.Stats, attackEffect.Duration);
 
@@ -105,7 +110,7 @@ namespace Assets.Scripts.Attacks
             return piCurrentDamage;
         }
 
-        private float Freeze(AttackEffect attackEffect, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piCurrentDamage)
+        private float Freeze(AttackEffect attackEffect, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piCurrentDamage, Vector3 piHitpoint)
         {
             var buff = new ChilledBuff(attackEffect.Stats, attackEffect.Duration);
 
@@ -117,7 +122,7 @@ namespace Assets.Scripts.Attacks
             return piCurrentDamage;
         }
 
-        private float Fear(AttackEffect attackEffect, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piCurrentDamage)
+        private float Fear(AttackEffect attackEffect, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piCurrentDamage, Vector3 piHitpoint)
         {
             var buff = new FearBuff(attackEffect.Stats, attackEffect.Duration);
 
@@ -129,7 +134,7 @@ namespace Assets.Scripts.Attacks
             return piCurrentDamage;
         }
 
-        private float OneShot(AttackEffect attackEffect, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piCurrentDamage)
+        private float OneShot(AttackEffect attackEffect, GameObject piAttacker, GameObject piTarget, AttackDamageScaling piAttackScaling, float piCurrentDamage, Vector3 piHitpoint)
         {
             if (Random.Range(0, 100f) < attackEffect.Power)
                 return float.MaxValue;

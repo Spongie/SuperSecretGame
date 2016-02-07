@@ -14,7 +14,7 @@ namespace Assets.Scripts.Attacks
         private static AttackModifiers attackModifiers = new AttackModifiers();
         private static DefenseModifiers defenseModifiers = new DefenseModifiers();
 
-        public static void DoAttack(GameObject piAttacker, GameObject piDefender, AttackDamageScaling piAttackScaling, IEnumerable<AttackEffect> piEffectsFromAttack)
+        public static void DoAttack(GameObject piAttacker, GameObject piDefender, AttackDamageScaling piAttackScaling, IEnumerable<AttackEffect> piEffectsFromAttack, Vector3 piHitpoint)
         {
             CStats attackerStats = piAttacker.GetGameObjectsStats();
             CStats targetStats = piDefender.GetGameObjectsStats();
@@ -23,12 +23,12 @@ namespace Assets.Scripts.Attacks
 
             foreach (var effect in piEffectsFromAttack.Concat(GetAttackEffectsFromAttackersEquippedItems(piAttacker)))
             {
-                baseDamage = attackModifiers.ApplyAttackEffect(effect, piAttacker, piDefender, piAttackScaling, baseDamage);
+                baseDamage = attackModifiers.ApplyAttackEffect(effect, piAttacker, piDefender, piAttackScaling, baseDamage, piHitpoint);
             }
 
             foreach (var defenseEffect in GetDefenseEffectsFromDefender(piDefender))
             {
-                baseDamage = defenseModifiers.ApplyDefenseEffect(defenseEffect, piAttacker, piDefender, piAttackScaling, baseDamage);
+                baseDamage = defenseModifiers.ApplyDefenseEffect(defenseEffect, piAttacker, piDefender, piAttackScaling, baseDamage, piHitpoint);
             }
 
             //Get stats again if they were changed by modifiers
