@@ -86,6 +86,7 @@ namespace Assets.Scripts.Character
         bool diveKicking = false;
         bool releasedJumpSinceLand = false;
         bool hasJumpedEver = false;
+        const string unpassableGround = "UnpassableGround";
 
         ManualTimer jumpControlTimer = new ManualTimer(0);
         ManualTimer dashTimer = new ManualTimer(0);
@@ -149,6 +150,9 @@ namespace Assets.Scripts.Character
             {
                 foreach (var collider in GetTopmostParent(col.gameObject).GetComponentsInChildren<BoxCollider2D>())     
                 {
+                    if (collider.gameObject.layer == LayerMask.NameToLayer(unpassableGround))
+                        continue;
+
                     collider.enabled = false;
                     ivCollisionResest.Add(new ManualTimer(0.5f), collider);
                 }
@@ -164,7 +168,7 @@ namespace Assets.Scripts.Character
                 var effectCollider = col.gameObject.GetComponent<BoxCollider2D>();
                 var effectCenter = effectCollider.bounds.max;
 
-                if (feetCenter.y < effectCenter.y && ivRigidbody.velocity.y < 0.02f)
+                if (feetCenter.y < effectCenter.y && ivRigidbody.velocity.y < -0.02f)
                 {
                     effectCollider.enabled = false;
                     ivCollisionResest.Add(new ManualTimer(0.5f), effectCollider);
@@ -268,7 +272,7 @@ namespace Assets.Scripts.Character
                 if (!jumpStartTimer.Done)
                     return false;
 
-                var from = GetComponent<CircleCollider2D>().bounds.center;
+                var from = ivFeetCollider.bounds.center;
 
                 if (Debug.isDebugBuild)
                     Debug.DrawRay(from, new Vector3(0, -0.35f, 0), Color.green);
@@ -304,6 +308,44 @@ namespace Assets.Scripts.Character
 
                 groundedLastFrame = false;
                 TrulyGrounded = false;
+            }
+
+            return false;
+        }
+
+        private bool IsAboveGround()
+        {
+            var from = ivFeetCollider.bounds.center;
+
+            if (RaycastForGround(from))
+                return true;
+
+            from = new Vector3(from.x + 0.1f, from.y, from.z);
+
+            if (RaycastForGround(from))
+                return true;
+
+            from = new Vector3(from.x - 0.1f, from.y, from.z);
+
+            if (RaycastForGround(from))
+                return true;
+
+            return false;
+        }
+
+        private bool RaycastForGround(Vector3 from)
+        {
+            var hits = Physics2D.RaycastAll(from, new Vector2(0, -1), 0.25f);
+
+            foreach (var hit in hits)
+            {
+                if (hit.collider != null)
+                {
+                    if (hit.collider.gameObject.name == "Player")
+                        continue;
+
+                    return true;
+                }
             }
 
             return false;
@@ -875,7 +917,7 @@ namespace Assets.Scripts.Character
             else
                 ivAnimator.SetBool(ivHashIDs.Running, false);
 
-            if (yVel < -0.02f)
+            if (yVel < -0.02f && !IsAboveGround())
             {
                 if (CurrentAnimationState != AnimationState.Falling)
                 {
