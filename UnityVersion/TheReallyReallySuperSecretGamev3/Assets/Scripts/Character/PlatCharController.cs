@@ -93,6 +93,7 @@ namespace Assets.Scripts.Character
         ManualTimer boostReactionTimer = new ManualTimer(0);
         ManualTimer jumpStartTimer = new ManualTimer(0);
         ManualTimer ignoreTimer = new ManualTimer(0);
+        ManualTimer lastJump = new ManualTimer(0);
 
         private Dictionary<ManualTimer, BoxCollider2D> ivCollisionResest;
 
@@ -315,6 +316,9 @@ namespace Assets.Scripts.Character
 
         private bool IsAboveGround()
         {
+            if (!lastJump.Done)
+                return false;
+
             var from = ivFeetCollider.bounds.center;
 
             if (RaycastForGround(from))
@@ -507,6 +511,7 @@ namespace Assets.Scripts.Character
             boostReactionTimer.Update(Time.deltaTime);
             jumpStartTimer.Update(Time.deltaTime);
             ignoreTimer.Update(Time.deltaTime);
+            lastJump.Update(Time.deltaTime);
 
             if(Input.GetButtonDown("B") && CanAttack())
             {
@@ -547,6 +552,7 @@ namespace Assets.Scripts.Character
                 {
                     CurrentAnimationState = AnimationState.Smash;
                     ivAnimator.SetTrigger(ivHashIDs.Smash);
+                    
                 }
 
                 isJumpControlling = false;
@@ -672,6 +678,7 @@ namespace Assets.Scripts.Character
 
                 if (CurrentAnimationState != AnimationState.Stab && CurrentAnimationState != AnimationState.Smash && CurrentAnimationState != AnimationState.Falling)
                 {
+                    lastJump = new ManualTimer(0.2f);
                     jumping = true;
                     ivAnimator.SetBool(ivHashIDs.Jump, true);
                     CurrentAnimationState = AnimationState.Jump;
@@ -917,7 +924,7 @@ namespace Assets.Scripts.Character
             else
                 ivAnimator.SetBool(ivHashIDs.Running, false);
 
-            if (yVel < -0.02f && !IsAboveGround())
+            if ((yVel < -0.02f || yVel > 0.02f) && !IsAboveGround())
             {
                 if (CurrentAnimationState != AnimationState.Falling)
                 {
