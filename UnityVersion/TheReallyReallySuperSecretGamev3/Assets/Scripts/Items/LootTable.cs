@@ -9,15 +9,15 @@ namespace Assets.Scripts.Items
         public string Name;
         public List<LootTableItem> Items;
 
-        public List<string> GetRollingList()
+        public List<Item> GetRollingList()
         {
-            var rollingList = new List<string>();
+            var rollingList = new List<Item>();
 
             foreach (LootTableItem item in Items)
             {
                 for (int i = 0; i < item.DropChance * 10; i++)
                 {
-                    rollingList.Add(item.item.Name);
+                    rollingList.Add(item.item);
                 }
             }
 

@@ -35,11 +35,11 @@ namespace Assets.Scripts.Items
 
             for (int i = 1; i <= nrOfDrops; i++)
             {
-                string itemName = ivLootTable.GetRollingList()[Random.Range(0, 100)];
+                Item item = ivLootTable.GetRollingList()[Random.Range(0, 1000)];
 
                 var gameObject = new GameObject("DroppedItem" + i);
                 DroppedItem drop = gameObject.AddComponent<DroppedItem>();
-                drop.ItemDropped = ivItemManager.GetItemForDrop(itemName);
+                drop.ItemDropped = item;
             }
         }
     }
