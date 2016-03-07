@@ -6,8 +6,8 @@ namespace Assets.Scripts.Items
     [CreateAssetMenu(menuName = "LootTable")]
     public class LootTable : ScriptableObject
     {
-        public List<LootTableItem> Items;
         public string Name;
+        public List<LootTableItem> Items;
 
         public List<string> GetRollingList()
         {
@@ -15,7 +15,7 @@ namespace Assets.Scripts.Items
 
             foreach (LootTableItem item in Items)
             {
-                for (int i = 0; i < item.DropChance; i++)
+                for (int i = 0; i < item.DropChance * 10; i++)
                 {
                     rollingList.Add(item.item.Name);
                 }

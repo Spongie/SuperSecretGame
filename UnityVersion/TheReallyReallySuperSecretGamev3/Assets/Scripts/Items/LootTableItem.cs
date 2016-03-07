@@ -2,6 +2,7 @@
 
 namespace Assets.Scripts.Items
 {
+    [System.Serializable]
     public class LootTableItem
     {
         public Item item;
