@@ -1,37 +1,13 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
+using UnityEngine;
 
 namespace Assets.Scripts.Items
 {
-    public class LootTable : INotifyPropertyChanged
+    [CreateAssetMenu(menuName = "LootTable")]
+    public class LootTable : ScriptableObject
     {
-        public LootTable()
-        {
-            ivItems = new List<LootTableItem>();
-        }
-
-        protected List<LootTableItem> ivItems;
-        protected string ivName;
-
-        public virtual List<LootTableItem> Items
-        {
-            get { return ivItems; }
-            set 
-            { 
-                ivItems = value;
-                FirePropertyChanged("Items");
-            }
-        }
-
-        public string Name
-        {
-            get { return ivName; }
-            set 
-            { 
-                ivName = value;
-                FirePropertyChanged("Name");
-            }
-        }
+        public List<LootTableItem> Items;
+        public string Name;
 
         public List<string> GetRollingList()
         {
@@ -41,19 +17,11 @@ namespace Assets.Scripts.Items
             {
                 for (int i = 0; i < item.DropChance; i++)
                 {
-                    rollingList.Add(item.ItemName);
+                    rollingList.Add(item.item.Name);
                 }
             }
 
             return rollingList;
         }
-
-        protected void FirePropertyChanged(string property)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(property));
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

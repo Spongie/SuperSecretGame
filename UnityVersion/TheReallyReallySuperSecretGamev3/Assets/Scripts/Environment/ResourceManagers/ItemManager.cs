@@ -17,13 +17,7 @@ namespace Assets.Scripts.Environment.ResourceManagers
             AllLootTables = new List<LootTable>();
 
             AllItems = Resources.LoadAll<Item>("Items/").ToList();
-            var lootTableFiles = Resources.LoadAll("LootTables/").Cast<TextAsset>();
-
-            foreach (var lootTableFile in lootTableFiles)
-            {
-                var lootTable = JsonConvert.DeserializeObject<LootTable>(lootTableFile.text);
-                AllLootTables.Add(lootTable);
-            }
+            AllLootTables = Resources.LoadAll<LootTable>("LootTables/").ToList();
 
             Utility.Logger.Log(string.Format("{0} Items loaded", AllItems.Count()));
             Utility.Logger.Log(string.Format("{0} LootTables loaded", AllLootTables.Count()));
