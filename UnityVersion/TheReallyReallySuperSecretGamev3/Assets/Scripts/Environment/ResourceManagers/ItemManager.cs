@@ -14,17 +14,10 @@ namespace Assets.Scripts.Environment.ResourceManagers
 
         void Awake()
         {
-            AllItems = new List<Item>();
             AllLootTables = new List<LootTable>();
 
-            var itemFiles = Resources.LoadAll("Items/").Cast<TextAsset>();
+            AllItems = Resources.LoadAll<Item>("Items/").ToList();
             var lootTableFiles = Resources.LoadAll("LootTables/").Cast<TextAsset>();
-
-            foreach (var itemFile in itemFiles)
-            {
-                var item = JsonConvert.DeserializeObject<Item>(itemFile.text);
-                AllItems.Add(item);
-            }
 
             foreach (var lootTableFile in lootTableFiles)
             {
