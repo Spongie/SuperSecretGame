@@ -8,6 +8,7 @@ using UnityEngine;
 using System;
 using Assets.Scripts.Defense;
 using Assets.Scripts.Utility;
+using Assets.Scripts.Attacks.Modifier;
 
 namespace Assets.Scripts.Character
 {
@@ -83,7 +84,7 @@ namespace Assets.Scripts.Character
             Controller.DrainMana(amount);
         }
 
-        public IEnumerable<AttackEffect> GetAttackEffectsFromEquippedItems()
+        public IEnumerable<AttackModifier> GetAttackEffectsFromEquippedItems()
         {
             return Controller.GetAttackEffectsFromEquippedItems();
         }

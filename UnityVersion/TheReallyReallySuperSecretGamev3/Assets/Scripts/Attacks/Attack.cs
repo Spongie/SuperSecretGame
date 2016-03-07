@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Assets.Scripts.Utility;
 using System.Linq;
 using Assets.Scripts.Character;
+using Assets.Scripts.Attacks.Modifier;
 
 namespace Assets.Scripts.Attacks
 {
@@ -22,7 +23,7 @@ namespace Assets.Scripts.Attacks
         public int ManaCost;
         public Timer lifeTimer;
         public GameObject Owner;
-        public AttackEffect[] AttackEffects;
+        public AttackModifier[] AttackEffects;
         public GameObject OnHitGraphics;
         public GameObject CursedArea;
         public Vector2 Speed = Vector2.zero;
@@ -174,7 +175,7 @@ namespace Assets.Scripts.Attacks
                 else
                 {
                     AddEntityToHit(otherGameObject);
-                    DamageController.DoAttack(Owner, otherGameObject, Scaling, GetAttackEffects(), piGraphialSpawnPoint);
+                    DamageController.DoAttack(Owner, otherGameObject, Scaling, AttackEffects, piGraphialSpawnPoint);
 
                     if (OnHitGraphics != null)
                         Instantiate(OnHitGraphics, piGraphialSpawnPoint, Quaternion.identity);
@@ -199,11 +200,6 @@ namespace Assets.Scripts.Attacks
         public void StopMeleeAttack()
         {
             gameObject.SetActive(false);
-        }
-
-        public IEnumerable<AttackEffect> GetAttackEffects()
-        {
-            return AttackEffects.Where(effect => effect.Name != "None");
         }
     }
 }

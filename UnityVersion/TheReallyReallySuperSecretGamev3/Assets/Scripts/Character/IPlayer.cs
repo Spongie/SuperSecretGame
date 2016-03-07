@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Attacks;
+using Assets.Scripts.Attacks.Modifier;
 using Assets.Scripts.Character.Stats;
 using Assets.Scripts.Defense;
 using Assets.Scripts.Items;
@@ -16,7 +17,7 @@ namespace Assets.Scripts.Character
 
         CStats GetTrueStats();
 
-        IEnumerable<AttackEffect> GetAttackEffectsFromEquippedItems();
+        IEnumerable<AttackModifier> GetAttackEffectsFromEquippedItems();
         IEnumerable<DefenseEffect> GetDefenseEffectsFromEquippedItems();
         List<GameObject> GetAvailableSpells();
         bool LoadPlayer();

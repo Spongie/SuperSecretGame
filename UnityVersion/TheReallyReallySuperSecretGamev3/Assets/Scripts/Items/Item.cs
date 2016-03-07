@@ -5,8 +5,8 @@ using Newtonsoft.Json;
 using Assets.Scripts.Attacks;
 using Assets.Scripts.Character.Stats;
 using Assets.Scripts.Defense;
-using Assets.Scripts.Utility;
-using System.ComponentModel;
+using UnityEngine;
+using Assets.Scripts.Attacks.Modifier;
 
 namespace Assets.Scripts.Items
 {
@@ -20,51 +20,50 @@ namespace Assets.Scripts.Items
     }
 
     [Serializable]
-    public class Item : PropertyChanger
+    [CreateAssetMenu(menuName = "Item")]
+    public class Item : ScriptableObject
     {
-        private string ivName;
-        private float ivMagicDefense;
-        private float ivResistance;
-        private float ivDamage;
-        private float ivMagicDamage;
-        private float ivDefense;
-        private float ivLuck;
-        private ItemSlot ivSlot;
-        private string ivIconName;
+        public string Name;
+        public float MagicDefense;
+        public float Resistance;
+        public float Damage;
+        public float MagicDamage;
+        public float Defense;
+        public float Luck;
+        public ItemSlot Slot;
+        public Sprite Icon;
         
-        private int ivMaxStackSize;
-        private string ivID;
-        private string ivDescription;
+        public int MaxStackSize;
+        public string ID;
+        public string Description;
 
         [NonSerialized]
-        private AttackEffectLoader ivEffectLoader;
+        private AttackEffectLoader EffectLoader;
         [NonSerialized]
-        private DefenseEffectLoader ivDefenseEffectLoader;
-        private AttackEffect ivSelectedAttackEffect;
-        private DefenseEffect ivSelectedDefenseEfffect;
-        private List<AttackEffect> ivAttackEffects;
-        private List<DefenseEffect> ivDefenseEffects;
+        public DefenseEffectLoader DefenseEffectLoader;
+        public List<AttackModifier> AttackEffects;
+        public List<DefenseEffect> DefenseEffects;
 
         public Item() 
         {
-            ivEffectLoader = new AttackEffectLoader();
-            ivDefenseEffectLoader = new DefenseEffectLoader();
+            EffectLoader = new AttackEffectLoader();
+            DefenseEffectLoader = new DefenseEffectLoader();
             StackSize = 1;
-            AttackEffects = new List<AttackEffect>();
+            AttackEffects = new List<AttackModifier>();
             DefenseEffects = new List<DefenseEffect>();
         }
 
         public Item(Item original) :base()
         {
-            ivName = original.Name;
-            ivDefense = original.Defense;
-            ivMagicDefense = original.MagicDefense;
-            ivResistance = original.Resistance;
-            ivDamage = original.Damage;
-            ivMagicDamage = original.MagicDamage;
-            ivLuck = original.Luck;
-            ivSlot = original.Slot;
-            ivIconName = original.IconName;
+            Name = original.Name;
+            Defense = original.Defense;
+            MagicDefense = original.MagicDefense;
+            Resistance = original.Resistance;
+            Damage = original.Damage;
+            MagicDamage = original.MagicDamage;
+            Luck = original.Luck;
+            Slot = original.Slot;
+            Icon = original.Icon;
             StackSize = original.StackSize;
             MaxStackSize = original.MaxStackSize;
             AttackEffects = original.AttackEffects;
@@ -75,133 +74,135 @@ namespace Assets.Scripts.Items
             else
                 ID = original.ID;
         }
-
+        /*
         public AttackEffect SelectedAttackEfffect
         {
-            get { return ivSelectedAttackEffect; }
+            get { return SelectedAttackEffect; }
             set
             {
-                ivSelectedAttackEffect = value;
+                SelectedAttackEffect = value;
                 FirePropertyChanged("SelectedAttackEfffect");
             }
         }
 
         public DefenseEffect SelectedDefenseEfffect
         {
-            get { return ivSelectedDefenseEfffect; }
+            get { return SelectedDefenseEfffect; }
             set
             {
-                ivSelectedDefenseEfffect = value;
+                SelectedDefenseEfffect = value;
                 FirePropertyChanged("SelectedDefenseEfffect");
             }
         }
 
         public string ID
         {
-            get { return ivID; }
+            get { return ID; }
             set
             {
-                ivID = value;
+                ID = value;
                 FirePropertyChanged("ID");
             }
         }
 
-        public short StackSize { get; set; }
 
         public int MaxStackSize
         {
-            get { return ivMaxStackSize; }
+            get { return MaxStackSize; }
             set
             {
-                ivMaxStackSize = value;
+                MaxStackSize = value;
                 FirePropertyChanged("MaxStackSize");
             }
-        }
+        }*/
 
-        private float ivManaReg;
-        private float ivHealthReg;
-        private int ivMaxHealth;
-        private int ivMaxMana;
+        public short StackSize;
 
+        public float ManaReg;
+        public float HealthReg;
+        public int MaxHealth;
+        public int MaxMana;
+
+        /*
         public float ManaPerSecond
         {
-            get { return ivManaReg; }
+            get { return ManaReg; }
             set
             {
                 FirePropertyChanged("ManaPerSecond");
-                ivManaReg = value;
+                ManaReg = value;
             }
         }
         
         public float HealthPerSecond
         {
-            get { return ivHealthReg; }
+            get { return HealthReg; }
             set
             {
                 FirePropertyChanged("HealthPerSecond");
-                ivHealthReg = value;
+                HealthReg = value;
             }
         }
 
         public int MaximumHealth
         {
-            get { return ivMaxHealth; }
+            get { return MaxHealth; }
             set
             {
-                ivMaxHealth = value;
+                MaxHealth = value;
                 FirePropertyChanged("MaximumHealth");
             }
         }
 
         public int MaximumMana
         {
-            get { return ivMaxMana; }
+            get { return MaxMana; }
             set
             {
-                ivMaxMana = value;
+                MaxMana = value;
                 FirePropertyChanged("MaximumMana");
             }
         }
        
         public List<AttackEffect> AttackEffects
         {
-            get { return ivAttackEffects; }
+            get { return AttackEffects; }
             set
             {
-                ivAttackEffects = value;
+                AttackEffects = value;
                 FirePropertyChanged("AttackEffects");
             }
         }
 
         public List<DefenseEffect> DefenseEffects
         {
-            get { return ivDefenseEffects; }
+            get { return DefenseEffects; }
             set
             {
-                ivDefenseEffects = value;
+                DefenseEffects = value;
                 FirePropertyChanged("DefenseEffects");
             }
         }
 
         public string IconName
         {
-            get { return ivIconName; }
+            get { return IconName; }
             set 
             { 
-                ivIconName = value;
+                IconName = value;
                 FirePropertyChanged("IconName");
             }
         }
 
         public ItemSlot Slot
         {
-            get { return ivSlot; }
+            get { return Slot; }
             set 
             { 
-                ivSlot = value;
+                Slot = value;
                 FirePropertyChanged("Slot");
             }
-        }
+        }*/
 
         [JsonIgnore]
         public IEnumerable<ItemSlot> ItemSlots
@@ -211,16 +212,16 @@ namespace Assets.Scripts.Items
                 return Enum.GetValues(typeof(ItemSlot)).Cast<ItemSlot>();
             }
         }
-
+        /*
         [JsonIgnore]
         public List<string> AttackModifiers
         {
             get
             {
-                if (ivEffectLoader == null)
-                    ivEffectLoader = new AttackEffectLoader();
+                if (EffectLoader == null)
+                    EffectLoader = new AttackEffectLoader();
 
-                return ivEffectLoader.GetAttackMethods();
+                return EffectLoader.GetAttackMethods();
             }
         }
 
@@ -229,79 +230,79 @@ namespace Assets.Scripts.Items
         {
             get
             {
-                if (ivDefenseEffectLoader == null)
-                    ivDefenseEffectLoader = new DefenseEffectLoader();
+                if (DefenseEffectLoader == null)
+                    DefenseEffectLoader = new DefenseEffectLoader();
 
-                return ivDefenseEffectLoader.GetDefenseMethods();
+                return DefenseEffectLoader.GetDefenseMethods();
             }
         }
 
         public string Name
         {
-            get { return ivName; }
+            get { return Name; }
             set 
             { 
-                ivName = value;
+                Name = value;
                 FirePropertyChanged("Name");
             }
         }
 
         public float Damage
         {
-            get { return ivDamage; }
+            get { return Damage; }
             set 
             { 
-                ivDamage = value;
+                Damage = value;
                 FirePropertyChanged("Damage");
             }
         }
 
         public float Defense
         {
-            get { return ivDefense; }
+            get { return Defense; }
             set 
             { 
-                ivDefense = value;
+                Defense = value;
                 FirePropertyChanged("Defense");
             }
         }
 
         public float MagicDamage
         {
-            get { return ivMagicDamage; }
+            get { return MagicDamage; }
             set 
             { 
-                ivMagicDamage = value;
+                MagicDamage = value;
                 FirePropertyChanged("MagicDamage");
             }
         }
 
         public float MagicDefense
         {
-            get { return ivMagicDefense; }
+            get { return MagicDefense; }
             set 
             { 
-                ivMagicDefense = value;
+                MagicDefense = value;
                 FirePropertyChanged("MagicDefense");
             }
         }
 
         public float Luck
         {
-            get { return ivLuck; }
+            get { return Luck; }
             set 
             { 
-                ivLuck = value;
+                Luck = value;
                 FirePropertyChanged("Luck");
             }
         }
 
         public float Resistance
         {
-            get { return ivResistance; }
+            get { return Resistance; }
             set
             {
-                ivResistance = value; 
+                Resistance = value; 
                 FirePropertyChanged("Resistance");
             }
         }
@@ -310,30 +311,30 @@ namespace Assets.Scripts.Items
         {
             get
             {
-                return ivDescription;
+                return Description;
             }
 
             set
             {
-                ivDescription = value;
+                Description = value;
                 FirePropertyChanged("Description");
             }
-        }
+        }*/
 
         public CStats GetStats()
         {
             var stats = new CStats()
             {
-                Damage = ivDamage,
-                Defense = ivDefense,
-                MagicDamage = ivMagicDamage,
-                MagicDefense = ivMagicDefense,
-                Luck = ivLuck,
-                Resistance = ivResistance,
-                ManaPerSecond = ivManaReg,
-                HealthPerSecond = ivHealthReg,
-                MaximumHealth = ivMaxHealth,
-                MaximumMana = ivMaxMana
+                Damage = Damage,
+                Defense = Defense,
+                MagicDamage = MagicDamage,
+                MagicDefense = MagicDefense,
+                Luck = Luck,
+                Resistance = Resistance,
+                ManaPerSecond = ManaReg,
+                HealthPerSecond = HealthReg,
+                MaximumHealth = MaxHealth,
+                MaximumMana = MaxMana
             };
 
             return stats;
@@ -347,7 +348,7 @@ namespace Assets.Scripts.Items
         public void GenerateID()
         {
             var id = DateTime.Now.Ticks.ToString();
-            id += new Random().Next(1, 999999);
+            id += new System.Random().Next(1, 999999);
 
             ID = id;
         }

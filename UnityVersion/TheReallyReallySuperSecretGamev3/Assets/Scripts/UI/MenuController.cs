@@ -328,7 +328,7 @@ namespace Assets.Scripts.UI
             var itemButton = Instantiate(buttonToSpawn);
             itemButton.name = item.ID;
             itemButton.transform.SetParent(parent);
-            Sprite icon = ItemIconManager.Icons[item.IconName];
+            Sprite icon = item.Icon;
 
 
             if (isEquipButton)

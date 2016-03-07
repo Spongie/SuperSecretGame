@@ -27,7 +27,7 @@ namespace Assets.Scripts.Items
             ivLootCenter = player.GetComponentsInChildren<Transform>().First(position => position.name == "LootCenter");
             ivRenderer.material = player.GetComponent<SpriteRenderer>().material;
             transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-            SetSprite(ItemDropped.IconName);
+            SetSprite(ItemDropped.Icon);
 
             rigidB.velocity = new Vector2(Random.Range(-0.6f, 0.6f), 9);
         }
@@ -49,9 +49,9 @@ namespace Assets.Scripts.Items
             }
         }
 
-        private void SetSprite(string piIconName)
+        private void SetSprite(Sprite piIcon)
         {
-            ivRenderer.sprite = GameObject.FindGameObjectWithTag("Manager").GetComponent<IconManager>().Icons[piIconName];
+            ivRenderer.sprite = piIcon;
             ivCollider.size = ivRenderer.sprite.rect.size / 100;
         }
     }

@@ -8,6 +8,7 @@ using Assets.Scripts.Attacks;
 using UnityEngine;
 using Assets.Scripts.Spells;
 using Assets.Scripts.Defense;
+using Assets.Scripts.Attacks.Modifier;
 
 namespace Assets.Scripts.Character
 {
@@ -28,12 +29,12 @@ namespace Assets.Scripts.Character
             SpellController = piSpellmanager;
         }
 
-        public IEnumerable<AttackEffect> GetAttackEffectsFromEquippedItems()
+        public IEnumerable<AttackModifier> GetAttackEffectsFromEquippedItems()
         {
             if (!ivInventory.GetEqippedItems().Any())
-                return Enumerable.Empty<AttackEffect>();
+                return Enumerable.Empty<AttackModifier>();
 
-            var attackEffects = new List<AttackEffect>();
+            var attackEffects = new List<AttackModifier>();
 
             foreach (var item in ivInventory.GetEqippedItems().Where(item => item.AttackEffects.Any()))
             {

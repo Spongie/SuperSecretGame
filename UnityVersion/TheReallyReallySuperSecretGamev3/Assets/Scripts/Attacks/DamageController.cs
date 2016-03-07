@@ -6,6 +6,7 @@ using Assets.Scripts.Character.Monsters;
 using Assets.Scripts.Character.Stats;
 using Assets.Scripts.Utility;
 using Assets.Scripts.Defense;
+using Assets.Scripts.Attacks.Modifier;
 
 namespace Assets.Scripts.Attacks
 {
@@ -14,7 +15,7 @@ namespace Assets.Scripts.Attacks
         private static AttackModifiers attackModifiers = new AttackModifiers();
         private static DefenseModifiers defenseModifiers = new DefenseModifiers();
 
-        public static void DoAttack(GameObject piAttacker, GameObject piDefender, AttackDamageScaling piAttackScaling, IEnumerable<AttackEffect> piEffectsFromAttack, Vector3 piHitpoint)
+        public static void DoAttack(GameObject piAttacker, GameObject piDefender, AttackDamageScaling piAttackScaling, IEnumerable<AttackModifier> piEffectsFromAttack, Vector3 piHitpoint)
         {
             CStats attackerStats = piAttacker.GetGameObjectsStats();
             CStats targetStats = piDefender.GetGameObjectsStats();
@@ -23,7 +24,7 @@ namespace Assets.Scripts.Attacks
 
             foreach (var effect in piEffectsFromAttack.Concat(GetAttackEffectsFromAttackersEquippedItems(piAttacker)))
             {
-                baseDamage = attackModifiers.ApplyAttackEffect(effect, piAttacker, piDefender, piAttackScaling, baseDamage, piHitpoint);
+                baseDamage = effect.ApplyEffect(piAttacker, piDefender, piAttackScaling, piHitpoint, baseDamage);
             }
 
             foreach (var defenseEffect in GetDefenseEffectsFromDefender(piDefender))
@@ -49,12 +50,12 @@ namespace Assets.Scripts.Attacks
             DealDamageToGameObject(piDefender, realDamage);
         }
 
-        private static IEnumerable<AttackEffect> GetAttackEffectsFromAttackersEquippedItems(GameObject piAttacker)
+        private static IEnumerable<AttackModifier> GetAttackEffectsFromAttackersEquippedItems(GameObject piAttacker)
         {
             Player player = piAttacker.GetComponent<Player>();
 
             if (player == null)
-                return Enumerable.Empty<AttackEffect>();
+                return Enumerable.Empty<AttackModifier>();
 
             return player.GetAttackEffectsFromEquippedItems();
         }

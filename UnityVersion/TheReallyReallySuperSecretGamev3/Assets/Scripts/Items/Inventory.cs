@@ -101,7 +101,7 @@ namespace Assets.Scripts.Items
 
             for (int i = 0; i < toAdd; i++)
             {
-                allEquippedItems.Add(new Item() { Slot = slot, Name = "Empty", IconName = "Empty" });
+                allEquippedItems.Add(new Item() { Slot = slot, Name = "Empty" });
             }
         }
 
@@ -162,13 +162,13 @@ namespace Assets.Scripts.Items
 
         internal void AddDebugItems()
         {
-            Items.Add("1", new Item() { ID = "1", Damage = 20, Name = "Major1", Slot = ItemSlot.MajorGem, Defense = 2, IconName = "Aquamarine Gem05" });
-            Items.Add("2", new Item() { ID = "2", Damage = 220, Name = "Minor0", Slot = ItemSlot.MinorGem, Defense = 2, IconName = "Emerald Gem01" });
-            Items.Add("3", new Item() { ID = "3", Damage = 10, Name = "Minor1", Slot = ItemSlot.MinorGem, Defense = 2, IconName = "Emerald Gem02" });
-            Items.Add("4", new Item() { ID = "4", Damage = 40, Name = "Minor2", Slot = ItemSlot.MinorGem, Defense = 2, IconName = "Emerald Gem03" });
-            Items.Add("5", new Item() { ID = "5", Damage = 25, Name = "Minor3", Slot = ItemSlot.MinorGem, Defense = 2, IconName = "Emerald Gem01" });
-            Items.Add("6", new Item() { ID = "6", Damage = 2, Name = "Minor4", Slot = ItemSlot.MinorGem, Defense = 2, IconName = "Emerald Gem01" });
-            Items.Add("7", new Item() { ID = "7", Damage = 2, Name = "Major2", Slot = ItemSlot.MajorGem, Defense = 22, IconName = "Emerald Gem05" });
+            Items.Add("1", new Item() { ID = "1", Damage = 20, Name = "Major1", Slot = ItemSlot.MajorGem, Defense = 2 });
+            Items.Add("2", new Item() { ID = "2", Damage = 220, Name = "Minor0", Slot = ItemSlot.MinorGem, Defense = 2 });
+            Items.Add("3", new Item() { ID = "3", Damage = 10, Name = "Minor1", Slot = ItemSlot.MinorGem, Defense = 2 });
+            Items.Add("4", new Item() { ID = "4", Damage = 40, Name = "Minor2", Slot = ItemSlot.MinorGem, Defense = 2 });
+            Items.Add("5", new Item() { ID = "5", Damage = 25, Name = "Minor3", Slot = ItemSlot.MinorGem, Defense = 2 });
+            Items.Add("6", new Item() { ID = "6", Damage = 2, Name = "Minor4", Slot = ItemSlot.MinorGem, Defense = 2 });
+            Items.Add("7", new Item() { ID = "7", Damage = 2, Name = "Major2", Slot = ItemSlot.MajorGem, Defense = 22 });
         }
 
         private static int GetItemMaxEquipAmount(ItemSlot slot)

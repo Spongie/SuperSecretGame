@@ -57,7 +57,6 @@
     <Compile Include="Character\PlayerControllerTests.cs" />
     <Compile Include="Character\Stats\CStatsTests.cs" />
     <Compile Include="Items\InventoryTests.cs" />
-    <Compile Include="Items\ItemTests.cs" />
     <Compile Include="Items\LootTableItemTests.cs" />
     <Compile Include="Items\LootTableTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
