@@ -1,1 +1,0 @@
-{"Items":[{"ItemName":"Ruby Armor","DropChance":100}],"Name":"Chest3"}

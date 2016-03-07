@@ -1,1 +1,0 @@
-{"Items":[{"ItemName":"Hells Chestpiece","DropChance":1},{"ItemName":"Kings Cloak","DropChance":1},{"ItemName":"Winters Cape","DropChance":1},{"ItemName":"Golden Armor","DropChance":97}],"Name":"Chest5"}

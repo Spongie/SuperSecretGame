@@ -6,8 +6,6 @@ namespace Assets.Scripts.Items
 {
     public class ItemDropper : MonoBehaviour
     {
-        public string LootTableName;
-
         [Range(1, 50)]
         public int MaxItemDrops;
 
@@ -15,12 +13,11 @@ namespace Assets.Scripts.Items
         public int ChanceForDrop;
 
         private ItemManager ivItemManager;
-        private LootTable ivLootTable;
+        public LootTable LootTable;
 
         void Start()
         {
             ivItemManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<ItemManager>();
-            ivLootTable = ivItemManager.GetLootTable(LootTableName);
         }
 
         public void DropItems()
@@ -35,7 +32,7 @@ namespace Assets.Scripts.Items
 
             for (int i = 1; i <= nrOfDrops; i++)
             {
-                Item item = ivLootTable.GetRollingList()[Random.Range(0, 1000)];
+                Item item = LootTable.GetRollingList()[Random.Range(0, 1000)];
 
                 var gameObject = new GameObject("DroppedItem" + i);
                 DroppedItem drop = gameObject.AddComponent<DroppedItem>();
