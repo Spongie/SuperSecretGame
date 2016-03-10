@@ -8,7 +8,7 @@ namespace Assets.Scripts.Buffs
     public class PoisonDebuff : Buff
     {
         public float DamagePerTick;
-        public float AmountOfTicks;
+        public int AmountOfTicks;
         protected ManualTimer ivTickTimer;
 
         public PoisonDebuff() :this(0,0,0)
@@ -16,13 +16,21 @@ namespace Assets.Scripts.Buffs
 
         }
 
-        public PoisonDebuff(float piDamagePerTick, float piAmountOfTicks, float piDuration) : base(new CStats(), piDuration)
+        public PoisonDebuff(float piDamagePerTick, int piAmountOfTicks, float piDuration) : base(new CStats(), piDuration)
         {
             if(piAmountOfTicks > 0)
                 ivTickTimer = new ManualTimer(piDuration / piAmountOfTicks);
 
             DamagePerTick = piDamagePerTick;
             AmountOfTicks = piAmountOfTicks;
+        }
+
+        public void RecalcDamagePerTick(float damage)
+        {
+            if (AmountOfTicks > 0)
+                ivTickTimer = new ManualTimer(Duration / AmountOfTicks);
+
+            DamagePerTick = damage / AmountOfTicks;
         }
 
         public bool ShouldTick { get; set; }

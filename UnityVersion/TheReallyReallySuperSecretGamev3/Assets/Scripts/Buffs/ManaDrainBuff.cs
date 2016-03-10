@@ -6,7 +6,7 @@ namespace Assets.Scripts.Buffs
     [Serializable]
     public class ManaDrainBuff : PoisonDebuff
     {
-        public ManaDrainBuff(float piDamagePerTick, float piAmountOfTicks, float piDuration) : base(piDamagePerTick, piAmountOfTicks, piDuration)
+        public ManaDrainBuff(float piDamagePerTick, int piAmountOfTicks, float piDuration) : base(piDamagePerTick, piAmountOfTicks, piDuration)
         {
         }
 

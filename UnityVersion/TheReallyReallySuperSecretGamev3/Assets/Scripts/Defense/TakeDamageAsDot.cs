@@ -14,6 +14,8 @@ namespace Assets.Scripts.Defense
         {
             var buffContainer = piDefender.GetComponent<BuffContainer>();
 
+            Debuff.RecalcDamagePerTick(piCurrentDamage);
+
             if (buffContainer != null)
                 buffContainer.ApplyBuff(Debuff);
 

@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fd67913825b2864280c9d70a1d74bfa, type: 3}
+  m_Name: Long Big Ticks
+  m_EditorClassIdentifier: 
+  Name: Slow Bleed
+  Description: 
+  Debuff:
+    Duration: 10
+    StatChanges:
+      Resources:
+        BaseHealth: 0
+        ExtraHealth: 0
+        BaseMana: 0
+        ExtraMana: 0
+        CurrentHealth: 0
+        CurrentMana: 0
+      maximumHealth: 0
+      CurrentExp: 0
+      MaximumExp: 100
+      Level: 1
+      maximumMana: 0
+      damage: 0
+      defense: 0
+      magicDamage: 0
+      magicDefense: 0
+      luck: 0
+      resistance: 0
+      BaseCurseResist: 0
+      BaseMpDrainResist: 0
+      BaseLifeLeechResist: 0
+      BaseInstaKillResist: 0
+      BaseSlowResist: 0
+      BaseStatsLossResist: 0
+      BaseTimeStopResist: 0
+      BaseFreezeResist: 0
+      BaseFearResist: 0
+      healthPerSecond: 0
+      manaPerSecond: 0
+    DamagePerTick: 0
+    AmountOfTicks: 0
