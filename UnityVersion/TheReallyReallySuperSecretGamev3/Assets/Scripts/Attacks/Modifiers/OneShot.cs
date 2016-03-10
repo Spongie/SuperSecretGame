@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Attacks.Modifier
+namespace Assets.Scripts.Attacks.Modifiers
 {
     [CreateAssetMenu(menuName = "AttackEffects/One Shot")]
     public class OneShot : Modifier

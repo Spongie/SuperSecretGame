@@ -1,9 +1,10 @@
-﻿using Assets.Scripts.Attacks.Modifier;
+﻿using Assets.Scripts.Attacks.Modifiers;
 using Assets.Scripts.Attacks;
 using UnityEngine;
 
 namespace Assets.Scripts.Defense
 {
+    [CreateAssetMenu(menuName = "DefenseEffects/Max Damage")]
     public class MaxDamageTaken : Modifier
     {
         public int Max;

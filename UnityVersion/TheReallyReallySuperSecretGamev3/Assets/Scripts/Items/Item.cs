@@ -6,7 +6,7 @@ using Assets.Scripts.Attacks;
 using Assets.Scripts.Character.Stats;
 using Assets.Scripts.Defense;
 using UnityEngine;
-using Assets.Scripts.Attacks.Modifier;
+using Assets.Scripts.Attacks.Modifiers;
 
 namespace Assets.Scripts.Items
 {
@@ -42,20 +42,14 @@ namespace Assets.Scripts.Items
         public int MaxHealth;
         public int MaxMana;
 
-        [NonSerialized]
-        private AttackEffectLoader EffectLoader;
-        [NonSerialized]
-        public DefenseEffectLoader DefenseEffectLoader;
         public List<Modifier> AttackEffects;
-        public List<DefenseEffect> DefenseEffects;
+        public List<Modifier> DefenseEffects;
 
         public Item() 
         {
-            EffectLoader = new AttackEffectLoader();
-            DefenseEffectLoader = new DefenseEffectLoader();
             StackSize = 1;
             AttackEffects = new List<Modifier>();
-            DefenseEffects = new List<DefenseEffect>();
+            DefenseEffects = new List<Modifier>();
         }
 
         public Item(Item original) :base()

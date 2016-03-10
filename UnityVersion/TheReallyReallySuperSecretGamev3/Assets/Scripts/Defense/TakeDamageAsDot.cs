@@ -1,14 +1,11 @@
-﻿using Assets.Scripts.Attacks.Modifier;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Assets.Scripts.Attacks.Modifiers;
 using Assets.Scripts.Attacks;
 using UnityEngine;
 using Assets.Scripts.Buffs;
 
 namespace Assets.Scripts.Defense
 {
+    [CreateAssetMenu(menuName = "DefenseEffects/Damage as DoT")]
     public class TakeDamageAsDot : Modifier
     {
         public PoisonDebuff Debuff;

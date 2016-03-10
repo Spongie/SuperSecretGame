@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Assets.Scripts.Utility;
 using System.Linq;
 using Assets.Scripts.Character;
-using Assets.Scripts.Attacks.Modifier;
+using Assets.Scripts.Attacks.Modifiers;
 
 namespace Assets.Scripts.Attacks
 {
@@ -23,7 +23,7 @@ namespace Assets.Scripts.Attacks
         public int ManaCost;
         public Timer lifeTimer;
         public GameObject Owner;
-        public Modifier.Modifier[] AttackEffects;
+        public Modifier[] AttackEffects;
         public GameObject OnHitGraphics;
         public GameObject CursedArea;
         public Vector2 Speed = Vector2.zero;

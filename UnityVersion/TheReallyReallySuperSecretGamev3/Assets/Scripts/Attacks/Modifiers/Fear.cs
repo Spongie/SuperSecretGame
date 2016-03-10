@@ -1,19 +1,19 @@
 ﻿using Assets.Scripts.Buffs;
 using UnityEngine;
 
-namespace Assets.Scripts.Attacks.Modifier
+namespace Assets.Scripts.Attacks.Modifiers
 {
-    [CreateAssetMenu(menuName = "AttackEffects/Stats Buff")]
-    public class StatChangingDebuff : Modifier
+    [CreateAssetMenu(menuName = "AttackEffects/Fear")]
+    public class Fear : Modifier
     {
-        public Buff StatBuff;
+        public FearBuff FearModifier;
 
         public override float ApplyEffect(GameObject piAttacker, GameObject piDefender, AttackDamageScaling piAttackScaling, Vector3 piHitpoint, float piCurrentDamage)
         {
             var buffContainer = piDefender.GetComponent<BuffContainer>();
 
             if (buffContainer != null)
-                buffContainer.ApplyBuff(StatBuff);
+                buffContainer.ApplyBuff(FearModifier);
 
             return piCurrentDamage;
         }

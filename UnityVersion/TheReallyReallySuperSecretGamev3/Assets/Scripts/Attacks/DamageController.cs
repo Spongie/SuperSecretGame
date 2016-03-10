@@ -6,16 +6,13 @@ using Assets.Scripts.Character.Monsters;
 using Assets.Scripts.Character.Stats;
 using Assets.Scripts.Utility;
 using Assets.Scripts.Defense;
-using Assets.Scripts.Attacks.Modifier;
+using Assets.Scripts.Attacks.Modifiers;
 
 namespace Assets.Scripts.Attacks
 {
     public static class DamageController
     {
-        private static AttackModifiers attackModifiers = new AttackModifiers();
-        private static DefenseModifiers defenseModifiers = new DefenseModifiers();
-
-        public static void DoAttack(GameObject piAttacker, GameObject piDefender, AttackDamageScaling piAttackScaling, IEnumerable<Modifier.Modifier> piEffectsFromAttack, Vector3 piHitpoint)
+        public static void DoAttack(GameObject piAttacker, GameObject piDefender, AttackDamageScaling piAttackScaling, IEnumerable<Modifier> piEffectsFromAttack, Vector3 piHitpoint)
         {
             CStats attackerStats = piAttacker.GetGameObjectsStats();
             CStats targetStats = piDefender.GetGameObjectsStats();
@@ -29,7 +26,7 @@ namespace Assets.Scripts.Attacks
 
             foreach (var defenseEffect in GetDefenseEffectsFromDefender(piDefender))
             {
-                baseDamage = defenseModifiers.ApplyDefenseEffect(defenseEffect, piAttacker, piDefender, piAttackScaling, baseDamage, piHitpoint);
+                baseDamage = defenseEffect.ApplyEffect(piAttacker, piDefender, piAttackScaling, piHitpoint, baseDamage);
             }
 
             //Get stats again if they were changed by modifiers
@@ -50,7 +47,7 @@ namespace Assets.Scripts.Attacks
             DealDamageToGameObject(piDefender, realDamage);
         }
 
-        private static IEnumerable<Modifier.Modifier> GetAttackEffectsFromAttackersEquippedItems(GameObject piAttacker)
+        private static IEnumerable<Modifier> GetAttackEffectsFromAttackersEquippedItems(GameObject piAttacker)
         {
             Player player = piAttacker.GetComponent<Player>();
 
@@ -60,12 +57,12 @@ namespace Assets.Scripts.Attacks
             return player.GetAttackEffectsFromEquippedItems();
         }
 
-        private static IEnumerable<DefenseEffect> GetDefenseEffectsFromDefender(GameObject defender)
+        private static IEnumerable<Modifier> GetDefenseEffectsFromDefender(GameObject defender)
         {
             Player player = defender.GetComponent<Player>();
 
             if (player == null)
-                return Enumerable.Empty<DefenseEffect>();
+                return Enumerable.Empty<Modifier>();
 
             return player.GetDefenseEffectsFromEquippedItems();
         }

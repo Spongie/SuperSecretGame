@@ -4,11 +4,9 @@ using Assets.Scripts.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.Attacks;
 using UnityEngine;
 using Assets.Scripts.Spells;
-using Assets.Scripts.Defense;
-using Assets.Scripts.Attacks.Modifier;
+using Assets.Scripts.Attacks.Modifiers;
 
 namespace Assets.Scripts.Character
 {
@@ -96,12 +94,12 @@ namespace Assets.Scripts.Character
             return SpellController.CanCastSpell(piSpellSlot, GetTrueStats().Resources.CurrentMana);
         }
 
-        public IEnumerable<DefenseEffect> GetDefenseEffectsFromEquippedItems()
+        public IEnumerable<Modifier> GetDefenseEffectsFromEquippedItems()
         {
             if (!ivInventory.GetEqippedItems().Any())
-                return Enumerable.Empty<DefenseEffect>();
+                return Enumerable.Empty<Modifier>();
 
-            var defenseEffects = new List<DefenseEffect>();
+            var defenseEffects = new List<Modifier>();
 
             foreach (var item in ivInventory.GetEqippedItems().Where(item => item.AttackEffects.Any()))
             {

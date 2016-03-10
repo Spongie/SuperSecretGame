@@ -1,10 +1,11 @@
-﻿using Assets.Scripts.Attacks.Modifier;
+﻿using Assets.Scripts.Attacks.Modifiers;
 using Assets.Scripts.Attacks;
 using UnityEngine;
 using Assets.Scripts.Utility;
 
 namespace Assets.Scripts.Defense
 {
+    [CreateAssetMenu(menuName = "DefenseEffects/Lucky")]
     public class TakeDamageLucky : Modifier
     {
         public int Chance;

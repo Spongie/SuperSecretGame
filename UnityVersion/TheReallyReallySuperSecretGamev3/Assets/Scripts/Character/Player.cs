@@ -1,14 +1,11 @@
-﻿using Assets.Scripts.Attacks;
-using Assets.Scripts.Buffs;
+﻿using Assets.Scripts.Buffs;
 using Assets.Scripts.Character.Stats;
 using Assets.Scripts.Items;
 using Assets.Scripts.Spells;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
-using Assets.Scripts.Defense;
 using Assets.Scripts.Utility;
-using Assets.Scripts.Attacks.Modifier;
+using Assets.Scripts.Attacks.Modifiers;
 
 namespace Assets.Scripts.Character
 {
@@ -104,7 +101,7 @@ namespace Assets.Scripts.Character
             return Controller.CanCastSpell(piSpellSlot);
         }
 
-        public IEnumerable<DefenseEffect> GetDefenseEffectsFromEquippedItems()
+        public IEnumerable<Modifier> GetDefenseEffectsFromEquippedItems()
         {
             return Controller.GetDefenseEffectsFromEquippedItems();
         }

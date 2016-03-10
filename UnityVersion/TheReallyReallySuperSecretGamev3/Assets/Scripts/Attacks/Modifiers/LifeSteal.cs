@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Attacks.Modifier
+namespace Assets.Scripts.Attacks.Modifiers
 {
     [CreateAssetMenu(menuName = "AttackEffects/Lifesteal")]
     public class LifeSteal : Modifier
