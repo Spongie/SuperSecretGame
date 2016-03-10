@@ -84,7 +84,7 @@ namespace Assets.Scripts.Character
             Controller.DrainMana(amount);
         }
 
-        public IEnumerable<AttackModifier> GetAttackEffectsFromEquippedItems()
+        public IEnumerable<Modifier> GetAttackEffectsFromEquippedItems()
         {
             return Controller.GetAttackEffectsFromEquippedItems();
         }

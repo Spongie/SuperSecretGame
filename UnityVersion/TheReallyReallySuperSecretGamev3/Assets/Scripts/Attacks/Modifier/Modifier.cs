@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts.Attacks.Modifier
 {
-    public abstract class AttackModifier : ScriptableObject
+    public abstract class Modifier : ScriptableObject
     {
         public string Name;
         public string Description;

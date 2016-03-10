@@ -29,12 +29,12 @@ namespace Assets.Scripts.Character
             SpellController = piSpellmanager;
         }
 
-        public IEnumerable<AttackModifier> GetAttackEffectsFromEquippedItems()
+        public IEnumerable<Modifier> GetAttackEffectsFromEquippedItems()
         {
             if (!ivInventory.GetEqippedItems().Any())
-                return Enumerable.Empty<AttackModifier>();
+                return Enumerable.Empty<Modifier>();
 
-            var attackEffects = new List<AttackModifier>();
+            var attackEffects = new List<Modifier>();
 
             foreach (var item in ivInventory.GetEqippedItems().Where(item => item.AttackEffects.Any()))
             {

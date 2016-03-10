@@ -46,7 +46,7 @@ namespace Assets.Scripts.Items
         private AttackEffectLoader EffectLoader;
         [NonSerialized]
         public DefenseEffectLoader DefenseEffectLoader;
-        public List<AttackModifier> AttackEffects;
+        public List<Modifier> AttackEffects;
         public List<DefenseEffect> DefenseEffects;
 
         public Item() 
@@ -54,7 +54,7 @@ namespace Assets.Scripts.Items
             EffectLoader = new AttackEffectLoader();
             DefenseEffectLoader = new DefenseEffectLoader();
             StackSize = 1;
-            AttackEffects = new List<AttackModifier>();
+            AttackEffects = new List<Modifier>();
             DefenseEffects = new List<DefenseEffect>();
         }
 

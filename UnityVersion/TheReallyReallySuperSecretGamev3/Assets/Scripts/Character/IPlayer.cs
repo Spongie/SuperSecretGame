@@ -17,7 +17,7 @@ namespace Assets.Scripts.Character
 
         CStats GetTrueStats();
 
-        IEnumerable<AttackModifier> GetAttackEffectsFromEquippedItems();
+        IEnumerable<Modifier> GetAttackEffectsFromEquippedItems();
         IEnumerable<DefenseEffect> GetDefenseEffectsFromEquippedItems();
         List<GameObject> GetAvailableSpells();
         bool LoadPlayer();

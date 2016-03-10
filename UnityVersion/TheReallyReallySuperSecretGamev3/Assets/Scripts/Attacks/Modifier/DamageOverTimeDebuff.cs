@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Assets.Scripts.Attacks.Modifier
 {
     [CreateAssetMenu(menuName = "AttackEffects/DoT")]
-    public class DamageOverTimeDebuff : AttackModifier
+    public class DamageOverTimeDebuff : Modifier
     {
         public PoisonDebuff Debuff;
 

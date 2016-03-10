@@ -15,7 +15,7 @@ namespace Assets.Scripts.Attacks
         private static AttackModifiers attackModifiers = new AttackModifiers();
         private static DefenseModifiers defenseModifiers = new DefenseModifiers();
 
-        public static void DoAttack(GameObject piAttacker, GameObject piDefender, AttackDamageScaling piAttackScaling, IEnumerable<AttackModifier> piEffectsFromAttack, Vector3 piHitpoint)
+        public static void DoAttack(GameObject piAttacker, GameObject piDefender, AttackDamageScaling piAttackScaling, IEnumerable<Modifier.Modifier> piEffectsFromAttack, Vector3 piHitpoint)
         {
             CStats attackerStats = piAttacker.GetGameObjectsStats();
             CStats targetStats = piDefender.GetGameObjectsStats();
@@ -50,12 +50,12 @@ namespace Assets.Scripts.Attacks
             DealDamageToGameObject(piDefender, realDamage);
         }
 
-        private static IEnumerable<AttackModifier> GetAttackEffectsFromAttackersEquippedItems(GameObject piAttacker)
+        private static IEnumerable<Modifier.Modifier> GetAttackEffectsFromAttackersEquippedItems(GameObject piAttacker)
         {
             Player player = piAttacker.GetComponent<Player>();
 
             if (player == null)
-                return Enumerable.Empty<AttackModifier>();
+                return Enumerable.Empty<Modifier>();
 
             return player.GetAttackEffectsFromEquippedItems();
         }

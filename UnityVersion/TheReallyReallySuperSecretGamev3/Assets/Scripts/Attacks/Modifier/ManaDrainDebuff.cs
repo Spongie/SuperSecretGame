@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Assets.Scripts.Attacks.Modifier
 {
     [CreateAssetMenu(menuName = "AttackEffects/Manadrain DoT")]
-    public class ManaDrainDebuff : AttackModifier
+    public class ManaDrainDebuff : Modifier
     {
         [Tooltip("The debuff to apply")]
         public ManaDrainBuff ManaDrainEffect;

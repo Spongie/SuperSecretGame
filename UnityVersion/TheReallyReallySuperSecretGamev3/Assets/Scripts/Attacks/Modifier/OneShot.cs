@@ -3,7 +3,7 @@
 namespace Assets.Scripts.Attacks.Modifier
 {
     [CreateAssetMenu(menuName = "AttackEffects/One Shot")]
-    public class OneShot : AttackModifier
+    public class OneShot : Modifier
     {
         [Tooltip("Chance in % for effect to apply")]
         [Range(0f, 100f)]

@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Assets.Scripts.Attacks.Modifier
 {
     [CreateAssetMenu(menuName = "AttackEffects/Fear")]
-    public class Fear : AttackModifier
+    public class Fear : Modifier
     {
         public FearBuff FearModifier;
 

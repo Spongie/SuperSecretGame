@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Assets.Scripts.Attacks.Modifier
 {
     [CreateAssetMenu(menuName = "AttackEffects/Manasteal")]
-    public class ManaSteal : AttackModifier
+    public class ManaSteal : Modifier
     {
         [Tooltip("% of damage thats converted to life")]
         public float Amount;

@@ -8,7 +8,7 @@ using UnityEngine;
 namespace Assets.Scripts.Attacks.Modifier
 {
     [CreateAssetMenu(menuName = "AttackEffects/Stun")]
-    public class Stun : AttackModifier
+    public class Stun : Modifier
     {
         public StunBuff StunModifier;
 

@@ -1,25 +1,26 @@
-﻿using Assets.Scripts.Buffs;
+﻿using Assets.Scripts.Attacks.Modifier;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Assets.Scripts.Attacks;
 using UnityEngine;
+using Assets.Scripts.Buffs;
 
-namespace Assets.Scripts.Attacks.Modifier
+namespace Assets.Scripts.Defense
 {
-    [CreateAssetMenu(menuName = "AttackEffects/Freeze")]
-    public class Freeze : Modifier
+    public class TakeDamageAsDot : Modifier
     {
-        public ChilledBuff FreezeModifier;
+        public PoisonDebuff Debuff;
 
         public override float ApplyEffect(GameObject piAttacker, GameObject piDefender, AttackDamageScaling piAttackScaling, Vector3 piHitpoint, float piCurrentDamage)
         {
             var buffContainer = piDefender.GetComponent<BuffContainer>();
 
             if (buffContainer != null)
-                buffContainer.ApplyBuff(FreezeModifier);
+                buffContainer.ApplyBuff(Debuff);
 
-            return piCurrentDamage;
+            return 0;
         }
     }
 }

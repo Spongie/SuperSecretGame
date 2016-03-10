@@ -23,7 +23,7 @@ namespace Assets.Scripts.Attacks
         public int ManaCost;
         public Timer lifeTimer;
         public GameObject Owner;
-        public AttackModifier[] AttackEffects;
+        public Modifier.Modifier[] AttackEffects;
         public GameObject OnHitGraphics;
         public GameObject CursedArea;
         public Vector2 Speed = Vector2.zero;

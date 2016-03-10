@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Assets.Scripts.Attacks.Modifier
 {
     [CreateAssetMenu(menuName = "AttackEffects/Stats Buff")]
-    public class StatChangingDebuff : AttackModifier
+    public class StatChangingDebuff : Modifier
     {
         public Buff StatBuff;
 
